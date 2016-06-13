@@ -13,7 +13,7 @@ public class SettingsFilter {
     
     private int custumer;
     private int priority;
-    private boolean statys;
+    private int statys = 2;
     
     public void setCustumer(String custumer) {
         this.custumer = new Integer(custumer);
@@ -23,7 +23,7 @@ public class SettingsFilter {
         this.priority = new Integer(priority);
     }
 
-    public void setStatys(boolean statys) {
+    public void setStatys(int statys) {
         this.statys = statys;
     }
 
@@ -35,7 +35,7 @@ public class SettingsFilter {
         return priority;
     }
 
-    public boolean isStatys() {
+    public int isStatys() {
         return statys;
     }
     
