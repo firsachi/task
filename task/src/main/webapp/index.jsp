@@ -32,7 +32,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="refresh" content="10">
+        <meta http-equiv="refresh" content="600">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="css/index.css"/>
         <title>Список завдань.</title>
