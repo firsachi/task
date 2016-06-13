@@ -39,13 +39,16 @@ public class ServletFilterIndex extends HttpServlet {
         buildQuery(" AND emploue=", settingsFilter.getCustumer());
         settingsFilter.setPriority(request.getParameter("priority"));
         buildQuery(" AND urgency=", settingsFilter.getPriority());
-        if (null == request.getParameter("status")){
-           settingsFilter.setStatys(false);
-        }else {
-            settingsFilter.setStatys(true);
+        int status = new Integer( (String) request.getParameter("status"));
+        if (1 == status){
+            settingsFilter.setStatys(1);
+            createState(sql, true);
+        }else if (2 == status){
+            settingsFilter.setStatys(2);
+            createState(sql, false);
+        }else{
+            settingsFilter.setStatys(0);
         }
-        sql.append(" AND state=");
-        sql.append(settingsFilter.isStatys());
         sql.append(" ORDER BY urgency");
         request.getSession().setAttribute("filter", settingsFilter);
         request.getSession().setAttribute("table", sql.toString());
@@ -68,4 +71,8 @@ public class ServletFilterIndex extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+    private void createState(StringBuilder sql, boolean state){
+            sql.append(" AND state=");
+            sql.append(state);
+    }
 }
