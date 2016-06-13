@@ -21,6 +21,8 @@
     SettingsFilter settingsFilter = new SettingsFilter();
     if (null != session.getAttribute("filter")){
         settingsFilter = (SettingsFilter) session.getAttribute("filter");
+    }else{
+        session.setAttribute("filter", settingsFilter);
     }
     if (null==session.getAttribute("table")){
         session.setAttribute("table", "SELECT tasks.id,emplouers.login,task,number,date_create,urgency,state,delete FROM tasks JOIN emplouers ON emplouers.id = tasks.emploue WHERE delete=false AND state=false ORDER BY urgency");
@@ -30,6 +32,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta http-equiv="refresh" content="10">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="css/index.css"/>
         <title>Список завдань.</title>
@@ -52,7 +55,7 @@
                                             out.print(" selected");
                                         }
                                     %>
-                                    value="<% out.print(emploue.getId()); %>"><% out.print(emploue.getLogin()); %></option>
+                                    value="<%= emploue.getId() %>"><%= emploue.getLogin() %></option>
                                     <%
                                     }
                                 %>
@@ -73,15 +76,15 @@
                                         <%
                                     }
                                 %>
+                                
                             </select>
                             &nbsp;
                             Статус:
-                            <input type="checkbox" name="status" 
-                                   <%
-                                       if (settingsFilter.isStatys()){
-                                           out.print("checked");
-                                       }
-                                       %>>
+                            <select name="status">
+                                <option value="0" <%if (0==((SettingsFilter) session.getAttribute("filter")).isStatys()) {out.print(" selected");}%> >Всі</option>
+                                <option value="1" <%if (1==((SettingsFilter) session.getAttribute("filter")).isStatys()) {out.print(" selected");}%> >Виконано</option>
+                                <option value="2" <%if (2==((SettingsFilter) session.getAttribute("filter")).isStatys()) {out.print(" selected");}%> >В роботі</option>
+                            </select>
                             &nbsp;
                             <input type="submit" value="Виконати">        
                             <input type="button" onclick="location.href='FilterClear'" value="Скасувати">
