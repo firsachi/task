@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/task">
+  <Resource auth="Container" driverClassName="org.postgresql.Driver" name="jdbc/postgres" password="1q2w3e4r" type="javax.sql.DataSource" url="jdbc:postgresql://localhost:5432/task" username="sa"/>
+</Context>
