@@ -53,7 +53,7 @@ public class PostgresqlEmploueDao {
     private Emploue createEmploue(ResultSet rs) throws SQLException {
         Emploue emplouer = new Emploue();
         emplouer.setId(rs.getInt(1));
-        emplouer.setLogin(rs.getString(2));
+       //emplouer.setLogin(rs.getString(2));
         return emplouer;
     }
     
