@@ -4,19 +4,22 @@
     Author     : firsov
 --%>
 
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="kievreclama.task.entities.SqlQuery"%>
 <%@page import="kievreclama.task.entities.Task"%>
 <%@page import="kievreclama.task.entities.Urgency"%>
 <%@page import="kievreclama.task.entities.Emploue"%>
 <%@page import="kievreclama.task.entities.SettingsFilter"%>
 <%@page import="kievreclama.task.dao.PostgresqlUrgencyDao"%>
 <%@page import="kievreclama.task.dao.PostgresqlEmploueDao"%>
-
 <%@page import="kievreclama.task.dao.PostgresqlTaskDao"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%! PostgresqlTaskDao pgTask = new PostgresqlTaskDao(); %>
 <%! PostgresqlEmploueDao pgEmploue = new PostgresqlEmploueDao(); %>
 <%! PostgresqlUrgencyDao pgUrgency = new PostgresqlUrgencyDao(); %>
+<%! List<Task> listTask = new ArrayList<>(); %>
 <% 
     SettingsFilter settingsFilter = new SettingsFilter();
     if (null != session.getAttribute("filter")){
@@ -25,10 +28,13 @@
         session.setAttribute("filter", settingsFilter);
     }
     if (null==session.getAttribute("table")){
-        session.setAttribute("table", "SELECT tasks.id,emplouers.login,task,number,date_create,urgency,state,delete FROM tasks JOIN emplouers ON emplouers.id = tasks.emploue WHERE delete=false AND state=false ORDER BY urgency");
+        session.setAttribute("table", SqlQuery.ALL_TASK);
     }
+    listTask = pgTask.fillTables( (String) session.getAttribute("table"));
+    pageContext.setAttribute("tasks", listTask);
+    pageContext.setAttribute("ofurgency", pgUrgency.allUrgency());
+    pageContext.setAttribute("emplouers", pgEmploue.allEpmloue());
 %>
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -46,44 +52,36 @@
                     <form action="ServletFilterIndex" method="post" >
                         Замовник
                         <select name="customer">
-                        <option value="0">Всі</option>
-                        <%
-                            for (Emploue emploue : pgEmploue.allEpmloue()){
-                        %>
-                            <option <%
-                                        if (emploue.getId() == settingsFilter.getCustumer()){
-                                            out.print(" selected");
-                                        }
-                                    %>
-                                    value="<%= emploue.getId() %>"><%= emploue.getLogin() %></option>
-                                    <%
-                                    }
-                                %>
+                            <option value="0">Всі</option>
+
+                            <c:forEach var="emploue" items="${emplouers}">
+                                <option value="${emploue.getId() }"
+                                        <c:if test="${emploue.getId() == filter.getCustumer()}">
+                                            selected 
+                                        </c:if>
+                                        >${emploue.getLogin()}</option>
+                            </c:forEach>
                             </select>
                             &nbsp;
                             Приорітет:
                             <select name="priority">
                                 <option value="0">Всі</option>
-                                <% 
-                                    for (Urgency urgency : pgUrgency.allUrgency()){
-                                        %>
-                                        <option <%
-                                            if (urgency.getId() == settingsFilter.getPriority()){
-                                                        out.print(" selected");
-                                                    }
-                                            %> 
-                                            value="<% out.print(urgency.getId());%>" ><% out.print(urgency.getId()); %></option>
-                                        <%
-                                    }
-                                %>
-                                
+                                <c:forEach var="urgency" items="${ofurgency}">
+                                    <option value="${urgency.getId()}" 
+                                            <c:if test="${urgency.getId() == filter.getPriority()}"> 
+                                                selected 
+                                            </c:if> >
+                                        ${urgency.getId()}
+                                    </option>
+                                </c:forEach>
                             </select>
+                            ${filter.getPriority()}
                             &nbsp;
                             Статус:
                             <select name="status">
-                                <option value="0" <%if (0==((SettingsFilter) session.getAttribute("filter")).isStatys()) {out.print(" selected");}%> >Всі</option>
-                                <option value="1" <%if (1==((SettingsFilter) session.getAttribute("filter")).isStatys()) {out.print(" selected");}%> >Виконано</option>
-                                <option value="2" <%if (2==((SettingsFilter) session.getAttribute("filter")).isStatys()) {out.print(" selected");}%> >В роботі</option>
+                                <option value="0" <c:if test="${0 == filter.isStatys()}" > selected </c:if> >Всі</option>
+                                <option value="1" <c:if test="${1 == filter.isStatys()}" > selected </c:if> >Виконано</option>
+                                <option value="2" <c:if test="${2 == filter.isStatys()}" > selected </c:if> >В роботі</option>
                             </select>
                             &nbsp;
                             <input type="submit" value="Виконати">        
@@ -105,23 +103,20 @@
                     <th>Виконанно</th>
                 </tr>
                 </div>
-                <%
-                    //String sql = "SELECT tasks.id,emplouers.login,task,number,date_create,urgency,state,delete FROM tasks JOIN emplouers ON emplouers.id = tasks.emplouer WHERE delete=false";
-                    for (Task task : pgTask.fillTables( (String) session.getAttribute("table"))){
-                    %><tr>
-                        <td> <% out.print(task.getPriority()); %> </td>
-                        <td> <% out.print(task.getEmploue().getLogin()); %> </td>
-                        <td id="content_task"> <% out.print(task.getInfoTask()); %> </td>           
-                        <td> <% out.print(task.getNumber()); %> </td>
-                        <td> <% out.print(task.getDate()); %></td>
-                        <td> <input type="checkbox" disabled="disabled" <%
-                            if (task.isStatys()){
-                                out.print("checked");
-                            }
-                        %>>
+                <c:forEach var="task" items="${tasks}">
+                    <tr>
+                        <td> ${task.getPriority()} </td>
+                        <td> ${task.getEmploue().getLogin()} </td>
+                        <td id="content_task"> ${task.getInfoTask()} </td>           
+                        <td> ${task.getNumber()} </td>
+                        <td> ${task.getDate()} </td>
+                        <td> <input type="checkbox" disabled="disabled" 
+                                    <c:if test="${task.isStatys()}">
+                                        checked 
+                                    </c:if> >
                         </td>
-                    </tr><%
-                    }%>
+                    </tr>
+                </c:forEach>
             </table>
             
         </div>
