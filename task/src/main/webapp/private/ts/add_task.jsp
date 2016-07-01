@@ -13,7 +13,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-        <link rel="stylesheet" type="text/css" href="../css/form_task.css"/>
+        <link rel="stylesheet" type="text/css" href="../../css/form_task.css"/>
         <title>Нове завдвння</title>
     </head>
     <body>
@@ -23,25 +23,13 @@
             <div>
                 Ім'я користувача:
                 <br>
-                <input class="size" type="text" naname="login" value="${name}" disabled="disabled">
+                <input class="size" type="text" naname="login" value="${emploue.getSurname()} &nbsp; ${emploue.getName()}" disabled="disabled">
             </div>
             <div>
                 Приорітет:<br>
-                <%
-                    PostgresqlUrgencyDao urgencyDao = new PostgresqlUrgencyDao();
-                    ArrayList<Urgency> arrayList = urgencyDao.allUrgency();
-                    int sizeArray = arrayList.size();
-                    for (int index = 0; index < sizeArray; index++){
-                %>  <input type="radio" name="priority" value="<% out.print(arrayList.get(index).getId()); %>"<%
-                        if(index==sizeArray-1){
-                            out.print(" checked");
-                        }
-                        %>
-                        >
-                        <% out.print(arrayList.get(index).getId());%>
-                        <br><%
-                    }
-                %>
+                <jsp:include page="priority.jspf">
+                    <jsp:param name="setPriority" value="5"/>             
+                </jsp:include>
             </div>
             <div>
                 № службової записки: <br>
@@ -54,7 +42,7 @@
             <div>
                 <input type="reset">
                 <input type="submit" value="Записати">
-                <input type="button" onclick="self.location.href='/task/private/index.jsp';"  value="Повернутися">
+                <input type="button" onclick="self.location.href='/task/private/ts/index.jsp';"  value="Повернутися">
             </div>
             </form>
         </div>

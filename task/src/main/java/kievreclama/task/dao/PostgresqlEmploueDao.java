@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import kievreclama.task.entities.Emploue;
+import kievreclama.task.entities.EmploueQuery;
 
 /**
  *
@@ -37,9 +38,8 @@ public class PostgresqlEmploueDao {
     }
     
     public Emploue findEmploue(String login){
-        String sql ="SELECT * FROM emplouers WHERE login=?";
         try (Connection connection = Connctors.getConnection();
-                PreparedStatement ps = connection.prepareStatement(sql);) {
+                PreparedStatement ps = connection.prepareStatement(EmploueQuery.FIND_EMPLOUE);) {
             ps.setString(1, login);
             ResultSet rs = ps.executeQuery();
             rs.next();
@@ -53,6 +53,9 @@ public class PostgresqlEmploueDao {
     private Emploue createEmploue(ResultSet rs) throws SQLException {
         Emploue emplouer = new Emploue();
         emplouer.setId(rs.getInt(1));
+        emplouer.setSurname(rs.getString(2));
+        emplouer.setName(rs.getString(3));
+        emplouer.setPatronymic(rs.getString(4));
        //emplouer.setLogin(rs.getString(2));
         return emplouer;
     }

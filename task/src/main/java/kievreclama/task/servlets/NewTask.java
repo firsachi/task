@@ -7,6 +7,7 @@ package kievreclama.task.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -34,18 +35,16 @@ public class NewTask extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet NewTask</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet NewTask at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        request.setCharacterEncoding("UTF-8");
+        Task task = new Task();
+        task.setEmploue( (Emploue) request.getSession().getAttribute("emploue"));
+        task.setInfoTask(request.getParameter("infoTask"));
+        task.setNumber(request.getParameter("number"));
+        task.setPriority(request.getParameter("priority"));
+        PostgresqlTaskDao pgTaskDao = new PostgresqlTaskDao();
+        pgTaskDao.add(task);
+        ((ArrayList)  request.getSession().getAttribute("UserTask")).add(task);
+        response.sendRedirect("/task/private/ts/index.jsp");
     }
 
 
@@ -60,19 +59,6 @@ public class NewTask extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       // response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");
-        Task task = new Task();
-        task.setEmploue( (Emploue) request.getSession().getAttribute("emploue"));
-        task.setInfoTask(request.getParameter("infoTask"));
-        task.setNumber(request.getParameter("number"));
-        task.setPriority(request.getParameter("priority"));
-        PostgresqlTaskDao pgTaskDao = new PostgresqlTaskDao();
-        if (pgTaskDao.add(task)){
-            response.sendRedirect("/task/private/index.jsp");
-        }else {
-            processRequest(request, response);
-        }
         processRequest(request, response);
     }
 

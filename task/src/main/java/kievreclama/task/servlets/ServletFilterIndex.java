@@ -17,9 +17,6 @@ import kievreclama.task.entities.SettingsFilter;
  * @author firsov
  */
 public class ServletFilterIndex extends HttpServlet {
-
-    private SettingsFilter settingsFilter;
-    private StringBuilder sql;
     
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -32,33 +29,11 @@ public class ServletFilterIndex extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        settingsFilter = new SettingsFilter();
-        sql = new StringBuilder();
-        sql.append("SELECT tasks.id,emplouers.login,task,number,date_create,urgency,state,delete FROM tasks JOIN emplouers ON emplouers.id = tasks.emploue WHERE delete=false");
+        SettingsFilter settingsFilter = (SettingsFilter) request.getSession().getAttribute("filter");
         settingsFilter.setCustumer(request.getParameter("customer"));
-        buildQuery(" AND emploue=", settingsFilter.getCustumer());
         settingsFilter.setPriority(request.getParameter("priority"));
-        buildQuery(" AND urgency=", settingsFilter.getPriority());
-        int status = new Integer( (String) request.getParameter("status"));
-        if (1 == status){
-            settingsFilter.setStatys(1);
-            createState(sql, true);
-        }else if (2 == status){
-            settingsFilter.setStatys(2);
-            createState(sql, false);
-        }else{
-            settingsFilter.setStatys(0);
-        }
-        sql.append(" ORDER BY urgency");
-        request.getSession().setAttribute("filter", settingsFilter);
-        request.getSession().setAttribute("table", sql.toString());
+        settingsFilter.setStatys(request.getParameter("status"));
         response.sendRedirect("/task/");
-    }
-    private void buildQuery(String str, int value){
-        if (0!=value){
-            sql.append(str);
-            sql.append(value);
-        }
     }
 
     /**

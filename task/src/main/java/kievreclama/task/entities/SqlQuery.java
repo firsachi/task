@@ -12,10 +12,13 @@ package kievreclama.task.entities;
 public interface SqlQuery {
     
     public static final String ALL_TASK = 
-            "SELECT tasks.id,users.login,task,number,date_create,urgency,state,delete " +
-            "FROM tasks JOIN users ON users.id = tasks.emploue " +
-            "WHERE delete=false " +
-            "AND state=false " +
-            "ORDER BY urgency";
+            "SELECT tasks.id,emplouers.surname,emplouers.name,emplouers.patronymic," + 
+            "task,number,date_create,urgency,state,delete FROM tasks " +
+            "JOIN users ON users.id=tasks.emploue " +
+            "JOIN emplouers ON emplouers.login=users.id "+ 
+            "WHERE delete=false ";
+    public static final String ALL_USER_TASK = ALL_TASK + " AND emploue=?";
+    public static final String ALL_EMPLOUERS = "SELECT * FROM emplouers";
+    public static final String ALL_URGENCY = "SELECT * FROM type_urgency";
     
 }

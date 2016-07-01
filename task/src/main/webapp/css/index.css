@@ -43,6 +43,9 @@ body {
 .content td{
     border-bottom: 1px #DCDCDC solid;
 }
+#full_name {
+    text-align: justify;
+}
 
 #content_task{
     text-align: justify;

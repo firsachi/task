@@ -10,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import kievreclama.task.entities.SettingsFilter;
 
 /**
  *
@@ -29,8 +30,8 @@ public class FilterClear extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        request.getSession().setAttribute("filter", null);
-        request.getSession().setAttribute("table", null);
+        SettingsFilter settingsFilter = new SettingsFilter();
+        request.getSession().setAttribute("filter", settingsFilter);
         response.sendRedirect("/task/");
     }
     

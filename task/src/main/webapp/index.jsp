@@ -4,36 +4,18 @@
     Author     : firsov
 --%>
 
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page import="java.util.List"%>
-<%@page import="java.util.ArrayList"%>
 <%@page import="kievreclama.task.entities.SqlQuery"%>
-<%@page import="kievreclama.task.entities.Task"%>
-<%@page import="kievreclama.task.entities.Urgency"%>
-<%@page import="kievreclama.task.entities.Emploue"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@page import="kievreclama.task.entities.SettingsFilter"%>
-<%@page import="kievreclama.task.dao.PostgresqlUrgencyDao"%>
-<%@page import="kievreclama.task.dao.PostgresqlEmploueDao"%>
-<%@page import="kievreclama.task.dao.PostgresqlTaskDao"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%! PostgresqlTaskDao pgTask = new PostgresqlTaskDao(); %>
-<%! PostgresqlEmploueDao pgEmploue = new PostgresqlEmploueDao(); %>
-<%! PostgresqlUrgencyDao pgUrgency = new PostgresqlUrgencyDao(); %>
-<%! List<Task> listTask = new ArrayList<>(); %>
+<%! SettingsFilter settingsFilter = new SettingsFilter(); %>
 <% 
-    SettingsFilter settingsFilter = new SettingsFilter();
     if (null != session.getAttribute("filter")){
         settingsFilter = (SettingsFilter) session.getAttribute("filter");
     }else{
         session.setAttribute("filter", settingsFilter);
     }
-    if (null==session.getAttribute("table")){
-        session.setAttribute("table", SqlQuery.ALL_TASK);
-    }
-    listTask = pgTask.fillTables( (String) session.getAttribute("table"));
-    pageContext.setAttribute("tasks", listTask);
-    pageContext.setAttribute("ofurgency", pgUrgency.allUrgency());
-    pageContext.setAttribute("emplouers", pgEmploue.allEpmloue());
 %>
 <!DOCTYPE html>
 <html>
@@ -53,29 +35,33 @@
                         Замовник
                         <select name="customer">
                             <option value="0">Всі</option>
-
-                            <c:forEach var="emploue" items="${emplouers}">
-                                <option value="${emploue.getId() }"
-                                        <c:if test="${emploue.getId() == filter.getCustumer()}">
+                            <sql:query dataSource="jdbc/postgres" var="emplouers">
+                                 <%= SqlQuery.ALL_EMPLOUERS %>
+                            </sql:query>
+                            <c:forEach var="emploue" items="${emplouers.rows}">
+                                <option value="${emploue.login}"
+                                        <c:if test="${emploue.id == filter.getCustumer()}">
                                             selected 
                                         </c:if>
-                                        >${emploue.getLogin()}</option>
+                                        >${emploue.surname} &nbsp; ${emploue.name} </option>
                             </c:forEach>
                             </select>
                             &nbsp;
                             Приорітет:
                             <select name="priority">
                                 <option value="0">Всі</option>
-                                <c:forEach var="urgency" items="${ofurgency}">
-                                    <option value="${urgency.getId()}" 
-                                            <c:if test="${urgency.getId() == filter.getPriority()}"> 
+                                <sql:query dataSource="jdbc/postgres" var="ofurgency">
+                                    <%= SqlQuery.ALL_URGENCY %>
+                                </sql:query>
+                                <c:forEach var="urgency" items="${ofurgency.rows}">
+                                    <option value="${urgency.id}" 
+                                            <c:if test="${urgency.id == filter.getPriority()}"> 
                                                 selected 
                                             </c:if> >
-                                        ${urgency.getId()}
+                                        ${urgency.id}
                                     </option>
                                 </c:forEach>
                             </select>
-                            ${filter.getPriority()}
                             &nbsp;
                             Статус:
                             <select name="status">
@@ -88,7 +74,7 @@
                             <input type="button" onclick="location.href='FilterClear'" value="Скасувати">
                         </form>
             </td>
-            <td class="login"><button onclick="window.location.href='private/index.jsp'">Увійти</button></td>
+            <td class="login"><button onclick="window.location.href='private/distributor.jsp'">Увійти</button></td>
             </tr>
         </table>
         <div>
@@ -96,22 +82,25 @@
                 <div style="position: fixed;">
                 <tr>
                     <th>Приорітет</th>
-                    <th width="7%">Замовник</th>
+                    <th>Замовник</th>
                     <th width="60%">Завдання</th>        
                     <th>№ службової записки</th>
                     <th>Дата</th>
                     <th>Виконанно</th>
                 </tr>
                 </div>
-                <c:forEach var="task" items="${tasks}">
+            <sql:query var="tasks" dataSource="jdbc/postgres">
+                ${filter.getQuery()}
+            </sql:query>
+                <c:forEach var="task" items="${tasks.rows}">
                     <tr>
-                        <td> ${task.getPriority()} </td>
-                        <td> ${task.getEmploue().getLogin()} </td>
-                        <td id="content_task"> ${task.getInfoTask()} </td>           
-                        <td> ${task.getNumber()} </td>
-                        <td> ${task.getDate()} </td>
+                        <td> ${task.urgency} </td>
+                        <td id="content_task" > ${task.surname} &nbsp; ${task.name} &nbsp; ${task.patronymic} </td>
+                        <td id="content_task"> ${task.task} </td>           
+                        <td> ${task.number} </td>
+                        <td> ${task.data_create} </td>
                         <td> <input type="checkbox" disabled="disabled" 
-                                    <c:if test="${task.isStatys()}">
+                                    <c:if test="${task.state}">
                                         checked 
                                     </c:if> >
                         </td>

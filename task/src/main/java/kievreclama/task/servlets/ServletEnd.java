@@ -34,7 +34,7 @@ public class ServletEnd extends HttpServlet {
             if (session!= null){
                 session.invalidate();
             }
-            response.sendRedirect("/task/");
+            response.sendRedirect("/task/index.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

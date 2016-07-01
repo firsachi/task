@@ -29,14 +29,6 @@
         <url-pattern>/private/ServletEnd</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Newtask</servlet-name>
-        <url-pattern>/private/NewTask</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>UpdateTask</servlet-name>
-        <url-pattern>/private/UpdateTask</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>ServletFilterIndex</servlet-name>
         <url-pattern>/ServletFilterIndex</url-pattern>
     </servlet-mapping>
@@ -47,6 +39,14 @@
     <servlet-mapping>
         <servlet-name>DeleteTask</servlet-name>
         <url-pattern>/private/DeleteTask</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Newtask</servlet-name>
+        <url-pattern>/private/ts/NewTask</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateTask</servlet-name>
+        <url-pattern>/private/ts/UpdateTask</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
@@ -66,6 +66,32 @@
         <auth-constraint>
             <description/>
             <role-name>private</role-name>
+            <role-name>hr</role-name>
+            <role-name>task</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <display-name>ConstraintHr</display-name>
+        <web-resource-collection>
+            <web-resource-name>hr</web-resource-name>
+            <description/>
+            <url-pattern>/private/hr/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>hr</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <display-name>ConstraintTask</display-name>
+        <web-resource-collection>
+            <web-resource-name>task</web-resource-name>
+            <description/>
+            <url-pattern>/private/task/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>task</role-name>
         </auth-constraint>
     </security-constraint>
     <login-config>
@@ -79,10 +105,12 @@
         <description/>
         <role-name>private</role-name>
     </security-role>
-    <resource-ref>
-        <res-ref-name>jdbc/postgres</res-ref-name>
-        <res-type>javax.sql.DataSource</res-type>
-        <res-auth>Application</res-auth>
-        <res-sharing-scope>Shareable</res-sharing-scope>
-    </resource-ref>
+    <security-role>
+        <description/>
+        <role-name>hr</role-name>
+    </security-role>
+    <security-role>
+        <description/>
+        <role-name>task</role-name>
+    </security-role>
 </web-app>

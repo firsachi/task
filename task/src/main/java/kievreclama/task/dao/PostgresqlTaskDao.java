@@ -9,10 +9,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import kievreclama.task.entities.Emploue;
+import kievreclama.task.entities.SqlQuery;
 import kievreclama.task.entities.Task;
 
 /**
@@ -40,10 +45,9 @@ public class PostgresqlTaskDao {
     
     public ArrayList<Task> fillEmpluertTask(Emploue emploue){
         ArrayList<Task> arrayEmplouerTask = new ArrayList<>();
-        String sql = "SELECT * FROM tasks WHERE emploue=? AND delete=false ORDER BY id";
         try (
                 Connection connection = Connctors.getConnection();
-                PreparedStatement ps = connection.prepareStatement(sql);
+                PreparedStatement ps = connection.prepareStatement(SqlQuery.ALL_USER_TASK);
             ){
             ps.setInt(1, emploue.getId());
             ResultSet rs = ps.executeQuery();
@@ -56,21 +60,26 @@ public class PostgresqlTaskDao {
         return arrayEmplouerTask;
     }
     
-    public boolean add(Task task) {
+    public Task add(Task task) {
         String sql ="INSERT INTO tasks (emploue,task,number,urgency) VALUES (?,?,?,?)";
         try (Connection connection = Connctors.getConnection();
-            PreparedStatement ps = connection.prepareStatement(sql);
+            PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
                 ) {
             ps.setInt(1, task.getEmploue().getId());
             ps.setString(2, task.getInfoTask());
             ps.setString(3, task.getNumber());
             ps.setInt(4, new Integer(task.getPriority()));
             ps.executeUpdate();
-            return true;
+            SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+            ResultSet resultSet = ps.getGeneratedKeys();
+             if (resultSet.next() ){
+                task.setId(resultSet.getInt(1));
+                task.setDate(format1.format(new Date()));
+            }
         } catch (SQLException ex) {
             Logger.getLogger(PostgresqlTaskDao.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return false;
+        return task;
     }
     
     public Task getTask(int id){
@@ -113,12 +122,12 @@ public class PostgresqlTaskDao {
             emploue.setLogin(rs.getString(2));
         }
         task.setEmploue(emploue);
-        task.setInfoTask(rs.getString(3));
-        task.setNumber(rs.getString(4));
-        task.setDate(rs.getString(5));
-        task.setPriority(rs.getString(6));
-        task.setStatys(rs.getBoolean(7));
-        task.setDelete(rs.getBoolean(8));
+        task.setInfoTask(rs.getString(5));
+        task.setNumber(rs.getString(6));
+        task.setDate(rs.getString(7));
+        task.setPriority(rs.getString(8));
+        task.setStatys(rs.getBoolean(9));
+        task.setDelete(rs.getBoolean(10));
         return task;
     }
 

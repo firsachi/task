@@ -6,7 +6,7 @@
 package kievreclama.task.servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -33,17 +33,24 @@ public class UpdateTask extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet UpdateTask</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet UpdateTask at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        request.setCharacterEncoding("UTF-8");
+        int index =(int) request.getSession().getAttribute("index");
+        Task task = ((ArrayList<Task>) request.getSession().getAttribute("UserTask")).get(index);
+        task.setPriority(request.getParameter("priority"));
+        task.setNumber(request.getParameter("number"));
+        task.setInfoTask(request.getParameter("infoTask"));
+        if (null==request.getParameter("status")){
+            task.setStatys(false);
+        }else{
+            task.setStatys(true);
+        }
+        PostgresqlTaskDao pgTaskDao = new PostgresqlTaskDao();
+        if (pgTaskDao.updateTask(task)){
+            remove(request, "index");
+            remove(request, "upadteTask");
+            remove(request, "setPriority");
+            remove(request, "priority");
+            response.sendRedirect("/task/private/ts/index.jsp");
         }
     }
 
@@ -58,23 +65,7 @@ public class UpdateTask extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-        Task task = (Task) request.getSession().getAttribute("task");
-        task.setPriority(request.getParameter("priority"));
-        task.setNumber(request.getParameter("number"));
-        task.setInfoTask(request.getParameter("infoTask"));
-        if (null==request.getParameter("status")){
-            task.setStatys(false);
-        }else{
-            task.setStatys(true);
-        }
-        PostgresqlTaskDao pgTaskDao = new PostgresqlTaskDao();
-        if (pgTaskDao.updateTask(task)){
-            request.getSession().removeAttribute("task");
-            response.sendRedirect("/task/private/index.jsp");
-        }else {
-            processRequest(request, response);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -86,5 +77,9 @@ public class UpdateTask extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
+    
+    private void remove(HttpServletRequest request, String name){
+        request.getSession().removeAttribute(name);
+    }
+    
 }
