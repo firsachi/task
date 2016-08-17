@@ -24,10 +24,11 @@
         <servlet-name>DeleteTask</servlet-name>
         <servlet-class>kievreclama.task.servlets.DeleteTask</servlet-class>
     </servlet>
-    <servlet-mapping>
+    <servlet>
         <servlet-name>dispatcher</servlet-name>
-        <url-pattern>/</url-pattern>
-    </servlet-mapping>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletEnd</servlet-name>
         <url-pattern>/private/ServletEnd</url-pattern>
@@ -52,7 +53,7 @@
         <servlet-name>UpdateTask</servlet-name>
         <url-pattern>/private/ts/UpdateTask</url-pattern>
     </servlet-mapping>
-        <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
