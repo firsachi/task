@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="kievreclama.task.entity.Emploue" table="emplouers">
-        <id name="id" column="id" type="integer">
-            <generator class="increment"/>
-        </id>
-        <property name="login" column="login" type="string"/>
-        <property name="name" column="name" type="string"/>
-        <property name="patronymic" column="patronymic" type="string"/>
-        <property name="surname" column="surname" type="string"/>
-    </class>
+  <class name="kievreclama.task.entity.Employee" table="emplouers">
+    <id column="id" name="id" type="integer">
+      <generator class="increment"/>
+    </id>
+    <property column="login" name="login" type="string"/>
+    <property column="name" name="name" type="string"/>
+    <property column="patronymic" name="patronymic" type="string"/>
+    <property column="surname" name="surname" type="string"/>
+  </class>
 </hibernate-mapping>
