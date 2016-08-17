@@ -16,9 +16,9 @@ import java.util.Date;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import kievreclama.task.entities.Emploue;
-import kievreclama.task.entities.SqlQuery;
-import kievreclama.task.entities.Task;
+import kievreclama.task.entity.Employee;
+import kievreclama.task.entity.SqlQuery;
+import kievreclama.task.entity.Task;
 
 /**
  *
@@ -34,7 +34,7 @@ public class PostgresqlTaskDao {
             
             ResultSet rs = ps.executeQuery();
             while (rs.next()){
-                arrayTask.add(initTask(rs, new Emploue()));
+                arrayTask.add(initTask(rs, new Employee()));
             }
             ps.close();
         } catch (SQLException ex) {
@@ -43,7 +43,7 @@ public class PostgresqlTaskDao {
         return arrayTask;
     }
     
-    public ArrayList<Task> fillEmpluertTask(Emploue emploue){
+    public ArrayList<Task> fillEmpluertTask(Employee emploue){
         ArrayList<Task> arrayEmplouerTask = new ArrayList<>();
         try (
                 Connection connection = Connctors.getConnection();
@@ -90,7 +90,7 @@ public class PostgresqlTaskDao {
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             rs.next();
-            return initTask(rs, new Emploue());
+            return initTask(rs, new Employee());
         } catch (SQLException ex) {
             Logger.getLogger(PostgresqlTaskDao.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -115,7 +115,7 @@ public class PostgresqlTaskDao {
         return false;
     }
     
-    private Task initTask(ResultSet rs, Emploue emploue) throws SQLException{
+    private Task initTask(ResultSet rs, Employee emploue) throws SQLException{
         Task task = new Task();
         task.setId(rs.getInt(1));
         if (null==emploue.getLogin()){

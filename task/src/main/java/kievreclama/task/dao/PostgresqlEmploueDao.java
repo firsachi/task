@@ -12,8 +12,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import kievreclama.task.entities.Emploue;
-import kievreclama.task.entities.EmploueQuery;
+import kievreclama.task.entity.Employee;
+import kievreclama.task.entity.EmploueQuery;
 
 /**
  *
@@ -21,8 +21,8 @@ import kievreclama.task.entities.EmploueQuery;
  */
 public class PostgresqlEmploueDao {
     
-    public ArrayList<Emploue> allEpmloue(){
-        ArrayList<Emploue> arrayEmploue = new ArrayList<>();
+    public ArrayList<Employee> allEpmloue(){
+        ArrayList<Employee> arrayEmploue = new ArrayList<>();
         String sql = "SELECT * FROM emplouers";
         try (Connection connction = Connctors.getConnection();
                 PreparedStatement ps = connction.prepareStatement(sql);
@@ -37,7 +37,7 @@ public class PostgresqlEmploueDao {
         return arrayEmploue;
     }
     
-    public Emploue findEmploue(String login){
+    public Employee findEmploue(String login){
         try (Connection connection = Connctors.getConnection();
                 PreparedStatement ps = connection.prepareStatement(EmploueQuery.FIND_EMPLOUE);) {
             ps.setString(1, login);
@@ -50,8 +50,8 @@ public class PostgresqlEmploueDao {
         return null;
     }
 
-    private Emploue createEmploue(ResultSet rs) throws SQLException {
-        Emploue emplouer = new Emploue();
+    private Employee createEmploue(ResultSet rs) throws SQLException {
+        Employee emplouer = new Employee();
         emplouer.setId(rs.getInt(1));
         emplouer.setSurname(rs.getString(2));
         emplouer.setName(rs.getString(3));
