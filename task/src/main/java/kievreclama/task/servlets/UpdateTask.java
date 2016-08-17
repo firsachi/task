@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import kievreclama.task.dao.PostgresqlTaskDao;
-import kievreclama.task.entities.Task;
+import kievreclama.task.entity.Task;
 
 
 /**

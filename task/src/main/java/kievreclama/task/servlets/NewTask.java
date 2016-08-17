@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import kievreclama.task.dao.PostgresqlTaskDao;
-import kievreclama.task.entities.Emploue;
-import kievreclama.task.entities.Task;
+import kievreclama.task.entity.Employee;
+import kievreclama.task.entity.Task;
 
 
 /**
@@ -37,7 +37,7 @@ public class NewTask extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         Task task = new Task();
-        task.setEmploue( (Emploue) request.getSession().getAttribute("emploue"));
+        task.setEmploue((Employee) request.getSession().getAttribute("emploue"));
         task.setInfoTask(request.getParameter("infoTask"));
         task.setNumber(request.getParameter("number"));
         task.setPriority(request.getParameter("priority"));
