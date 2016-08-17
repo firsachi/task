@@ -25,6 +25,10 @@
         <servlet-class>kievreclama.task.servlets.DeleteTask</servlet-class>
     </servlet>
     <servlet-mapping>
+        <servlet-name>dispatcher</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>ServletEnd</servlet-name>
         <url-pattern>/private/ServletEnd</url-pattern>
     </servlet-mapping>
@@ -47,6 +51,10 @@
     <servlet-mapping>
         <servlet-name>UpdateTask</servlet-name>
         <url-pattern>/private/ts/UpdateTask</url-pattern>
+    </servlet-mapping>
+        <servlet-mapping>
+        <servlet-name>dispatcher</servlet-name>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
