@@ -9,6 +9,6 @@
     <property name="hibernate.connection.password">1q2w3e4r</property>
     <mapping resource="urgency.hbm.xml"/>
     <mapping resource="users.hbm.xml"/>
-    <mapping resource="emplouee.hbm.xml"/>
+    <mapping resource="employee.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>
