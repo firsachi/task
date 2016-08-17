@@ -8,5 +8,6 @@
     <property name="hibernate.connection.username">sa</property>
     <property name="hibernate.connection.password">1q2w3e4r</property>
     <mapping resource="urgency.hbm.xml"/>
+    <mapping resource="users.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>
