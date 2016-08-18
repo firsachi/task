@@ -5,18 +5,43 @@
  */
 package kievreclama.task.entity;
 
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  *
  * @author firsov
  */
-public class Task {
+@Entity
+@Table(name="tasks")
+public class Task implements Serializable {
+    
+    @Id
+    @Column(name = "id")
     private int id;
+    
+    @Column(name = "emploue")
     private Employee emploue;
+    
+    @Column(name = "task")
     private String infoTask;
+    
+    @Column(name = "urgency")
     private String priority;
+    
+    @Column(name = "number")
     private String number;
+    
+    @Column(name = "date_create")
     private String date;
+    
+    @Column(name = "state")
     private boolean statys;
+    
+    @Column(name = "delete")
     private boolean delete;
 
     public void setId(int id) {

@@ -36,11 +36,6 @@ public class Employee implements Cloneable, Serializable{
     
     @Column(name = "patronymic")
     private String patronymic;
-    
-    @Column(name = "login")
-    @OneToOne
-    @JoinColumn()
-    private String login;
 
     public void setId(int id) {
         this.id = id;
@@ -58,10 +53,6 @@ public class Employee implements Cloneable, Serializable{
         this.patronymic = patronymic;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
     public int getId() {
         return id;
     }
@@ -76,10 +67,6 @@ public class Employee implements Cloneable, Serializable{
 
     public String getPatronymic() {
         return patronymic;
-    }
-    
-    public String getLogin() {
-        return login;
     }
     
 }

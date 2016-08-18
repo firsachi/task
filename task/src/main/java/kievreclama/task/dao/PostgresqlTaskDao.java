@@ -118,9 +118,6 @@ public class PostgresqlTaskDao {
     private Task initTask(ResultSet rs, Employee emploue) throws SQLException{
         Task task = new Task();
         task.setId(rs.getInt(1));
-        if (null==emploue.getLogin()){
-            emploue.setLogin(rs.getString(2));
-        }
         task.setEmploue(emploue);
         task.setInfoTask(rs.getString(5));
         task.setNumber(rs.getString(6));
