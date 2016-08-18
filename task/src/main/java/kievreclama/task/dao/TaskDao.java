@@ -18,6 +18,6 @@ public interface TaskDao {
     void add() throws SQLException;
     void delete() throws SQLException;
     Task find(int id) throws SQLException;
-    List<Task> list() throws SQLException;
+    List<Task> getList() throws SQLException;
     
 }
