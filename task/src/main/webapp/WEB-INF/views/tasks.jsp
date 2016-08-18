@@ -14,8 +14,12 @@
     <body>
         <h1>Hello hibernate!</h1>
         <c:forEach var="values" items="${val}">
-            <div>${values.getId()} ${values.getSurname()} ${values.getName()}</div>
-            <div></div>
+            <div>
+                ${values.getId()} 
+                ${values.getSurname()} 
+                ${values.getName()} 
+                ${values.getPatronymic()}
+            </div>
         </c:forEach>
     </body>
 </html>

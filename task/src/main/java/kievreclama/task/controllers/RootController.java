@@ -24,11 +24,16 @@ public class RootController {
         return "index";
     }
     
-    @RequestMapping(value = "/ts/")
+    @RequestMapping(value = "/employee/")
     public String getPageTasks(Model model) throws SQLException{
         EmployeeDao employeeDao = new EmployeeDaoImpl();
         model.addAttribute("val", employeeDao.getList());
         return "tasks";
+    }
+    
+    @RequestMapping(value = "/employee/add/")
+    public String getPageFormaEmployee(Model model){
+        return "forma-employee";
     }
     
 }

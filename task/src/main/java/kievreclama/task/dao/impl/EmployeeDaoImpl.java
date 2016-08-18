@@ -21,10 +21,14 @@ public class EmployeeDaoImpl implements EmployeeDao{
     @Override
     public List<Employee> getList() throws SQLException {
         List<Employee> resultLst = null;
-        try(Session session = HibernateUtil.getSessionFactory().openSession();){
+        Session session = null;
+        try{
+            session = HibernateUtil.getSessionFactory().openSession();
             resultLst = session.createCriteria(Employee.class).list();
         }catch (Exception ex){
             
+        }finally{
+            session.close();
         }
         return resultLst;
     }
