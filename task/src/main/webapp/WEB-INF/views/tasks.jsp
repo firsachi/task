@@ -10,16 +10,29 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <style>
+            
+        </style>
     </head>
     <body>
         <h1>Hello hibernate!</h1>
+        <div style="display: table; width: 100%;">
+            
+        
         <c:forEach var="values" items="${val}">
-            <div>
-                ${values.getId()} 
-                ${values.getSurname()} 
-                ${values.getName()} 
-                ${values.getPatronymic()}
+            <div style="display: table-row">
+                <div style="display: table-cell">
+                    ${values.getId()} 
+                </div>
+                <div style="display: table-cell">
+                    ${values.getSurname()} 
+                    ${values.getName()} 
+                    ${values.getPatronymic()}
+                </div>
+             
             </div>
+            
         </c:forEach>
+        </div>
     </body>
 </html>

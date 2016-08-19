@@ -19,16 +19,25 @@ import org.hibernate.Session;
 public class EmployeeDaoImpl implements EmployeeDao{
 
     @Override
+    public Employee find(Employee employee) throws SQLException {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()){
+            session.beginTransaction();
+            employee = session.get(Employee.class, employee.getId());
+            session.getTransaction().commit();
+            return employee;
+        }catch(Exception ex){
+            
+        }
+        return employee;
+    }
+    
+    @Override
     public List<Employee> getList() throws SQLException {
         List<Employee> resultLst = null;
-        Session session = null;
-        try{
-            session = HibernateUtil.getSessionFactory().openSession();
+        try (Session session = HibernateUtil.getSessionFactory().openSession();) {
             resultLst = session.createCriteria(Employee.class).list();
         }catch (Exception ex){
             
-        }finally{
-            session.close();
         }
         return resultLst;
     }

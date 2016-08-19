@@ -15,5 +15,6 @@ import kievreclama.task.entity.Employee;
  */
 public interface EmployeeDao {
     
+    Employee find(Employee employee) throws SQLException;
     List<Employee> getList() throws SQLException;
 }
