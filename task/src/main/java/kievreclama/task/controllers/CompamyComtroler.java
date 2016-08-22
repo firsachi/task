@@ -6,19 +6,23 @@
 package kievreclama.task.controllers;
 
 import java.sql.SQLException;
+import javax.validation.Valid;
 import kievreclama.task.dao.CompanyDao;
 import kievreclama.task.dao.impl.CompanyDaoImpl;
+import kievreclama.task.entity.Enterprise;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  *
  * @author firsachi
  */
 @Controller
-@RequestMapping(value = "/company/")
+@RequestMapping(value = "/company")
 public class CompamyComtroler {
     
     @RequestMapping(value = "/")
@@ -28,10 +32,26 @@ public class CompamyComtroler {
         return "company";
     }
     
-    @RequestMapping(value = "form/")
-    public String getPagesFormCompany(Model model, @RequestParam(name = "id") String id) throws SQLException{
-        CompanyDao companyDao = new CompanyDaoImpl();
-        model.addAttribute("enterprise", companyDao.find(new Integer(id)));
-        return "form-company";
+    @RequestMapping(
+            value = "form",
+            method = RequestMethod.GET
+       )
+    public ModelAndView getPagesFormCompany( @ModelAttribute(name = "id") String id) throws SQLException{
+        Enterprise enterprise = new Enterprise();
+        if (!id.equals("0")){
+            CompanyDao companyDao = new CompanyDaoImpl();
+            enterprise = companyDao.find(new Integer(id));
+        }
+        return new ModelAndView("form-company", "enterprise", enterprise);
     }
+    
+    @RequestMapping(value = "add", method = RequestMethod.POST)
+    public String submit(@Valid @ModelAttribute("enterprise") Enterprise enterprise, Model model) throws SQLException{
+        request.setCharacterEncoding("UTF-8");
+        CompanyDao companyDao = new CompanyDaoImpl();
+           // companyDao.add(enterprise);
+            companyDao.update(enterprise);
+        return getPagesCompany(model);
+    }
+    
 }

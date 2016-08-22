@@ -8,51 +8,66 @@ and open the template in the editor.
     Author     : firsov
 */
 html body {
-    width: 100%;
     min-width: 1024px;
+}
+.table {
+    display: table;
+    width: 100%;
+}
+.table-th{
+    background: gold;
+    text-align: center;
+    font-weight: bold;
+}
+.table-td {
+    border-bottom: 1px solid black;
+}
+.row {
+    display: table-row;
+    padding: 10px;
+}
+.cell{
+    display: table-cell;
 }
 .content{
     padding-left: 12px;
-    display: table-cell;
 }
 .main-table{
     display: table;
     width: 100%;
 }
-.row {
-    display: table-row;
-}
 .menu {
-    display: table-cell;
+    width: 200px;
+    padding-right: 6px;
 }
-.menu a{
+.link-dekoration{
     text-decoration: none;
     color: black;
 }
-
-.menu ul {
-    border: 1px solid black;
-}
-
-.th div{
-    display: table-cell;
-    border-bottom: 2px solid black;
-    border-top: 2px solid black;
-    font-weight: bold;
-}
-
-.td div {
-    display: table-cell;
-    border-bottom: 1px solid black;
-}
-
-.td a{
+.menu-link-add{
+    background: gold;
     display: block;
-    width: 100%;
+    text-align: center;
+    margin-top: 6px;
+    padding: 6px;
+}
+.menu-blok{
+    display: block;
+    padding: 6px;
+}
+.menu-blok-border{
+    padding-bottom: 12px;
+}
+.menu-select{
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+}
+
+.decoration-none a{
+    display: block;
     text-decoration: none;
     color: black;
 }
-
 .select:hover {
     background: gold;
 }

@@ -19,10 +19,10 @@
             <div style="display: table-row">
                 <div class="menu">
                     <ul>
-                        <li><a href="">Users</a></li>
+                        <li><a href=".">Users</a></li>
                         <li><a href="">Post</a></li>
                         <li><a href="">Department</a></li>
-                        <li><a href="">Enterprise</a></li>
+                        <li><a href="../company/">Enterprise</a></li>
                     </ul>
                     <ul>
                         <li><a href="forma-user.html">Add</a></li>

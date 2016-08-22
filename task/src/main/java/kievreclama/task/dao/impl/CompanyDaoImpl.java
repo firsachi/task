@@ -42,7 +42,13 @@ public class CompanyDaoImpl implements CompanyDao{
 
     @Override
     public void update(Enterprise enterprise) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try(Session session = HibernateUtil.getSessionFactory().openSession();) {
+            session.beginTransaction();
+            session.update(enterprise);
+            session.getTransaction().commit();
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
     }
 
     @Override

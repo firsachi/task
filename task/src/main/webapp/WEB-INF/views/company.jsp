@@ -14,31 +14,28 @@
         <link rel="stylesheet" type="text/css" href="../resources/css/page-private.css">
     </head>
     <body>
-        <div style="display: table;">
-            <div style="display: table-row">
-                <div class="menu">
-                    <ul>
-                        <li><a href="">Users</a></li>
-                        <li><a href="">Post</a></li>
-                        <li><a href="">Department</a></li>
-                        <li><a href="">Enterprise</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="form/?id=0">Add</a></li>
-                    </ul>
+        <div class="table">
+            <div class="row">
+                <div class="cell menu">
+                    <div class="menu-blok-border">
+                        <div class="table-th">Name</div>
+                        <a class="link-dekoration menu-blok" href="../employee/">Employee</a>
+                        <a class="link-dekoration menu-blok" href="">Post</a>
+                        <a class="link-dekoration menu-blok" href="">Department</a>
+                        <a class="link-dekoration menu-blok menu-select" href=".">Enterprise</a>
+                    </div>
+                    <a class="menu-link-add link-dekoration" href="form?id=0">Add</a>
                 </div>
-                <div class="content">
-                    <div class="main-table">
-                        <div class="row th">
-                            <div>№ </div>
-                            <div>Назва</div>
+                <div class="cell">
+                    <div class="table">
+                        <div class="row">
+                            <div class="cell table-th">№</div>
+                            <div class="cell table-th">Назва підприємства</div>
                         </div>
                         <c:forEach var="enterprise" items="${company}">
-                            <div class="row td select">
-                                <div></div>
-                                <div>
-                                    ${enterprise.getName()}
-                                </div>
+                            <div class="row select">
+                                <div class="cell table-td"><a href="form?id=${enterprise.getId()}">${enterprise.getId()}</a></div>
+                                <div class="cell table-td"><a href="form?id=${enterprise.getId()}">${enterprise.getName()}</a></div>
                             </div>
                         </c:forEach>
                     </div>
