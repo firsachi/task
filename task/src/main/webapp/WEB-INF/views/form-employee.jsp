@@ -9,27 +9,72 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>User</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="../../resources/css/forms.css">
     </head>
     <body>
-        <div>
-            
+        <div class="topic size-div">
+            <c:choose>
+                <c:when test="${employee != null}">Edit</c:when>
+                <c:otherwise>New employee</c:otherwise>
+            </c:choose>
         </div>
-        <form>
+        <form >
             <div>
-                Surname
-                <input type="text" name="surname" value="${employee.getSurname()}"
+                Surname 
+                <input type="text" name="surname" value="${employee.getSurname()}">
             </div>
             <div>
-                name
-                <input type="text" name="name" value="${employee.getName()}">
+                Name 
+                <input type="text" name="name" value="${employee.getName()} ">
             </div>
             <div>
-                Patronymic
-                <input type="text" name="patronymic" value="${employee.getPatronymic()}"
-             </div>
-            
+                Patronymic 
+                <input type="text" name="patronymic" value="${employee.getPatronymic()} ">
+            </div>
+            <div>
+                Enterprise
+                <a href="">+</a>
+                <select>
+                    <option>One enterprise</option>
+                </select>
+            </div>
+            <div>
+                Department
+                <a href="">+</a>
+                <select>
+                    <option>One department</option>
+                </select>   
+            </div>
+            <div>
+                Post
+                <a href="">+</a>
+                <select>
+                    <option>One post</option>
+                </select>
+            </div>
+            <div>
+                Room 
+                <input type="text" name="room" value="">
+            </div>
+            <div>
+                Phone
+                <a href="">+</a>
+                <select>
+                    <option>One post</option>
+                </select>
+            </div>
+            <div>
+                Email 
+                <input type="text" name="email" value="">
+            </div>
+            <div class="buttons">
+                <input type="submit">
+                <input type="reset">
+                <input type="button">
+            </div>
         </form>
     </body>
 </html>

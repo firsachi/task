@@ -12,7 +12,6 @@ import kievreclama.task.entity.Employee;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
@@ -26,20 +25,23 @@ public class EmployeeController {
     @RequestMapping(value = "/")
     public String getPageTasks(Model model) throws SQLException{
         EmployeeDao employeeDao = new EmployeeDaoImpl();
-        model.addAttribute("val", employeeDao.getList());
-        return "tasks";
-    }
-    
+        model.addAttribute("employees", employeeDao.getList());
+        
+        return "employees";
+    }   
     @RequestMapping(
-            method = RequestMethod.GET,
-            value = "/add/"
+            
+            value = "form/"
     )
-    public String getPageFormaEmployee(Model model, @RequestParam String id) throws SQLException{
-        EmployeeDao employeeDao = new EmployeeDaoImpl();
+    public String getPageFormaEmployee(Model model, @RequestParam(name = "id") String id) throws SQLException{
         Integer i = new Integer(id);
-        Employee employee = new Employee();
-        employee.setId(i);
-        model.addAttribute("employee", employeeDao.find(employee));
+        if (i != 0){
+            EmployeeDao employeeDao = new EmployeeDaoImpl();
+            Employee employee = new Employee();
+            employee.setId(i);
+            model.addAttribute("employee", employeeDao.find(employee));
+        }
         return "form-employee";
     }
+ 
 }

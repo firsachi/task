@@ -1,0 +1,65 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Aug 15, 2016, 9:08:32 AM
+    Author     : firsov
+*/
+body html {
+    
+}
+.size-div{
+    width: 600px;
+}
+
+.topic {
+    margin: 24px auto;
+    width: 570px;
+    padding: 6px;
+    padding-left: 24px;
+    background: gold;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+}
+form div {
+    width: 600px;
+    margin: 12px auto;
+}
+form input{
+    float: right;
+    border: 1px solid black;
+    width: 400px;
+    padding: 2px;
+}
+form a{
+    float: right;
+    text-decoration: none;
+    border: 1px solid black;
+    border-left: none;
+    padding: 2px;
+    padding-bottom: 1px;
+    color: black;
+}
+form select {
+    float: right;
+    border: 1px solid black;
+    width: 392px;
+    padding: 2px;
+    background: white;
+}
+.buttons{
+    margin-top: 24px;
+    border-top: 2px solid black;
+}
+
+.buttons input{
+    padding: 6px;
+    margin: 6px;
+    margin-right: 0px;
+    float: right;
+    width: 100px;
+    background: white;
+}
+
