@@ -6,7 +6,6 @@
 package kievreclama.task.controllers;
 
 import java.sql.SQLException;
-import javax.validation.Valid;
 import kievreclama.task.dao.CompanyDao;
 import kievreclama.task.dao.impl.CompanyDaoImpl;
 import kievreclama.task.entity.Enterprise;
@@ -22,7 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @author firsachi
  */
 @Controller
-@RequestMapping(value = "/company")
+@RequestMapping(value = "/company/")
 public class CompamyComtroler {
     
     @RequestMapping(value = "/")
@@ -33,7 +32,7 @@ public class CompamyComtroler {
     }
     
     @RequestMapping(
-            value = "form",
+            value = "/form",
             method = RequestMethod.GET
        )
     public ModelAndView getPagesFormCompany( @ModelAttribute(name = "id") String id) throws SQLException{
@@ -45,13 +44,20 @@ public class CompamyComtroler {
         return new ModelAndView("form-company", "enterprise", enterprise);
     }
     
-    @RequestMapping(value = "add", method = RequestMethod.POST)
-    public String submit(@Valid @ModelAttribute("enterprise") Enterprise enterprise, Model model) throws SQLException{
-        request.setCharacterEncoding("UTF-8");
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public String submit(@ModelAttribute("enterprise")Enterprise enterprise) throws SQLException{      
+        action(enterprise);
+        return "redirect:../company/";
+    }
+    
+    private void action(Enterprise enterprise) throws SQLException{
         CompanyDao companyDao = new CompanyDaoImpl();
-           // companyDao.add(enterprise);
+        if (enterprise.getId()== null){
+            companyDao.add(enterprise);
+        }else{
             companyDao.update(enterprise);
-        return getPagesCompany(model);
+        }
+        
     }
     
 }
