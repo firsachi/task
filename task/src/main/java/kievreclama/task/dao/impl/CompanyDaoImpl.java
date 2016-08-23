@@ -10,7 +10,9 @@ import java.util.List;
 import kievreclama.task.dao.CompanyDao;
 import kievreclama.task.dao.hibernate.HibernateUtil;
 import kievreclama.task.entity.Enterprise;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Order;
 
 /**
  *
@@ -66,7 +68,8 @@ public class CompanyDaoImpl implements CompanyDao{
     public List<Enterprise> getList() throws SQLException {
         List<Enterprise> resultLIst = null;
         try(Session session = HibernateUtil.getSessionFactory().openSession();){
-            resultLIst = session.createCriteria(Enterprise.class).list();
+            Criteria criteria = session.createCriteria(Enterprise.class).addOrder(Order.asc("id"));
+            resultLIst = criteria.list();
         }catch (Exception ex){
             
         }
