@@ -14,33 +14,24 @@
         <link rel="stylesheet" type="text/css" href="../resources/css/page-private.css">
     </head>
     <body>
-        <div class="table">
-            <div class="row">
-                <div class="cell menu">
-                    <div class="menu-blok-border">
-                        <div class="table-th">Name</div>
-                        <a class="link-dekoration menu-blok" href="../employee/">Employee</a>
-                        <a class="link-dekoration menu-blok" href="">Post</a>
-                        <a class="link-dekoration menu-blok" href="">Department</a>
-                        <a class="link-dekoration menu-blok menu-select" href=".">Enterprise</a>
-                    </div>
-                    <a class="menu-link-add link-dekoration" href="form?id=0">Add</a>
-                </div>
-                <div class="cell">
-                    <div class="table">
-                        <div class="row">
-                            <div class="cell table-th">№</div>
-                            <div class="cell table-th">Назва підприємства</div>
-                        </div>
-                        <c:forEach var="enterprise" items="${company}">
-                            <div class="row select">
-                                <div class="cell table-td"><a href="form?id=${enterprise.getId()}">${enterprise.getId()}</a></div>
-                                <div class="cell table-td"><a href="form?id=${enterprise.getId()}">${enterprise.getName()}</a></div>
-                            </div>
-                        </c:forEach>
-                    </div>
-                </div>
+        <div class="topic">
+            <a href="../employee/">Employee</a>
+            <a href="../post/">Post</a>
+            <a href="../department/">Department</a>
+            <a class="selected" href=".">Enterprise</a>
+            <a class="add" href="form?id=0">+</a>
+        </div>
+        <div class="table-div">
+            <div class="row-div th">
+                <div>№</div>
+                <div>Назва підприємства</div>
             </div>
+            <c:forEach var="enterprise" items="${company}" varStatus="loop">
+                <div class="row-div td">
+                    <div><a href="form?id=${enterprise.getId()}">${loop.index+1}</a></div>
+                    <div><a href="form?id=${enterprise.getId()}">${enterprise.getName()}</a></div>
+                </div>
+            </c:forEach>
         </div>
     </body>
 </html>
