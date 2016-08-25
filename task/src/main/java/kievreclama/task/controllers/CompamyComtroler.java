@@ -52,7 +52,7 @@ public class CompamyComtroler {
     
     private void action(Enterprise enterprise) throws SQLException{
         CompanyDao companyDao = new CompanyDaoImpl();
-        if (enterprise.getId()== null){
+        if (enterprise.getId()== 0){
             companyDao.add(enterprise);
         }else{
             companyDao.update(enterprise);
