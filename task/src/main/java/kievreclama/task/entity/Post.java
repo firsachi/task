@@ -21,8 +21,15 @@ public class Post implements Serializable {
     @Column(name = "id")
     private Integer id;
     
+    {
+        id = 0;
+    }
+    
     @Column(name = "name", unique = true, nullable = false)
     private String name;
+    
+    @Column(name = "heft", unique = true, nullable = false)
+    private String heft;
 
     public void setId(Integer id) {
         this.id = id;
@@ -32,6 +39,10 @@ public class Post implements Serializable {
         this.name = name;
     }
 
+    public void setHeft(String heft) {
+        this.heft = heft;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -39,6 +50,9 @@ public class Post implements Serializable {
     public String getName() {
         return name;
     }
-    
+
+    public String getHeft() {
+        return heft;
+    }
     
 }
