@@ -4,6 +4,7 @@
     Author     : firsov
 --%>
 
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -24,9 +25,17 @@
         </div>
         <div class="table-div">
             <div class="row-div th">
+                <div>№</div>
                 <div>Назва посади</div>
                 <div>Важливість посади</div>
             </div>
+            <c:forEach var="value" items="${position}" varStatus="number">
+                <div class="row-div td">
+                    <div>${number.index + 1}</div>
+                    <div><a href="form?id=${value.getId()}">${value.getName()}</a></div>
+                    <div><a href="form?id=${value.getId()}">${value.getHeft()}</a></div>
+                </div>
+            </c:forEach>
         </div>
     </body>
 </html>
