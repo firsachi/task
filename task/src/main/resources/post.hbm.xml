@@ -6,5 +6,6 @@
             <generator class="sequence"/>
         </id>
         <property name="name" column="name" type="string"/>
+        <property name="heft" column="heft" type="string"/>
     </class>
 </hibernate-mapping>
