@@ -17,6 +17,7 @@ public interface PostDao {
     
     void add(Post post) throws SQLException;
     void delete(Post post) throws SQLException;
+    void update(Post post) throws SQLException;
     Post find(Integer id) throws SQLException;
     List<Post> list() throws SQLException;
 }
