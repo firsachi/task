@@ -64,6 +64,10 @@
         <jsp-property-group>
             <url-pattern>/private/*</url-pattern>
         </jsp-property-group>
+        <jsp-property-group>
+            <url-pattern>*.jsp</url-pattern>
+            <page-encoding>UTF-8</page-encoding>
+        </jsp-property-group>
     </jsp-config>
     <security-constraint>
         <display-name>AccessPrivate</display-name>
@@ -122,7 +126,6 @@
         <description/>
         <role-name>task</role-name>
     </security-role>
-    
     <filter>
         <filter-name>encodingFilter</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
