@@ -6,6 +6,8 @@
 package kievreclama.task.controllers;
 
 import java.sql.SQLException;
+import kievreclama.task.dao.PostDao;
+import kievreclama.task.dao.impl.PostDaoImpl;
 import kievreclama.task.entity.Post;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -42,6 +44,16 @@ public class PostController {
     
     @RequestMapping(value = "/add")
     public String submit(@ModelAttribute("post")Post post){
+        
         return "redirect:../post/";
+    }
+    
+    private void action(Post post) throws SQLException{
+        PostDao postDao = new PostDaoImpl();
+        if(post.getId() == 0){
+            postDao.add(post);
+        }else{
+            postDao.update(post);
+        }
     }
 }
