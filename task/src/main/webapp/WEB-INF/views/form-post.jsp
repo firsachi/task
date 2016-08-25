@@ -27,6 +27,17 @@
                 <form:label path="name">Name</form:label>
                 <form:input path="name" value="${post.getName()}" required="true" pattern=""/>
             </div>
+            <div>
+                <form:label path="heft">Важливість посади</form:label>
+                <form:select path="heft">
+                    <c:forEach var="value" items="${heftPost}">
+                        <c:if test="${value == post.getHeft()}">
+                            <c:set var="selected" scope="session" value="true"/>
+                        </c:if>
+                        <form:option seected="${selected}" value="${value}" label="${value}"/>
+                    </c:forEach>
+                </form:select>
+            </div>
             <div class="buttons">
                 <input type="submit">
                 <input type="reset">
