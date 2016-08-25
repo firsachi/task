@@ -41,6 +41,17 @@ public class PostDaoImpl implements PostDao{
             ex.printStackTrace();
         }
     }
+    
+    @Override
+    public void update(Post post){
+        try(Session session = HibernateUtil.getSessionFactory().openSession();){
+            session.beginTransaction();
+            session.update(post);
+            session.getTransaction().commit();
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+    }
 
     @Override
     public Post find(Integer id) throws SQLException {
