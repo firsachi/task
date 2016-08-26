@@ -26,10 +26,16 @@
         <div class="table-div">
             <div class="row-div th">
                 <div>Назва відділу</div>
-                <div>Підриємство</div>
                 <div>Телефон</div>
                 <div>Факс</div>
             </div>
+            <c:forEach var="department" items="${departments}" varStatus="num">
+                <div class="row-div td">
+                    <div><a href="form?id=${department.getId()}">${department.getName()}</a></div>
+                    <div><a href="form?id=${department.getId()}">${department.getPhone()}</a></div>
+                    <div><a href="form?id=${department.getId()}">${department.getFax()}</a></div>
+                </div>
+            </c:forEach>
         </div>
     </body>
 </html>
