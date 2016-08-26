@@ -28,13 +28,16 @@ public class Department implements Serializable {
     @Column(name = "id")
     private Integer id;
     
+    {
+        id = 0;
+    }
+    
     @Basic(optional = false)
     @Column(name = "name")
-    
     private String name;
-    @Basic(optional = false)
-    @Column(name = "phone")
     
+    @Basic(optional = false)
+    @Column(name = "phone") 
     private String phone;
     
     @Basic(optional = false)
