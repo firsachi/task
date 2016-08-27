@@ -8,5 +8,6 @@
     <property column="name" name="name" type="string"/>
     <property column="patronymic" name="patronymic" type="string"/>
     <property column="surname" name="surname" type="string"/>
+    <property column="phone" name="phone" type="integer"/>
   </class>
 </hibernate-mapping>
