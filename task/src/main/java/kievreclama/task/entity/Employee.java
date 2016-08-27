@@ -34,6 +34,9 @@ public class Employee implements Cloneable, Serializable{
     
     @Column(name = "patronymic")
     private String patronymic;
+    
+    @Column(name = "phone")
+    private Integer phone;
 
     public void setId(int id) {
         this.id = id;
@@ -51,6 +54,10 @@ public class Employee implements Cloneable, Serializable{
         this.patronymic = patronymic;
     }
 
+    public void setPhone(Integer phone) {
+        this.phone = phone;
+    }
+
     public int getId() {
         return id;
     }
@@ -66,5 +73,9 @@ public class Employee implements Cloneable, Serializable{
     public String getPatronymic() {
         return patronymic;
     }
+
+    public Integer getPhone() {
+        return phone;
+    } 
     
 }
