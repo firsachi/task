@@ -6,9 +6,14 @@
 package kievreclama.task.entity;
 
 import java.io.Serializable;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -19,6 +24,7 @@ public class Post implements Serializable {
     
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     
     {
@@ -30,6 +36,9 @@ public class Post implements Serializable {
     
     @Column(name = "heft", unique = true, nullable = false)
     private String heft;
+    
+    @OneToMany(mappedBy = "post", fetch = FetchType.LAZY)
+    private Set<Employee> employees;
 
     public void setId(Integer id) {
         this.id = id;
@@ -43,6 +52,10 @@ public class Post implements Serializable {
         this.heft = heft;
     }
 
+    public void setEmployees(Set<Employee> employees) {
+        this.employees = employees;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -53,6 +66,10 @@ public class Post implements Serializable {
 
     public String getHeft() {
         return heft;
+    }
+
+    public Set<Employee> getEmployees() {
+        return employees;
     }
     
 }
