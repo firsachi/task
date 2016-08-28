@@ -6,12 +6,15 @@
 package kievreclama.task.entity;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -44,6 +47,9 @@ public class Department implements Serializable {
     @Column(name = "fax")
     private String fax;
     
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "department")
+    private List<Employee> employees;
+    
     @Column(name = "delete")
     private Boolean delete;
 
@@ -67,6 +73,11 @@ public class Department implements Serializable {
         this.delete = delete;
     }
 
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
+    }
+
+    
     public Integer getId() {
         return id;
     }
@@ -85,6 +96,10 @@ public class Department implements Serializable {
 
     public Boolean getDelete() {
         return delete;
+    }
+
+    public List<Employee> getEmployees() {
+        return employees;
     }
     
     
