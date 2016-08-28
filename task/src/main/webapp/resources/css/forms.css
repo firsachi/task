@@ -48,6 +48,9 @@ form select {
     padding: 2px;
     background: white;
 }
+form select.no-button{
+    width: 405px;
+}
 .buttons{
     margin-top: 24px;
     border-top: 2px solid black;
