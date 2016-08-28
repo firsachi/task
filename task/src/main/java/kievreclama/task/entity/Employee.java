@@ -45,6 +45,10 @@ public class Employee implements Cloneable, Serializable{
     @JoinColumn(name = "post")
     private Post post;
     
+    @ManyToOne
+    @JoinColumn(name = "department")
+    private Department department;
+    
     public void setId(int id) {
         this.id = id;
     }
@@ -67,6 +71,10 @@ public class Employee implements Cloneable, Serializable{
 
     public void setPost(Post post) {
         this.post = post;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
     }
       
     public int getId() {
@@ -92,5 +100,10 @@ public class Employee implements Cloneable, Serializable{
     public Post getPost() {
         return post;
     }
+
+    public Department getDepartment() {
+        return department;
+    }
+    
     
 }
