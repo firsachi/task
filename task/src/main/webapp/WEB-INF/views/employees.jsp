@@ -33,7 +33,7 @@
             </div>
             <c:forEach var="employee" items="${employees}">
                 <div class="row-div td">
-                    <div><a href="form/?id=${employee.getId()}">skl</a></div>
+                    <div><a href="form/?id=${employee.getId()}">${employee.getPhone().getNumber()}</a></div>
                     <div>
                         <a href="form/?id=${employee.getId()}">
                             ${employee.getSurname()} 
