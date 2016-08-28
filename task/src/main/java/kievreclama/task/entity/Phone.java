@@ -6,9 +6,14 @@
 package kievreclama.task.entity;
 
 import java.io.Serializable;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -20,14 +25,38 @@ import javax.persistence.Table;
 public class Phone implements Serializable {
     
     @Id
-    @Column(name = "phone_number", unique = true)
-    private Integer phone;
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    
+    @Column(name = "number", unique = true)
+    private Integer number;
+    
+    @OneToMany(mappedBy = "phone", fetch = FetchType.LAZY)
+    private Set<Employee> employees;
 
-    public Integer getPhone() {
-        return phone;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public void setPhone(Integer phone) {
-        this.phone = phone;
+    public void setNumber(Integer number) {
+        this.number = number;
     }
+
+    public void setEmployees(Set<Employee> employees) {
+        this.employees = employees;
+    }
+    
+    public Integer getId() {
+        return id;
+    }
+
+    public Integer getNumber() {
+        return number;
+    }
+
+    public Set<Employee> getEmployees() {
+        return employees;
+    }
+    
 }
