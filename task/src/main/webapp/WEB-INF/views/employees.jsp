@@ -33,25 +33,25 @@
             </div>
             <c:forEach var="employee" items="${employees}">
                 <div class="row-div td">
-                    <div><a href="form/?id=${employee.getId()}">${employee.getPhone().getNumber()}</a></div>
+                    <div><a href="form?id=${employee.getId()}">${employee.getPhone().getNumber()}</a></div>
                     <div>
-                        <a href="form/?id=${employee.getId()}">
+                        <a href="form?id=${employee.getId()}">
                             ${employee.getSurname()} 
                             ${employee.getName()} 
                             ${employee.getPatronymic()}
                         </a>
                     </div>
                     <div>
-                        1
+                        ${employee.getEnterprise().getName()}
                     </div>
                     <div>
-                        1
+                        ${employee.getDepartment().getName()}
                     </div>
                     <div>
-                        1
+                        ${employee.getPost().getName()}
                     </div>
                     <div>
-                        1
+                        ${employee.getEmail()}
                     </div>
                 </div>
             </c:forEach>
