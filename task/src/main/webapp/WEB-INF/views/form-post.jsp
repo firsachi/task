@@ -29,7 +29,7 @@
             </div>
             <div>
                 <form:label path="heft">Важливість посади</form:label>
-                <form:select path="heft">
+                <form:select class="no-button" path="heft">
                     <c:forEach var="value" items="${heftPost}">
                         <c:if test="${value == post.getHeft()}">
                             <c:set var="selected" scope="session" value="true"/>
