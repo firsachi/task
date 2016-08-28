@@ -52,7 +52,10 @@
                 Post
                 <a href="">+</a>
                 <select>
-                    <option>One post</option>
+                    <c:forEach var="post" items="${listPost}">
+                        <option>${post.getName()}</option>
+                    </c:forEach>
+                    
                 </select>
             </div>
             <div>
@@ -63,7 +66,10 @@
                 Phone
                 <a href="">+</a>
                 <select>
-                    <option>One post</option>
+                    <c:forEach var="phone" items="${phones}">
+                        <option>${phone.getNumber()}</option>
+                    </c:forEach>
+                    
                 </select>
             </div>
             <div>
@@ -73,7 +79,7 @@
             <div class="buttons">
                 <input type="submit">
                 <input type="reset">
-                <input type="button">
+                <input onclick="self.location.href='.';">
             </div>
         </form>
     </body>
