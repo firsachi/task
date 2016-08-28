@@ -11,10 +11,11 @@
     <property name="connection.pool_size">1</property>
     <mapping resource="urgency.hbm.xml"/>
     <mapping resource="users.hbm.xml"/>
-    <mapping resource="employee.hbm.xml"/>
+    <mapping class="kievreclama.task.entity.Employee"/>
     <mapping resource="task.hbm.xml"/>
-    <mapping resource="company.hbm.xml"/>
-    <mapping resource="post.hbm.xml"/>
-    <mapping resource="department.hbm.xml"/>
+    <mapping class="kievreclama.task.entity.Enterprise"/>
+    <mapping class="kievreclama.task.entity.Post"/>
+    <mapping class="kievreclama.task.entity.Department"/>
+    <mapping class="kievreclama.task.entity.Phone"/>
   </session-factory>
 </hibernate-configuration>
