@@ -11,6 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -35,9 +37,14 @@ public class Employee implements Cloneable, Serializable{
     @Column(name = "patronymic")
     private String patronymic;
     
-    @Column(name = "phone")
-    private Integer phone;
-
+    @ManyToOne
+    @JoinColumn(name = "phone")
+    private Phone phone;
+    
+    @ManyToOne
+    @JoinColumn(name = "post")
+    private Post post;
+    
     public void setId(int id) {
         this.id = id;
     }
@@ -54,10 +61,14 @@ public class Employee implements Cloneable, Serializable{
         this.patronymic = patronymic;
     }
 
-    public void setPhone(Integer phone) {
+    public void setPhone(Phone phone) {
         this.phone = phone;
     }
 
+    public void setPost(Post post) {
+        this.post = post;
+    }
+      
     public int getId() {
         return id;
     }
@@ -74,8 +85,12 @@ public class Employee implements Cloneable, Serializable{
         return patronymic;
     }
 
-    public Integer getPhone() {
+    public Phone getPhone() {
         return phone;
-    } 
+    }
+
+    public Post getPost() {
+        return post;
+    }
     
 }
