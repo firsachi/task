@@ -49,6 +49,16 @@ public class Employee implements Cloneable, Serializable{
     @JoinColumn(name = "department")
     private Department department;
     
+    @ManyToOne
+    @JoinColumn (name = "enterprise")
+    private Enterprise enterprise;
+    
+    @Column(name = "email")
+    private String email;
+    
+    @Column(name = "room")
+    private int room;
+    
     public void setId(int id) {
         this.id = id;
     }
@@ -76,7 +86,19 @@ public class Employee implements Cloneable, Serializable{
     public void setDepartment(Department department) {
         this.department = department;
     }
-      
+
+    public void setEnterprise(Enterprise enterprise) {
+        this.enterprise = enterprise;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setRoom(int room) {
+        this.room = room;
+    }
+    
     public int getId() {
         return id;
     }
@@ -104,6 +126,17 @@ public class Employee implements Cloneable, Serializable{
     public Department getDepartment() {
         return department;
     }
-    
+
+    public Enterprise getEnterprise() {
+        return enterprise;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public int getRoom() {
+        return room;
+    }
     
 }
