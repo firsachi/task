@@ -57,7 +57,7 @@ public class Employee implements Cloneable, Serializable{
     private String email;
     
     @Column(name = "room")
-    private int room;
+    private Integer room;
     
     public void setId(int id) {
         this.id = id;
@@ -95,7 +95,7 @@ public class Employee implements Cloneable, Serializable{
         this.email = email;
     }
 
-    public void setRoom(int room) {
+    public void setRoom(Integer room) {
         this.room = room;
     }
     
@@ -135,7 +135,7 @@ public class Employee implements Cloneable, Serializable{
         return email;
     }
 
-    public int getRoom() {
+    public Integer getRoom() {
         return room;
     }
     
