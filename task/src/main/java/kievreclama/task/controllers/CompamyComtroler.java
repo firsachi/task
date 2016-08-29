@@ -11,7 +11,9 @@ import kievreclama.task.dao.impl.CompanyDaoImpl;
 import kievreclama.task.entity.Enterprise;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -31,21 +33,19 @@ public class CompamyComtroler {
         return "company";
     }
     
-    @RequestMapping(
-            value = "/form",
-            method = RequestMethod.GET
-       )
-    public ModelAndView getPagesFormCompany( @ModelAttribute(name = "id") String id) throws SQLException{
+    @GetMapping(value = "/{id}")
+    public ModelAndView getPagesFormCompany( @PathVariable Integer id ) throws SQLException{
         Enterprise enterprise = new Enterprise();
-        if (!id.equals("0")){
+        if (!id.equals(0)){
             CompanyDao companyDao = new CompanyDaoImpl();
             enterprise = companyDao.find(new Integer(id));
         }
         return new ModelAndView("form-company", "enterprise", enterprise);
     }
     
+    
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String submit(@ModelAttribute("enterprise")Enterprise enterprise) throws SQLException{      
+    public String submit(@ModelAttribute("enterprise")Enterprise enterprise) throws SQLException{
         action(enterprise);
         return "redirect:../company/";
     }

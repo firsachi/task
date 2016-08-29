@@ -17,6 +17,30 @@ import org.hibernate.Session;
  * @author firsov
  */
 public class EmployeeDaoImpl implements EmployeeDao{
+    
+    @Override
+    public void add(Employee employee) throws SQLException{
+        try(Session session = HibernateUtil.getSessionFactory().openSession()){
+            session.beginTransaction();
+            session.save(employee);
+            session.getTransaction().commit();
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+            
+    }
+    
+    @Override
+    public void update(Employee employee) throws SQLException{
+        try(Session session = HibernateUtil.getSessionFactory().openSession();){
+            session.beginTransaction();
+            session.update(employee);
+            session.getTransaction().commit();
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+    
 
     @Override
     public Employee find(Employee employee) throws SQLException {

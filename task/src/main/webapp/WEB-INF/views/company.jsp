@@ -28,7 +28,7 @@
             </div>
             <c:forEach var="enterprise" items="${company}" varStatus="loop">
                 <div class="row-div td">
-                    <div><a href="form?id=${enterprise.getId()}">${loop.index+1}</a></div>
+                    <div><a href="${enterprise.getId()}">${loop.index+1}</a></div>
                     <div><a href="form?id=${enterprise.getId()}">${enterprise.getName()}</a></div>
                 </div>
             </c:forEach>
