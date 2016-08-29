@@ -13,6 +13,7 @@
     <mapping resource="users.hbm.xml"/>
     <mapping class="kievreclama.task.entity.Employee"/>
     <mapping resource="task.hbm.xml"/>
+    <mapping class="kievreclama.task.entity.Room"/>
     <mapping class="kievreclama.task.entity.Enterprise"/>
     <mapping class="kievreclama.task.entity.Post"/>
     <mapping class="kievreclama.task.entity.Department"/>
