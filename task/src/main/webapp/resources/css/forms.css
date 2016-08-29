@@ -7,9 +7,6 @@ and open the template in the editor.
     Created on : Aug 15, 2016, 9:08:32 AM
     Author     : firsov
 */
-body html {
-    
-}
 .size-div{
     width: 600px;
 }
@@ -44,7 +41,7 @@ form a{
 form select {
     float: right;
     border: 1px solid black;
-    width: 392px;
+    width: 405px;
     padding: 2px;
     background: white;
 }
