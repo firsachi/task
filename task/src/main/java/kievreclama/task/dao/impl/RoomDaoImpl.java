@@ -30,5 +30,14 @@ public class RoomDaoImpl implements RoomDao{
         }
         return  resultList;
     }
+
+    @Override
+    public Room find(Integer id) throws SQLException {
+        Room room = null;
+        try(Session session = HibernateUtil.getSessionFactory().openSession()){
+            room = session.get(Room.class, id);
+        }
+        return  room;
+    }
     
 }
