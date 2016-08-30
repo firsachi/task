@@ -32,8 +32,8 @@
             <c:forEach var="value" items="${position}" varStatus="number">
                 <div class="row-div td">
                     <div>${number.index + 1}</div>
-                    <div><a href="form?id=${value.getId()}">${value.getName()}</a></div>
-                    <div><a href="form?id=${value.getId()}">${value.getHeft()}</a></div>
+                    <div><a href="${value.getId()}">${value.getName()}</a></div>
+                    <div><a href="${value.getId()}">${value.getHeft()}</a></div>
                 </div>
             </c:forEach>
         </div>
