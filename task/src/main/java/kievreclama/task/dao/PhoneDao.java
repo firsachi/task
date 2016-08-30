@@ -15,5 +15,6 @@ import kievreclama.task.entity.Phone;
  */
 public interface PhoneDao {
     
+    Phone find(Integer id) throws SQLException;
     List<Phone> list() throws SQLException;
 }
