@@ -20,11 +20,12 @@
             <a href="../post/">Post</a>
             <a href="../department/">Department</a>
             <a href="../company/">Enterprise</a>
-            <a class="add" href="form?id=0">+</a>
+            <a class="add" href="0">+</a>
         </div>
         <div class="table-div">
             <div class="row-div th">
                 <div>№ телефону</div>
+                <div>Кімната</div>
                 <div>ПІБ працівника</div>
                 <div>Підприємство</div>
                 <div>Відділ</div>
@@ -34,6 +35,7 @@
             <c:forEach var="employee" items="${employees}">
                 <div class="row-div td">
                     <div><a href="${employee.getId()}">${employee.getPhone().getNumber()}</a></div>
+                    <div><a href="${employee.getId()}">${employee.getRoom().getNumberRoom()}</a></div>
                     <div>
                         <a href="${employee.getId()}">
                             ${employee.getSurname()} 

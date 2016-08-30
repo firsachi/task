@@ -29,7 +29,7 @@
             </div>
             <div>
                 <form:label path="heft">Важливість посади</form:label>
-                <form:select path="heft" items="${heftPost}" />
+                <form:select path="heft" items="${heftPost}"/>
             </div>
             <div class="buttons">
                 <input type="submit">
