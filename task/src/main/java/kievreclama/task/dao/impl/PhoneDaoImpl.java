@@ -18,6 +18,15 @@ import org.hibernate.Session;
  * @author firsachi
  */
 public class PhoneDaoImpl implements PhoneDao{
+    
+    @Override
+    public Phone find(Integer id) throws SQLException{
+        Phone phone = null;
+        try(Session session = HibernateUtil.getSessionFactory().openSession()){
+            phone = session.get(Phone.class, id);
+        }
+        return phone;
+    }
 
     @Override
     public List<Phone> list() throws SQLException{
