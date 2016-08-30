@@ -12,7 +12,7 @@
         <title>Employee</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="../resources/css/page-private.css">
+        <link rel="stylesheet" type="text/css" href="../../resources/css/page-private.css">
     </head>
     <body>
         <div class="topic">
@@ -22,6 +22,7 @@
             <a href="../company/">Enterprise</a>
             <a class="add" href="0">+</a>
         </div>
+        ${isUserInRole}
         <div class="table-div">
             <div class="row-div th">
                 <div>№ телефону</div>

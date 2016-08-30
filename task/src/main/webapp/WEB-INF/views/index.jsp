@@ -4,7 +4,6 @@
     Author     : firsov
 --%>
 
-<%@page import="kievreclama.task.dao.postgresql.PostgresqlUrgencyDao"%>
 <%@page import="kievreclama.task.dao.UrgencyDao"%>
 <%@page import="kievreclama.task.entity.SettingsFilter"%>
 <%@page import="kievreclama.task.entity.SqlQuery"%>
