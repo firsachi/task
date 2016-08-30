@@ -48,7 +48,7 @@ public class EmployeeController {
     private PhoneDao phoneDao = new PhoneDaoImpl();
     private RoomDao roomDao = new RoomDaoImpl();
     
-    @RequestMapping
+    @RequestMapping(value = "/")
     public String getPageTasks(Model model) throws SQLException{
         model.addAttribute("employees", employeeDao.getList());    
         return "employees";
@@ -113,4 +113,6 @@ public class EmployeeController {
             }
         }
     }
+    
+    private String securiry
 }
