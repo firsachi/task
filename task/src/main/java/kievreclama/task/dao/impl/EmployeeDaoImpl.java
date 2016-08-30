@@ -41,12 +41,12 @@ public class EmployeeDaoImpl implements EmployeeDao{
         }
     }
     
-
     @Override
-    public Employee find(Employee employee) throws SQLException {
+    public Employee find(Integer id) throws SQLException {
+        Employee employee = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()){
             session.beginTransaction();
-            employee = session.get(Employee.class, employee.getId());
+            employee = session.get(Employee.class, id);
             session.getTransaction().commit();
             return employee;
         }catch(Exception ex){
