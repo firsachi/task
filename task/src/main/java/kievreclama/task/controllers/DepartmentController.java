@@ -23,7 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @author firsov
  */
 @Controller
-@RequestMapping(value = "/department/")
+@RequestMapping(value = "/private/department/")
 public class DepartmentController {
     
     @RequestMapping

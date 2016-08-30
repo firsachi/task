@@ -23,7 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @author firsachi
  */
 @Controller
-@RequestMapping(value = "/company/")
+@RequestMapping(value = "/private/company/")
 public class CompamyComtroler {
     
     @RequestMapping(value = "/")

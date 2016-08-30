@@ -21,7 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @author firsov
  */
 @Controller
-@RequestMapping(value = "/post/")
+@RequestMapping(value = "/private/post/")
 public class PostController {
     
     @RequestMapping
@@ -31,7 +31,7 @@ public class PostController {
         return "post";
     }
     
-    @RequestMapping(value = "/form", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ModelAndView getPagesFormCompany( @ModelAttribute(name = "id") String id) throws SQLException{
         ModelAndView modelAndView = new ModelAndView("form-post");
         if (!id.equals("0")){
