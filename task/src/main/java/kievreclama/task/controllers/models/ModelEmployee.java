@@ -12,9 +12,9 @@ package kievreclama.task.controllers.models;
 public class ModelEmployee {
 
     private int id;
-
+    
     private String surname;
-
+    
     private String name;
 
     private String patronymic;
@@ -29,7 +29,7 @@ public class ModelEmployee {
 
     private String email;
 
-    private Integer room;
+    private Integer numberRoom;
 
     public void setId(int id) {
         this.id = id;
@@ -67,8 +67,8 @@ public class ModelEmployee {
         this.email = email;
     }
 
-    public void setRoom(Integer room) {
-        this.room = room;
+    public void setNumberRoom(Integer numberRoom) {
+        this.numberRoom = numberRoom;
     }
 
     public int getId() {
@@ -107,9 +107,8 @@ public class ModelEmployee {
         return email;
     }
 
-    public Integer getRoom() {
-        return room;
+    public Integer getNumberRoom() {
+        return numberRoom;
     }
-    
     
 }
