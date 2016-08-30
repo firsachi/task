@@ -15,6 +15,7 @@ import kievreclama.task.entity.Room;
  */
 public interface RoomDao {
     
+    Room find(Integer id) throws SQLException;
     List<Room> list() throws SQLException;
     
 }
