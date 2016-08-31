@@ -16,8 +16,9 @@ import kievreclama.task.entity.Task;
 public interface TaskDao {
     
     void add(Task task) throws SQLException;
-    void delete(Task task) throws SQLException;
-    Task find(int id) throws SQLException;
-    List<Task> getList() throws SQLException;
+    void update(Task task) throws SQLException;
+    Task findId(int id) throws SQLException;
+    List<Task> list() throws SQLException;
+    List<Task> List(String Query) throws SQLException;
     
 }

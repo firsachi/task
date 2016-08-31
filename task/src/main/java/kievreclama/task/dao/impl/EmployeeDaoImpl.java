@@ -56,6 +56,16 @@ public class EmployeeDaoImpl implements EmployeeDao{
     }
     
     @Override
+    public Employee find(String lvalue) throws SQLException{
+        Employee employee = new Employee();
+        try(Session session = HibernateUtil.getSessionFactory().openSession();){
+            List<Employee> list = session.createQuery("from Employee where login = :lvalue").setString("lvalue", lvalue).list();
+            employee= list.get(0);
+        }
+        return employee;
+    }
+    
+    @Override
     public List<Employee> getList() throws SQLException {
         List<Employee> resultLst = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession();) {

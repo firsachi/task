@@ -6,7 +6,6 @@
 package kievreclama.task.controllers;
 
 import java.sql.SQLException;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.validation.Valid;
@@ -113,6 +112,4 @@ public class EmployeeController {
             }
         }
     }
-    
-    private String securiry
 }

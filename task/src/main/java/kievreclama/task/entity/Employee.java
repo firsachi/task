@@ -6,6 +6,8 @@
 package kievreclama.task.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,9 +16,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import org.hibernate.annotations.Proxy;
 
 /**
  *
@@ -66,9 +70,9 @@ public class Employee implements Cloneable, Serializable{
     @Column(name = "login", unique = true)
     private String login;
     
-    @OneToMany(mappedBy = "employee", fetch = FetchType.LAZY)
-    private List<Task> Tasks;
-    
+    @OneToMany(mappedBy = "employee", fetch = FetchType.LAZY, targetEntity = Task.class)
+    private List<Task> tasks = new ArrayList<>();
+
     public void setId(int id) {
         this.id = id;
     }
@@ -113,8 +117,8 @@ public class Employee implements Cloneable, Serializable{
         this.login = login;
     }
 
-    public void setTasks(List<Task> Tasks) {
-        this.Tasks = Tasks;
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
     }
     
     public int getId() {
@@ -162,7 +166,7 @@ public class Employee implements Cloneable, Serializable{
     }
 
     public List<Task> getTasks() {
-        return Tasks;
+        return tasks;
     }
     
     

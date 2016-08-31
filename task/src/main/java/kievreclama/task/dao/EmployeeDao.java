@@ -18,5 +18,6 @@ public interface EmployeeDao {
     void add(Employee employee) throws SQLException;
     void update(Employee employee) throws SQLException;
     Employee find(Integer id) throws SQLException;
+    Employee find(String lvalue) throws SQLException;
     List<Employee> getList() throws SQLException;
 }

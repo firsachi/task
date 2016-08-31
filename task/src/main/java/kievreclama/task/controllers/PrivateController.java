@@ -5,8 +5,8 @@
  */
 package kievreclama.task.controllers;
 
+import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -19,11 +19,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class PrivateController {
     
     @RequestMapping
-    public String redirect(HttpServletRequest request){
-        if(request.isUserInRole("private")){
-            System.out.println(request.isUserInRole("private"));
+    public String redirect(HttpServletRequest request) throws SQLException{
+        if(request.isUserInRole("employee")){
             return "redirect:/private/employee/";
+        }else if(request.isUserInRole("private")){
+            return "redirect:/private/tasks/";
+        }else{
+            return "redirect:../";
         }
-        return "redirect:../";
     }
 }

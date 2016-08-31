@@ -6,8 +6,10 @@
 package kievreclama.task.entity;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,9 +29,9 @@ public class Task implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private int id;
-    
-    @ManyToOne
-    @JoinColumn(columnDefinition = "employee")
+     
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "id" , referencedColumnName = "id", nullable = false, updatable = false, insertable = false)
     private Employee employee;
     
     @Column(name = "task")
