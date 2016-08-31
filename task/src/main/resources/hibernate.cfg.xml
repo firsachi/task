@@ -9,7 +9,7 @@
     <property name="hibernate.connection.password">1q2w3e4r</property>
     <property name="hibernate.hbm2ddl.auto">update</property>
     <property name="connection.pool_size">1</property>
-    <mapping resource="urgency.hbm.xml"/>
+    <mapping class="kievreclama.task.entity.Urgency"/>
     <mapping resource="users.hbm.xml"/>
     <mapping class="kievreclama.task.entity.Employee"/>
     <mapping resource="task.hbm.xml"/>
