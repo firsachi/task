@@ -60,6 +60,9 @@ public class Employee implements Cloneable, Serializable{
     @JoinColumn (name = "room")
     private Room room;
     
+    @Column(name = "login", unique = true)
+    private String login;
+    
     public void setId(int id) {
         this.id = id;
     }
@@ -98,6 +101,10 @@ public class Employee implements Cloneable, Serializable{
 
     public void setRoom(Room room) {
         this.room = room;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
     }
     
     public int getId() {
@@ -138,6 +145,10 @@ public class Employee implements Cloneable, Serializable{
 
     public Room getRoom() {
         return room;
+    }
+
+    public String getLogin() {
+        return login;
     }
     
 }
