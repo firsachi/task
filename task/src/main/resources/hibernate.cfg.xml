@@ -12,7 +12,7 @@
     <mapping class="kievreclama.task.entity.Urgency"/>
     <mapping class="kievreclama.task.entity.User"/>
     <mapping class="kievreclama.task.entity.Employee"/>
-    <mapping resource="task.hbm.xml"/>
+    <mapping class="kievreclama.task.entity.Task"/>
     <mapping class="kievreclama.task.entity.Room"/>
     <mapping class="kievreclama.task.entity.Enterprise"/>
     <mapping class="kievreclama.task.entity.Post"/>
