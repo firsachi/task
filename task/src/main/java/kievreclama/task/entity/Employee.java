@@ -6,13 +6,16 @@
 package kievreclama.task.entity;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -63,6 +66,9 @@ public class Employee implements Cloneable, Serializable{
     @Column(name = "login", unique = true)
     private String login;
     
+    @OneToMany(mappedBy = "employee", fetch = FetchType.LAZY)
+    private List<Task> Tasks;
+    
     public void setId(int id) {
         this.id = id;
     }
@@ -105,6 +111,10 @@ public class Employee implements Cloneable, Serializable{
 
     public void setLogin(String login) {
         this.login = login;
+    }
+
+    public void setTasks(List<Task> Tasks) {
+        this.Tasks = Tasks;
     }
     
     public int getId() {
@@ -150,5 +160,10 @@ public class Employee implements Cloneable, Serializable{
     public String getLogin() {
         return login;
     }
+
+    public List<Task> getTasks() {
+        return Tasks;
+    }
+    
     
 }
