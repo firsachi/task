@@ -8,7 +8,11 @@ package kievreclama.task.entity;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -16,21 +20,20 @@ import javax.persistence.Table;
  * @author firsov
  */
 @Entity
-@Table(name="tasks")
+@Table(name = "tasks")
 public class Task implements Serializable {
     
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private int id;
     
-    @Column(name = "emploue")
-    private Employee emploue;
+    @ManyToOne
+    @JoinColumn(columnDefinition = "employee")
+    private Employee employee;
     
     @Column(name = "task")
-    private String infoTask;
-    
-    @Column(name = "urgency")
-    private String priority;
+    private String task;
     
     @Column(name = "number")
     private String number;
@@ -38,26 +41,25 @@ public class Task implements Serializable {
     @Column(name = "date_create")
     private String date;
     
+    @Column(name = "urgency")
+    private Integer urgensy;
+    
     @Column(name = "state")
-    private boolean statys;
+    private Boolean state;
     
     @Column(name = "delete")
-    private boolean delete;
+    private Boolean delete;
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public void setEmploue(Employee emploue) {
-        this.emploue = emploue;
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
-    public void setInfoTask(String infoTask) {
-        this.infoTask = infoTask;
-    }
-
-    public void setPriority(String priority) {
-        this.priority = priority;
+    public void setTask(String task) {
+        this.task = task;
     }
 
     public void setNumber(String number) {
@@ -68,11 +70,15 @@ public class Task implements Serializable {
         this.date = date;
     }
 
-    public void setStatys(boolean statys) {
-        this.statys = statys;
+    public void setUrgensy(Integer urgensy) {
+        this.urgensy = urgensy;
     }
 
-    public void setDelete(boolean delete) {
+    public void setState(Boolean state) {
+        this.state = state;
+    }
+
+    public void setDelete(Boolean delete) {
         this.delete = delete;
     }
 
@@ -80,16 +86,12 @@ public class Task implements Serializable {
         return id;
     }
 
-    public Employee getEmploue() {
-        return emploue;
+    public Employee getEmployee() {
+        return employee;
     }
 
-    public String getInfoTask() {
-        return infoTask;
-    }
-
-    public int getPriority() {
-        return new Integer(priority);
+    public String getTask() {
+        return task;
     }
 
     public String getNumber() {
@@ -100,13 +102,16 @@ public class Task implements Serializable {
         return date;
     }
 
-    public boolean isStatys() {
-        return statys;
+    public Integer getUrgensy() {
+        return urgensy;
     }
 
-    public boolean isDelete() {
+    public Boolean getState() {
+        return state;
+    }
+
+    public Boolean getDelete() {
         return delete;
     }
-    
     
 }
