@@ -30,8 +30,8 @@ public class Task implements Serializable {
     @Column(name = "id")
     private int id;
      
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "id" , referencedColumnName = "id", nullable = false, updatable = false, insertable = false)
+    @ManyToOne
+    @JoinColumn(name = "employee")
     private Employee employee;
     
     @Column(name = "task")
