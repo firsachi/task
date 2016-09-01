@@ -11,37 +11,40 @@
     <head>
         <meta http-equiv="refresh" content="600">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="resources/css/index.css"/>
+        <link rel="stylesheet" type="text/css" href="./resources/css/index.css"/>
         <title>Список завдань.</title>
     </head>
     <body>
         <div class="table">
-            <div class="row">
-                <div class="logo">
-                    <img src="resources/img/logo.png">
-                </div>
-                <div class="logo__title">Київреклама</div>
+            <div class="row title">
+                <div class="font">Київреклама</div>
                 <div></div>
-                <div class="login"><a href="private/">Login</a></div>
+                <a class="login" href="private/">Login</a>
             </div>
         </div>
-        <div class="table">
+        <div class="table pdding">
             <div class="row th">
                 <div>Приорітет</div>
                 <div>Замовник</div>
                 <div>Завдання</div>
                 <div>№ службової записки</div>
                 <div>Дата</div>
-                <div>Виконанно</div>
+                <div></div>
             </div>
             <c:forEach var="value" items="${tasks}">
                 <div class="row td">
                     <div>${value.getUrgensy()}</div>
-                    <div>${value.getEmployee().getName()}</div>
+                    <div>
+                        ${value.getEmployee().getSurname()} 
+                        ${value.getEmployee().getName()} 
+                        ${value.getEmployee().getPatronymic()}
+                    </div>
                     <div>${value.getTask()}</div>
                     <div>${value.getNumber()}</div>
                     <div>${value.getDate()}</div>
-                    <div>${value.getState()}</div>
+                    <div>
+                        <input type="checkbox" disabled="disabled" <c:if test="${value.getState()}">checked</c:if>>
+                    </div>
                 </div>
             </c:forEach>
         </div>
