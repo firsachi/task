@@ -1,0 +1,53 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jun 8, 2016, 9:53:27 AM
+    Author     : firsov
+*/
+
+body {
+    min-width: 400px;
+    text-align: center;
+    font: 12px/1.4 Helvetica, arial, nimbussansl, liberationsans, freesans, clean, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+.table{
+    display: table;
+    width: 100%;
+}
+.row {
+    display: table-row;
+}
+.row div{
+    display: table-cell;
+}
+.th div{
+    background: #CFCFCF;
+    padding: 6px;
+}
+.td div{
+    text-align: left;
+    border-bottom: 1px solid #CFCFCF;
+    padding: 4px;
+    padding-left: 10px;
+}
+.logo{
+    width: 30px;
+}
+.logo__title{
+    float: left;
+    font-size: 38px;
+    width: 240px;
+    height: 58px;
+}
+.login{
+    width: 100px;
+    background: #CFCFCF;
+}
+.login a{
+    color: white;
+    display: block;
+    text-decoration: none;
+}
