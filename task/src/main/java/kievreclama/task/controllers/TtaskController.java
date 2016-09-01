@@ -29,9 +29,6 @@ public class TtaskController {
         EmployeeDao employeeDao = new EmployeeDaoImpl();
         Employee employee = employeeDao.find(request.getUserPrincipal().getName());
         model.addAttribute("employee", employee);
-        TaskDao taskDao = new TaskDaoImpl();
-        //ystem.out.println(employee.getTasks());
-        model.addAttribute("task", taskDao.List(Integer.toString(employee.getId())));
         return "user-task";
     }
 }
