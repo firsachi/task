@@ -7,7 +7,6 @@ and open the template in the editor.
     Created on : Jun 8, 2016, 9:53:27 AM
     Author     : firsov
 */
-
 body {
     min-width: 400px;
     text-align: center;
@@ -26,6 +25,7 @@ body {
 .th div{
     background: #CFCFCF;
     padding: 6px;
+    font-weight: bold;
 }
 .td div{
     text-align: left;
@@ -33,21 +33,21 @@ body {
     padding: 4px;
     padding-left: 10px;
 }
-.logo{
-    width: 30px;
-}
-.logo__title{
-    float: left;
-    font-size: 38px;
-    width: 240px;
-    height: 58px;
-}
-.login{
-    width: 100px;
-    background: #CFCFCF;
-}
-.login a{
-    color: white;
-    display: block;
+.td div a{
     text-decoration: none;
+    display: block;
+    color: black;
+}
+.title{
+    font-size: 18px;
+}
+.title a{
+    width: 150px;
+    display: table-cell;
+    text-decoration: none;
+    color: #B5B5B5;
+    border: 1px solid #B5B5B5;
+}
+.pdding{
+    padding-top: 10px;
 }

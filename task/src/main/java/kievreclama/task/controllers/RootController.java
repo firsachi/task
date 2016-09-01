@@ -25,7 +25,4 @@ public class RootController {
         model.addAttribute("tasks", taskDao.list());
         return "index";
     }
-    
-    
-    
 }

@@ -15,16 +15,13 @@ html body{
     margin: auto;
     font: 13px/1.4 Helvetica, arial, nimbussansl, liberationsans, freesans, clean, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
-
 .center {
     width: 600px;
     margin: auto;
 }
-
 div {
     margin: 12px auto;
 }
-
 div.tile {
     padding-left: 20px;
     background-color: #DCDCDC;
@@ -33,12 +30,15 @@ div.tile {
 input.size{
     width: 600px;
 }
-
+.user-name{
+    display: block;
+    background-color: #DCDCDC;
+    padding: 2px;
+}
 textarea {
     width: 600px;
     height: 200px;
 }
-
 button {
     height: 24px;
 }

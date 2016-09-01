@@ -11,36 +11,37 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="../../resources/css/tasks.css">
+        <link rel="stylesheet" type="text/css" href="../../resources/css/index.css">
         <title>Tasks</title>
     </head>
     <body>
-        <div class="div-table">
-            <div class="div-row">
+        <div class="table">
+            <div class="row title">
                 <div>Співробітник:</div>
                 <div>${employee.getSurname()}  ${employee.getName()} ${employee.getPatronymic()}</div>
                 <div></div>
-                <div><a href="">Додати</a></div>
+                <a href="0&${employee.getId()}">Додати</a>
             </div>
         </div>
-        <div class="div-table">
-            <div class="div-row th">
+        <div class="table pdding">
+            <div class="row th">
                 <div>Приорітет</div>
                 <div>Завдання</div>
                 <div>№ службової записки</div>
                 <div>Дата</div>
-                <div>Виконанно</div>
+                <div></div>
             </div> 
-          <!--  <c:forEach var="val" items="${task}">
-                <div class="div-row td">
-                    <div>${val.getUrgensy()}</div>
-                    <div>${val.getTask()}</div>
-                    <div>${val.getNumber()}</div>
-                    <div>${val.getDate()}</div>
-                    <div>${val.getState()}</div>
+             <c:forEach var="val" items="${listTask}">
+                <div class="row td">
+                    <div><a href="${employee.getId()}&${val.getId()}">${val.getUrgensy()}</a></div>
+                    <div><a href="${employee.getId()}&${val.getId()}">${val.getTask()}</a></div>
+                    <div><a href="${employee.getId()}&${val.getId()}">${val.getNumber()}</a></div>
+                    <div><a href="${employee.getId()}&${val.getId()}">${val.getDate()}</a></div>
+                    <div>
+                        <input type="checkbox" disabled="disabled" <c:if test="${val.getState()}">checked</c:if>>
+                    </div>
                 </div>
             </c:forEach>
-          -->
         </div>
     </body>
 </html>

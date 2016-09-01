@@ -20,6 +20,7 @@ public class PrivateController {
     
     @RequestMapping
     public String redirect(HttpServletRequest request) throws SQLException{
+        System.out.println(request.isUserInRole("employees"));
         if(request.isUserInRole("employee")){
             return "redirect:/private/employee/";
         }else if(request.isUserInRole("private")){

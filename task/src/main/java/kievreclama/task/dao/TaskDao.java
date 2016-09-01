@@ -19,6 +19,6 @@ public interface TaskDao {
     void update(Task task) throws SQLException;
     Task findId(int id) throws SQLException;
     List<Task> list() throws SQLException;
-    List<Task> List(String Query) throws SQLException;
+    List<Task> list(int employeeId) throws SQLException;
     
 }

@@ -8,6 +8,7 @@
     <property name="hibernate.connection.username">sa</property>
     <property name="hibernate.connection.password">1q2w3e4r</property>
     <property name="hibernate.hbm2ddl.auto">update</property>
+    <property name="hibernate.current_session_context_class">thread</property>
     <property name="connection.pool_size">1</property>
     <mapping class="kievreclama.task.entity.Task"/>
     <mapping class="kievreclama.task.entity.Employee"/>
