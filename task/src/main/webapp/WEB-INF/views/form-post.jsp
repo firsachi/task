@@ -10,30 +10,30 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>${action}</title>
+        <title>${title}</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="../../resources/css/forms.css">
     </head>
     <body>
        <div class="topic size-div">
-            ${action}
+            ${title}
         </div>
-        <form:form modelAttribute="post" method="POST" action="add" accept-charset="utf-8">
+        <form:form modelAttribute="modelPost" method="POST" action="add" accept-charset="utf-8">
             <div>
-               <form:input type="hidden" path="id" value="${post.getId()}" readonly="true" />
+                <form:hidden path="id"/>
             </div>
             <div>
-                <form:label path="name">Name</form:label>
-                <form:input path="name" value="${post.getName()}" required="true" pattern=""/>
+                <form:label path="name">Найменування</form:label>
+                <form:input path="name" required="true" pattern=""/>
             </div>
             <div>
                 <form:label path="heft">Важливість посади</form:label>
-                <form:select path="heft" items="${heftPost}"/>
+                <form:select path="heft" items="${modelPost.getHEFT_POST()}"/>
             </div>
             <div class="buttons">
-                <input type="submit">
-                <input type="reset">
+                <input type="submit" value="Виконати">
+                <input type="reset" value="Скасувати">
                 <input type="button" onclick="self.location.href='.';" value="Повернутися">
             </div>
         </form:form>
