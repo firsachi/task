@@ -17,9 +17,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author firsov
  */
 @Controller
+@RequestMapping
 public class RootController {
     
-    @RequestMapping(value = "/")
+    @RequestMapping
     public String getPageIndex(Model model) throws SQLException{
         TaskDao taskDao = new TaskDaoImpl();
         model.addAttribute("tasks", taskDao.list());
