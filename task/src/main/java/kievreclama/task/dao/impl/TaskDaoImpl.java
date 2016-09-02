@@ -50,13 +50,12 @@ public class TaskDaoImpl implements TaskDao{
     @Override
     public List<Task> list() throws SQLException {
         List<Task> listTasks = null;
-        try{
             Session session = HibernateUtil.getSessionFactory().getCurrentSession();
             session.beginTransaction();
             Criteria criteria = session.createCriteria(Task.class).addOrder(Order.asc("urgensy"));
             listTasks = criteria.list();
             session.getTransaction().commit();
-        }
+
         return listTasks;
     }
 
