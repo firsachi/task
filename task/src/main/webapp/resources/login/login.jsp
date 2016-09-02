@@ -12,21 +12,25 @@
         <title>Login</title>
         <style>
             body {
-                    min-width: 400px;
-                    background-color: #E8E8E8;
-                    text-align: center;
-                    font: 13px/1.4 Helvetica, arial, nimbussansl, liberationsans, freesans, clean, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-                }
-            font { font-size: 26px; }
-            #logo { margin-top: 5%; }
+                min-width: 400px;
+                background-color: #E8E8E8;
+                text-align: center;
+                font: 13px/1.4 Helvetica, arial, nimbussansl, liberationsans, freesans, clean, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            }
+            font {font-size: 26px;}
+            #logo {margin-top: 5%;}
             #login {
-                    border: 1px #CFCFCF solid;
-                    width: 300px;
-                    text-align: left;
-                    margin: 1% auto;
-                    padding: 12px;
-                    background-color: white;
-                }
+                border: 1px #CFCFCF solid;
+                width: 300px;
+                text-align: left;
+                margin: 1% auto;
+                padding: 12px;
+                background-color: white;
+            }
+            input {
+                width: 285px;
+                height: 30px;
+            }
             #button {
                 width: 288px;
                 height: 30px;
@@ -44,7 +48,6 @@
                 text-decoration: none;
                 color: black;
             }
-            
         </style>
     </head>
     <body>
@@ -56,9 +59,9 @@
         <table id="login">
             <form action="j_security_check" method="post">
                 <tr><td>login</td></tr>
-                <tr><td><input id="text_login" type="text" name="j_username"></td></tr>
+                <tr><td><input type="text" name="j_username"></td></tr>
                 <tr><td>password</td></tr>
-                <tr><td><input  type="password" name="j_password"></td></tr>
+                <tr><td><input type="password" name="j_password"></td></tr>
                 <tr>
                     <td>
                         <input id="button" type="submit" value="Увійти">
