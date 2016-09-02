@@ -27,10 +27,6 @@ public class Post implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     
-    {
-        id = 0;
-    }
-    
     @Column(name = "name", unique = true, nullable = false)
     private String name;
     
