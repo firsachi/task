@@ -10,6 +10,7 @@ import java.util.List;
 import kievreclama.task.dao.EmployeeDao;
 import kievreclama.task.dao.hibernate.HibernateUtil;
 import kievreclama.task.entity.Employee;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 
 /**
@@ -20,19 +21,16 @@ public class EmployeeDaoImpl implements EmployeeDao{
     
     @Override
     public void add(Employee employee) throws SQLException{
-        try(Session session = HibernateUtil.getSessionFactory().getCurrentSession()){
+            Session session = HibernateUtil.getSessionFactory().getCurrentSession();
             session.beginTransaction();
             session.save(employee);
             session.getTransaction().commit();
-        }catch(Exception ex){
-            ex.printStackTrace();
-        }
-            
+
     }
     
     @Override
     public void update(Employee employee) throws SQLException{
-        try(Session session = HibernateUtil.getSessionFactory().getCurrentSession();){
+        try(Session session = HibernateUtil.getSessionFactory().openSession();){
             session.beginTransaction();
             session.update(employee);
             session.getTransaction().commit();
@@ -44,7 +42,7 @@ public class EmployeeDaoImpl implements EmployeeDao{
     @Override
     public Employee find(Integer id) throws SQLException {
         Employee employee = null;
-        try (Session session = HibernateUtil.getSessionFactory().getCurrentSession()){
+        try (Session session = HibernateUtil.getSessionFactory().openSession();){
             session.beginTransaction();
             employee = session.get(Employee.class, id);
             session.getTransaction().commit();
@@ -58,7 +56,7 @@ public class EmployeeDaoImpl implements EmployeeDao{
     @Override
     public Employee find(String lvalue) throws SQLException{
         Employee employee = new Employee();
-        try(Session session = HibernateUtil.getSessionFactory().getCurrentSession()){
+        try(Session session = HibernateUtil.getSessionFactory().openSession()){
             List<Employee> list = session.createQuery("from Employee where login = :lvalue").setString("lvalue", lvalue).list();
             employee= list.get(0);
         }
@@ -67,13 +65,11 @@ public class EmployeeDaoImpl implements EmployeeDao{
     
     @Override
     public List<Employee> getList() throws SQLException {
-        List<Employee> resultLst = null;
-        try (Session session = HibernateUtil.getSessionFactory().getCurrentSession();) {
-            resultLst = session.createCriteria(Employee.class).list();
-        }catch (Exception ex){
-            
+        List<Employee> result = null; 
+        try(Session session = HibernateUtil.getSessionFactory().openSession();){
+            Criteria criteria = session.createCriteria(Employee.class);
+        result = criteria.list();
         }
-        return resultLst;
+        return result;
     }
-    
 }
