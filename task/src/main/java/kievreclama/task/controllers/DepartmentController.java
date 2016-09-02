@@ -6,14 +6,15 @@
 package kievreclama.task.controllers;
 
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import kievreclama.task.controllers.models.ModelDepartment;
 import kievreclama.task.dao.DepartmentDao;
 import kievreclama.task.dao.impl.DepartmentDaoImpl;
 import kievreclama.task.entity.Department;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -26,44 +27,54 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping(value = "/private/department/")
 public class DepartmentController {
     
+    private DepartmentDao departmentDao = new DepartmentDaoImpl();
+    private final int IS_NEW = 0;
+    private final String NAME_MODEL_FORM ="modelDepartment";
+    
     @RequestMapping
     public String getPageDepartment(Model model) throws SQLException{
-        DepartmentDao departmentDao = new DepartmentDaoImpl();
         model.addAttribute("departments", departmentDao.list());
         return "department";
     }
     
-    @RequestMapping(value = "/form", method = RequestMethod.GET)
-    public ModelAndView getPageForma(@ModelAttribute(name = "id") String id) throws SQLException{
-        Department department = new Department();
-        if (!id.equals("0")){
-            DepartmentDao departmentDao = new DepartmentDaoImpl();
-            department = departmentDao.find(new Integer(id));
+    @GetMapping(value = "/{id}")
+    public ModelAndView getPageForma( @PathVariable Integer id ) throws SQLException{
+        ModelDepartment modelDepartment = new ModelDepartment();
+        String title = "Новий відділ";
+        if ( id != IS_NEW ){
+            modelDepartment = fillDepartment(departmentDao.find(id));
+            title = "Редагувати відділ";
         }
-        ModelAndView model = new ModelAndView("form-department", "department", department);
+        ModelAndView model = new ModelAndView("form-department", NAME_MODEL_FORM, modelDepartment);
+        model.addObject("title", title);
         return model;
     }
     
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String submit(@ModelAttribute("department")Department department){
-        action(department);
+    public String submit(@ModelAttribute(NAME_MODEL_FORM)ModelDepartment modelDepartment) throws SQLException{
+        action(modelDepartment);
         return "redirect:../department/";
     }
+    
+    private ModelDepartment fillDepartment(Department department){
+        ModelDepartment model = new ModelDepartment();
+        model.setId(department.getId());
+        model.setName(department.getName());
+        model.setPhone(department.getPhone());
+        model.setFax(department.getFax());
+        return model;
+    }
 
-    private void action(Department department) {
-        DepartmentDao departmentDao = new DepartmentDaoImpl();
-        if (department.getId() == 0){
-            try {
-                departmentDao.add(department);
-            } catch (SQLException ex) {
-                Logger.getLogger(DepartmentController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+    private void action(ModelDepartment modelDepartment) throws SQLException {
+        Department department = new Department();
+        department.setId(modelDepartment.getId());
+        department.setName(modelDepartment.getName());
+        department.setPhone(modelDepartment.getPhone());
+        department.setFax(modelDepartment.getFax());
+        if (modelDepartment.getId() == IS_NEW){
+            departmentDao.add(department);
         }else{
-            try {
-                departmentDao.update(department);
-            } catch (SQLException ex) {
-                Logger.getLogger(DepartmentController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            departmentDao.update(department);
         }
     }
 }

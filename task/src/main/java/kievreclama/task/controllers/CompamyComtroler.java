@@ -6,9 +6,10 @@
 package kievreclama.task.controllers;
 
 import java.sql.SQLException;
+import kievreclama.task.controllers.models.ModelCompany;
 import kievreclama.task.dao.CompanyDao;
 import kievreclama.task.dao.impl.CompanyDaoImpl;
-import kievreclama.task.entity.Enterprise;
+import kievreclama.task.entity.Company;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,38 +27,45 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping(value = "/private/company/")
 public class CompamyComtroler {
     
+    private final int IS_NEW = 0;
+    private CompanyDao companyDao = new CompanyDaoImpl();
+    
     @RequestMapping(value = "/")
     public String getPagesCompany(Model model) throws SQLException{
-        CompanyDao companyDao = new CompanyDaoImpl();
         model.addAttribute("company", companyDao.getList());
         return "company";
     }
     
     @GetMapping(value = "/{id}")
     public ModelAndView getPagesFormCompany( @PathVariable Integer id ) throws SQLException{
-        Enterprise enterprise = new Enterprise();
-        if (!id.equals(0)){
-            CompanyDao companyDao = new CompanyDaoImpl();
-            enterprise = companyDao.find(new Integer(id));
+        ModelCompany modelEnterprise = new ModelCompany();
+        if (!id.equals(IS_NEW)){
+            modelEnterprise = fillModel(companyDao.find(id));
         }
-        return new ModelAndView("form-company", "enterprise", enterprise);
+        return new ModelAndView("form-company", "enterprise", modelEnterprise);
     }
     
-    
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String submit(@ModelAttribute("enterprise")Enterprise enterprise) throws SQLException{
-        action(enterprise);
+    public String submit(@ModelAttribute("enterprise") ModelCompany modelCompany ) throws SQLException{
+        action(modelCompany);
         return "redirect:../company/";
     }
     
-    private void action(Enterprise enterprise) throws SQLException{
-        CompanyDao companyDao = new CompanyDaoImpl();
-        if (enterprise.getId()== 0){
-            companyDao.add(enterprise);
-        }else{
-            companyDao.update(enterprise);
-        }
-        
+    private ModelCompany fillModel(Company enterprise){
+        ModelCompany model = new ModelCompany();
+        model.setId(enterprise.getId());
+        model.setName(enterprise.getName());
+        return model;
     }
     
+    private void action(ModelCompany modelCompany) throws SQLException{
+        Company company = new Company();
+        company.setId(modelCompany.getId());
+        company.setName(modelCompany.getName());
+        if (modelCompany.getId() == IS_NEW ){
+            companyDao.add(company);
+        }else{
+            companyDao.update(company);
+        }
+    }
 }
