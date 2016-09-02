@@ -7,7 +7,7 @@ package kievreclama.task.dao;
 
 import java.sql.SQLException;
 import java.util.List;
-import kievreclama.task.entity.Enterprise;
+import kievreclama.task.entity.Company;
 
 /**
  *
@@ -15,10 +15,10 @@ import kievreclama.task.entity.Enterprise;
  */
 public interface CompanyDao {
     
-    void add(Enterprise enterprise) throws SQLException;
-    void delete(Enterprise enterprise) throws SQLException;
-    void update(Enterprise enterprise) throws SQLException;
-    Enterprise find(Integer id) throws SQLException;
-    List<Enterprise> getList() throws SQLException;
+    void add(Company enterprise) throws SQLException;
+    void delete(Company enterprise) throws SQLException;
+    void update(Company enterprise) throws SQLException;
+    Company find(Integer id) throws SQLException;
+    List<Company> getList() throws SQLException;
     
 }
