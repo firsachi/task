@@ -19,7 +19,7 @@
             <a href="../post/">Post</a>
             <a href="../department/">Department</a>
             <a class="selected" href=".">Enterprise</a>
-            <a class="add" href="form?id=0">+</a>
+            <a class="add" href="0">+</a>
         </div>
         <div class="table-div">
             <div class="row-div th">
@@ -29,7 +29,7 @@
             <c:forEach var="enterprise" items="${company}" varStatus="loop">
                 <div class="row-div td">
                     <div><a href="${enterprise.getId()}">${loop.index+1}</a></div>
-                    <div><a href="form?id=${enterprise.getId()}">${enterprise.getName()}</a></div>
+                    <div><a href="${enterprise.getId()}">${enterprise.getName()}</a></div>
                 </div>
             </c:forEach>
         </div>

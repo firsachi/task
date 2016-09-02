@@ -21,7 +21,7 @@
             <a class="selected" href=".">Post</a>
             <a href="../department/">Department</a>
             <a href="../company/">Enterprise</a>
-            <a class="add" href="form?id=0">+</a>
+            <a class="add" href="0">+</a>
         </div>
         <div class="table-div">
             <div class="row-div th">

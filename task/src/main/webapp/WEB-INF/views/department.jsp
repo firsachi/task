@@ -21,7 +21,7 @@
             <a href="../post/">Post</a>
             <a class="selected" href=".">Department</a>
             <a href="../company/">Enterprise</a>
-            <a class="add" href="form?id=0">+</a>
+            <a class="add" href="0">+</a>
         </div>
         <div class="table-div">
             <div class="row-div th">
@@ -31,9 +31,9 @@
             </div>
             <c:forEach var="department" items="${departments}" varStatus="num">
                 <div class="row-div td">
-                    <div><a href="form?id=${department.getId()}">${department.getName()}</a></div>
-                    <div><a href="form?id=${department.getId()}">${department.getPhone()}</a></div>
-                    <div><a href="form?id=${department.getId()}">${department.getFax()}</a></div>
+                    <div><a href="${department.getId()}">${department.getName()}</a></div>
+                    <div><a href="${department.getId()}">${department.getPhone()}</a></div>
+                    <div><a href="${department.getId()}">${department.getFax()}</a></div>
                 </div>
             </c:forEach>
         </div>
