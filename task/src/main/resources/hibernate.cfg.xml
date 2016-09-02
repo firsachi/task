@@ -13,7 +13,7 @@
     <mapping class="kievreclama.task.entity.Task"/>
     <mapping class="kievreclama.task.entity.Employee"/>
     <mapping class="kievreclama.task.entity.Room"/>
-    <mapping class="kievreclama.task.entity.Enterprise"/>
+    <mapping class="kievreclama.task.entity.Company"/>
     <mapping class="kievreclama.task.entity.Post"/>
     <mapping class="kievreclama.task.entity.Department"/>
     <mapping class="kievreclama.task.entity.Phone"/>
