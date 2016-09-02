@@ -31,10 +31,6 @@ public class Department implements Serializable {
     @Column(name = "id")
     private Integer id;
     
-    {
-        id = 0;
-    }
-    
     @Basic(optional = false)
     @Column(name = "name")
     private String name;
