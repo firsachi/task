@@ -55,7 +55,7 @@ public class Employee implements Cloneable, Serializable{
     
     @ManyToOne
     @JoinColumn (name = "enterprise")
-    private Enterprise enterprise;
+    private Company enterprise;
     
     @Column(name = "email")
     private String email;
@@ -98,7 +98,7 @@ public class Employee implements Cloneable, Serializable{
         this.department = department;
     }
 
-    public void setEnterprise(Enterprise enterprise) {
+    public void setEnterprise(Company enterprise) {
         this.enterprise = enterprise;
     }
 
@@ -146,7 +146,7 @@ public class Employee implements Cloneable, Serializable{
         return department;
     }
 
-    public Enterprise getEnterprise() {
+    public Company getEnterprise() {
         return enterprise;
     }
 
