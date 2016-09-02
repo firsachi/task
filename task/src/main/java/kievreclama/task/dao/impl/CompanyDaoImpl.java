@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.List;
 import kievreclama.task.dao.CompanyDao;
 import kievreclama.task.dao.hibernate.HibernateUtil;
-import kievreclama.task.entity.Enterprise;
+import kievreclama.task.entity.Company;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Order;
@@ -21,7 +21,7 @@ import org.hibernate.criterion.Order;
 public class CompanyDaoImpl implements CompanyDao{
 
     @Override
-    public void add(Enterprise enterprise) throws SQLException {
+    public void add(Company enterprise) throws SQLException {
         try (Session session = HibernateUtil.getSessionFactory().openSession();){
             session.beginTransaction();
             session.save(enterprise);
@@ -32,7 +32,7 @@ public class CompanyDaoImpl implements CompanyDao{
     }
 
     @Override
-    public void delete(Enterprise enterprise) throws SQLException {
+    public void delete(Company enterprise) throws SQLException {
         try(Session session = HibernateUtil.getSessionFactory().openSession()){
             session.beginTransaction();
             session.delete(enterprise);
@@ -43,7 +43,7 @@ public class CompanyDaoImpl implements CompanyDao{
     }
 
     @Override
-    public void update(Enterprise enterprise) throws SQLException {
+    public void update(Company enterprise) throws SQLException {
         try(Session session = HibernateUtil.getSessionFactory().openSession();) {
             session.beginTransaction();
             session.update(enterprise);
@@ -54,10 +54,10 @@ public class CompanyDaoImpl implements CompanyDao{
     }
 
     @Override
-    public Enterprise find(Integer id) throws SQLException {
-        Enterprise enterprise = null;
+    public Company find(Integer id) throws SQLException {
+        Company enterprise = null;
         try(Session session = HibernateUtil.getSessionFactory().openSession()){
-            enterprise = session.get(Enterprise.class, id);
+            enterprise = session.get(Company.class, id);
         }catch (Exception ex){
             ex.printStackTrace();
         }
@@ -65,10 +65,10 @@ public class CompanyDaoImpl implements CompanyDao{
     }
 
     @Override
-    public List<Enterprise> getList() throws SQLException {
-        List<Enterprise> resultLIst = null;
+    public List<Company> getList() throws SQLException {
+        List<Company> resultLIst = null;
         try(Session session = HibernateUtil.getSessionFactory().openSession();){
-            Criteria criteria = session.createCriteria(Enterprise.class).addOrder(Order.asc("id"));
+            Criteria criteria = session.createCriteria(Company.class).addOrder(Order.asc("id"));
             resultLIst = criteria.list();
         }catch (Exception ex){
             
