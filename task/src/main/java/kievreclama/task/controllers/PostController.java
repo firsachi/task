@@ -6,14 +6,16 @@
 package kievreclama.task.controllers;
 
 import java.sql.SQLException;
+import kievreclama.task.controllers.models.ModelPost;
 import kievreclama.task.dao.PostDao;
 import kievreclama.task.dao.impl.PostDaoImpl;
 import kievreclama.task.entity.Post;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -24,37 +26,48 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping(value = "/private/post/")
 public class PostController {
     
+    private PostDao postDao = new PostDaoImpl(); ;
+    private final int isNew = 0;
+    private final String NAME_MODEL = "modelPost";
+    
     @RequestMapping
     public String getPagePost(Model model) throws SQLException{
-        PostDao postDao = new PostDaoImpl();
         model.addAttribute("position", postDao.list());
         return "post";
     }
     
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ModelAndView getPagesFormCompany( @ModelAttribute(name = "id") String id) throws SQLException{
-        ModelAndView modelAndView = new ModelAndView("form-post");
-        if (!id.equals("0")){
-            PostDao postDao = new PostDaoImpl();
-            modelAndView.addObject("post", postDao.find(new Integer(id)));
-            modelAndView.addObject("action", "Редагувати посаду");
-        }else{
-            modelAndView.addObject("action", "Нова посада");
-            modelAndView.addObject("post", new Post());
+    @GetMapping(value = "/{id}")
+    public ModelAndView getPagesFormCompany( @PathVariable Integer id ) throws SQLException{
+        ModelPost modelPost = new ModelPost();
+        String title = "Нова посада";
+        if (id != isNew){
+            modelPost = fillModell(postDao.find(id));
+            title = "Редагувати посаду";
         }
-        String[] heftPost = {"1.0","1.1","2.0","2.1","3.0","3.1","4.0","4.1","5.0","5.1","6.0","6.1","7.0","7.1","8.0","8.1","9.0","9.1"};
-        modelAndView.addObject("heftPost", heftPost);
+        ModelAndView modelAndView = new ModelAndView("form-post", NAME_MODEL, modelPost);
+        modelAndView.addObject("title", title);
         return modelAndView;
     }
     
+    private ModelPost fillModell(Post post){
+        ModelPost modelPost = new ModelPost();
+        modelPost.setId(post.getId());
+        modelPost.setName(post.getName());
+        modelPost.setHeft(post.getHeft());
+        return modelPost;
+    }
+    
     @RequestMapping(value = "/add")
-    public String submit(@ModelAttribute("post")Post post) throws SQLException{
-        action(post);
+    public String submit(@ModelAttribute(NAME_MODEL)ModelPost modelPost) throws SQLException{
+        action(modelPost);
         return "redirect:../post/";
     }
     
-    private void action(Post post) throws SQLException{
-        PostDao postDao = new PostDaoImpl();
+    private void action(ModelPost modelPost) throws SQLException{
+        Post post = new Post();
+        post.setId(modelPost.getId());
+        post.setName(modelPost.getName());
+        post.setHeft(modelPost.getHeft());
         if(post.getId() == 0){
             postDao.add(post);
         }else{
