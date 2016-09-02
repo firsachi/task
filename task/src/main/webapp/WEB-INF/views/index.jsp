@@ -11,7 +11,7 @@
     <head>
         <meta http-equiv="refresh" content="600">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="./resources/css/index.css"/>
+        <link rel="stylesheet" type="text/css" href="resources/css/index.css"/>
         <title>Список завдань.</title>
     </head>
     <body>
