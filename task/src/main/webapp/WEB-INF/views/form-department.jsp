@@ -10,35 +10,35 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Department</title>
+        <title>${title}</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="../../resources/css/forms.css">
     </head>
     <body>
         <div class="topic size-div">
-             
+            ${title}
         </div>
-        <form:form modelAttribute="department" method="POST" action="add" accept-charset="utf-8">
+        <form:form modelAttribute="modelDepartment" method="POST" action="add" accept-charset="utf-8">
             <div>
-               <form:input type="hidden" path="id" value="" readonly="true" />
+                <form:hidden path="id"/>
             </div>
             <div>
-                <form:label path="name">Name</form:label>
-                <form:input path="name" value="" required="true" pattern=""/>
+                <form:label path="name">Назва</form:label>
+                <form:input path="name" required="true" pattern=""/>
             </div>
             <div>
-                <form:label path="phone">Phone</form:label>
-                <form:input path="phone" value="" required="true" pattern=""/>
+                <form:label path="phone">Телефон</form:label>
+                <form:input path="phone" required="true" pattern=""/>
             </div>
             <div>
-                <form:label path="fax">Fax</form:label>
-                <form:input path="fax" value="" required="true" pattern=""/>
+                <form:label path="fax">Факс</form:label>
+                <form:input path="fax" required="true" pattern=""/>
             </div>
             <div class="buttons">
-                <input type="submit">
-                <input type="reset">
-                <input type="button" onclick="self.location.href='.';">
+                <input type="submit" value="Виконати">
+                <input type="reset" value="Очичтити">
+                <input type="button" onclick="self.location.href='.';" value="Повернутися">
             </div>
         </form:form>
     </body>

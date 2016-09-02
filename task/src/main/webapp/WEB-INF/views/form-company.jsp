@@ -24,11 +24,11 @@
         </div>
         <form:form modelAttribute="enterprise" method="POST" action="add" accept-charset="utf-8">
             <div>
-               <form:input type="hidden" path="id" value="${enterprise.getId()}" readonly="true" />
+                <form:hidden path="id"/>
             </div>
             <div>
                 <form:label path="name">Name</form:label>
-                <form:input path="name" value="${enterprise.getName()}" required="true" pattern=""/>
+                <form:input path="name" required="true" pattern=""/>
             </div>
             <div class="buttons">
                 <input type="submit">
