@@ -4,6 +4,7 @@
     Author     : firsov
 --%>
 
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -36,9 +37,10 @@
                 <form:input path="fax" required="true" pattern=""/>
             </div>
             <div class="buttons">
-                <input type="submit" value="Виконати">
-                <input type="reset" value="Очичтити">
-                <input type="button" onclick="self.location.href='.';" value="Повернутися">
+                <input type="submit" value="<spring:message code="label.buttonSubmit"/>">
+                <input type="reset" value="<spring:message code="label.buttonReset"/>">
+                <input type="button" onclick="self.location.href='.';" 
+                       value="Повернутися" value="<spring:message code="label.buttonBack"/>" >
             </div>
         </form:form>
     </body>
