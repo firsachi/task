@@ -5,6 +5,13 @@
  */
 package kievreclama.task.controllers.models;
 
+import java.util.List;
+import kievreclama.task.entity.Company;
+import kievreclama.task.entity.Department;
+import kievreclama.task.entity.Phone;
+import kievreclama.task.entity.Post;
+import kievreclama.task.entity.Room;
+
 /**
  *
  * @author firsov
@@ -12,25 +19,21 @@ package kievreclama.task.controllers.models;
 public class ModelEmployee {
 
     private int id;
-    
     private String surname;
-    
     private String name;
-
     private String patronymic;
-
     private Integer phone;
-
+    private List<Phone> listPhone;
     private Integer post;
-
+    private List<Post> listPost;
     private Integer department;
-
+    private List<Department> listDeapartment;
     private Integer enterprise;
-
+    private List<Company> listCompany;
     private String email;
-
     private Integer numberRoom;
-
+    private List<Room> listRoom;
+    
     public void setId(int id) {
         this.id = id;
     }
@@ -71,6 +74,26 @@ public class ModelEmployee {
         this.numberRoom = numberRoom;
     }
 
+    public void setListPhone(List<Phone> listPhone) {
+        this.listPhone = listPhone;
+    }
+
+    public void setListPost(List<Post> llistPost) {
+        this.listPost = llistPost;
+    }
+
+    public void setListDeapartment(List<Department> listDeapartment) {
+        this.listDeapartment = listDeapartment;
+    }
+
+    public void setListCompany(List<Company> listCompany) {
+        this.listCompany = listCompany;
+    }
+
+    public void setListRoom(List<Room> listRoom) {
+        this.listRoom = listRoom;
+    }
+
     public int getId() {
         return id;
     }
@@ -109,6 +132,26 @@ public class ModelEmployee {
 
     public Integer getNumberRoom() {
         return numberRoom;
+    }
+
+    public List<Phone> getListPhone() {
+        return listPhone;
+    }
+
+    public List<Post> getListPost() {
+        return listPost;
+    }
+
+    public List<Department> getListDeapartment() {
+        return listDeapartment;
+    }
+
+    public List<Company> getListCompany() {
+        return listCompany;
+    }
+
+    public List<Room> getListRoom() {
+        return listRoom;
     }
     
 }
