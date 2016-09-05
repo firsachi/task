@@ -18,9 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(value = "/private/")
 public class PrivateController {
     
-    @RequestMapping
+    @RequestMapping(value = "/")
     public String redirect(HttpServletRequest request) throws SQLException{
-        System.out.println(request.isUserInRole("employees"));
         if(request.isUserInRole("employee")){
             return "redirect:/private/employee/";
         }else if(request.isUserInRole("private")){
