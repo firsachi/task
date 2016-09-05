@@ -40,6 +40,8 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping(value = "/private/employee/")
 public class EmployeeController {
     
+    private final int isNew = 0;
+    private final String NAME_MODEL ="modelEmployee";
     private EmployeeDao employeeDao = new EmployeeDaoImpl();
     private CompanyDao companyDao = new CompanyDaoImpl();
     private DepartmentDao departmentDao = new DepartmentDaoImpl();
@@ -55,32 +57,36 @@ public class EmployeeController {
     
     @GetMapping(value = "/{id}")
     public ModelAndView getPageFormaEmployee(@PathVariable Integer id) throws SQLException{
-        ModelAndView model = new ModelAndView("form-employee", "modelEmployee", new ModelEmployee());
-        if (id != 0){
-            Employee employee = employeeDao.find(id);
-            ModelEmployee modelEmployee = new ModelEmployee();
-            modelEmployee.setId(employee.getId());
-            modelEmployee.setDepartment(employee.getDepartment().getId());
-            modelEmployee.setEmail(employee.getEmail());
-            modelEmployee.setEnterprise(employee.getEnterprise().getId());
-            modelEmployee.setName(employee.getName());
-            modelEmployee.setPatronymic(employee.getPatronymic());
-            modelEmployee.setPhone(employee.getPhone().getId());
-            modelEmployee.setPost(employee.getPost().getId());
-            modelEmployee.setNumberRoom(employee.getRoom().getId());
-            modelEmployee.setSurname(employee.getSurname());
-            model.addObject("modelEmployee", modelEmployee);
+        ModelEmployee modelEmployee = new ModelEmployee();
+        if (id != isNew){
+            modelEmployee = fillModel(employeeDao.find(id));
         }
-        model.addObject("listCompany", companyDao.getList());
-        model.addObject("listDepartment", departmentDao.list());
-        model.addObject("listPost", postDao.list());
-        model.addObject("numberRoom", roomDao.list());
-        model.addObject("listPhone", phoneDao.list());
+        modelEmployee.setListCompany(companyDao.getList());
+        modelEmployee.setListDeapartment(departmentDao.list());
+        modelEmployee.setListPhone(phoneDao.list());
+        modelEmployee.setListPost(postDao.list());
+        modelEmployee.setListRoom(roomDao.list());
+        ModelAndView model = new ModelAndView("form-employee", NAME_MODEL, modelEmployee);
         return model;
     }
     
+    private ModelEmployee fillModel(Employee employee) throws SQLException{
+        ModelEmployee modelEmployee = new ModelEmployee();
+        modelEmployee.setId(employee.getId());
+        modelEmployee.setDepartment(employee.getDepartment().getId());
+        modelEmployee.setEmail(employee.getEmail());
+        modelEmployee.setEnterprise(employee.getEnterprise().getId());
+        modelEmployee.setName(employee.getName());
+        modelEmployee.setPatronymic(employee.getPatronymic());
+        modelEmployee.setPhone(employee.getPhone().getId());
+        modelEmployee.setPost(employee.getPost().getId());
+        modelEmployee.setNumberRoom(employee.getRoom().getId());
+        modelEmployee.setSurname(employee.getSurname());
+        return modelEmployee;
+    }
+    
     @RequestMapping(value = "add", method = RequestMethod.POST)
-    public String submit( @ModelAttribute("modelEmployee") @Valid ModelEmployee modelEmployee) throws SQLException{
+    public String submit( @ModelAttribute(NAME_MODEL) @Valid ModelEmployee modelEmployee) throws SQLException{
         Employee employee = new Employee();
         employee.setId(modelEmployee.getId());
         employee.setName(modelEmployee.getName());
