@@ -22,12 +22,11 @@ public class RoomDaoImpl implements RoomDao{
     @Override
     public List<Room> list() throws SQLException {
         List<Room> resultList = null;
-        try(Session session = HibernateUtil.getSessionFactory().getCurrentSession()){
-            Criteria criteria = session.createCriteria(Room.class);
-            resultList = criteria.list();
-        }catch (Exception ex){
-            ex.printStackTrace();
-        }
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(Room.class);
+        resultList = criteria.list();
+        session.getTransaction().commit();
         return  resultList;
     }
 

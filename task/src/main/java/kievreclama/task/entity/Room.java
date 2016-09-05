@@ -28,9 +28,6 @@ public class Room implements Serializable {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    {
-        id = 0;
-    }
     
     @Column(name = "number_room", nullable = false, length = 3)
     private Integer numberRoom;
