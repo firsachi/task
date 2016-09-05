@@ -36,16 +36,22 @@ public class CompamyComtroler {
         return "company";
     }
     
-    @GetMapping(value = "/{id}")
+    @RequestMapping(value = "/add")
+    public ModelAndView getPagesFormAdd(){
+        ModelAndView model = new ModelAndView("form-company-add", "enterprise", new ModelCompany());
+        return model;
+    }
+    
+    @GetMapping(value = "/edit{id}")
     public ModelAndView getPagesFormCompany( @PathVariable Integer id ) throws SQLException{
         ModelCompany modelEnterprise = new ModelCompany();
         if (!id.equals(IS_NEW)){
             modelEnterprise = fillModel(companyDao.find(id));
         }
-        return new ModelAndView("form-company", "enterprise", modelEnterprise);
+        return new ModelAndView("form-company-edit", "enterprise", modelEnterprise);
     }
-    
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
+
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String submit(@ModelAttribute("enterprise") ModelCompany modelCompany ) throws SQLException{
         action(modelCompany);
         return "redirect:../company/";
