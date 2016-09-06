@@ -37,16 +37,19 @@ public class DepartmentController {
         return "department";
     }
     
-    @GetMapping(value = "/{id}")
+    @RequestMapping(value = "/add")
+    public ModelAndView getPegeAdd(){
+        ModelAndView model = new ModelAndView("form-department-add", NAME_MODEL_FORM, new ModelDepartment());
+        return model;
+    }
+    
+    @GetMapping(value = "/edit{id}")
     public ModelAndView getPageForma( @PathVariable Integer id ) throws SQLException{
         ModelDepartment modelDepartment = new ModelDepartment();
-        String title = "Новий відділ";
         if ( id != IS_NEW ){
             modelDepartment = fillDepartment(departmentDao.find(id));
-            title = "Редагувати відділ";
         }
         ModelAndView model = new ModelAndView("form-department", NAME_MODEL_FORM, modelDepartment);
-        model.addObject("title", title);
         return model;
     }
     
