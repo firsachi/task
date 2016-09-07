@@ -49,7 +49,7 @@ public class DepartmentController {
         if ( id != IS_NEW ){
             modelDepartment = fillDepartment(departmentDao.find(id));
         }
-        ModelAndView model = new ModelAndView("form-department", NAME_MODEL_FORM, modelDepartment);
+        ModelAndView model = new ModelAndView("form-department-edit", NAME_MODEL_FORM, modelDepartment);
         return model;
     }
     

@@ -32,9 +32,9 @@
             </div>
             <c:forEach var="department" items="${departments}" varStatus="num">
                 <div class="row-div td">
-                    <div><a href="${department.getId()}">${department.getName()}</a></div>
-                    <div><a href="${department.getId()}">${department.getPhone()}</a></div>
-                    <div><a href="${department.getId()}">${department.getFax()}</a></div>
+                    <div><a href="edit${department.getId()}">${department.getName()}</a></div>
+                    <div><a href="edit${department.getId()}">${department.getPhone()}</a></div>
+                    <div><a href="edit${department.getId()}">${department.getFax()}</a></div>
                 </div>
             </c:forEach>
         </div>

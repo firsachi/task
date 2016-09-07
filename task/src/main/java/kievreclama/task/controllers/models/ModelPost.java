@@ -15,6 +15,7 @@ public class ModelPost {
     private String name;
     private String heft;
     private final String[] HEFT_POST = {"1.0","1.1","2.0","2.1","3.0","3.1","4.0","4.1","5.0","5.1","6.0","6.1","7.0","7.1","8.0","8.1","9.0","9.1"};
+    
     {
         heft = HEFT_POST[HEFT_POST.length - 1];
     }
@@ -44,7 +45,7 @@ public class ModelPost {
     }
 
     public String[] getHEFT_POST() {
-        return HEFT_POST;
+        return HEFT_POST.clone();
     }
     
     

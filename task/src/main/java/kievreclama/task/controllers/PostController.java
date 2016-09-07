@@ -36,16 +36,19 @@ public class PostController {
         return "post";
     }
     
-    @GetMapping(value = "/{id}")
+    @RequestMapping(value = "/add")
+    public ModelAndView getPageFormDeparmentAdd(){
+        ModelAndView model = new ModelAndView("form-post-add", NAME_MODEL, new ModelPost());
+        return model;
+    }
+    
+    @GetMapping(value = "/edit{id}")
     public ModelAndView getPagesFormCompany( @PathVariable Integer id ) throws SQLException{
         ModelPost modelPost = new ModelPost();
-        String title = "Нова посада";
         if (id != isNew){
             modelPost = fillModell(postDao.find(id));
-            title = "Редагувати посаду";
         }
-        ModelAndView modelAndView = new ModelAndView("form-post", NAME_MODEL, modelPost);
-        modelAndView.addObject("title", title);
+        ModelAndView modelAndView = new ModelAndView("form-post-edit", NAME_MODEL, modelPost);
         return modelAndView;
     }
     
@@ -57,7 +60,7 @@ public class PostController {
         return modelPost;
     }
     
-    @RequestMapping(value = "/add")
+    @RequestMapping(value = "/save")
     public String submit(@ModelAttribute(NAME_MODEL)ModelPost modelPost) throws SQLException{
         action(modelPost);
         return "redirect:../post/";

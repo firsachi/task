@@ -53,20 +53,20 @@ public class EmployeeController {
     public String getPageTasks(Model model) throws SQLException{
         model.addAttribute("employees", employeeDao.getList());    
         return "employees";
-    }   
+    }
     
-    @GetMapping(value = "/{id}")
+    @RequestMapping(value = "/add")
+    public ModelAndView getPageFormAdd(){
+        return new ModelAndView("form-employee-add", NAME_MODEL, new ModelEmployee());
+    }
+    
+    @GetMapping(value = "/edit{id}")
     public ModelAndView getPageFormaEmployee(@PathVariable Integer id) throws SQLException{
         ModelEmployee modelEmployee = new ModelEmployee();
         if (id != isNew){
             modelEmployee = fillModel(employeeDao.find(id));
         }
-        modelEmployee.setListCompany(companyDao.getList());
-        modelEmployee.setListDeapartment(departmentDao.list());
-        modelEmployee.setListPhone(phoneDao.list());
-        modelEmployee.setListPost(postDao.list());
-        modelEmployee.setListRoom(roomDao.list());
-        ModelAndView model = new ModelAndView("form-employee", NAME_MODEL, modelEmployee);
+        ModelAndView model = new ModelAndView("form-employee-edit", NAME_MODEL, modelEmployee);
         return model;
     }
     
@@ -85,7 +85,7 @@ public class EmployeeController {
         return modelEmployee;
     }
     
-    @RequestMapping(value = "add", method = RequestMethod.POST)
+    @RequestMapping(value = "save", method = RequestMethod.POST)
     public String submit( @ModelAttribute(NAME_MODEL) @Valid ModelEmployee modelEmployee) throws SQLException{
         Employee employee = new Employee();
         employee.setId(modelEmployee.getId());
