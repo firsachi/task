@@ -67,7 +67,7 @@ public class Employee implements Cloneable, Serializable{
     @Column(name = "login", unique = true)
     private String login;
     
-    @OneToMany(mappedBy = "employee", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "employee", fetch = FetchType.EAGER)
     private List<Task> tasks = new ArrayList<>();
 
     public void setId(int id) {

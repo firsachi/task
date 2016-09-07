@@ -25,51 +25,45 @@ public class EmployeeDaoImpl implements EmployeeDao{
             session.beginTransaction();
             session.save(employee);
             session.getTransaction().commit();
-
     }
     
     @Override
     public void update(Employee employee) throws SQLException{
-        try(Session session = HibernateUtil.getSessionFactory().openSession();){
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
             session.beginTransaction();
             session.update(employee);
             session.getTransaction().commit();
-        }catch (Exception ex){
-            ex.printStackTrace();
-        }
     }
     
     @Override
     public Employee find(Integer id) throws SQLException {
         Employee employee = null;
-        try (Session session = HibernateUtil.getSessionFactory().openSession();){
-            session.beginTransaction();
-            employee = session.get(Employee.class, id);
-            session.getTransaction().commit();
-            return employee;
-        }catch(Exception ex){
-            
-        }
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        employee = session.get(Employee.class, id);
+        session.getTransaction().commit();
         return employee;
     }
     
     @Override
     public Employee find(String lvalue) throws SQLException{
         Employee employee = new Employee();
-        try(Session session = HibernateUtil.getSessionFactory().openSession()){
-            List<Employee> list = session.createQuery("from Employee where login = :lvalue").setString("lvalue", lvalue).list();
-            employee= list.get(0);
-        }
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        List<Employee> list = session.createQuery("from Employee where login = :lvalue").setString("lvalue", lvalue).list();
+        employee= list.get(0);
+        session.getTransaction().commit();
         return employee;
     }
     
     @Override
     public List<Employee> getList() throws SQLException {
         List<Employee> result = null; 
-        try(Session session = HibernateUtil.getSessionFactory().openSession();){
-            Criteria criteria = session.createCriteria(Employee.class);
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(Employee.class);
         result = criteria.list();
-        }
+        session.getTransaction().commit();
         return result;
     }
 }

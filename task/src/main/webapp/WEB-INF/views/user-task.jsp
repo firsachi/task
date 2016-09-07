@@ -33,10 +33,10 @@
             </div> 
              <c:forEach var="val" items="${listTask}">
                 <div class="row td">
-                    <div><a href="${employee.getId()}&${val.getId()}">${val.getUrgensy()}</a></div>
-                    <div><a href="${employee.getId()}&${val.getId()}">${val.getTask()}</a></div>
-                    <div><a href="${employee.getId()}&${val.getId()}">${val.getNumber()}</a></div>
-                    <div><a href="${employee.getId()}&${val.getId()}">${val.getDate()}</a></div>
+                    <div><a href="${val.getId()}&${employee.getId()}">${val.getUrgensy()}</a></div>
+                    <div><a href="${val.getId()}&${employee.getId()}">${val.getTask()}</a></div>
+                    <div><a href="${val.getId()}&${employee.getId()}">${val.getNumber()}</a></div>
+                    <div><a href="${val.getId()}&${employee.getId()}">${val.getDate()}</a></div>
                     <div>
                         <input type="checkbox" disabled="disabled" <c:if test="${val.getState()}">checked</c:if>>
                     </div>

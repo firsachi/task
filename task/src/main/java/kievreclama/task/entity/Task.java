@@ -6,6 +6,9 @@
 package kievreclama.task.entity;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,6 +18,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+
 /**
  *
  * @author firsov
@@ -22,6 +26,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "tasks")
 public class Task implements Serializable {
+    
+    private final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -39,7 +45,10 @@ public class Task implements Serializable {
     private String number;
     
     @Column(name = "date_create")
-    private String date;
+    private Date date;
+    {
+        date = new Date();
+    }
     
     @Column(name = "urgency")
     private Integer urgensy;
@@ -66,7 +75,7 @@ public class Task implements Serializable {
         this.number = number;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
@@ -98,7 +107,7 @@ public class Task implements Serializable {
         return number;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 

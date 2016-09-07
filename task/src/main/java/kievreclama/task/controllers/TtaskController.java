@@ -33,6 +33,7 @@ public class TtaskController {
     
     private EmployeeDao employeeDao = new EmployeeDaoImpl();
     private TaskDao taskDao = new TaskDaoImpl();
+    private Task task;
     private final String[] URGENCY = {"1","2","3","4","5"};
      
     @RequestMapping(value = "/")
@@ -41,7 +42,7 @@ public class TtaskController {
         Employee employee = employeeDao.find(request.getUserPrincipal().getName());
         model.addAttribute("employee", employee);
         taskDao = new TaskDaoImpl();
-        model.addAttribute("listTask", taskDao.list(employee.getId()));
+        model.addAttribute("listTask", employee.getTasks());
         return "user-task";
     }
     
@@ -60,15 +61,12 @@ public class TtaskController {
     
     @RequestMapping(value = "add", method = RequestMethod.POST)
     public String submit(@ModelAttribute("taskModel")ModelTask modelTask) throws SQLException{
-        Task task = new Task();
-        task.setId(modelTask.getId());
-        task.setDate(modelTask.getDate());
-        task.setEmployee(employeeDao.find(modelTask.getId()));
         task.setNumber(modelTask.getNumber());
         task.setTask(modelTask.getTask());
         task.setUrgensy(new Integer(modelTask.getUrgensy()));
         action(task);
-        return "redirect:../company/";
+        task = new Task();
+        return "redirect:../tasks/";
     }
 
     private void action(Task task) throws SQLException {
@@ -80,6 +78,7 @@ public class TtaskController {
     }
 
     private ModelTask fiilModel(Task task) {
+       this.task = task;
        ModelTask result = new ModelTask();
        result.setId(task.getId());
        result.setEmployee(Integer.toString(task.getEmployee().getId()));

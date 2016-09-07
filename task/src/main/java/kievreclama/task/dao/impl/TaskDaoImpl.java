@@ -22,49 +22,48 @@ public class TaskDaoImpl implements TaskDao{
 
     @Override
     public void add(Task task) throws SQLException {
-        try(Session session = HibernateUtil.getSessionFactory().getCurrentSession()){
-            session.beginTransaction();
-            session.save(task);
-            session.getTransaction().commit();
-        }
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        session.save(task);
+        session.getTransaction().commit();
     }
 
     @Override
     public void update(Task task) throws SQLException {
-        try(Session session = HibernateUtil.getSessionFactory().getCurrentSession()){
-            session.beginTransaction();
-            session.update(task);
-            session.getTransaction().commit();
-        }
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        session.update(task);
+        session.getTransaction().commit();
     }
 
     @Override
     public Task findId(int id) throws SQLException {
         Task task = null;
-        try(Session session = HibernateUtil.getSessionFactory().getCurrentSession()){
-            task = session.get(Task.class, id);
-        }
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        task = session.get(Task.class, id);
+        session.getTransaction().commit();
         return task;
     }
 
     @Override
     public List<Task> list() throws SQLException {
         List<Task> listTasks = null;
-            Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-            session.beginTransaction();
-            Criteria criteria = session.createCriteria(Task.class).addOrder(Order.asc("urgensy"));
-            listTasks = criteria.list();
-            session.getTransaction().commit();
-
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(Task.class).addOrder(Order.asc("urgensy"));
+        listTasks = criteria.list();
+        session.getTransaction().commit();
         return listTasks;
     }
 
     @Override
     public List<Task> list(int employeeId) throws SQLException{
         List<Task> listTasks = null;
-        try(Session session = HibernateUtil.getSessionFactory().getCurrentSession()){
-            listTasks = (List<Task>) session.createQuery("FROM Task WHERE employee = :number").setInteger("number", employeeId).list();
-        }
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        listTasks = (List<Task>) session.createQuery("FROM Task WHERE employee = :number").setInteger("number", employeeId).list();
+        session.getTransaction().commit();
         return listTasks;
     }
     
