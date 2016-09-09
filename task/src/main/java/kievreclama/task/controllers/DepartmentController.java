@@ -53,7 +53,7 @@ public class DepartmentController {
         return model;
     }
     
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String submit(@ModelAttribute(NAME_MODEL_FORM)ModelDepartment modelDepartment) throws SQLException{
         action(modelDepartment);
         return "redirect:../department/";
