@@ -20,7 +20,7 @@
         <div class="topic size-div">
             <spring:message code="label.foma.title.add.employee"/>
         </div>
-        <form:form modelAttribute="modelEmployee" method="POST" action="add" accept-charset="utf-8">
+        <form:form modelAttribute="modelEmployee" method="POST" action="save" accept-charset="utf-8">
                 <form:hidden path="id"/>
             </div>
             <div>
