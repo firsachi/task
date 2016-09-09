@@ -61,8 +61,7 @@ public class EmployeeDaoImpl implements EmployeeDao{
         List<Employee> result = null; 
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
-        Criteria criteria = session.createCriteria(Employee.class);
-        result = criteria.list();
+        result = session.createQuery("from Employee").list();
         session.getTransaction().commit();
         return result;
     }
