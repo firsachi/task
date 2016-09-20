@@ -6,6 +6,7 @@
     <property name="hibernate.hbm2ddl.auto">update</property>
     <property name="hibernate.current_session_context_class">thread</property>
     <property name="hibernate.connection.datasource">jdbc/poolTask</property>
+    <property name="hibernate.connection.autocommit">true</property>
     <mapping class="kievreclama.task.entity.Task"/>
     <mapping class="kievreclama.task.entity.Employee"/>
     <mapping class="kievreclama.task.entity.Room"/>
