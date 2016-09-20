@@ -22,57 +22,42 @@ public class PostDaoImpl implements PostDao{
 
     @Override
     public void add(Post post) throws SQLException {
-        try(Session session = HibernateUtil.getSessionFactory().openSession();){
-            session.beginTransaction();
-            session.save(post);
-            session.getTransaction().commit();
-        }catch(Exception ex){
-            ex.printStackTrace();
-        }
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        session.save(post);
+        session.getTransaction().commit();
     }
 
     @Override
     public void delete(Post post) throws SQLException {
-        try(Session session = HibernateUtil.getSessionFactory().openSession();){
-            session.beginTransaction();
-            session.delete(post);
-            session.getTransaction().commit();
-        }catch(Exception ex){
-            ex.printStackTrace();
-        }
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        session.delete(post);
+        session.getTransaction().commit();
     }
     
     @Override
     public void update(Post post){
-        try(Session session = HibernateUtil.getSessionFactory().openSession();){
-            session.beginTransaction();
-            session.update(post);
-            session.getTransaction().commit();
-        }catch(Exception ex){
-            ex.printStackTrace();
-        }
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        session.update(post);
+        session.getTransaction().commit();
     }
 
     @Override
     public Post find(Integer id) throws SQLException {
-        Post result = new Post();
-        try(Session session = HibernateUtil.getSessionFactory().openSession();){
-            result = session.get(Post.class, id);
-        }catch(Exception ex){
-            ex.printStackTrace();
-        }
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        Post result = session.get(Post.class, id);
+        session.getTransaction().commit();
         return result;
     }
 
     @Override
     public List<Post> list() throws SQLException {
-        List<Post> resultList = null;
-        try(Session session = HibernateUtil.getSessionFactory().openSession();){
-            Criteria criteria = session.createCriteria(Post.class).addOrder(Order.asc("id"));
-            resultList = criteria.list();
-        }catch(Exception ex){
-            ex.printStackTrace();
-        }
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Criteria criteria = session.createCriteria(Post.class).addOrder(Order.asc("id"));
+        List<Post> resultList = criteria.list();
         return resultList;
     }
     

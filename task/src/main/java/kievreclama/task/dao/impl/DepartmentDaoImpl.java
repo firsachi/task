@@ -22,13 +22,10 @@ public class DepartmentDaoImpl implements DepartmentDao{
 
     @Override
     public void add(Department department) throws SQLException {
-        try(Session session = HibernateUtil.getSessionFactory().openSession()){
-            session.beginTransaction();
-            session.save(department);
-            session.getTransaction().commit();
-        }catch (Exception ex){
-            ex.printStackTrace();
-        }
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        session.save(department);
+        session.getTransaction().commit();
     }
 
     @Override
@@ -39,35 +36,24 @@ public class DepartmentDaoImpl implements DepartmentDao{
 
     @Override
     public void update(Department department) throws SQLException {
-        try(Session session = HibernateUtil.getSessionFactory().openSession()){
-            session.beginTransaction();
-            session.update(department);
-            session.getTransaction().commit();
-        }catch(Exception ex){
-            ex.printStackTrace();
-        }
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        session.update(department);
+        session.getTransaction().commit();
     }
 
     @Override
     public Department find(Integer id) throws SQLException {
-        Department result = null;
-        try(Session session = HibernateUtil.getSessionFactory().openSession()){
-            result = session.get(Department.class, id);
-        }catch(Exception ex){
-            ex.printStackTrace();
-        }
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Department result = session.get(Department.class, id);
         return result;
     }
 
     @Override
     public List<Department> list() throws SQLException {
-        List<Department> resultList = null;
-        try(Session session = HibernateUtil.getSessionFactory().openSession();){
-            Criteria criteria = session.createCriteria(Department.class).addOrder(Order.asc("id"));
-            resultList = criteria.list();
-        }catch (Exception ex){
-            ex.printStackTrace();
-        }
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Criteria criteria = session.createCriteria(Department.class).addOrder(Order.asc("id"));
+        List<Department> resultList = criteria.list();
         return resultList;
     }
     
