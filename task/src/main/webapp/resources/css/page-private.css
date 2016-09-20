@@ -7,8 +7,14 @@ and open the template in the editor.
     Created on : Aug 15, 2016, 1:01:08 PM
     Author     : firsov
 */
+@import 'https://fonts.googleapis.com/css?family=Ubuntu';
+@font-face{
+    font-family: 'Ubuntu', sans-serif;
+}
+
 html body {
     min-width: 1024px;
+    font-family: 'Ubuntu';
 }
 .topic{
     background: gold;
