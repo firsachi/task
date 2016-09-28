@@ -12,7 +12,7 @@
 <html>
     <head>
         <title><spring:message code="label.foma.title.add.employee"/></title>
-        <meta charset="UTF-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="../../resources/css/forms.css">
     </head>
@@ -20,7 +20,7 @@
         <div class="topic size-div">
             <spring:message code="label.foma.title.add.employee"/>
         </div>
-        <form:form modelAttribute="modelEmployee" method="POST" action="save" accept-charset="utf-8">
+            <form:form modelAttribute="modelEmployee" method="POST" action="save" acceptCharset="UTF-8">
                 <form:hidden path="id"/>
             </div>
             <div>

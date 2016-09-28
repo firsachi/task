@@ -20,7 +20,7 @@
        <div class="topic size-div">
             <spring:message code="label.company.new.title"/>
         </div>
-        <form:form modelAttribute="enterprise" method="POST" action="save" accept-charset="utf-8">
+        <form:form modelAttribute="enterprise" method="POST" action="save" acceptCharset="UTF-8">
             <div>
                 <form:hidden path="id"/>
             </div>
