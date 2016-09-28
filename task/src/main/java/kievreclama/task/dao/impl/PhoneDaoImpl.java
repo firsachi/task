@@ -21,16 +21,20 @@ public class PhoneDaoImpl implements PhoneDao{
     
     @Override
     public Phone find(Integer id) throws SQLException{
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Phone phone = session.get(Phone.class, id);
+        Phone phone;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            phone = session.get(Phone.class, id);
+        }
         return phone;
     }
 
     @Override
     public List<Phone> list() throws SQLException{
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Criteria criteria = session.createCriteria(Phone.class);
-        List<Phone> resultList = criteria.list();
+        List<Phone> resultList;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Criteria criteria = session.createCriteria(Phone.class);
+            resultList = criteria.list();
+        }
         return resultList;
     }
     

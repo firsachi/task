@@ -21,18 +21,22 @@ public class RoomDaoImpl implements RoomDao{
 
     @Override
     public List<Room> list() throws SQLException {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        session.beginTransaction();
-        Criteria criteria = session.createCriteria(Room.class);
-        List<Room> resultList = criteria.list();
-        session.getTransaction().commit();
+        List<Room> resultList;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            session.beginTransaction();
+            Criteria criteria = session.createCriteria(Room.class);
+            resultList = criteria.list();
+            session.getTransaction().commit();
+        }
         return  resultList;
     }
 
     @Override
     public Room find(Integer id) throws SQLException {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Room room = session.get(Room.class, id);
+        Room room;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            room = session.get(Room.class, id);
+        }
         return  room;
     }
     

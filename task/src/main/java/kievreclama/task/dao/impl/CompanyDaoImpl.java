@@ -22,40 +22,47 @@ public class CompanyDaoImpl implements CompanyDao{
 
     @Override
     public void add(Company enterprise) throws SQLException {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        session.beginTransaction();
-        session.save(enterprise);
-        session.getTransaction().commit();
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            session.beginTransaction();
+            session.save(enterprise);
+            session.getTransaction().commit();
+        }
     }
 
     @Override
     public void delete(Company enterprise) throws SQLException {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        session.beginTransaction();
-        session.delete(enterprise);
-        session.getTransaction().commit();
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            session.beginTransaction();
+            session.delete(enterprise);
+            session.getTransaction().commit();
+        }
     }
 
     @Override
     public void update(Company enterprise) throws SQLException {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        session.beginTransaction();
-        session.update(enterprise);
-        session.getTransaction().commit();
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            session.beginTransaction();
+            session.update(enterprise);
+            session.getTransaction().commit();
+        }
     }
 
     @Override
     public Company find(Integer id) throws SQLException {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Company enterprise = session.get(Company.class, id);
+        Company enterprise;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            enterprise = session.get(Company.class, id);
+        }
         return enterprise;
     }
 
     @Override
     public List<Company> getList() throws SQLException {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Criteria criteria = session.createCriteria(Company.class).addOrder(Order.asc("id"));
-        List<Company> resultLIst = criteria.list();
+        List<Company> resultLIst;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Criteria criteria = session.createCriteria(Company.class).addOrder(Order.asc("id"));
+            resultLIst = criteria.list();
+        }
         return  resultLIst;
     }
     

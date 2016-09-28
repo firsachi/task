@@ -22,10 +22,11 @@ public class DepartmentDaoImpl implements DepartmentDao{
 
     @Override
     public void add(Department department) throws SQLException {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        session.beginTransaction();
-        session.save(department);
-        session.getTransaction().commit();
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            session.beginTransaction();
+            session.save(department);
+            session.getTransaction().commit();
+        }
     }
 
     @Override
@@ -36,24 +37,29 @@ public class DepartmentDaoImpl implements DepartmentDao{
 
     @Override
     public void update(Department department) throws SQLException {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        session.beginTransaction();
-        session.update(department);
-        session.getTransaction().commit();
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            session.beginTransaction();
+            session.update(department);
+            session.getTransaction().commit();
+        }
     }
 
     @Override
     public Department find(Integer id) throws SQLException {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Department result = session.get(Department.class, id);
+        Department result;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            result = session.get(Department.class, id);
+        }
         return result;
     }
 
     @Override
     public List<Department> list() throws SQLException {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Criteria criteria = session.createCriteria(Department.class).addOrder(Order.asc("id"));
-        List<Department> resultList = criteria.list();
+        List<Department> resultList;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Criteria criteria = session.createCriteria(Department.class).addOrder(Order.asc("name"));
+            resultList = criteria.list();
+        }
         return resultList;
     }
     
