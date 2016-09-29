@@ -49,6 +49,7 @@ public class DepartmentDaoImpl implements DepartmentDao{
         Department result;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             result = session.get(Department.class, id);
+            result.getEmployees().size();
         }
         return result;
     }

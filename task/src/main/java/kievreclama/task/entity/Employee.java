@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -41,27 +42,29 @@ public class Employee implements Cloneable, Serializable{
     @Column(name = "patronymic")
     private String patronymic;
     
+    @JoinColumn(name = "phone", referencedColumnName = "id")
     @ManyToOne
-    @JoinColumn(name = "phone")
     private Phone phone;
     
+    @JoinColumn(name = "post", referencedColumnName = "id")
     @ManyToOne
-    @JoinColumn(name = "post")
     private Post post;
     
+    @ElementCollection(fetch = FetchType.EAGER)
+    @JoinColumn(name = "department", referencedColumnName = "id")
     @ManyToOne
-    @JoinColumn(name = "department")
     private Department department;
     
+    
+    @JoinColumn(name = "enterprise", referencedColumnName = "id")
     @ManyToOne
-    @JoinColumn (name = "enterprise")
     private Company enterprise;
     
     @Column(name = "email")
     private String email;
     
+    @JoinColumn(name = "room", referencedColumnName = "id")
     @ManyToOne
-    @JoinColumn (name = "room")
     private Room room;
     
     @Column(name = "login", unique = true)
@@ -132,6 +135,10 @@ public class Employee implements Cloneable, Serializable{
 
     public String getPatronymic() {
         return patronymic;
+    }
+    
+    public String getFullName(){
+        return surname + " " + name + " " + patronymic;
     }
 
     public Phone getPhone() {

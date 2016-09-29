@@ -69,4 +69,10 @@ public class EmployeeDaoImpl implements EmployeeDao{
         }
         return result;
     }
+
+    @Override
+    public List<Employee> getList(Integer id) throws SQLException {
+        List<Employee> result = null;
+        return result;
+    }
 }

@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -43,7 +44,8 @@ public class Department implements Serializable {
     @Column(name = "fax")
     private String fax;
     
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "department")
+    @ElementCollection(fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "department")
     private List<Employee> employees;
     
     @Column(name = "delete")

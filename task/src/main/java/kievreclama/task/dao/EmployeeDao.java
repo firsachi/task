@@ -20,4 +20,5 @@ public interface EmployeeDao {
     Employee find(Integer id) throws SQLException;
     Employee find(String lvalue) throws SQLException;
     List<Employee> getList() throws SQLException;
+    List<Employee> getList(Integer id) throws SQLException;
 }

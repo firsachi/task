@@ -56,7 +56,7 @@ public class CrunchifyRESTService {
         } catch (JSONException ex) {
             Logger.getLogger(CrunchifyRESTService.class.getName()).log(Level.SEVERE, null, ex);
         }
-            return Response.status(200).entity(crunchifyBuilder.toString()).header("Access-Control-Allow-Origin", "http://localhost:8383").build();
+            return Response.status(200).entity(crunchifyBuilder.toString()).header("Access-Control-Allow-Origin", "*").build();
 	}
 
 	@GET
@@ -87,27 +87,27 @@ public class CrunchifyRESTService {
                 }
             result.append("]");
             // return HTTP response 200 in case of success
-            return Response.status(200).entity(result.toString()).header("Access-Control-Allow-Origin", "http://localhost:8383").build();
+            return Response.status(200).entity(result.toString()).header("Access-Control-Allow-Origin", "*").build();
 	}
     
-        	@GET
+        @GET
 	@Path("/loadEmployes/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response listEmployees() throws SQLException {
+	public Response listEmployees(@PathParam("id") Integer id ) throws SQLException {
             StringBuilder result = new StringBuilder();
-            DepartmentDao departmentDao = new DepartmentDaoImpl();
-            List<Department> departmentsList = departmentDao.list();
+            List<Employee> list = new DepartmentDaoImpl().find(id).getEmployees();
             JSONObject resultJson = new JSONObject();
             result.append("[");
             int index = 0;
-            int siseList = departmentsList.size() -1;
-                for (Department department: departmentDao.list()){
+            int siseList = list.size() -1;
+                for (Employee employee : list){
                     try {
-                        resultJson.put("idDepartment", department.getId());
-                        resultJson.put("name", department.getName());
-                        resultJson.put("phone", department.getPhone());
-                        resultJson.put("fax", department.getFax());
-                       // resultJson.put("listEmployees", resultString.toString());
+                        resultJson.put("fullName", employee.getSurname() + " " + employee.getName() + " " + employee.getPatronymic());
+                        resultJson.put("post", employee.getPost().getName());
+                        resultJson.put("phone", employee.getPhone().getNumber());
+                        resultJson.put("room", employee.getRoom().getNumberRoom());
+                        resultJson.put("email", employee.getEmail());
+                        resultJson.put("importance", employee.getPost().getHeft());
                         result.append(resultJson.toString());
                         if (index != siseList--) {
                             result.append(",");
@@ -118,6 +118,6 @@ public class CrunchifyRESTService {
                 }
             result.append("]");
             // return HTTP response 200 in case of success
-            return Response.status(200).entity(result.toString()).header("Access-Control-Allow-Origin", "http://localhost:8383").build();
+            return Response.status(200).entity(result.toString()).header("Access-Control-Allow-Origin", "*").build();
 	}
 }
