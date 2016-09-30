@@ -47,10 +47,15 @@ public class CrunchifyRESTService {
             JSONObject resultJson = new JSONObject();
         try {
             crunchifyBuilder.append("[");
-           resultJson.put("name", list.get(0).getName());
-           crunchifyBuilder.append(resultJson.toString() + ",");
-           resultJson.put("name", list.get(1).getName());
-           crunchifyBuilder.append(resultJson.toString());
+            int index = 0;
+            int siseList = list.size() - 1;
+            for (Company company: list){
+                resultJson.put("name", company.getName());
+                crunchifyBuilder.append(resultJson.toString());
+                if (index != siseList--) {
+                    crunchifyBuilder.append(",");
+                }
+            }
            crunchifyBuilder.append("]");
            // resultJson[1].put("name", companyDao.getList().get(1).getName());
         } catch (JSONException ex) {
@@ -69,7 +74,7 @@ public class CrunchifyRESTService {
             JSONObject resultJson = new JSONObject();
             result.append("[");
             int index = 0;
-            int siseList = departmentsList.size() -1;
+            int siseList = departmentsList.size() - 1;
                 for (Department department: departmentDao.list()){
                     try {
                         resultJson.put("idDepartment", department.getId());
