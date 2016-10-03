@@ -19,6 +19,7 @@ import kievreclama.task.dao.CompanyDao;
 import kievreclama.task.dao.DepartmentDao;
 import kievreclama.task.dao.impl.CompanyDaoImpl;
 import kievreclama.task.dao.impl.DepartmentDaoImpl;
+import kievreclama.task.dao.impl.EmployeeDaoImpl;
 import kievreclama.task.entity.Company;
 import kievreclama.task.entity.Department;
 import kievreclama.task.entity.Employee;
@@ -100,7 +101,7 @@ public class CrunchifyRESTService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response listEmployees(@PathParam("id") Integer id ) throws SQLException {
             StringBuilder result = new StringBuilder();
-            List<Employee> list = new DepartmentDaoImpl().find(id).getEmployees();
+            List<Employee> list = new EmployeeDaoImpl().getList(id);
             JSONObject resultJson = new JSONObject();
             result.append("[");
             int index = 0;
