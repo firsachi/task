@@ -73,6 +73,12 @@ public class EmployeeDaoImpl implements EmployeeDao{
     @Override
     public List<Employee> getList(Integer id) throws SQLException {
         List<Employee> result = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()){
+            session.beginTransaction();
+            String hql = "from Employee where department = :value and remove = false";
+            result = session.createQuery(hql).setInteger("value", id).list();
+            session.getTransaction().commit();
+        }
         return result;
     }
 }
