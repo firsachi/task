@@ -73,6 +73,9 @@ public class Employee implements Cloneable, Serializable{
     @OneToMany(mappedBy = "employee", fetch = FetchType.EAGER)
     private List<Task> tasks = new ArrayList<>();
 
+    @Column (name = "remove", columnDefinition = "boolean default false", nullable = false)
+    private Boolean remove;
+    
     public void setId(int id) {
         this.id = id;
     }
@@ -109,6 +112,10 @@ public class Employee implements Cloneable, Serializable{
         this.email = email;
     }
 
+    public void setRemove(Boolean remove) {
+        this.remove = remove;
+    }
+
     public void setRoom(Room room) {
         this.room = room;
     }
@@ -120,6 +127,7 @@ public class Employee implements Cloneable, Serializable{
     public void setTasks(List<Task> tasks) {
         this.tasks = tasks;
     }
+    
     
     public int getId() {
         return id;
@@ -172,4 +180,9 @@ public class Employee implements Cloneable, Serializable{
     public List<Task> getTasks() {
         return tasks;
     }
+
+    public Boolean getRemove() {
+        return remove;
+    }
+    
 }
