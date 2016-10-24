@@ -14,16 +14,44 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="../../resources/css/page-private.css">
+        <script src="../../resources/js/jquery.js"></script>
+        <script src="../../resources/js/main.js"></script>
     </head>
     <body>
-        <div class="topic">
-            <a class="selected" href="./"><spring:message code="label.main.menu.employee"/></a>
-            <a href="../post/"><spring:message code="label.main.menu.post"/></a>
-            <a href="../department/"><spring:message code="label.main.menu.departmen"/></a>
-            <a href="../company/"><spring:message code="label.main.menu.company"/></a>
-            <a class="add" href="add">+</a>
+        <nav>
+            <ul>
+                <li><a class="select" href="./"><spring:message code="label.main.menu.employee"/></a></li>
+                <li><a href="../post/"><spring:message code="label.main.menu.post"/></a></li>
+                <li><a href="../department/"><spring:message code="label.main.menu.departmen"/></a></li>
+                <li><a href="../company/"><spring:message code="label.main.menu.company"/></a></li>
+            </ul>
+        </nav>
+        <div class="filtr">
+            <div>
+                <spring:message code="label.title.table.employee.room"/>
+                <select id="room" name="room">
+                    <option value="0">All</option>
+                    <c:forEach var="room" items="${rooms}">
+                        <option>${room.getNumberRoom()}</option>
+                    </c:forEach>
+                </select>
+            </div>
+            <div>
+                <spring:message code="label.title.table.employee.department"/>
+                <select name="department">
+                    <option value="0">All</option>
+                    <c:forEach var="department" items="${departments}">
+                        <option>${department.getName()}</option>
+                    </c:forEach>
+                </select>
+            </div>
+            <div>
+                <spring:message code="label.title.table.employee.company"/>
+                <select name="conpany">
+                    <option value="0">All</option>
+                </select>
+            </div>     
         </div>
-        ${isUserInRole}
         <div class="table-div">
             <div class="row-div th">
                 <div><spring:message code="label.title.table.employee.number"/></div>

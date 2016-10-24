@@ -17,13 +17,14 @@
     </head>
     
     <body>
-        <div class="topic">
-            <a href="../employee/"><spring:message code="label.main.menu.employee"/></a>
-            <a class="selected" href="."><spring:message code="label.main.menu.post"/></a>
-            <a href="../department/"><spring:message code="label.main.menu.departmen"/></a>
-            <a href="../company/"><spring:message code="label.main.menu.company"/></a>
-            <a class="add" href="add">+</a>
-        </div>
+        <nav>
+            <ul>
+                <li><a href="../employee/"><spring:message code="label.main.menu.employee"/></a></li>
+                <li><a class="select" href="."><spring:message code="label.main.menu.post"/></a></li>
+                <li><a href="../department/"><spring:message code="label.main.menu.departmen"/></a></li>
+                <li><a href="../company/"><spring:message code="label.main.menu.company"/></a></li>
+            </ul>
+        </nav>
         <div class="table-div">
             <div class="row-div th">
                 <div><spring:message code="label.title.table.post.number"/></div>

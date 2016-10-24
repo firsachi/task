@@ -42,16 +42,22 @@ public class EmployeeController {
     
     private final int isNew = 0;
     private final String NAME_MODEL ="modelEmployee";
-    private EmployeeDao employeeDao = new EmployeeDaoImpl();
-    private CompanyDao companyDao = new CompanyDaoImpl();
-    private DepartmentDao departmentDao = new DepartmentDaoImpl();
-    private PostDao postDao = new PostDaoImpl();
-    private PhoneDao phoneDao = new PhoneDaoImpl();
-    private RoomDao roomDao = new RoomDaoImpl();
+    private final EmployeeDao employeeDao = new EmployeeDaoImpl();
+    private final CompanyDao companyDao;
+    private final DepartmentDao departmentDao = new DepartmentDaoImpl();
+    private final PostDao postDao = new PostDaoImpl();
+    private final PhoneDao phoneDao = new PhoneDaoImpl();
+    private final RoomDao roomDao = new RoomDaoImpl();
+
+    public EmployeeController() {
+        this.companyDao = new CompanyDaoImpl();
+    }
     
     @RequestMapping(value = "/")
     public String getPageTasks(Model model) throws SQLException{
-        model.addAttribute("employees", employeeDao.getList());    
+        model.addAttribute("employees", employeeDao.getList());
+        model.addAttribute("rooms", roomDao.list());
+        model.addAttribute("departments", departmentDao.list());
         return "employees";
     }
     
