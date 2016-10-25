@@ -74,7 +74,7 @@ public class Employee implements Cloneable, Serializable{
     private List<Task> tasks = new ArrayList<>();
 
     @Column (name = "remove", columnDefinition = "boolean default false", nullable = false)
-    private Boolean remove;
+    private Boolean remove = false;
     
     public void setId(int id) {
         this.id = id;
