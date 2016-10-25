@@ -23,6 +23,7 @@
                 <li><a class="select" href="."><spring:message code="label.main.menu.post"/></a></li>
                 <li><a href="../department/"><spring:message code="label.main.menu.departmen"/></a></li>
                 <li><a href="../company/"><spring:message code="label.main.menu.company"/></a></li>
+                <li class="add"><a href="add">+</a></li>
             </ul>
         </nav>
         <div class="table-div">
