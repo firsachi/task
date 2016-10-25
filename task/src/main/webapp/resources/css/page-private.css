@@ -57,14 +57,17 @@ nav a.select{
 }
 .table-div{
     display: table;
-    width: 100%;
+    padding: 12px;
+    width: 98%;
 }
 .row-div{
     display: table-row;
+    
 }
 .th div{
     display: table-cell;
     text-align: center;
+    border-top: 2px solid black;
     border-bottom: 2px solid black;
     padding: 6px;
 }
