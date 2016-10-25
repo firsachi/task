@@ -14,7 +14,6 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="../../resources/css/page-private.css">
-        <script src="../../resources/js/jquery.js"></script>
         <script src="../../resources/js/main.js"></script>
     </head>
     <body>
@@ -30,7 +29,7 @@
             <div>
                 <spring:message code="label.title.table.employee.room"/>
                 <select id="room" name="room">
-                    <option value="0">All</option>
+                    <option value="0"> All </option>
                     <c:forEach var="room" items="${rooms}">
                         <option>${room.getNumberRoom()}</option>
                     </c:forEach>
@@ -38,8 +37,8 @@
             </div>
             <div>
                 <spring:message code="label.title.table.employee.department"/>
-                <select name="department">
-                    <option value="0">All</option>
+                <select id="department" name="department">
+                    <option value="0"> All </option>
                     <c:forEach var="department" items="${departments}">
                         <option>${department.getName()}</option>
                     </c:forEach>
@@ -52,41 +51,43 @@
                 </select>
             </div>     
         </div>
-        <div class="table-div">
-            <div class="row-div th">
-                <div><spring:message code="label.title.table.employee.number"/></div>
-                <div><spring:message code="label.title.table.employee.room"/></div>
-                <div><spring:message code="label.title.table.employee.fullName"/></div>
-                <div><spring:message code="label.title.table.employee.company"/></div>
-                <div><spring:message code="label.title.table.employee.department"/></div>
-                <div><spring:message code="label.title.table.employee.post"/></div>
-                <div><spring:message code="label.title.table.employee.email"/></div>
-            </div>
-            <c:forEach var="employee" items="${employees}">
-                <div class="row-div td">
-                    <div><a href="edit${employee.getId()}">${employee.getPhone().getNumber()}</a></div>
-                    <div><a href="edit${employee.getId()}">${employee.getRoom().getNumberRoom()}</a></div>
-                    <div>
-                        <a href="edit${employee.getId()}">
-                            ${employee.getSurname()} 
-                            ${employee.getName()} 
-                            ${employee.getPatronymic()}
-                        </a>
-                    </div>
-                    <div>
-                        <a href="edit${employee.getId()}">${employee.getEnterprise().getName()}</a>
-                    </div>
-                    <div>
-                        <a href="edit${employee.getId()}">${employee.getDepartment().getName()}</a>
-                    </div>
-                    <div>
-                        <a href="edit${employee.getId()}">${employee.getPost().getName()}</a>
-                    </div>
-                    <div>
-                        <a href="edit${employee.getId()}">${employee.getEmail()}</a>
-                    </div>
+        <div>
+            <div class="table-div">
+                <div class="row-div th">
+                    <div><spring:message code="label.title.table.employee.number"/></div>
+                    <div><spring:message code="label.title.table.employee.room"/></div>
+                    <div><spring:message code="label.title.table.employee.fullName"/></div>
+                    <div><spring:message code="label.title.table.employee.company"/></div>
+                    <div><spring:message code="label.title.table.employee.department"/></div>
+                    <div><spring:message code="label.title.table.employee.post"/></div>
+                    <div><spring:message code="label.title.table.employee.email"/></div>
                 </div>
-            </c:forEach>
+                <c:forEach var="employee" items="${employees}">
+                    <div class="row-div td">
+                        <div><a href="edit${employee.getId()}">${employee.getPhone().getNumber()}</a></div>
+                        <div><a href="edit${employee.getId()}">${employee.getRoom().getNumberRoom()}</a></div>
+                        <div>
+                            <a href="edit${employee.getId()}">
+                                ${employee.getSurname()} 
+                                ${employee.getName()} 
+                                ${employee.getPatronymic()}
+                            </a>
+                        </div>
+                        <div>
+                            <a href="edit${employee.getId()}">${employee.getEnterprise().getName()}</a>
+                        </div>
+                        <div>
+                            <a href="edit${employee.getId()}">${employee.getDepartment().getName()}</a>
+                        </div>
+                        <div>
+                            <a href="edit${employee.getId()}">${employee.getPost().getName()}</a>
+                        </div>
+                        <div>
+                            <a href="edit${employee.getId()}">${employee.getEmail()}</a>
+                        </div>
+                    </div>
+                </c:forEach>
+            </div>
         </div>
     </body>
 </html>
