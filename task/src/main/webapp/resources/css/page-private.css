@@ -43,6 +43,10 @@ nav a.select{
     background: black;
     color: gold;  
 }
+nav li.add{
+   float: right;
+   border-left: 2px solid black;
+}
 .filtr {
     margin: 12px;
     background: gold;
