@@ -13,6 +13,6 @@
     </head>
     <body>
         <h1>Error</h1>
-        <a href="/task/private/login.jsp">Назад</a>
+        <a href="/task/private/">Назад</a>
     </body>
 </html>
