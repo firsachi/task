@@ -21,6 +21,7 @@
             <spring:message code="label.foma.title.edit.employee"/>
         </div>
         <form:form modelAttribute="modelEmployee" method="POST" action="save" acceptCharset="UTF-8">
+        	<div>
                 <form:hidden path="id"/>
             </div>
             <div>

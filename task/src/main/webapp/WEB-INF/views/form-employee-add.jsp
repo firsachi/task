@@ -19,8 +19,9 @@
     <body>
         <div class="topic size-div">
             <spring:message code="label.foma.title.add.employee"/>
-        </div>
+        </div>        	
             <form:form modelAttribute="modelEmployee" method="POST" action="save" acceptCharset="UTF-8">
+            <div>
                 <form:hidden path="id"/>
             </div>
             <div>
