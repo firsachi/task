@@ -27,7 +27,13 @@ import javax.persistence.Table;
 @Table(name = "tasks")
 public class Task implements Serializable {
     
-    private final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@SuppressWarnings("unused")
+	private final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

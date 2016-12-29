@@ -21,7 +21,12 @@ import javax.persistence.Table;
 @Table(name = "heft")
 public class HeftPost implements Serializable {
     
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;

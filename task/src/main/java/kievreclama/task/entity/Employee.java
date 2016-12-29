@@ -28,7 +28,12 @@ import javax.persistence.Table;
 @Table(name = "emplouers")
 public class Employee implements Cloneable, Serializable{
     
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
