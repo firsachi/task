@@ -30,7 +30,7 @@ input[type="submit"] {
 	margin-bottom: 0;
 }
 aside {
-	padding-top: 20%;
+	padding-top: 15%;
 }
 aside > header{
 	font-size: 26px;
@@ -38,13 +38,13 @@ aside > header{
 	margin-bottom: 12px;
 }
 aside > footer{
-	padding-top: 12px;
+	padding-top: 24px;
 }
 aside > footer > a {
 	display:block;
 	text-align: center;
 	border: 1px #B5B5B5 solid;
-	padding: 12px;
+	padding: 24px;
 	text-decoration: none;
 	color: black;
 }
