@@ -20,65 +20,61 @@ public class EmployeeDaoImpl implements EmployeeDao{
     
     @Override
     public void add(Employee employee) throws SQLException{
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            session.beginTransaction();
-            session.save(employee);
-            session.getTransaction().commit();
-        }
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        session.save(employee);
+        session.getTransaction().commit();
     }
     
-    @Override
-    public void update(Employee employee) throws SQLException{
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            session.beginTransaction();
-            session.update(employee);
-            session.getTransaction().commit();
-        }
-    }
+	@Override
+	public void update(Employee employee) throws SQLException {
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		session.update(employee);
+		session.getTransaction().commit();
+	}
     
-    @Override
-    public Employee find(Integer id) throws SQLException {
-        Employee employee;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            session.beginTransaction();
-            employee = session.get(Employee.class, id);
-            session.getTransaction().commit();
-        }
-        return employee;
-    }
-    
-    @Override
-    public Employee find(String lvalue) throws SQLException{
-        Employee employee = new Employee();
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            session.beginTransaction();
-            List<Employee> list = session.createQuery("from Employee where login = :lvalue").setString("lvalue", lvalue).list();
-            employee= list.get(0);
-            session.getTransaction().commit();
-        }
-        return employee;
-    }
-    
-    @Override
-    public List<Employee> getList() throws SQLException {
-        List<Employee> result;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            session.beginTransaction();
-            result = session.createQuery("from Employee").list();
-            session.getTransaction().commit();
-        }
-        return result;
-    }
+	@Override
+	public Employee find(Integer id) throws SQLException {
+		Employee employee;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		employee = session.get(Employee.class, id);
+		session.getTransaction().commit();
 
-    @Override
-    public List<Employee> getList(Integer id) throws SQLException {
-        List<Employee> result = null;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()){
-            session.beginTransaction();
-            String hql = "from Employee where department = :value and remove = false";
-            result = session.createQuery(hql).setInteger("value", id).list();
-            session.getTransaction().commit();
-        }
-        return result;
-    }
+		return employee;
+	}
+    
+	@Override
+	public Employee find(String lvalue) throws SQLException {
+		Employee employee = new Employee();
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		List<Employee> list = session.createQuery("from Employee where login = :lvalue").setString("lvalue", lvalue)
+				.list();
+		employee = list.get(0);
+		session.getTransaction().commit();
+		return employee;
+	}
+    
+	@Override
+	public List<Employee> getList() throws SQLException {
+		List<Employee> result;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		result = session.createQuery("from Employee").list();
+		session.getTransaction().commit();
+		return result;
+	}
+
+	@Override
+	public List<Employee> getList(Integer id) throws SQLException {
+		List<Employee> result = null;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		String hql = "from Employee where department = :value and remove = false";
+		result = session.createQuery(hql).setInteger("value", id).list();
+		session.getTransaction().commit();
+		return result;
+	}
 }

@@ -22,6 +22,7 @@ import kievreclama.task.dao.impl.EmployeeDaoImpl;
 import kievreclama.task.dao.impl.PhoneDaoImpl;
 import kievreclama.task.dao.impl.PostDaoImpl;
 import kievreclama.task.dao.impl.RoomDaoImpl;
+import kievreclama.task.entity.Company;
 import kievreclama.task.entity.Employee;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -50,7 +51,7 @@ public class EmployeeController {
     private final RoomDao roomDao = new RoomDaoImpl();
 
     public EmployeeController() {
-        this.companyDao = new CompanyDaoImpl();
+        this.companyDao = new CompanyDaoImpl(new Company());
     }
     
     @RequestMapping(value = "/")
@@ -103,7 +104,7 @@ public class EmployeeController {
         employee.setDepartment(departmentDao.find(modelEmployee.getDepartment()));
         employee.setRoom(roomDao.find(modelEmployee.getNumberRoom()));
         employee.setPost(postDao.find(modelEmployee.getPost()));
-        employee.setEnterprise(companyDao.find(modelEmployee.getEnterprise()));
+        employee.setEnterprise((Company)companyDao.find(modelEmployee.getEnterprise()));
         action(employee);
         return "redirect:../employee/";
     }

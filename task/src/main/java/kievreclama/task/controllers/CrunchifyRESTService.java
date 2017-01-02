@@ -38,7 +38,7 @@ public class CrunchifyRESTService {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response crunchifyREST(){
         StringBuilder crunchifyBuilder = new StringBuilder();
-        CompanyDao companyDao = new CompanyDaoImpl();
+        CompanyDao companyDao = new CompanyDaoImpl(new Company());
         List<Company> list = null;
         try {
             list = companyDao.getList();

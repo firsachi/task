@@ -68,7 +68,7 @@ public class ModelEmployee {
     private Integer enterprise;
     private List<Company> listCompany;
     {
-        CompanyDao companyDao = new CompanyDaoImpl();
+        CompanyDao companyDao = new CompanyDaoImpl(new Company());
         try {
             listCompany = companyDao.getList();
         } catch (SQLException ex) {

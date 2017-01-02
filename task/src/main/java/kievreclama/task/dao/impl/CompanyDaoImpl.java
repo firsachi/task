@@ -17,53 +17,59 @@ import org.hibernate.criterion.Order;
 /**
  *
  * @author firsachi
+ * @param <T>
  */
-public class CompanyDaoImpl implements CompanyDao{
+public class CompanyDaoImpl<T> implements CompanyDao<T>{
+	
+	private T value;
+	
+    public CompanyDaoImpl(T value) {
+		super();
+		this.value = value;
+	}
 
-    @Override
-    public void add(Company enterprise) throws SQLException {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            session.beginTransaction();
-            session.save(enterprise);
-            session.getTransaction().commit();
-        }
+	@Override
+    public void add(T enterprise) throws SQLException {
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        session.save(enterprise);
+        session.getTransaction().commit();
     }
 
     @Override
-    public void delete(Company enterprise) throws SQLException {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            session.beginTransaction();
-            session.delete(enterprise);
-            session.getTransaction().commit();
-        }
+    public void delete(T enterprise) throws SQLException {
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        session.delete(enterprise);
+        session.getTransaction().commit();
     }
 
     @Override
-    public void update(Company enterprise) throws SQLException {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            session.beginTransaction();
-            session.update(enterprise);
-            session.getTransaction().commit();
-        }
+    public void update(T enterprise) throws SQLException {
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        session.update(enterprise);
+        session.getTransaction().commit();
     }
 
-    @Override
-    public Company find(Integer id) throws SQLException {
-        Company enterprise;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            enterprise = session.get(Company.class, id);
-        }
-        return enterprise;
-    }
-
-    @Override
-    public List<Company> getList() throws SQLException {
-        List<Company> resultLIst;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            Criteria criteria = session.createCriteria(Company.class).addOrder(Order.asc("id"));
-            resultLIst = criteria.list();
-        }
-        return  resultLIst;
+	@Override
+    public T find(Integer id) throws SQLException {
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        value = (T)session.get(Company.class, id);
+        session.getTransaction().commit();
+        return value;
     }
     
+    @Override
+    public List<T> getList() throws SQLException {
+        List<T> resultLIst;
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(Company.class).addOrder(Order.asc("id"));
+        resultLIst = criteria.list();
+        session.getTransaction().commit();
+        return  resultLIst;
+    }
+ 
 }

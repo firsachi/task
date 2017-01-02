@@ -28,7 +28,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class CompamyComtroler {
     
     private final int IS_NEW = 0;
-    private CompanyDao companyDao = new CompanyDaoImpl();
+    private CompanyDao companyDao = new CompanyDaoImpl(new Company());
     
     @RequestMapping(value = "/")
     public String getPagesCompany(Model model) throws SQLException{
@@ -46,7 +46,7 @@ public class CompamyComtroler {
     public ModelAndView getPagesFormCompany( @PathVariable Integer id ) throws SQLException{
         ModelCompany modelEnterprise = new ModelCompany();
         if (!id.equals(IS_NEW)){
-            modelEnterprise = fillModel(companyDao.find(id));
+            modelEnterprise = fillModel((Company)companyDao.find(id));
         }
         return new ModelAndView("form-company-edit", "enterprise", modelEnterprise);
     }
