@@ -13,29 +13,35 @@
         <title><spring:message code="label.main.menu.company"/></title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="../../resources/css/page-private.css">
+		<%@include file="../jspf/map-file.jspf" %>
     </head>
     <body>
-        <nav>
-            <ul>
-                <li><a href="../employee/"><spring:message code="label.main.menu.employee"/></a></li>
-                <li><a href="../post/"><spring:message code="label.main.menu.post"/></a></li>
-                <li><a href="../department/"><spring:message code="label.main.menu.departmen"/></a></li>
-                <li><a class="select" href="."><spring:message code="label.main.menu.company"/></a></li>
-                <li class="add"><a href="add">+</a></li>
-            </ul>
-        </nav>
-        <div class="table-div">
-            <div class="row-div th">
-                <div><spring:message code="label.title.table.companu.id"/></div>
-                <div><spring:message code="label.title.table.companu.name"/></div>
-            </div>
-            <c:forEach var="enterprise" items="${company}" varStatus="loop">
-                <div class="row-div td">
-                    <div><a href="edit${enterprise.getId()}">${loop.index+1}</a></div>
-                    <div><a href="edit${enterprise.getId()}">${enterprise.getName()}</a></div>
-                </div>
-            </c:forEach>
-        </div>
+    	<%@include file="../jspf/main-menu.jspf" %>
+    	<div class="container-fluid">
+    		<table class="table">
+    			<tr>
+    				<th><spring:message code="label.title.table.companu.id"/></th>
+    				<th><spring:message code="label.title.table.companu.name"/></th>
+    				<th></th>
+    			</tr>
+    			<c:forEach var="enterprise" items="${company}" varStatus="loop">
+    				<tr>
+    					<td>${loop.index+1}</td>
+    					<td>${enterprise.getName()}</td>
+    					<td>
+    						<div class="dropdown">
+    						<button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown">
+ 								Действие <span class="caret"></span>
+ 							</button>
+  							<ul class="dropdown-menu" role="menu">
+    							<li><a href="edit${enterprise.getId()}">Редагувати</a></li>
+    							<li><a href="#">Видалити</a></li>
+  							</ul>
+  							</div>
+    					</td>
+    				</tr>
+    			</c:forEach>
+			</table>
+		</div>
     </body>
 </html>

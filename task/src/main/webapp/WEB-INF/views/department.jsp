@@ -13,32 +13,26 @@
         <title><spring:message code="label.main.menu.departmen"/></title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="../../resources/css/page-private.css">
+        <%@include file="../jspf/map-file.jspf"%>
     </head>
     
     <body>
-        <nav>
-            <ul>
-                <li><a href="../employee/"><spring:message code="label.main.menu.employee"/></a></li>
-                <li><a href="../post/"><spring:message code="label.main.menu.post"/></a></li>
-                <li><a class="select" href="."><spring:message code="label.main.menu.departmen"/></a></li>
-                <li><a href="../company/"><spring:message code="label.main.menu.company"/></a></li>
-                <li class="add"><a href="add">+</a></li>
-            </ul>
-        </nav>
-        <div class="table-div">
-            <div class="row-div th">
-                <div><spring:message code="label.title.table.department.name"/></div>
-                <div><spring:message code="label.title.table.department.phone"/></div>
-                <div><spring:message code="label.title.table.department.fax"/></div>
-            </div>
-            <c:forEach var="department" items="${departments}" varStatus="num">
-                <div class="row-div td">
-                    <div><a href="edit${department.getId()}">${department.getName()}</a></div>
-                    <div><a href="edit${department.getId()}">${department.getPhone()}</a></div>
-                    <div><a href="edit${department.getId()}">${department.getFax()}</a></div>
-                </div>
-            </c:forEach>
+		<%@include file="../jspf/main-menu.jspf"%>
+        <div class="container-fluid">
+        	<table class="table">
+        		<tr>
+        			<th><spring:message code="label.title.table.department.name"/></th>
+        			<th><spring:message code="label.title.table.department.phone"/></th>
+        			<th><spring:message code="label.title.table.department.fax"/></th>
+        		</tr>
+        		<c:forEach var="department" items="${departments}" varStatus="num">
+        			<tr>
+        				<td><a href="edit${department.getId()}">${department.getName()}</a></td>
+        				<td><a href="edit${department.getId()}">${department.getPhone()}</a></td>
+        				<td><a href="edit${department.getId()}">${department.getFax()}</a></td>
+        			</tr>
+        		</c:forEach>	
+        	</table>
         </div>
     </body>
 </html>

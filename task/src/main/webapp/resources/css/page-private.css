@@ -19,33 +19,40 @@ html body {
     margin: 0px;
 }
 nav{
-    width: 100%;
-    border-bottom: 1px solid black;
+	background: gold;
+	display: flex;
+	flex-flow: row nowrap;
+	padding-left: 12px;
 }
-nav ul{
-    list-style-type: none;
-    padding: 12px;
-    margin: 0;
-    background: gold;
+.box-menu{
+	flex-grow: 1;
+	position: relative;
+	padding: 6px;
+	border: 1px solid gold;
 }
-nav li{
-    display: inline;
+.box-menu:HOVER{
+	border: 1px solid black;
+	border-bottom: none;
 }
-nav a{
-    font-size: 20px;
-    text-height: inherit;
-    text-decoration: none;
-    color: black;
-    padding: 12px;
-    padding-bottom: 13px;
+.nav-menu{
+	border: 1px solid black;
+	border-top: none;
+	background: gold;
+	position: absolute;
+	left: -3px;
+	display: flex;
+	flex-flow: column wrap;
+	padding: 0;
+	margin: 0;
+	margin-top: 6px;
+	list-style-type: none;
 }
-nav a.select{
-    background: black;
-    color: gold;  
+.nav-menu li{
+	padding: 6px;
 }
-nav li.add{
-   float: right;
-   border-left: 2px solid black;
+.nav-menu li:HOVER{
+	background: black;
+	color: white;
 }
 .filtr {
     margin: 12px;

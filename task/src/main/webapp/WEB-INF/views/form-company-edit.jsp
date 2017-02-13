@@ -14,26 +14,31 @@
         <title><spring:message code="label.company.new.title"/></title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="../../resources/css/forms.css">   
+        <%@include file="../jspf/map-file.jspf" %>   
     </head>
     <body>
-       <div class="topic size-div">
-            <spring:message code="label.company.edit.title"/>
+    	<div class="container">
+    		<div class="page-header">
+    			<h2><spring:message code="label.company.edit.title"/></h2>
+    		</div>
+  			<form:form modelAttribute="enterprise" method="POST" action="save" acceptCharset="UTF-8" class="form-horizontal"  role="form">
+            	<div class="form-group">
+               		<form:hidden path="id"/>
+            	</div>
+            	<div class="form-group">
+               		<form:label path="name" class="col-sm-2 control-label" ><spring:message code="label.company.name" /></form:label>
+               		<div class="col-sm-10">
+      					<form:input path="name" required="true" pattern="" class="form-control"/>
+    				</div>
+            	</div>
+            	<div class="form-group">
+            		<div class="col-sm-offset-2 col-sm-10">
+            			<button type="button" onclick="self.location.href='.';" class="btn btn-default"><spring:message code="label.buttonBack"/></button>
+            			<button type="reset" class="btn btn-default"><spring:message code="label.buttonReset"/></button>
+            			<button type="submit" class="btn btn-default"><spring:message code="label.buttonSubmit"/></button>
+    				</div>
+            	</div>
+        	</form:form>
         </div>
-        <form:form modelAttribute="enterprise" method="POST" action="save" acceptCharset="UTF-8">
-            <div>
-                <form:hidden path="id"/>
-            </div>
-            <div>
-                <form:label path="name"><spring:message code="label.company.name"/></form:label>
-                <form:input path="name" required="true" pattern=""/>
-            </div>
-            <div class="buttons">
-                <input type="submit" value="<spring:message code="label.buttonSubmit"/>">
-                <input type="reset" value="<spring:message code="label.buttonReset"/>">
-                <input type="button" onclick="self.location.href='.';" 
-                       value="Повернутися" value="<spring:message code="label.buttonBack"/>" >
-            </div>
-        </form:form>
     </body>
 </html>
