@@ -18,6 +18,7 @@
     </head>
     <body>
 		<%@include file="../jspf/main-menu.jspf" %>
+    	<div id="menu"><%@include file="../jspf/employees-menu.jspf" %></div>
         <div class="filtr">
             <div>
                 <spring:message code="label.title.table.employee.room"/>

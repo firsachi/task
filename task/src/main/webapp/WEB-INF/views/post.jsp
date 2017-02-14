@@ -18,9 +18,7 @@
     
     <body>
 		<%@include file="../jspf/main-menu.jspf" %>
-		<ol class="breadcrumb">
-			<%@include file="../jspf/employees-menu.jspf" %>
-		</ol>
+    	<div id="menu"><%@include file="../jspf/employees-menu.jspf" %></div>
         <div class="container-fluid">
         	<table class="table">
         		<tr>
