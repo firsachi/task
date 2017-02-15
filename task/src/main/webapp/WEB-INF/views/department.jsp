@@ -25,12 +25,17 @@
         			<th><spring:message code="label.title.table.department.name"/></th>
         			<th><spring:message code="label.title.table.department.phone"/></th>
         			<th><spring:message code="label.title.table.department.fax"/></th>
+        			<th><button>Додати</button></th>
         		</tr>
         		<c:forEach var="department" items="${departments}" varStatus="num">
         			<tr>
-        				<td><a href="edit${department.getId()}">${department.getName()}</a></td>
-        				<td><a href="edit${department.getId()}">${department.getPhone()}</a></td>
-        				<td><a href="edit${department.getId()}">${department.getFax()}</a></td>
+        				<td>${department.getName()}</td>
+        				<td>${department.getPhone()}</td>
+        				<td>${department.getFax()}</td>
+        				<td>
+        					<button onclick="self.location.href='edit${department.getId()}';">Редагувати</button>
+        					<button>Видалити</button>
+        				</td>
         			</tr>
         		</c:forEach>	
         	</table>

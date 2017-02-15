@@ -14,7 +14,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<%@include file="../jspf/map-file.jspf" %>
 		<script type="text/javascript">
-		
+		/*
 			$('button').click(function() {
 			  $('.dropdown-menu').show();
 			});
@@ -27,7 +27,7 @@
 			function show( event ) {
 				var element = $(event).parent();
 				$(element.children()).show();
-			}
+			}*/
 		</script>
     </head>
     <body>
@@ -45,13 +45,8 @@
     					<td>${loop.index+1}</td>
     					<td>${enterprise.getName()}</td>
     					<td>
-    						<div class="dropdown">
-    						<button onclick="show( this )" data-toggle="dropdown">Дія</button>
-  							<ul class="dropdown-menu" role="menu">
-    							<li><a href="edit${enterprise.getId()}">Редагувати</a></li>
-    							<li><a href="#">Видалити</a></li>
-  							</ul>
-  							</div>
+    						<button onclick="self.location.href='edit${enterprise.getId()}';" data-toggle="dropdown">Редагувати</button>
+    						<button onclick="show( this )" data-toggle="dropdown">Видалити</button>
     					</td>
     				</tr>
     			</c:forEach>
