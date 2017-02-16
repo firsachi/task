@@ -156,3 +156,41 @@ li.select{
 	list-style-type: none;
 	display: none;
 }
+.page-header{
+	padding-left: 24px;
+	color: white;
+	background: #666666;
+}
+.box-form{
+	margin: 24px auto;
+    width: 570px;
+    padding: 6px;
+    padding-left: 24px;
+}
+.form-horisontal{
+	display: flex;
+	flex-flow: column wrap;
+}
+.form-group, .form-group-button{
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: flex-end; 
+	margin-bottom: 6px;
+}
+.form-group label {
+	width: 150px;
+	margin-right: 4px;
+	margin-left: 4px;
+}
+.form-group input{
+	flex-grow: 1;
+	font-family: Sans, Arial;
+}
+.form-group-button {
+	border-top: 1px solid #666666;
+	margin-top: 12px;
+}
+.form-group-button button {
+	margin: 2px;
+	margin-top: 4px;
+}
