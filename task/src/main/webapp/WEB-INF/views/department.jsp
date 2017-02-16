@@ -25,7 +25,7 @@
         			<th><spring:message code="label.title.table.department.name"/></th>
         			<th><spring:message code="label.title.table.department.phone"/></th>
         			<th><spring:message code="label.title.table.department.fax"/></th>
-        			<th><button>Додати</button></th>
+        			<th><button onclick="self.location.href='add';">Додати</button></th>
         		</tr>
         		<c:forEach var="department" items="${departments}" varStatus="num">
         			<tr>

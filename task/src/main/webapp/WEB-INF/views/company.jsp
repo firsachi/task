@@ -38,7 +38,7 @@
     			<tr>
     				<th><spring:message code="label.title.table.companu.id"/></th>
     				<th><spring:message code="label.title.table.companu.name"/></th>
-    				<th></th>
+    				<th><button onclick="self.location.href='add';">Додати</button></th>
     			</tr>
     			<c:forEach var="enterprise" items="${company}" varStatus="loop">
     				<tr>
