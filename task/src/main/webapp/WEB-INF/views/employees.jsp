@@ -15,6 +15,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <%@include file="../jspf/map-file.jspf" %>
         <script src="../../resources/js/main.js"></script>
+        <script type="text/javascript" src="<c:url value="/resources/js/filtr-emloyee.js"/>"></script>
     </head>
     <body>
 		<%@include file="../jspf/main-menu.jspf" %>
@@ -55,6 +56,11 @@
         			<th><spring:message code="label.title.table.employee.department"/></th>
         			<th><spring:message code="label.title.table.employee.post"/></th>
         			<th><spring:message code="label.title.table.employee.email"/></th>
+        			<th>
+    					<button class="button-add" onclick="self.location.href='add';">
+    						<spring:message code="label.button.add"/>
+    					</button>
+    				</th>
         		</tr>
         		<c:forEach var="employee" items="${employees}">
         			<tr>
@@ -71,6 +77,14 @@
                         <td><a href="edit${employee.getId()}">${employee.getDepartment().getName()}</a></td>
                         <td><a href="edit${employee.getId()}">${employee.getPost().getName()}</a></td>
                         <td><a href="edit${employee.getId()}">${employee.getEmail()}</a></td>
+                        <td>
+        					<button onclick="self.location.href='edit${employee.getId()}';" data-toggle="dropdown">
+    							<spring:message code="label.button.edit"/>
+    						</button>
+    						<button onclick="show( this )" data-toggle="dropdown">
+    							<spring:message code="label.button.delete"/>
+    						</button>
+        				</td>
                     </tr>
         		</c:forEach>
         	</table>

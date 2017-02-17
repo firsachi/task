@@ -6,9 +6,12 @@ html, body {
 	font-family: Sans, Arial;
 }
 header{padding-top: 12px;}
-button{
+button, .button-add{
 	border:1px solid #666666;
 	background: #f9f9f9;
+}
+.button-add{
+	width: 165px;
 }
 .container, #menu, .content{
 	padding-left: 50px;
@@ -122,6 +125,9 @@ li.select{
 	color: #99CC33;
 	text-decoration: underline;
 }
+.container-fluid{
+	margin: 12px;
+}
 .content{
 	line-height: 1.5;
 	padding-top: 12px;
@@ -202,4 +208,16 @@ li.select{
 .form-group-button button {
 	margin: 2px;
 	margin-top: 6px;
+}
+.filtr {
+    margin: 12px;
+    background: #f9f9f9;
+    border: 1px solid black;
+}
+.filtr div {
+    display: inline;
+    margin: 6px;
+}
+.filtr select{
+    margin: 6px;
 }

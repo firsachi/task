@@ -26,18 +26,15 @@ window.onload = function() {
     });
     displayNone();
 };
-window.closed = function (){
-    sessionStorage.clear();
-};
 
 function displayNone(){
-    var array = document.getElementsByClassName('row-div');
+    var array = document.getElementsByTagName('tr');
     var roomNumber = room.options[sessionStorage.getItem('room')].text.trim();
     var departmentNumber = department.options[sessionStorage.getItem('department')].text.trim();
     for (var index = 1; index < array.length; index++){
-        var roomColunm = array[index].getElementsByTagName('div')[1];
+        var roomColunm = array[index].getElementsByTagName('td')[1];
         roomColunm = roomColunm.textContent.trim();
-        var departmentColumn = array[index].getElementsByTagName('div')[4];
+        var departmentColumn = array[index].getElementsByTagName('td')[4];
         departmentColumn = departmentColumn.textContent.trim();
         
         if (check(roomNumber, roomColunm) && check(departmentNumber, departmentColumn)){
