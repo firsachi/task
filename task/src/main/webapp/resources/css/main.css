@@ -6,6 +6,10 @@ html, body {
 	font-family: Sans, Arial;
 }
 header{padding-top: 12px;}
+button{
+	border:1px solid #666666;
+	background: #f9f9f9;
+}
 .container, #menu, .content{
 	padding-left: 50px;
 	padding-right: 50px;
@@ -178,11 +182,16 @@ li.select{
 	margin-bottom: 6px;
 }
 .form-group label {
-	width: 150px;
+	flex-shrink: 0;
+	width: 200px;
 	margin-right: 4px;
 	margin-left: 4px;
 }
 .form-group input{
+	flex-grow: 1;
+	font-family: Sans, Arial;
+}
+.form-group select{
 	flex-grow: 1;
 	font-family: Sans, Arial;
 }
@@ -192,5 +201,5 @@ li.select{
 }
 .form-group-button button {
 	margin: 2px;
-	margin-top: 4px;
+	margin-top: 6px;
 }

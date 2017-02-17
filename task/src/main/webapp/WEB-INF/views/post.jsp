@@ -25,12 +25,17 @@
         			<th><spring:message code="label.title.table.post.number"/></th>
         			<th><spring:message code="label.title.table.post.name"/></th>
         			<th><spring:message code="label.title.table.post.heft"/></th>
+        			<th><button onclick="self.location.href='add';">Додати</button></th>
         		</tr>
             	<c:forEach var="value" items="${position}" varStatus="number">
                 	<tr>
                 		<td>${number.index + 1}</td>
-                		<td><a href="edit${value.getId()}">${value.getName()}</a></td>
-						<td><a href="edit${value.getId()}">${value.getHeft()}</a></td>
+                		<td>${value.getName()}</td>
+						<td>${value.getHeft()}</td>
+						<td>
+							<button onclick="self.location.href='edit${value.getId()}';" data-toggle="dropdown">Редагувати</button>
+							<button onclick="show( this )" data-toggle="dropdown">Видалити</button>
+						</td>
                 	</tr>
             	</c:forEach>
             </table>
