@@ -184,7 +184,8 @@ li.select{
 .form-group, .form-group-button{
 	display: flex;
 	flex-flow: row nowrap;
-	align-items: stretch; 
+	align-items: stretch;
+	justify-content: flex-end;
 	margin-bottom: 6px;
 }
 .form-group label {
@@ -202,6 +203,9 @@ li.select{
 	flex-grow: 1;
 	flex-shrink: 1;
 	font-family: Sans, Arial;
+}
+.form-group option{
+	max-width: 362px;
 }
 .form-group-button {
 	border-top: 1px solid #666666;
