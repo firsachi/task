@@ -39,7 +39,7 @@
             	</div>
            		<div class="form-group">
                		<form:label path="enterprise"><spring:message code="label.title.table.employee.company"/></form:label>
-                	<form:select path="enterprise" class="no-button" items="${modelEmployee.getListCompany()}" itemValue="id" itemLabel="name"/> 
+                	<form:select path="enterprise" items="${modelEmployee.getListCompany()}" itemValue="id" itemLabel="name"/> 
             	</div>
             	<div class="form-group">
                 	<form:label path="department"><spring:message code="label.title.table.employee.department"/></form:label>

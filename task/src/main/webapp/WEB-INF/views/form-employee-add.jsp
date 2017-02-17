@@ -25,7 +25,7 @@
             	<div class="form-group">
                 	<form:hidden path="id"/>
             	</div>
-            	<div>
+            	<div class="form-group">
                 	<form:label path="surname"><spring:message code="label.form.employee.surname"/></form:label>
                 	<form:input path="surname" required="true" pattern=""/>
             	</div>
@@ -43,9 +43,7 @@
             	</div>
             	<div class="form-group">
                 	<form:label path="department"><spring:message code="label.title.table.employee.department"/></form:label>
-                	<form:select path="department"  >
-                    	<form:options items="${modelEmployee.getListDeapartment()}" itemValue="id" itemLabel="name"/>
-                	</form:select>  
+                	<form:select path="department"  items="${modelEmployee.getListDeapartment()}" itemValue="id" itemLabel="name" />
             	</div>
             	<div class="form-group">
             		<form:label path="post"><spring:message code="label.title.table.employee.post"/></form:label>

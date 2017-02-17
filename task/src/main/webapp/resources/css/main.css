@@ -173,7 +173,7 @@ li.select{
 }
 .box-form{
 	margin: 24px auto;
-    width: 570px;
+	max-width: 570px;
     padding: 6px;
     padding-left: 24px;
 }
@@ -184,7 +184,7 @@ li.select{
 .form-group, .form-group-button{
 	display: flex;
 	flex-flow: row nowrap;
-	justify-content: flex-end; 
+	align-items: stretch; 
 	margin-bottom: 6px;
 }
 .form-group label {
@@ -198,7 +198,9 @@ li.select{
 	font-family: Sans, Arial;
 }
 .form-group select{
+	max-width: 362px;
 	flex-grow: 1;
+	flex-shrink: 1;
 	font-family: Sans, Arial;
 }
 .form-group-button {
