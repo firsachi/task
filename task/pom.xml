@@ -12,7 +12,7 @@
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <version-Hivbernate>5.1.0.Final</version-Hivbernate>
+        <version-Hivbernate>5.2.6.Final</version-Hivbernate>
         <org.springframework-version>4.3.2.RELEASE</org.springframework-version>
     </properties>
     
@@ -27,20 +27,10 @@
             <artifactId>hibernate-core</artifactId>
             <version>${version-Hivbernate}</version>
         </dependency>
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-validator</artifactId>
-            <version>${version-Hivbernate}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-java8</artifactId>
-            <version>${version-Hivbernate}</version>
-        </dependency>
-        <dependency>
+		<dependency>
     		<groupId>org.hibernate</groupId>
-    		<artifactId>hibernate-c3p0</artifactId>
-    		<version>${version-Hivbernate}</version>
+    		<artifactId>hibernate-validator</artifactId>
+    		<version>5.4.0.Final</version>
 		</dependency>
         <dependency>
     		<groupId>c3p0</groupId>
@@ -63,13 +53,13 @@
             <groupId>asm</groupId>
             <artifactId>asm-all</artifactId>
             <version>3.3.1</version>
-	</dependency>
-	<dependency>
+		</dependency>
+		<dependency>
             <groupId>com.sun.jersey</groupId>
             <artifactId>jersey-bundle</artifactId>
             <version>1.14</version>
-	</dependency>
-	<dependency>
+		</dependency>
+		<dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
             <version>20090211</version>
@@ -92,6 +82,11 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
+            <version>${org.springframework-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
             <version>${org.springframework-version}</version>
         </dependency>
     </dependencies>
