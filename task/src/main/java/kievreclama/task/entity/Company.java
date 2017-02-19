@@ -13,6 +13,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -21,6 +23,12 @@ import javax.persistence.Table;
  * @author firsachi
  */
 @Entity
+@NamedQueries(
+		@NamedQuery(
+				name = "allCompany",
+				query = "from Company C ORDER BY C.id"
+				)
+		)
 @Table(name = "company")
 public class Company implements Serializable {
     
