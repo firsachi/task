@@ -1,11 +1,11 @@
 package kievreclama.task.web;
 
-import antlr.collections.List;
+import java.util.List;
 
 public abstract class ServiseTask<T> {
 	
-	abstract void save(T value);
-	abstract void update(T value);
-	abstract void delete(T value);
-	abstract List getList();
+	public abstract void save(T value);
+	public abstract void update(T value);
+	public abstract void delete(T value);
+	public abstract List<T> getList(String namedQery);
 }

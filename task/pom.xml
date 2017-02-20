@@ -12,20 +12,20 @@
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <version-Hivbernate>5.2.6.Final</version-Hivbernate>
+        <version-hibernate>5.2.5.Final</version-hibernate>
         <org.springframework-version>4.3.2.RELEASE</org.springframework-version>
     </properties>
     
     <dependencies>
-        <dependency>
+       	<dependency>
             <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-entitymanager</artifactId>
-            <version>${version-Hivbernate}</version>
+            <artifactId>hibernate-core</artifactId>
+            <version>${version-hibernate}</version>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>${version-Hivbernate}</version>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>${version-hibernate}</version>
         </dependency>
 		<dependency>
     		<groupId>org.hibernate</groupId>

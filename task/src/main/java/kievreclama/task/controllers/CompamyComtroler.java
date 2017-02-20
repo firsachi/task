@@ -12,6 +12,9 @@ import javax.inject.Inject;
 import kievreclama.task.controllers.models.ModelCompany;
 import kievreclama.task.dao.CompanyDaoImpl;
 import kievreclama.task.entity.Company;
+import kievreclama.task.web.CompanyService;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,12 +35,16 @@ public class CompamyComtroler {
     private final int IS_NEW = 0;
     //private CompanyDao companyDao = new CompanyDaoImpl(new Company());
     
+    
+    @Autowired
+    private CompanyService companyService;
+    
     @Inject
     private CompanyDaoImpl companyDao;
     
     @RequestMapping(value = "/")
     public String getPagesCompany(Model model) throws SQLException{
-        model.addAttribute("company", companyDao.byList("allCompany"));
+        model.addAttribute("company", companyService.getList("allCompany"));
         return "company";
     }
     

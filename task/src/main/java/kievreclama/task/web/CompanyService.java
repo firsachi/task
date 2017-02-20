@@ -1,14 +1,18 @@
 package kievreclama.task.web;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.ArrayList;
+import java.util.List;
 
-import antlr.collections.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import kievreclama.task.dao.CompanyDaoImpl;
 import kievreclama.task.entity.Company;
 import kievreclama.task.web.models.CompanyModel;
 import kievreclama.task.web.transformers.CompanyTransformer;
 
-public class CompanyService extends ServiseTask<Company>{
+@Component
+public class CompanyService extends ServiseTask<CompanyModel>{
 	
 	@Autowired
 	private CompanyDaoImpl companyDao;
@@ -17,29 +21,30 @@ public class CompanyService extends ServiseTask<Company>{
 	private CompanyTransformer companyTransformer;
 
 	@Override
-	void save(Company value) {
-		companyDao.insert(companyTransformer.modelToEntity(new CompanyModel()));
-	}
-
-	@Override
-	void update(Company value) {
+	public void save(CompanyModel value) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	void delete(Company value) {
+	public void update(CompanyModel value) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	List getList() {
+	public void delete(CompanyModel value) {
 		// TODO Auto-generated method stub
-		return null;
+		
 	}
 
-
-	
+	@Override
+	public List<CompanyModel> getList(String namedQery) {
+		List<CompanyModel> result = new ArrayList<>();
+		for (Company company: companyDao.byList(namedQery)){
+			result.add(companyTransformer.entityToModel(company));
+		}
+		return result;
+	}
 
 }

@@ -64,19 +64,17 @@
         		</tr>
         		<c:forEach var="employee" items="${employees}">
         			<tr>
-        				<td><a href="edit${employee.getId()}">${employee.getPhone().getNumber()}</a></td>
-        				<td><a href="edit${employee.getId()}">${employee.getRoom().getNumberRoom()}</a></td>
+        				<td>${employee.getPhone().getNumber()}</td>
+        				<td>${employee.getRoom().getNumberRoom()}</td>
         				<td>
-        					<a href="edit${employee.getId()}">
-                                ${employee.getSurname()} 
-                                ${employee.getName()} 
-                                ${employee.getPatronymic()}
-                            </a>
+                        	${employee.getSurname()} 
+                            ${employee.getName()} 
+                            ${employee.getPatronymic()}
                         </td>
-                        <td><a href="edit${employee.getId()}">${employee.getEnterprise().getName()}</a></td>
-                        <td><a href="edit${employee.getId()}">${employee.getDepartment().getName()}</a></td>
-                        <td><a href="edit${employee.getId()}">${employee.getPost().getName()}</a></td>
-                        <td><a href="edit${employee.getId()}">${employee.getEmail()}</a></td>
+                        <td>${employee.getEnterprise().getName()}</td>
+                        <td>${employee.getDepartment().getName()}</td>
+                        <td>${employee.getPost().getName()}</td>
+                        <td>${employee.getEmail()}</td>
                         <td>
         					<button onclick="self.location.href='edit${employee.getId()}';" data-toggle="dropdown">
     							<spring:message code="label.button.edit"/>

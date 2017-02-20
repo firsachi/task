@@ -1,17 +1,26 @@
 package kievreclama.task.web.transformers;
 
+import org.springframework.stereotype.Component;
+
 import kievreclama.task.entity.Company;
 import kievreclama.task.web.models.CompanyModel;
 
+@Component
 public class CompanyTransformer {
 	
 
 	public Company modelToEntity(CompanyModel companyModel) {
-		return null;
+		Company company = new Company();
+		company.setId(companyModel.getId());
+		company.setName(companyModel.getName());
+		return company;
 	}
 	
 	public CompanyModel entityToModel(Company company){
-		return null;
+		CompanyModel companyModel = new CompanyModel();
+		companyModel.setId(company.getId());
+		companyModel.setName(company.getName());
+		return companyModel;
 	}
 
 }
