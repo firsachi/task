@@ -6,9 +6,11 @@
 package kievreclama.task.controllers;
 
 import java.sql.SQLException;
+
+import javax.inject.Inject;
+
 import kievreclama.task.controllers.models.ModelCompany;
-import kievreclama.task.dao.CompanyDao;
-import kievreclama.task.dao.impl.CompanyDaoImpl;
+import kievreclama.task.dao.CompanyDaoImpl;
 import kievreclama.task.entity.Company;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,11 +30,14 @@ import org.springframework.web.servlet.ModelAndView;
 public class CompamyComtroler {
     
     private final int IS_NEW = 0;
-    private CompanyDao companyDao = new CompanyDaoImpl(new Company());
+    //private CompanyDao companyDao = new CompanyDaoImpl(new Company());
+    
+    @Inject
+    private CompanyDaoImpl companyDao;
     
     @RequestMapping(value = "/")
     public String getPagesCompany(Model model) throws SQLException{
-        model.addAttribute("company", companyDao.getList());
+        model.addAttribute("company", companyDao.byList("allCompany"));
         return "company";
     }
     
@@ -46,7 +51,7 @@ public class CompamyComtroler {
     public ModelAndView getPagesFormCompany( @PathVariable Integer id ) throws SQLException{
         ModelCompany modelEnterprise = new ModelCompany();
         if (!id.equals(IS_NEW)){
-            modelEnterprise = fillModel((Company)companyDao.find(id));
+            modelEnterprise = fillModel((Company)companyDao.byId(id));
         }
         return new ModelAndView("form-company-edit", "enterprise", modelEnterprise);
     }
@@ -69,7 +74,7 @@ public class CompamyComtroler {
         company.setId(modelCompany.getId());
         company.setName(modelCompany.getName());
         if (modelCompany.getId() == IS_NEW ){
-            companyDao.add(company);
+            companyDao.insert(company);
         }else{
             companyDao.update(company);
         }
