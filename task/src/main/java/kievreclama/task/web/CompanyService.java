@@ -22,14 +22,12 @@ public class CompanyService extends ServiseTask<CompanyModel>{
 
 	@Override
 	public void save(CompanyModel value) {
-		// TODO Auto-generated method stub
-		
+		companyDao.insert(companyTransformer.modelToEntity(value));
 	}
 
 	@Override
 	public void update(CompanyModel value) {
-		// TODO Auto-generated method stub
-		
+		companyDao.update(companyTransformer.modelToEntity(value));
 	}
 
 	@Override
@@ -45,6 +43,11 @@ public class CompanyService extends ServiseTask<CompanyModel>{
 			result.add(companyTransformer.entityToModel(company));
 		}
 		return result;
+	}
+
+	@Override
+	public CompanyModel getId(int id) {
+		return companyTransformer.entityToModel(companyDao.byId(id));
 	}
 
 }
