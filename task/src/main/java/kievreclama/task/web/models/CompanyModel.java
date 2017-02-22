@@ -1,11 +1,10 @@
 package kievreclama.task.web.models;
 
-import org.springframework.web.servlet.ModelAndView;
-
-public class CompanyModel extends ModelAndView{
+public class CompanyModel{
 	
 	private int id;
 	private String name;
+	private boolean remove;
 	
 	public int getId() {
 		return id;
@@ -19,7 +18,11 @@ public class CompanyModel extends ModelAndView{
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
+	public boolean isRemove() {
+		return remove;
+	}
+	public void setRemove(boolean remove) {
+		this.remove = remove;
+	}
 
 }

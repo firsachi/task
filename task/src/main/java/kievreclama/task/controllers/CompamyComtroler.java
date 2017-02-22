@@ -5,14 +5,8 @@
  */
 package kievreclama.task.controllers;
 
-import java.sql.SQLException;
-
-import javax.inject.Inject;
-
-import kievreclama.task.controllers.models.ModelCompany;
-import kievreclama.task.dao.CompanyDaoImpl;
-import kievreclama.task.entity.Company;
 import kievreclama.task.web.CompanyService;
+import kievreclama.task.web.models.CompanyModel;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,59 +25,41 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping(value = "/private/company/")
 public class CompamyComtroler {
-    
-    private final int IS_NEW = 0;
-    //private CompanyDao companyDao = new CompanyDaoImpl(new Company());
-    
-    
+
     @Autowired
     private CompanyService companyService;
     
-    @Inject
-    private CompanyDaoImpl companyDao;
-    
     @RequestMapping(value = "/")
-    public String getPagesCompany(Model model) throws SQLException{
+    public String getPagesCompany(Model model){
         model.addAttribute("company", companyService.getList("allCompany"));
         return "company";
     }
     
     @RequestMapping(value = "/add")
     public ModelAndView getPagesFormAdd(){
-        ModelAndView model = new ModelAndView("form-company-add", "enterprise", new ModelCompany());
+        ModelAndView model = new ModelAndView("form-company-add", "enterprise", new CompanyModel());
         return model;
     }
     
     @GetMapping(value = "/edit{id}")
-    public ModelAndView getPagesFormCompany( @PathVariable Integer id ) throws SQLException{
-        ModelCompany modelEnterprise = new ModelCompany();
-        if (!id.equals(IS_NEW)){
-            modelEnterprise = fillModel((Company)companyDao.byId(id));
-        }
-        return new ModelAndView("form-company-edit", "enterprise", modelEnterprise);
+    public ModelAndView getPagesFormCompany( @PathVariable Integer id ){
+        return new ModelAndView("form-company-edit", "enterprise", companyService.getId(id));
+    }
+    
+    @GetMapping(value = "/delete")
+    public String getPageGeleteCompany(){
+    	return "redirect:../company/";
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String submit(@ModelAttribute("enterprise") ModelCompany modelCompany ) throws SQLException{
-        action(modelCompany);
+    public String submit(@ModelAttribute("enterprise") CompanyModel companyModel ){
+    	int isNew = 0;
+    	if (companyModel.getId() == isNew ){
+            companyService.save(companyModel);
+        }else{
+            companyService.update(companyModel);
+        }
         return "redirect:../company/";
     }
-    
-    private ModelCompany fillModel(Company enterprise){
-        ModelCompany model = new ModelCompany();
-        model.setId(enterprise.getId());
-        model.setName(enterprise.getName());
-        return model;
-    }
-    
-    private void action(ModelCompany modelCompany) throws SQLException{
-        Company company = new Company();
-        company.setId(modelCompany.getId());
-        company.setName(modelCompany.getName());
-        if (modelCompany.getId() == IS_NEW ){
-            companyDao.insert(company);
-        }else{
-            companyDao.update(company);
-        }
-    }
+
 }

@@ -45,7 +45,10 @@ public class Company implements Serializable {
     @Column(name = "name", unique = true, nullable = false)
     private String name;
     
-    @OneToMany(mappedBy = "enterprise", fetch = FetchType.LAZY)
+    @Column(name = "delte")
+    private boolean remove;
+
+	@OneToMany(mappedBy = "enterprise", fetch = FetchType.LAZY)
     private List<Employee> employees;
 
     public void setId(Integer id) {
@@ -72,4 +75,11 @@ public class Company implements Serializable {
         return employees;
     }
     
+    public boolean isRemove() {
+		return remove;
+	}
+
+	public void setRemove(boolean remove) {
+		this.remove = remove;
+	}
 }
