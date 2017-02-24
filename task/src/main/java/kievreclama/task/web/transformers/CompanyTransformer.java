@@ -13,6 +13,7 @@ public class CompanyTransformer {
 		Company company = new Company();
 		company.setId(companyModel.getId());
 		company.setName(companyModel.getName());
+		company.setRemove(companyModel.getRemove());
 		return company;
 	}
 	
@@ -20,6 +21,7 @@ public class CompanyTransformer {
 		CompanyModel companyModel = new CompanyModel();
 		companyModel.setId(company.getId());
 		companyModel.setName(company.getName());
+		companyModel.setRemove(company.getRemove());
 		return companyModel;
 	}
 

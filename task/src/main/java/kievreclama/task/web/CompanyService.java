@@ -3,7 +3,6 @@ package kievreclama.task.web;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.query.criteria.internal.expression.function.UpperFunction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -32,9 +31,8 @@ public class CompanyService extends ServiseTask<CompanyModel>{
 	}
 
 	@Override
-	public void delete(CompanyModel value) {
-		value.setRemove(true);
-		update(value);
+	public void delete(int id) {
+		companyDao.delete(id);
 	}
 
 	@Override

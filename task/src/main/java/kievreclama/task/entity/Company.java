@@ -24,11 +24,21 @@ import javax.persistence.Table;
  */
 @Entity
 @NamedQueries(
-		@NamedQuery(
-				name = "allCompany",
-				query = "from Company C ORDER BY C.id"
-				)
-		)
+		{
+			@NamedQuery(
+					name = "allCompany", 
+					query = "from Company C ORDER BY C.id"
+					),
+			@NamedQuery(
+					name = "company", 
+					query = "from Company C where remove = false ORDER BY C.id"
+					),
+			@NamedQuery(
+					name = "deleteCompany", 
+					query = "UPDATE Company SET remove = true WHERE id = :idCompany"
+					)
+		}
+	)
 @Table(name = "company")
 public class Company implements Serializable {
     
@@ -45,7 +55,7 @@ public class Company implements Serializable {
     @Column(name = "name", unique = true, nullable = false)
     private String name;
     
-    @Column(name = "delte")
+    @Column(name = "delete")
     private boolean remove;
 
 	@OneToMany(mappedBy = "enterprise", fetch = FetchType.LAZY)
@@ -75,7 +85,7 @@ public class Company implements Serializable {
         return employees;
     }
     
-    public boolean isRemove() {
+    public boolean getRemove() {
 		return remove;
 	}
 

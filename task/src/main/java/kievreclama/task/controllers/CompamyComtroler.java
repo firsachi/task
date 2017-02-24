@@ -31,7 +31,7 @@ public class CompamyComtroler {
     
     @RequestMapping(value = "/")
     public String getPagesCompany(Model model){
-        model.addAttribute("company", companyService.getList("allCompany"));
+        model.addAttribute("company", companyService.getList("company"));
         return "company";
     }
     
@@ -42,12 +42,13 @@ public class CompamyComtroler {
     }
     
     @GetMapping(value = "/edit{id}")
-    public ModelAndView getPagesFormCompany( @PathVariable Integer id ){
+    public ModelAndView getPagesFormCompany( @PathVariable int id ){
         return new ModelAndView("form-company-edit", "enterprise", companyService.getId(id));
     }
     
-    @GetMapping(value = "/delete")
-    public String getPageGeleteCompany(){
+    @GetMapping(value = "/delete{id}")
+    public String getPageGeleteCompany(@PathVariable int id){
+    	companyService.delete(id);
     	return "redirect:../company/";
     }
 

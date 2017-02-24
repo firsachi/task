@@ -23,7 +23,7 @@ public abstract class MainDao<T> {
 		session.update(value);
 	}
 	
-	abstract T byId(int id);
-	
-	abstract List<T> byList(String namedQery);
+	public abstract void delete(int id);
+	public abstract T byId(int id);
+	public abstract List<T> byList(String namedQery);
 }

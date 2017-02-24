@@ -18,7 +18,7 @@ public class CompanyModel{
 	public void setName(String name) {
 		this.name = name;
 	}
-	public boolean isRemove() {
+	public boolean getRemove() {
 		return remove;
 	}
 	public void setRemove(boolean remove) {
