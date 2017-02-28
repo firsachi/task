@@ -1,8 +1,11 @@
 package kievreclama.task.web.transformers;
 
+import org.springframework.stereotype.Component;
+
 import kievreclama.task.entity.Department;
 import kievreclama.task.web.models.DepartmentModel;
 
+@Component
 public class DepartmentTransformer{
 
 	public Department modelToEntity(DepartmentModel model) {

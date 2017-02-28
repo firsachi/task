@@ -6,9 +6,7 @@
 package kievreclama.task.controllers;
 
 import java.sql.SQLException;
-import kievreclama.task.dao.DepartmentDao;
 import kievreclama.task.dao.TaskDao;
-import kievreclama.task.dao.impl.DepartmentDaoImpl;
 import kievreclama.task.dao.impl.TaskDaoImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping
 public class RootController {
     
-    private final DepartmentDao departmentDao = new DepartmentDaoImpl();
     
     @RequestMapping(value = "/")
     public String getPageIndex(Model model) throws SQLException{

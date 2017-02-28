@@ -15,6 +15,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -24,6 +26,9 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "department")
+@NamedQueries({
+	@NamedQuery(name = "allDepartments", query = "FROM Department D ORDER BY D.id")
+})
 public class Department implements Serializable {
     
     /**
@@ -54,7 +59,7 @@ public class Department implements Serializable {
     private List<Employee> employees;
     
     @Column(name = "delete")
-    private Boolean delete;
+    private boolean remove = false;
 
     public void setId(Integer id) {
         this.id = id;
@@ -72,8 +77,8 @@ public class Department implements Serializable {
         this.fax = fax;
     }
 
-    public void setDelete(Boolean delete) {
-        this.delete = delete;
+    public void setRemove(boolean delete) {
+        this.remove = delete;
     }
 
     public void setEmployees(List<Employee> employees) {
@@ -97,8 +102,8 @@ public class Department implements Serializable {
         return fax;
     }
 
-    public Boolean getDelete() {
-        return delete;
+    public boolean getRemove() {
+        return remove;
     }
 
     public List<Employee> getEmployees() {

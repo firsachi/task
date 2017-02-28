@@ -5,7 +5,6 @@ import java.util.List;
 import javax.persistence.TypedQuery;
 
 import org.hibernate.Session;
-import org.hibernate.query.Query;
 
 import kievreclama.task.entity.Company;
 
@@ -14,9 +13,7 @@ public class CompanyDaoImpl extends MainDao<Company>{
 	@Override
 	public void delete(int id) {
 		Session session = sessionFactory.getCurrentSession();
-		Query<Company> query = session.createQuery("deleteCompany", Company.class);
-		query.setParameter("idCompany", id);
-		//query.executeUpdate();
+		session.createNamedQuery("deleteCompany").setParameter("id", id).executeUpdate();
 	}
 	
 	@Override

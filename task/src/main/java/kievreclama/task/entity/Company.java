@@ -31,11 +31,11 @@ import javax.persistence.Table;
 					),
 			@NamedQuery(
 					name = "company", 
-					query = "from Company C where remove = false ORDER BY C.id"
+					query = "from Company C where C.remove = false ORDER BY C.id"
 					),
 			@NamedQuery(
 					name = "deleteCompany", 
-					query = "UPDATE Company SET remove = true WHERE id = :idCompany"
+					query = "UPDATE Company C SET C.remove = true WHERE C.id = :id"
 					)
 		}
 	)
@@ -56,7 +56,7 @@ public class Company implements Serializable {
     private String name;
     
     @Column(name = "delete")
-    private boolean remove;
+    private boolean remove = false;
 
 	@OneToMany(mappedBy = "enterprise", fetch = FetchType.LAZY)
     private List<Employee> employees;
