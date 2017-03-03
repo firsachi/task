@@ -13,6 +13,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 /**
@@ -20,6 +22,11 @@ import javax.persistence.OneToMany;
  * @author firsov
  */
 @Entity
+@NamedQueries({
+	@NamedQuery(name = "allPosts", query = "FROM Post P ORDER BY P.id"),
+	@NamedQuery(name = "posts", query = "FROM Post P WHERE P.remove = false ORDER BY P.id"),
+	@NamedQuery(name = "deletePost", query = "UPDATE Post P SET P.remove = true WHERE P.id = :id")
+	})
 public class Post implements Serializable {
     
     /**
@@ -40,6 +47,9 @@ public class Post implements Serializable {
     
     @OneToMany(mappedBy = "post", fetch = FetchType.LAZY)
     private Set<Employee> employees;
+    
+    @Column(name = "delete")
+    private boolean remove;
 
     public void setId(Integer id) {
         this.id = id;
@@ -57,6 +67,10 @@ public class Post implements Serializable {
         this.employees = employees;
     }
 
+    public boolean getRemove() {
+		return remove;
+	}
+    
     public Integer getId() {
         return id;
     }
@@ -72,5 +86,11 @@ public class Post implements Serializable {
     public Set<Employee> getEmployees() {
         return employees;
     }
+
+	public void setRemove(boolean remove) {
+		this.remove = remove;
+	}
+    
+    
     
 }

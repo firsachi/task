@@ -10,6 +10,10 @@ import kievreclama.task.controllers.models.ModelPost;
 import kievreclama.task.dao.PostDao;
 import kievreclama.task.dao.impl.PostDaoImpl;
 import kievreclama.task.entity.Post;
+import kievreclama.task.web.PostService;
+import kievreclama.task.web.models.PostModel;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,54 +31,46 @@ import org.springframework.web.servlet.ModelAndView;
 public class PostController {
     
     private PostDao postDao = new PostDaoImpl(); ;
-    private final int isNew = 0;
     private final String NAME_MODEL = "modelPost";
+    @Autowired
+    private PostService postSercice;
+    
+    private final String[] HEFT_POST = {"1.0","1.1","2.0","2.1","3.0","3.1","4.0","4.1","5.0","5.1","6.0","6.1","7.0","7.1","8.0","8.1","9.0","9.1"};
     
     @RequestMapping
     public String getPagePost(Model model) throws SQLException{
-        model.addAttribute("position", postDao.list());
+        model.addAttribute("position", postSercice.getList("posts"));
         return "post";
     }
     
-    @RequestMapping(value = "/add")
+    @RequestMapping(value = "add")
     public ModelAndView getPageFormDeparmentAdd(){
-        ModelAndView model = new ModelAndView("form-post-add", NAME_MODEL, new ModelPost());
+        ModelAndView model = new ModelAndView("form-post-add", NAME_MODEL, new PostModel());
+        model.addObject("HEFT_POST", HEFT_POST);
         return model;
     }
     
-    @GetMapping(value = "/edit{id}")
-    public ModelAndView getPagesFormCompany( @PathVariable Integer id ) throws SQLException{
-        ModelPost modelPost = new ModelPost();
-        if (id != isNew){
-            modelPost = fillModell(postDao.find(id));
-        }
-        ModelAndView modelAndView = new ModelAndView("form-post-edit", NAME_MODEL, modelPost);
-        return modelAndView;
+    @GetMapping(value = "edit{id}")
+    public ModelAndView getPagesFormCompany( @PathVariable int id ){
+        ModelAndView model = new ModelAndView("form-post-edit", NAME_MODEL, postSercice.getId(id));
+        model.addObject("HEFT_POST", HEFT_POST);
+        return model;
     }
     
-    private ModelPost fillModell(Post post){
-        ModelPost modelPost = new ModelPost();
-        modelPost.setId(post.getId());
-        modelPost.setName(post.getName());
-        modelPost.setHeft(post.getHeft());
-        return modelPost;
+    @GetMapping(value = "delete{id}")
+    public String delete( @PathVariable int id ){
+    	postSercice.delete(id);
+    	return "redirect:../post/";
     }
     
     @RequestMapping(value = "/save")
-    public String submit(@ModelAttribute(NAME_MODEL)ModelPost modelPost) throws SQLException{
-        action(modelPost);
+    public String submit(@ModelAttribute(NAME_MODEL)PostModel postModel){
+    	int isNew = 0;
+    	if(postModel.getId() == isNew){
+    		postSercice.save(postModel);
+    	}else{
+    		postSercice.update(postModel);
+    	}
         return "redirect:../post/";
-    }
-    
-    private void action(ModelPost modelPost) throws SQLException{
-        Post post = new Post();
-        post.setId(modelPost.getId());
-        post.setName(modelPost.getName());
-        post.setHeft(modelPost.getHeft());
-        if(post.getId() == 0){
-            postDao.add(post);
-        }else{
-            postDao.update(post);
-        }
     }
 }

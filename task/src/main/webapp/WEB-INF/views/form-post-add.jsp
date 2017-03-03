@@ -31,7 +31,7 @@
             	</div>
             	<div class="form-group">
                 	<form:label path="heft"><spring:message code="label.title.table.post.heft"/></form:label>
-                	<form:select path="heft" items="${modelPost.getHEFT_POST()}"/>
+                	<form:select path="heft" items="${HEFT_POST}"/>
             	</div>
             	<%@include file="../jspf/button-form.jspf" %>
         	</form:form>
