@@ -64,16 +64,16 @@
         		</tr>
         		<c:forEach var="employee" items="${employees}">
         			<tr>
-        				<td>${employee.getPhone().getNumber()}</td>
-        				<td>${employee.getRoom().getNumberRoom()}</td>
+        				<td>${employee.getPhone()}</td>
+        				<td>${employee.getRoom()}</td>
         				<td>
                         	${employee.getSurname()} 
                             ${employee.getName()} 
                             ${employee.getPatronymic()}
                         </td>
-                        <td>${employee.getEnterprise().getName()}</td>
-                        <td>${employee.getDepartment().getName()}</td>
-                        <td>${employee.getPost().getName()}</td>
+                        <td>${employee.getEnterprise()}</td>
+                        <td>${employee.getDepartment()}</td>
+                        <td>${employee.getPost()}</td>
                         <td>${employee.getEmail()}</td>
                         <td>
         					<button onclick="self.location.href='edit${employee.getId()}';" data-toggle="dropdown">

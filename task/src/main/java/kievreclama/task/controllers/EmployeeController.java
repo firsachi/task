@@ -17,6 +17,10 @@ import kievreclama.task.dao.impl.PhoneDaoImpl;
 import kievreclama.task.dao.impl.PostDaoImpl;
 import kievreclama.task.dao.impl.RoomDaoImpl;
 import kievreclama.task.entity.Company;
+import kievreclama.task.web.EmployeeService;
+import kievreclama.task.web.models.EmployeeModel;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,6 +44,9 @@ public class EmployeeController {
     private final PostDao postDao = new PostDaoImpl();
     private final PhoneDao phoneDao = new PhoneDaoImpl();
     private final RoomDao roomDao = new RoomDaoImpl();
+    
+    @Autowired
+    private EmployeeService employeeService;
 
     public EmployeeController() {
         this.companyDao = new CompanyDaoImpl(new Company());
@@ -47,14 +54,18 @@ public class EmployeeController {
     
     @RequestMapping(value = "/")
     public String getPageTasks(Model model) throws SQLException{
-        model.addAttribute("employees", employeeDao.getList());
+        model.addAttribute("employees", employeeService.getList("allEmployee"));
         model.addAttribute("rooms", roomDao.list());
         return "employees";
     }
     
     @RequestMapping(value = "/add")
     public ModelAndView getPageFormAdd(){
-        return new ModelAndView();
+    	ModelAndView model = new ModelAndView();
+    	model.setViewName("form-employee-add");
+    	model.addObject("modelEmployee", new EmployeeModel());
+    	model.addAllObjects(employeeService.allCompnents());
+        return model;
     }
     
     @GetMapping(value = "/edit{id}")

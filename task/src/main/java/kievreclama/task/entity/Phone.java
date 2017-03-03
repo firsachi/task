@@ -13,6 +13,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -22,6 +24,9 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "phone")
+@NamedQueries({
+	@NamedQuery ( name = "allPhone", query = "FROM Phone P ORDER BY P.id")
+})
 public class Phone implements Serializable {
     
     /**
@@ -32,10 +37,10 @@ public class Phone implements Serializable {
 	@Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private int id;
     
     @Column(name = "number", unique = true)
-    private Integer number;
+    private int number;
     
     @OneToMany(mappedBy = "phone", fetch = FetchType.LAZY)
     private Set<Employee> employees;
@@ -52,11 +57,11 @@ public class Phone implements Serializable {
         this.employees = employees;
     }
     
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public Integer getNumber() {
+    public int getNumber() {
         return number;
     }
 
