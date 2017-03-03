@@ -25,7 +25,8 @@ public class DepartmentDaoImpl extends MainDao<Department>{
 
 	@Override
 	public void delete(int id) {
-		
+		Session session = sessionFactory.getCurrentSession();
+		session.createNamedQuery("deleteDepartment").setParameter("id", id).executeUpdate();
 	}
 
 	@Override

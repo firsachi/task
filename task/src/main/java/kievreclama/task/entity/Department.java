@@ -27,7 +27,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "department")
 @NamedQueries({
-	@NamedQuery(name = "allDepartments", query = "FROM Department D ORDER BY D.id")
+	@NamedQuery(name = "allDepartments", query = "FROM Department D ORDER BY D.id"),
+	@NamedQuery(name = "department", query = "FROM Department D WHERE D.remove = false ORDER BY D.id" ),
+	@NamedQuery(name = "deleteDepartment", query = "UPDATE Department D SET D.remove = true WHERE D.id = :id")
 })
 public class Department implements Serializable {
     

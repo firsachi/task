@@ -41,10 +41,10 @@
         				<td>${department.getPhone()}</td>
         				<td>${department.getFax()}</td>
         				<td>
-        					<button onclick="self.location.href='edit${department.getId()}';" data-toggle="dropdown">
+        					<button onclick="self.location.href='edit${department.getId()}';">
     							<spring:message code="label.button.edit"/>
     						</button>
-    						<button onclick="show( this )" data-toggle="dropdown">
+    						<button onclick="self.location.href='delete${department.getId()}';">
     							<spring:message code="label.button.delete"/>
     						</button>
         				</td>

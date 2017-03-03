@@ -22,26 +22,23 @@ public class DepartmentService extends ServiseTask<DepartmentModel>{
 
 	@Override
 	public void save(DepartmentModel value) {
-		// TODO Auto-generated method stub
+		departmentDao.insert(departmentTransformer.modelToEntity(value));
 		
 	}
 
 	@Override
 	public void update(DepartmentModel value) {
-		// TODO Auto-generated method stub
-		
+		departmentDao.update(departmentTransformer.modelToEntity(value));
 	}
 
 	@Override
 	public void delete(int id) {
-		// TODO Auto-generated method stub
-		
+		departmentDao.delete(id);
 	}
 
 	@Override
 	public DepartmentModel getId(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return departmentTransformer.entityToModel(departmentDao.byId(id));
 	}
 
 	@Override
