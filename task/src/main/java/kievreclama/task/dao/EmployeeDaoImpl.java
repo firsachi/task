@@ -14,14 +14,14 @@ public class EmployeeDaoImpl extends MainDao<Employee>{
 
 	@Override
 	public void delete(int id) {
-		// TODO Auto-generated method stub
-		
+		Session session = sessionFactory.getCurrentSession();
+		session.createNamedQuery("deleteEmployee").setParameter("id", id).executeUpdate();
 	}
 
 	@Override
 	public Employee byId(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		Session session = sessionFactory.getCurrentSession();
+		return session.get(Employee.class, id);
 	}
 
 	@Override

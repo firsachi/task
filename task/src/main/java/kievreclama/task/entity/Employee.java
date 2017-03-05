@@ -29,7 +29,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "emplouers")
 @NamedQueries({
-	@NamedQuery (name = "allEmployee", query = "FROM Employee E ORDER BY E.id")
+	@NamedQuery (name = "allEmployee", query = "FROM Employee E ORDER BY E.id"),
+	@NamedQuery (name = "employees", query = "FROM Employee E WHERE E.remove = false ORDER BY E.id"),
+	@NamedQuery (name = "deleteEmployee", query = "UPDATE Employee E SET E.remove = true WHERE E.id = :id")
 })
 public class Employee implements Cloneable, Serializable{
     

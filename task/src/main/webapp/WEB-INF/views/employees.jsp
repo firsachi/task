@@ -6,6 +6,7 @@
 
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@page contentType="text/html" pageEncoding="UTF-8" language="java"%>
 <!DOCTYPE html>
 <html>
@@ -25,8 +26,8 @@
                 <spring:message code="label.title.table.employee.room"/>
                 <select id="room" name="room">
                     <option value="0"> All </option>
-                    <c:forEach var="room" items="${rooms}">
-                        <option>${room.getNumberRoom()}</option>
+                    <c:forEach var="room" items="${listRoom}">
+                        <option><c:out value="${room.numberRoom}"></c:out></option>
                     </c:forEach>
                 </select>
             </div>
@@ -34,8 +35,8 @@
                 <spring:message code="label.title.table.employee.department"/>
                 <select id="department" name="department">
                     <option value="0"> All </option>
-                    <c:forEach var="department" items="${departments}">
-                        <option>${department.getName()}</option>
+                    <c:forEach var="department" items="${listDepartment}">
+                        <option><c:out value="${department.name}"></c:out></option>
                     </c:forEach>
                 </select>
             </div>
@@ -64,22 +65,22 @@
         		</tr>
         		<c:forEach var="employee" items="${employees}">
         			<tr>
-        				<td>${employee.getPhone()}</td>
-        				<td>${employee.getRoom()}</td>
+        				<td><c:out value="${employee.phone}"/></td>
+        				<td><c:out value="${employee.room}"/></td>
         				<td>
-                        	${employee.getSurname()} 
-                            ${employee.getName()} 
-                            ${employee.getPatronymic()}
+        					<c:out value="${employee.surname}"/>
+                        	<c:out value="${employee.name}"/>
+                        	<c:out value="${employee.patronymic}"/>
                         </td>
-                        <td>${employee.getEnterprise()}</td>
-                        <td>${employee.getDepartment()}</td>
-                        <td>${employee.getPost()}</td>
-                        <td>${employee.getEmail()}</td>
+                        <td><c:out value="${ employee.enterprise }"/></td>
+                        <td><c:out value="${ employee.department }"/></td>
+                        <td><c:out value="${employee.post}"/></td>
+                        <td><c:out value="${employee.email}"/></td>
                         <td>
-        					<button onclick="self.location.href='edit${employee.getId()}';" data-toggle="dropdown">
+        					<button onclick="self.location.href='edit${employee.getId()}';">
     							<spring:message code="label.button.edit"/>
     						</button>
-    						<button onclick="show( this )" data-toggle="dropdown">
+    						<button onclick="self.location.href='delete${employee.getId()}';">
     							<spring:message code="label.button.delete"/>
     						</button>
         				</td>
