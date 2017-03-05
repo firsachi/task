@@ -31,7 +31,7 @@ import javax.persistence.Table;
 					),
 			@NamedQuery(
 					name = "company", 
-					query = "from Company C where C.remove = false ORDER BY C.id"
+					query = "from Company C where C.remove = false ORDER BY C.name"
 					),
 			@NamedQuery(
 					name = "deleteCompany", 
@@ -61,7 +61,16 @@ public class Company implements Serializable {
 	@OneToMany(mappedBy = "enterprise", fetch = FetchType.LAZY)
     private List<Employee> employees;
 
-    public void setId(Integer id) {
+	
+	
+    public Company() {
+	}
+
+	public Company(int id) {
+		this.id = id;
+	}
+
+	public void setId(Integer id) {
         this.id = id;
     }
 

@@ -43,9 +43,21 @@ public class Phone implements Serializable {
     private int number;
     
     @OneToMany(mappedBy = "phone", fetch = FetchType.LAZY)
+    
+    
+    
     private Set<Employee> employees;
 
-    public void setId(Integer id) {
+    public Phone() {
+	}
+
+	public Phone(int id) {
+		this.id = id;
+	}
+
+
+
+	public void setId(Integer id) {
         this.id = id;
     }
 

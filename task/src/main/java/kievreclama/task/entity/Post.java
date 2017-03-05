@@ -24,7 +24,7 @@ import javax.persistence.OneToMany;
 @Entity
 @NamedQueries({
 	@NamedQuery(name = "allPosts", query = "FROM Post P ORDER BY P.id"),
-	@NamedQuery(name = "posts", query = "FROM Post P WHERE P.remove = false ORDER BY P.id"),
+	@NamedQuery(name = "posts", query = "FROM Post P WHERE P.remove = false ORDER BY P.name"),
 	@NamedQuery(name = "deletePost", query = "UPDATE Post P SET P.remove = true WHERE P.id = :id")
 	})
 public class Post implements Serializable {
@@ -51,7 +51,14 @@ public class Post implements Serializable {
     @Column(name = "delete")
     private boolean remove;
 
-    public void setId(Integer id) {
+    public Post() {
+	}
+
+	public Post(Integer id) {
+		this.id = id;
+	}
+
+	public void setId(Integer id) {
         this.id = id;
     }
 

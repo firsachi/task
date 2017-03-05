@@ -28,7 +28,7 @@ import javax.persistence.Table;
 @Table(name = "department")
 @NamedQueries({
 	@NamedQuery(name = "allDepartments", query = "FROM Department D ORDER BY D.id"),
-	@NamedQuery(name = "department", query = "FROM Department D WHERE D.remove = false ORDER BY D.id" ),
+	@NamedQuery(name = "department", query = "FROM Department D WHERE D.remove = false ORDER BY D.name" ),
 	@NamedQuery(name = "deleteDepartment", query = "UPDATE Department D SET D.remove = true WHERE D.id = :id")
 })
 public class Department implements Serializable {
@@ -63,7 +63,16 @@ public class Department implements Serializable {
     @Column(name = "delete")
     private boolean remove = false;
 
-    public void setId(Integer id) {
+    
+    
+    public Department() {
+	}
+
+	public Department(int id) {
+		this.id = id;
+	}
+
+	public void setId(Integer id) {
         this.id = id;
     }
 
