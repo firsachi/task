@@ -5,11 +5,6 @@
  */
 package kievreclama.task.controllers;
 
-import java.sql.SQLException;
-import kievreclama.task.controllers.models.ModelPost;
-import kievreclama.task.dao.PostDao;
-import kievreclama.task.dao.impl.PostDaoImpl;
-import kievreclama.task.entity.Post;
 import kievreclama.task.web.PostService;
 import kievreclama.task.web.models.PostModel;
 
@@ -30,15 +25,15 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping(value = "/private/post/")
 public class PostController {
     
-    private PostDao postDao = new PostDaoImpl(); ;
     private final String NAME_MODEL = "modelPost";
+    
     @Autowired
     private PostService postSercice;
     
     private final String[] HEFT_POST = {"1.0","1.1","2.0","2.1","3.0","3.1","4.0","4.1","5.0","5.1","6.0","6.1","7.0","7.1","8.0","8.1","9.0","9.1"};
     
     @RequestMapping
-    public String getPagePost(Model model) throws SQLException{
+    public String getPagePost(Model model){
         model.addAttribute("position", postSercice.getList("posts"));
         return "post";
     }

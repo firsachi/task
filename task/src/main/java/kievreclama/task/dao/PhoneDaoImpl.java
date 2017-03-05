@@ -5,9 +5,11 @@ import java.util.List;
 import javax.persistence.TypedQuery;
 
 import org.hibernate.Session;
+import org.springframework.stereotype.Repository;
 
 import kievreclama.task.entity.Phone;
 
+@Repository("phoneDao")
 public class PhoneDaoImpl extends MainDao<Phone>{
 
 	@Override

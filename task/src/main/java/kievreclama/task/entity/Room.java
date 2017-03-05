@@ -45,7 +45,15 @@ public class Room implements Serializable {
     @OneToMany(mappedBy = "room", fetch = FetchType.LAZY)
     private List<Employee> employees;
 
-    public void setId(Integer id) {
+    
+    public Room() {
+	}
+
+	public Room(int id) {
+		this.id = id;
+	}
+
+	public void setId(Integer id) {
         this.id = id;
     }
 
