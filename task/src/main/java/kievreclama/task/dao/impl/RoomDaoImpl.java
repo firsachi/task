@@ -1,43 +1,35 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package kievreclama.task.dao.impl;
 
-import java.sql.SQLException;
 import java.util.List;
-import kievreclama.task.dao.RoomDao;
-import kievreclama.task.dao.hibernate.HibernateUtil;
-import kievreclama.task.entity.Room;
-import org.hibernate.Criteria;
+
+import javax.persistence.TypedQuery;
+
 import org.hibernate.Session;
+import org.springframework.stereotype.Repository;
 
-/**
- *
- * @author firsov
- */
-public class RoomDaoImpl implements RoomDao{
+import kievreclama.task.dao.MainDao;
+import kievreclama.task.entity.Room;
 
-    @Override
-    public List<Room> list() throws SQLException {
-        List<Room> resultList;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            session.beginTransaction();
-            Criteria criteria = session.createCriteria(Room.class);
-            resultList = criteria.list();
-            session.getTransaction().commit();
-        }
-        return  resultList;
-    }
+@Repository("roomDao")
+public class RoomDaoImpl extends MainDao<Room>{
 
-    @Override
-    public Room find(Integer id) throws SQLException {
-        Room room;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            room = session.get(Room.class, id);
-        }
-        return  room;
-    }
-    
+	@Override
+	public void delete(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Room byId(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Room> byList(String namedQery) {
+		Session session = sessionFactory.getCurrentSession();
+		TypedQuery<Room> listRoom = session.createNamedQuery("allRooms", Room.class);
+		return listRoom.getResultList();
+	}
+
 }

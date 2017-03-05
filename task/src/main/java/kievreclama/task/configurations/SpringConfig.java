@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
-import kievreclama.task.dao.CompanyDaoImpl;
+import kievreclama.task.dao.impl.CompanyDaoImpl;
 
 @Configuration
 @EnableTransactionManagement

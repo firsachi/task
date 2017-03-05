@@ -1,41 +1,35 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package kievreclama.task.dao.impl;
 
-import java.sql.SQLException;
 import java.util.List;
-import kievreclama.task.dao.PhoneDao;
-import kievreclama.task.dao.hibernate.HibernateUtil;
-import kievreclama.task.entity.Phone;
-import org.hibernate.Criteria;
+
+import javax.persistence.TypedQuery;
+
 import org.hibernate.Session;
+import org.springframework.stereotype.Repository;
 
-/**
- *
- * @author firsachi
- */
-public class PhoneDaoImpl implements PhoneDao{
-    
-    @Override
-    public Phone find(Integer id) throws SQLException{
-        Phone phone;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            phone = session.get(Phone.class, id);
-        }
-        return phone;
-    }
+import kievreclama.task.dao.MainDao;
+import kievreclama.task.entity.Phone;
 
-    @Override
-    public List<Phone> list() throws SQLException{
-        List<Phone> resultList;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            Criteria criteria = session.createCriteria(Phone.class);
-            resultList = criteria.list();
-        }
-        return resultList;
-    }
-    
+@Repository("phoneDao")
+public class PhoneDaoImpl extends MainDao<Phone>{
+
+	@Override
+	public void delete(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Phone byId(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Phone> byList(String namedQery) {
+		Session session = sessionFactory.getCurrentSession();
+		TypedQuery<Phone> listPhone = session.createNamedQuery("allPhone", Phone.class);
+		return listPhone.getResultList();
+	}
+
 }

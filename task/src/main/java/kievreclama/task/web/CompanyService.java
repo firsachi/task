@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import kievreclama.task.dao.CompanyDaoImpl;
+import kievreclama.task.dao.impl.CompanyDaoImpl;
 import kievreclama.task.entity.Company;
 import kievreclama.task.web.models.CompanyModel;
 import kievreclama.task.web.transformers.CompanyTransformer;

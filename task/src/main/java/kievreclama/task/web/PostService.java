@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import kievreclama.task.dao.PostDaoImpl;
+import kievreclama.task.dao.impl.PostDaoImpl;
 import kievreclama.task.entity.Post;
 import kievreclama.task.web.models.PostModel;
 import kievreclama.task.web.transformers.PostTransformer;

@@ -1,71 +1,35 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package kievreclama.task.dao.impl;
 
-import java.sql.SQLException;
 import java.util.List;
-import kievreclama.task.dao.PostDao;
-import kievreclama.task.dao.hibernate.HibernateUtil;
-import kievreclama.task.entity.Post;
-import org.hibernate.Criteria;
+
+import javax.persistence.TypedQuery;
+
 import org.hibernate.Session;
-import org.hibernate.criterion.Order;
+import org.springframework.stereotype.Repository;
 
-/**
- *
- * @author firsov
- */
-public class PostDaoImpl implements PostDao{
+import kievreclama.task.dao.MainDao;
+import kievreclama.task.entity.Post;
 
-    @Override
-    public void add(Post post) throws SQLException {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            session.beginTransaction();
-            session.save(post);
-            session.getTransaction().commit();
-        }
-    }
+@Repository("postDao")
+public class PostDaoImpl extends MainDao<Post>{
 
-    @Override
-    public void delete(Post post) throws SQLException {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            session.beginTransaction();
-            session.delete(post);
-            session.getTransaction().commit();
-        }
-    }
-    
-    @Override
-    public void update(Post post){
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            session.beginTransaction();
-            session.update(post);
-            session.getTransaction().commit();
-        }
-    }
+	@Override
+	public void delete(int id) {
+		Session session = sessionFactory.getCurrentSession();
+		session.createNamedQuery("deletePost").setParameter("id", id).executeUpdate();
+	}
 
-    @Override
-    public Post find(Integer id) throws SQLException {
-        Post result;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            session.beginTransaction();
-            result = session.get(Post.class, id);
-            session.getTransaction().commit();
-        }
-        return result;
-    }
+	@Override
+	public Post byId(int id) {
+		Session session = sessionFactory.getCurrentSession();
+		return session.get(Post.class, id);
+	}
 
-    @Override
-    public List<Post> list() throws SQLException {
-        List<Post> resultList;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            Criteria criteria = session.createCriteria(Post.class).addOrder(Order.asc("id"));
-            resultList = criteria.list();
-        }
-        return resultList;
-    }
-    
+	@Override
+	public List<Post> byList(String namedQery) {
+		Session session = sessionFactory.getCurrentSession();
+		TypedQuery<Post> postList = session.createNamedQuery(namedQery, Post.class);
+		return postList.getResultList();
+	}
+
 }

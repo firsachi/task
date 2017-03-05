@@ -8,12 +8,12 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import kievreclama.task.dao.CompanyDaoImpl;
-import kievreclama.task.dao.EmployeeDaoImpl;
-import kievreclama.task.dao.PhoneDaoImpl;
-import kievreclama.task.dao.PostDaoImpl;
-import kievreclama.task.dao.RoomDaoImpl;
+import kievreclama.task.dao.impl.CompanyDaoImpl;
 import kievreclama.task.dao.impl.DepartmentDaoImpl;
+import kievreclama.task.dao.impl.EmployeeDaoImpl;
+import kievreclama.task.dao.impl.PhoneDaoImpl;
+import kievreclama.task.dao.impl.PostDaoImpl;
+import kievreclama.task.dao.impl.RoomDaoImpl;
 import kievreclama.task.entity.Employee;
 import kievreclama.task.web.models.EmployeeModel;
 import kievreclama.task.web.transformers.EmployeeTransformer;
