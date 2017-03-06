@@ -16,6 +16,4 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(value = "/private/tasks/")
 public class TtaskController {
     
-
-
 }

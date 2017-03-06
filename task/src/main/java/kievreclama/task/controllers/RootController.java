@@ -5,9 +5,6 @@
  */
 package kievreclama.task.controllers;
 
-import java.sql.SQLException;
-import kievreclama.task.dao.TaskDao;
-import kievreclama.task.dao.impl.TaskDaoImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,9 +19,7 @@ public class RootController {
     
     
     @RequestMapping(value = "/")
-    public String getPageIndex(Model model) throws SQLException{
-        TaskDao taskDao = new TaskDaoImpl();
-        model.addAttribute("tasks", taskDao.list());
+    public String getPageIndex(Model model){
         return "index";
     }
 }
