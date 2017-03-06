@@ -15,8 +15,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import kievreclama.task.dao.CompanyDao;
-import kievreclama.task.dao.DepartmentDao;
 import kievreclama.task.dao.impl.CompanyDaoImpl;
 import kievreclama.task.dao.impl.DepartmentDaoImpl;
 import kievreclama.task.dao.impl.EmployeeDaoImpl;
