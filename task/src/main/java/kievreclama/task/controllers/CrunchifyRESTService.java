@@ -5,123 +5,99 @@
  */
 package kievreclama.task.controllers;
 
-import java.sql.SQLException;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
+
 import kievreclama.task.dao.impl.CompanyDaoImpl;
 import kievreclama.task.dao.impl.DepartmentDaoImpl;
 import kievreclama.task.dao.impl.EmployeeDaoImpl;
 import kievreclama.task.entity.Company;
 import kievreclama.task.entity.Department;
 import kievreclama.task.entity.Employee;
+
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 
 /**
  *
  * @author firsov
  */
-@Path("/")
+@RestController
+@RequestMapping( value = "/api/", produces = "text/plain;charset=UTF-8")
 public class CrunchifyRESTService {
-    @GET
-    @Path("/crunchifyService")
-    @Consumes(MediaType.APPLICATION_JSON)
-    public Response crunchifyREST(){
+	
+	@Autowired
+	private CompanyDaoImpl companyDao;
+	
+	@Autowired 
+	private DepartmentDaoImpl departmentDao;
+	
+	@Autowired
+	private EmployeeDaoImpl employeeDao;
+    
+	@CrossOrigin
+	@RequestMapping(value = "crunchifyService")
+    public String listCompany(){
         StringBuilder crunchifyBuilder = new StringBuilder();
-        CompanyDao companyDao = new CompanyDaoImpl(new Company());
-        List<Company> list = null;
+        JSONArray array = new JSONArray();
         try {
-            list = companyDao.getList();
-        } catch (SQLException ex) {
-            Logger.getLogger(CrunchifyRESTService.class.getName()).log(Level.SEVERE, null, ex);
-        }
-            JSONObject resultJson = new JSONObject();
-        try {
-            crunchifyBuilder.append("[");
-            int index = 0;
-            int siseList = list.size() - 1;
-            for (Company company: list){
+            for (Company company: companyDao.byList("company")){
+            	JSONObject resultJson = new JSONObject();
                 resultJson.put("name", company.getName());
                 crunchifyBuilder.append(resultJson.toString());
-                if (index != siseList--) {
-                    crunchifyBuilder.append(",");
-                }
+                array.put(resultJson);
             }
-           crunchifyBuilder.append("]");
-           // resultJson[1].put("name", companyDao.getList().get(1).getName());
         } catch (JSONException ex) {
             Logger.getLogger(CrunchifyRESTService.class.getName()).log(Level.SEVERE, null, ex);
         }
-            return Response.status(200).entity(crunchifyBuilder.toString()).header("Access-Control-Allow-Origin", "*").build();
+            return array.toString();
 	}
-
-	@GET
-	@Path("/loadDepartments")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response listDepartments() throws SQLException {
-            StringBuilder result = new StringBuilder();
-            DepartmentDao departmentDao = new DepartmentDaoImpl();
-            List<Department> departmentsList = departmentDao.list();
-            JSONObject resultJson = new JSONObject();
-            result.append("[");
-            int index = 0;
-            int siseList = departmentsList.size() - 1;
-                for (Department department: departmentDao.list()){
+	
+	@CrossOrigin
+	@RequestMapping(value = "loadDepartments")
+	public String listDepartments(){
+            JSONArray rsultArray = new JSONArray();
+            for (Department department: departmentDao.byList("department")){
                     try {
-                        resultJson.put("idDepartment", department.getId());
-                        resultJson.put("name", department.getName());
-                        resultJson.put("phone", department.getPhone());
-                        resultJson.put("fax", department.getFax());
-                       // resultJson.put("listEmployees", resultString.toString());
-                        result.append(resultJson.toString());
-                        if (index != siseList--) {
-                            result.append(",");
-                        }
+                    	JSONObject obj = new JSONObject();
+                    	obj.put("idDepartment", department.getId());
+                    	obj.put("name", department.getName());
+                    	obj.put("phone", department.getPhone());
+                    	obj.put("fax", department.getFax());
+                    	rsultArray.put(obj);
                     } catch (JSONException ex) {
                         Logger.getLogger(CrunchifyRESTService.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
-            result.append("]");
-            // return HTTP response 200 in case of success
-            return Response.status(200).entity(result.toString()).header("Access-Control-Allow-Origin", "*").build();
+            return rsultArray.toString();
 	}
     
-        @GET
-	@Path("/loadEmployes/{id}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response listEmployees(@PathParam("id") Integer id ) throws SQLException {
-            StringBuilder result = new StringBuilder();
-            List<Employee> list = new EmployeeDaoImpl().getList(id);
-            JSONObject resultJson = new JSONObject();
-            result.append("[");
-            int index = 0;
-            int siseList = list.size() -1;
-                for (Employee employee : list){
+	@CrossOrigin
+    @GetMapping(value = "/loadEmployes/{id}")
+	public String listEmployees( @PathVariable int id ){
+            JSONArray resultArray = new JSONArray();
+                for (Employee employee : employeeDao.byList("selectIdDepartment", id)){
                     try {
-                        resultJson.put("fullName", employee.getSurname() + " " + employee.getName() + " " + employee.getPatronymic());
-                        resultJson.put("post", employee.getPost().getName());
-                        resultJson.put("phone", employee.getPhone().getNumber());
-                        resultJson.put("room", employee.getRoom().getNumberRoom());
-                        resultJson.put("email", employee.getEmail());
-                        resultJson.put("importance", employee.getPost().getHeft());
-                        result.append(resultJson.toString());
-                        if (index != siseList--) {
-                            result.append(",");
-                        }
+                    	JSONObject jsonObjekt = new JSONObject();
+                    	jsonObjekt.put("fullName", employee.getSurname() + " " + employee.getName() + " " + employee.getPatronymic());
+                    	jsonObjekt.put("post", employee.getPost().getName());
+                    	jsonObjekt.put("phone", employee.getPhone().getNumber());
+                    	jsonObjekt.put("room", employee.getRoom().getNumberRoom());
+                    	jsonObjekt.put("email", employee.getEmail());
+                    	jsonObjekt.put("importance", employee.getPost().getHeft());
+                    	resultArray.put(jsonObjekt);
                     } catch (JSONException ex) {
                         Logger.getLogger(CrunchifyRESTService.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
-            result.append("]");
-            // return HTTP response 200 in case of success
-            return Response.status(200).entity(result.toString()).header("Access-Control-Allow-Origin", "*").build();
+            return resultArray.toString();
 	}
 }
