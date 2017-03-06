@@ -4,7 +4,6 @@
     Author     : firsov
 --%>
 
-<%@page import="com.sun.jersey.server.impl.container.servlet.Include"%>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>

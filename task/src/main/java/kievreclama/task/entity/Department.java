@@ -42,7 +42,7 @@ public class Department implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Basic(optional = false)
     @Column(name = "id")
-    private Integer id;
+    private int id;
     
     @Basic(optional = false)
     @Column(name = "name")
@@ -63,8 +63,6 @@ public class Department implements Serializable {
     @Column(name = "delete")
     private boolean remove = false;
 
-    
-    
     public Department() {
 	}
 
@@ -72,7 +70,7 @@ public class Department implements Serializable {
 		this.id = id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
         this.id = id;
     }
 
@@ -97,7 +95,7 @@ public class Department implements Serializable {
     }
 
     
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 

@@ -32,4 +32,11 @@ public class EmployeeDaoImpl extends MainDao<Employee>{
 		return listEmloyee.getResultList();
 	}
 
+
+	public List<Employee> byList(String namedQery, int idDepartment) {
+		Session session = sessionFactory.getCurrentSession();
+		TypedQuery<Employee> listEmloyee = session.createNamedQuery(namedQery, Employee.class);
+		listEmloyee.setParameter("departmentId", idDepartment);
+		return listEmloyee.getResultList();
+	}
 }
