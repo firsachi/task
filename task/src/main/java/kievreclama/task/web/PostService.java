@@ -3,15 +3,18 @@ package kievreclama.task.web;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import kievreclama.task.dao.impl.PostDaoImpl;
 import kievreclama.task.entity.Post;
 import kievreclama.task.web.models.PostModel;
 import kievreclama.task.web.transformers.PostTransformer;
 
-@Component
+@Service
+@Transactional
 public class PostService extends ServiseTask<PostModel>{
 	
 	@Autowired

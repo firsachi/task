@@ -5,8 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import kievreclama.task.dao.impl.CompanyDaoImpl;
 import kievreclama.task.dao.impl.DepartmentDaoImpl;
@@ -18,7 +20,8 @@ import kievreclama.task.entity.Employee;
 import kievreclama.task.web.models.EmployeeModel;
 import kievreclama.task.web.transformers.EmployeeTransformer;
 
-@Component
+@Service
+@Transactional
 public class EmployeeService extends ServiseTask<EmployeeModel>{
 	
 	@Autowired

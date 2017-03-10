@@ -3,15 +3,18 @@ package kievreclama.task.web;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import kievreclama.task.dao.impl.DepartmentDaoImpl;
 import kievreclama.task.entity.Department;
 import kievreclama.task.web.models.DepartmentModel;
 import kievreclama.task.web.transformers.DepartmentTransformer;
 
-@Component
+@Service
+@Transactional
 public class DepartmentService extends ServiseTask<DepartmentModel>{
 	
 	@Autowired
