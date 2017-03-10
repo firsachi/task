@@ -128,5 +128,76 @@ public class Task implements Serializable {
     public Boolean getDelete() {
         return delete;
     }
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((date == null) ? 0 : date.hashCode());
+		result = prime * result + ((dateFormat == null) ? 0 : dateFormat.hashCode());
+		result = prime * result + ((delete == null) ? 0 : delete.hashCode());
+		result = prime * result + ((employee == null) ? 0 : employee.hashCode());
+		result = prime * result + id;
+		result = prime * result + ((number == null) ? 0 : number.hashCode());
+		result = prime * result + ((state == null) ? 0 : state.hashCode());
+		result = prime * result + ((task == null) ? 0 : task.hashCode());
+		result = prime * result + ((urgensy == null) ? 0 : urgensy.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Task other = (Task) obj;
+		if (date == null) {
+			if (other.date != null)
+				return false;
+		} else if (!date.equals(other.date))
+			return false;
+		if (dateFormat == null) {
+			if (other.dateFormat != null)
+				return false;
+		} else if (!dateFormat.equals(other.dateFormat))
+			return false;
+		if (delete == null) {
+			if (other.delete != null)
+				return false;
+		} else if (!delete.equals(other.delete))
+			return false;
+		if (employee == null) {
+			if (other.employee != null)
+				return false;
+		} else if (!employee.equals(other.employee))
+			return false;
+		if (id != other.id)
+			return false;
+		if (number == null) {
+			if (other.number != null)
+				return false;
+		} else if (!number.equals(other.number))
+			return false;
+		if (state == null) {
+			if (other.state != null)
+				return false;
+		} else if (!state.equals(other.state))
+			return false;
+		if (task == null) {
+			if (other.task != null)
+				return false;
+		} else if (!task.equals(other.task))
+			return false;
+		if (urgensy == null) {
+			if (other.urgensy != null)
+				return false;
+		} else if (!urgensy.equals(other.urgensy))
+			return false;
+		return true;
+	}
+    
     
 }

@@ -80,5 +80,37 @@ public class Phone implements Serializable {
     public Set<Employee> getEmployees() {
         return employees;
     }
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((employees == null) ? 0 : employees.hashCode());
+		result = prime * result + id;
+		result = prime * result + number;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Phone other = (Phone) obj;
+		if (employees == null) {
+			if (other.employees != null)
+				return false;
+		} else if (!employees.equals(other.employees))
+			return false;
+		if (id != other.id)
+			return false;
+		if (number != other.number)
+			return false;
+		return true;
+	}
+    
     
 }

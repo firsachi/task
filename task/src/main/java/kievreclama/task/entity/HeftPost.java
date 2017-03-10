@@ -49,6 +49,34 @@ public class HeftPost implements Serializable {
     public String getHeft() {
         return heft;
     }
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((heft == null) ? 0 : heft.hashCode());
+		result = prime * result + id;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		HeftPost other = (HeftPost) obj;
+		if (heft == null) {
+			if (other.heft != null)
+				return false;
+		} else if (!heft.equals(other.heft))
+			return false;
+		if (id != other.id)
+			return false;
+		return true;
+	}
     
     
 }
