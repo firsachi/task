@@ -1,12 +1,14 @@
 package kievreclama.task.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -23,8 +25,8 @@ public class UserRole implements Serializable{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int userRoleId;
 	
-	@Column(name="username")
-	private User user;
+	@OneToMany(mappedBy = "userRole")
+	private List<User> users;
 	
 	@Column(name="role")
 	private String role;
@@ -37,12 +39,12 @@ public class UserRole implements Serializable{
 		this.userRoleId = userRoleId;
 	}
 
-	public User getUser() {
-		return user;
+	public List<User> getUsers() {
+		return users;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUsers(List<User> users) {
+		this.users = users;
 	}
 
 	public String getRole() {
@@ -58,8 +60,8 @@ public class UserRole implements Serializable{
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((role == null) ? 0 : role.hashCode());
-		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		result = prime * result + userRoleId;
+		result = prime * result + ((users == null) ? 0 : users.hashCode());
 		return result;
 	}
 
@@ -77,20 +79,22 @@ public class UserRole implements Serializable{
 				return false;
 		} else if (!role.equals(other.role))
 			return false;
-		if (user == null) {
-			if (other.user != null)
-				return false;
-		} else if (!user.equals(other.user))
-			return false;
 		if (userRoleId != other.userRoleId)
+			return false;
+		if (users == null) {
+			if (other.users != null)
+				return false;
+		} else if (!users.equals(other.users))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "UserRole [userRoleId=" + userRoleId + ", user=" + user + ", role=" + role + "]";
+		return "UserRole [userRoleId=" + userRoleId + ", users=" + users + ", role=" + role + "]";
 	}
+
+	
 	
 	
 }

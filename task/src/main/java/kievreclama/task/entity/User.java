@@ -1,11 +1,11 @@
 package kievreclama.task.entity;
 
 import java.io.Serializable;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
 @Entity
@@ -27,7 +27,8 @@ public class User implements Serializable{
 	@Column(name="enabled")
 	private boolean enabled = true;
 	
-	private Set<UserRole> userrole;
+	@JoinColumn(name = "userRole", referencedColumnName = "id")
+	private UserRole userRole;
 
 	public String getUsername() {
 		return username;
@@ -53,58 +54,14 @@ public class User implements Serializable{
 		this.enabled = enabled;
 	}
 
-	public Set<UserRole> getUserrole() {
-		return userrole;
+	public UserRole getUserRole() {
+		return userRole;
 	}
 
-	public void setUserrole(Set<UserRole> userrole) {
-		this.userrole = userrole;
+	public void setUserRole(UserRole userRole) {
+		this.userRole = userRole;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + (enabled ? 1231 : 1237);
-		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + ((username == null) ? 0 : username.hashCode());
-		result = prime * result + ((userrole == null) ? 0 : userrole.hashCode());
-		return result;
-	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		User other = (User) obj;
-		if (enabled != other.enabled)
-			return false;
-		if (password == null) {
-			if (other.password != null)
-				return false;
-		} else if (!password.equals(other.password))
-			return false;
-		if (username == null) {
-			if (other.username != null)
-				return false;
-		} else if (!username.equals(other.username))
-			return false;
-		if (userrole == null) {
-			if (other.userrole != null)
-				return false;
-		} else if (!userrole.equals(other.userrole))
-			return false;
-		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "User [username=" + username + ", password=" + password + ", enabled=" + enabled + ", userrole="
-				+ userrole + "]";
-	}
 	
 }

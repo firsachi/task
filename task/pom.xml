@@ -13,7 +13,12 @@
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <version-hibernate>5.2.5.Final</version-hibernate>
-        <org.springframework-version>4.3.2.RELEASE</org.springframework-version>
+        <c3p0.version>0.9.1.2</c3p0.version>
+        <postgresql.version>9.4-1201-jdbc41</postgresql.version>
+        <json.version>20090211</json.version>
+        <jstl.version>1.2</jstl.version>
+        <springframework-version>4.3.2.RELEASE</springframework-version>
+        <springframework.security-version>4.2.2.RELEASE</springframework.security-version>
     </properties>
     
     <dependencies>
@@ -22,25 +27,23 @@
             <artifactId>hibernate-core</artifactId>
             <version>${version-hibernate}</version>
         </dependency>
+        
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
             <version>${version-hibernate}</version>
         </dependency>
-		<dependency>
-    		<groupId>org.hibernate</groupId>
-    		<artifactId>hibernate-validator</artifactId>
-    		<version>5.4.0.Final</version>
-		</dependency>
+		
         <dependency>
     		<groupId>c3p0</groupId>
     		<artifactId>c3p0</artifactId>
-    		<version>0.9.1.2</version>
+    		<version>${c3p0.version}</version>
 		</dependency>
+		
 		<dependency>
     		<groupId>org.postgresql</groupId>
     		<artifactId>postgresql</artifactId>
-    		<version>9.4-1201-jdbc41</version>
+    		<version>${postgresql.version}</version>
 		</dependency>
         
         <dependency>
@@ -49,41 +52,67 @@
             <version>7.0</version>
             <scope>provided</scope>
         </dependency>
+        
         <dependency>
             <groupId>asm</groupId>
             <artifactId>asm-all</artifactId>
             <version>3.3.1</version>
 		</dependency>
+		
+		<!-- json  -->
 		<dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
-            <version>20090211</version>
+            <version>${json.version}</version>
         </dependency>
+        
         <dependency>
             <groupId>jstl</groupId>
             <artifactId>jstl</artifactId>
-            <version>1.2</version>
-        </dependency>       
+            <version>${jstl.version}</version>
+        </dependency>
+        
+        <!--  Spring framework  -->       
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
-            <version>${org.springframework-version}</version>
+            <version>${springframework-version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
-            <version>${org.springframework-version}</version>
+            <version>${springframework-version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
-            <version>${org.springframework-version}</version>
+            <version>${springframework-version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-orm</artifactId>
-            <version>${org.springframework-version}</version>
+            <version>${springframework-version}</version>
         </dependency>
+        
+        <!-- Spring Security -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>${springframework.security-version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>${springframework.security-version}</version>
+		</dependency>
+
+		<!-- Spring Security JSP Taglib -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+			<version>${springframework.security-version}</version>
+		</dependency>
     </dependencies>
 
     <build>
