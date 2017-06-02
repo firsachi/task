@@ -19,7 +19,7 @@
 				<!-- <img alt="logo" src="<c:url value="/resources/img/logo.png" />"> -->
 				Київреклама
 			</header>
-			<div class="error">Невірний лoгін або пароль</div>
+			
 			<form action="j_security_check" method="post">
 				login 
 				<input type="text" name="j_username" placeholder="Введіть логін користувча" required> 

@@ -7,7 +7,7 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Login</title>
@@ -17,14 +17,17 @@
 		<aside>
 			<header>
 				<!-- <img alt="logo" src="<c:url value="/resources/img/logo.png" />"> -->
-				Київреклама
+				Київреклама ${param.error}
 			</header>
-			<c:url value="j_spring_security_check" var="loginUrl"/>
-			<form action="${loginUrl}" method="post" name='loginForm'>
+			<c:if test="${error != null}">
+				<div class="error">Невірний лoгін або пароль</div>
+			</c:if>
+                <!-- j_security_check -->
+			<form action="/task/login" method="post">
 				login 
-				<input type="text" name="user" placeholder="Введіть логін користувча" required> 
+				<input type="text" name="username" placeholder="Введіть логін користувча" required> 
 				Password 
-				<input type="password" name="pass" placeholder="Введіть пароль користувча" required> 
+				<input type="password" name="password" placeholder="Введіть пароль користувча" required> 
 				<input id="button" type="submit" value="Увійти">
 		</form>
 		<footer>
