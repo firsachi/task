@@ -23,7 +23,7 @@
 				<div class="error">Невірний лoгін або пароль</div>
 			</c:if>
                 <!-- j_security_check -->
-			<form action="/task/login" method="post">
+			<form action="/login" method="post">
 				login 
 				<input type="text" name="username" placeholder="Введіть логін користувча" required> 
 				Password 

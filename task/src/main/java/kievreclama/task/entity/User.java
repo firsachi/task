@@ -1,11 +1,14 @@
 package kievreclama.task.entity;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -27,8 +30,12 @@ public class User implements Serializable{
 	@Column(name="enabled")
 	private boolean enabled = true;
 	
-	@JoinColumn(name = "userRole", referencedColumnName = "id")
-	private UserRole userRole;
+	@ManyToMany
+	@JoinTable(	name="user_role", 
+				joinColumns=@JoinColumn(name="username"), 
+				inverseJoinColumns=@JoinColumn(name="user_role_id")
+	)
+	private Set<UserRole> userRoles;
 
 	public String getUsername() {
 		return username;
@@ -54,14 +61,13 @@ public class User implements Serializable{
 		this.enabled = enabled;
 	}
 
-	public UserRole getUserRole() {
-		return userRole;
+	public Set<UserRole> getUserRoles() {
+		return userRoles;
 	}
 
-	public void setUserRole(UserRole userRole) {
-		this.userRole = userRole;
+	public void setUserRoles(Set<UserRole> userRoles) {
+		this.userRoles = userRoles;
 	}
-
-
+	
 	
 }

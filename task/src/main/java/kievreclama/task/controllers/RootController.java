@@ -5,10 +5,14 @@
  */
 package kievreclama.task.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import kievreclama.task.web.models.UserModel;
 
 /**
  *
@@ -17,6 +21,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping
 public class RootController {
+	
+	@Autowired
+	private UserDetailsService userService;
     
     
     @RequestMapping(value = "/")
@@ -26,6 +33,7 @@ public class RootController {
     
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(Model model, String error, String logout) {
+    	System.out.println("sadd");
         if (error != null)
             model.addAttribute("error", "Your username and password is invalid.");
 
