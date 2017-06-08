@@ -5,12 +5,16 @@
  */
 package kievreclama.task.controllers;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import kievreclama.task.web.models.UserModel;
 
@@ -32,14 +36,15 @@ public class RootController {
     }
     
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login(Model model, String error, String logout) {
-    	System.out.println("sadd");
-        if (error != null)
-            model.addAttribute("error", "Your username and password is invalid.");
-
-        if (logout != null)
-            model.addAttribute("message", "You have been logged out successfully.");
-
-        return "login";
+    public ModelAndView login() {
+    	ModelAndView model = new ModelAndView();
+    	model.setViewName("login");
+        return model;
+    }
+    
+    @RequestMapping(value="autch", method = RequestMethod.POST)
+    public String autch(HttpServletRequest request){
+    	System.out.println(request.getParameter("username"));
+    	return "post";
     }
 }

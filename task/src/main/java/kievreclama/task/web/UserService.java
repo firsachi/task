@@ -27,6 +27,7 @@ public class UserService implements UserDetailsService{
 	@Override
 	@Transactional
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		System.out.println(username);
 		User user = userDaoImpl.findByUserName(username);
 		if(user == null) throw new UsernameNotFoundException("Not faud user.");
 		System.out.println(user.getUsername());
