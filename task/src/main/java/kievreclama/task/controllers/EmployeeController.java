@@ -23,7 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @author firsov
  */
 @Controller
-@RequestMapping(value = "/private/employee/")
+@RequestMapping(value = "/employee/")
 public class EmployeeController {
     
     @Autowired

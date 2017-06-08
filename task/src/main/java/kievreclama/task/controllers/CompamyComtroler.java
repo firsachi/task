@@ -23,7 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @author firsachi
  */
 @Controller
-@RequestMapping(value = "/private/company/")
+@RequestMapping(value = "/company/")
 public class CompamyComtroler {
 
     @Autowired

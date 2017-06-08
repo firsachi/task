@@ -25,7 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @author firsov
  */
 @Controller
-@RequestMapping(value = "/private/department/")
+@RequestMapping(value = "/department/")
 public class DepartmentController {
     
 	private final String NAME_MODEL_FORM = "modelDepartment";

@@ -22,7 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @author firsov
  */
 @Controller
-@RequestMapping(value = "/private/post/")
+@RequestMapping(value = "/post")
 public class PostController {
     
     private final String NAME_MODEL = "modelPost";
