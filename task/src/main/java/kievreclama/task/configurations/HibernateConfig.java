@@ -16,7 +16,7 @@ import kievreclama.task.dao.impl.CompanyDaoImpl;
 
 @Configuration
 @EnableTransactionManagement
-public class SpringConfig {
+public class HibernateConfig {
 	
 	@Bean
 	public ComboPooledDataSource dataSource(){
