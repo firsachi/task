@@ -10,7 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 public class UserModel implements UserDetails{
 	
 	/**
-	 * 
+	 * serial version 
 	 */
 	private static final long serialVersionUID = 1L;
 
