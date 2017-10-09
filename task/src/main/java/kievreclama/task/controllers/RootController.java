@@ -5,18 +5,11 @@
  */
 package kievreclama.task.controllers;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-
-import kievreclama.task.web.models.UserModel;
 
 /**
  *
@@ -25,14 +18,10 @@ import kievreclama.task.web.models.UserModel;
 @Controller
 @RequestMapping
 public class RootController {
-	
-	@Autowired
-	private UserDetailsService userService;
-    
     
     @RequestMapping(value = "/")
-    public String getPageIndex(Model model){
-        return "index";
+    public ModelAndView getPageIndex(Model model){
+        return login();
     }
     
     @RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -41,10 +30,5 @@ public class RootController {
     	model.setViewName("login");
         return model;
     }
-    
-    @RequestMapping(value="autch", method = RequestMethod.POST)
-    public String autch(HttpServletRequest request){
-    	System.out.println(request.getParameter("username"));
-    	return "post";
-    }
+  
 }
