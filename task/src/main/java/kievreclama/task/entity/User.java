@@ -1,6 +1,6 @@
 package kievreclama.task.entity;
 
-import java.io.Serializable;
+import java.util.Collection;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -11,9 +11,12 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 @Entity
 @Table(name="users")
-public class User implements Serializable{
+public class User implements UserDetails{
 
 	/**
 	 * 
@@ -67,6 +70,26 @@ public class User implements Serializable{
 
 	public void setUserRoles(Set<UserRole> userRoles) {
 		this.userRoles = userRoles;
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return null;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		return false;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return false;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return false;
 	}
 	
 	
