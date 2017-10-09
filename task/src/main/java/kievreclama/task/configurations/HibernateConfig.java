@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 import kievreclama.task.dao.impl.CompanyDaoImpl;
+import kievreclama.task.model.FactoryDao;
 
 @Configuration
 @EnableTransactionManagement
@@ -56,6 +57,11 @@ public class HibernateConfig {
 	      return txManager;
 	   }
 
+	@Bean 
+	public FactoryDao factoryDao() {
+		return FactoryDao.getInstance();
+	}
+	
 	@Bean
 	public CompanyDaoImpl companyDao(){
 		return new CompanyDaoImpl();
