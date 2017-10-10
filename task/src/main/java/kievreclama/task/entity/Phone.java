@@ -17,9 +17,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.Min;
-
-import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  *
@@ -42,8 +39,6 @@ public class Phone implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     
-	@NotEmpty(message = "{error.null}")
-	@Min(value = 3, message = "{error.minimumSizePhone}")
     @Column(name = "number", unique = true)
     private int number;
     
