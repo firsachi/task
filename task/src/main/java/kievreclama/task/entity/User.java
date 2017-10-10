@@ -1,7 +1,6 @@
 package kievreclama.task.entity;
 
 import java.util.Collection;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +10,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -25,8 +25,10 @@ public class User implements UserDetails{
 
 	@Id
 	@Column(name="username", unique=true, length=50)
+	@NotEmpty(message = "{error.null}")
 	private String username;
 	
+	@NotEmpty(message = "{error.null}")
 	@Column(name="password", length=50)
 	private String password;
 	
@@ -38,7 +40,6 @@ public class User implements UserDetails{
 				joinColumns=@JoinColumn(name="username"), 
 				inverseJoinColumns=@JoinColumn(name="user_role_id")
 	)
-	private Set<UserRole> userRoles;
 
 	public String getUsername() {
 		return username;
@@ -62,14 +63,6 @@ public class User implements UserDetails{
 
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
-	}
-
-	public Set<UserRole> getUserRoles() {
-		return userRoles;
-	}
-
-	public void setUserRoles(Set<UserRole> userRoles) {
-		this.userRoles = userRoles;
 	}
 
 	@Override

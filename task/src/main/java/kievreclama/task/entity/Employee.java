@@ -6,8 +6,6 @@
 package kievreclama.task.entity;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -19,7 +17,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -90,9 +87,6 @@ public class Employee implements Cloneable, Serializable{
     
     @Column(name = "login", unique = true)
     private String login;
-    
-    @OneToMany(mappedBy = "employee", fetch = FetchType.EAGER)
-    private List<Task> tasks = new ArrayList<>();
 
     @Column (name = "remove", columnDefinition = "boolean default false", nullable = false)
     private Boolean remove = false;
@@ -143,12 +137,7 @@ public class Employee implements Cloneable, Serializable{
 
     public void setLogin(String login) {
         this.login = login;
-    }
-
-    public void setTasks(List<Task> tasks) {
-        this.tasks = tasks;
-    }
-    
+    }    
     
     public int getId() {
         return id;
@@ -198,107 +187,8 @@ public class Employee implements Cloneable, Serializable{
         return login;
     }
 
-    public List<Task> getTasks() {
-        return tasks;
-    }
-
     public Boolean getRemove() {
         return remove;
     }
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((department == null) ? 0 : department.hashCode());
-		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result + ((enterprise == null) ? 0 : enterprise.hashCode());
-		result = prime * result + id;
-		result = prime * result + ((login == null) ? 0 : login.hashCode());
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((patronymic == null) ? 0 : patronymic.hashCode());
-		result = prime * result + ((phone == null) ? 0 : phone.hashCode());
-		result = prime * result + ((post == null) ? 0 : post.hashCode());
-		result = prime * result + ((remove == null) ? 0 : remove.hashCode());
-		result = prime * result + ((room == null) ? 0 : room.hashCode());
-		result = prime * result + ((surname == null) ? 0 : surname.hashCode());
-		result = prime * result + ((tasks == null) ? 0 : tasks.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Employee other = (Employee) obj;
-		if (department == null) {
-			if (other.department != null)
-				return false;
-		} else if (!department.equals(other.department))
-			return false;
-		if (email == null) {
-			if (other.email != null)
-				return false;
-		} else if (!email.equals(other.email))
-			return false;
-		if (enterprise == null) {
-			if (other.enterprise != null)
-				return false;
-		} else if (!enterprise.equals(other.enterprise))
-			return false;
-		if (id != other.id)
-			return false;
-		if (login == null) {
-			if (other.login != null)
-				return false;
-		} else if (!login.equals(other.login))
-			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		if (patronymic == null) {
-			if (other.patronymic != null)
-				return false;
-		} else if (!patronymic.equals(other.patronymic))
-			return false;
-		if (phone == null) {
-			if (other.phone != null)
-				return false;
-		} else if (!phone.equals(other.phone))
-			return false;
-		if (post == null) {
-			if (other.post != null)
-				return false;
-		} else if (!post.equals(other.post))
-			return false;
-		if (remove == null) {
-			if (other.remove != null)
-				return false;
-		} else if (!remove.equals(other.remove))
-			return false;
-		if (room == null) {
-			if (other.room != null)
-				return false;
-		} else if (!room.equals(other.room))
-			return false;
-		if (surname == null) {
-			if (other.surname != null)
-				return false;
-		} else if (!surname.equals(other.surname))
-			return false;
-		if (tasks == null) {
-			if (other.tasks != null)
-				return false;
-		} else if (!tasks.equals(other.tasks))
-			return false;
-		return true;
-	}
-    
     
 }
