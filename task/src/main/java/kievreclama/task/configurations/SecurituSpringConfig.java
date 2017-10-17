@@ -28,20 +28,23 @@ public class SecurituSpringConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
-            	.antMatchers("/").permitAll()
-            	.antMatchers("/task").permitAll()
+            	.antMatchers("/", "/task").permitAll()
             	.antMatchers("/resources/**").permitAll()
             	.anyRequest().authenticated()
                 .and()
             .formLogin()
+            	//.loginProcessingUrl("/j_spring_security_check")
             	.loginPage("/login")
+            	//.loginProcessingUrl("/chech_login_page")
+            	//.failureUrl("/login")
             	.usernameParameter("username")
             	.passwordParameter("password")
             	.permitAll()
             	.and()
             .logout()
-            	.permitAll()
-            	.and()
+             	.logoutSuccessUrl("/")
+             	.permitAll()
+             	.and()
             .csrf()
             	.disable();
     }

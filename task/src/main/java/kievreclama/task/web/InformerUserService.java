@@ -1,5 +1,7 @@
 package kievreclama.task.web;
 
+import javax.persistence.NoResultException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -7,6 +9,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import kievreclama.task.entity.User;
 import kievreclama.task.model.FactoryDao;
 import kievreclama.task.model.dao.UserDao;
 
@@ -19,8 +22,15 @@ public class InformerUserService implements UserDetailsService{
 	@Override
 	@Transactional
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		System.out.println(username);
 		UserDao userDao = factoryDao.cerateUserDao();
-		return userDao.findByUserName(username);
+		User user = null;
+		try {
+			user = userDao.findByUserName(username);
+		}catch(NoResultException e) {
+			return user;
+		}
+		return user;
 	}
 
 }

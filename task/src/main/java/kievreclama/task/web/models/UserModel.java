@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.validation.constraints.NotNull;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -14,8 +16,11 @@ public class UserModel implements UserDetails{
 	 */
 	private static final long serialVersionUID = 1L;
 
+	@NotNull
 	private String username;
 	
+	
+	@NotNull
 	private String password;
 	
 	private boolean enabled;

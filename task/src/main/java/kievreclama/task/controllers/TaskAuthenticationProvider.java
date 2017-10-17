@@ -20,11 +20,15 @@ public class TaskAuthenticationProvider implements AuthenticationProvider {
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 		String username = authentication.getName();
 		String password = authentication.getCredentials().toString();
-
-		UserDetails user = informerUserService.loadUserByUsername(username);
-
-		if (user == null) {
+		
+		UserDetails user = null;
+		
+		if (username == null 
+				|| username.length() == 0
+				|| password.length() <= 5) {
 			throw new BadCredentialsException("Username not found.");
+		}else {
+			user = informerUserService.loadUserByUsername(username);
 		}
 
 		if (!password.equals(user.getPassword())) {
