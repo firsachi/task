@@ -41,13 +41,17 @@ public class HibernateConfig {
 		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
 		sessionFactory.setDataSource(dataSource());
 		sessionFactory.setPackagesToScan(new String[]{"kievreclama.task.entity"});
+		sessionFactory.setHibernateProperties(properties());
+		return sessionFactory;
+	}
+	
+	private Properties properties() {
 		Properties properties = new Properties();
         properties.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
         properties.put("hibernate.hbm2ddl.auto", "update");
         properties.put("hibernate.transaction.factory_class", "org.hibernate.transaction.JDBCTransactionFactory");
         properties.put("hibernate.enable_lazy_load_no_trans", true);
-		sessionFactory.setHibernateProperties(properties);
-		return sessionFactory;
+        return properties;
 	}
 	
 	@Bean
