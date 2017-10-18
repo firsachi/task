@@ -11,7 +11,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title><spring:message code="label.foma.title.add.department"/></title>
+    	<spring:message code="label.foma.title.add.department" var="titleDepartment"/>
+        <title>${ titleDepartment }</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <%@include file="../jspf/map-main-css.jspf"%>
@@ -19,24 +20,10 @@
     <body>
     	<div class="box-form">	
     		<div class="page-header">
-            	<h2><spring:message code="label.foma.title.add.department"/></h2>
+            	<h2>${ titleDepartment }</h2>
         	</div>
         	<form:form class="form-horisontal" modelAttribute="modelDepartment" method="POST" action="save" acceptCharset="UTF-8">
-            	<div class="form-group">
-                	<form:hidden path="id"/>
-            	</div>
-            	<div class="form-group">
-                	<form:label path="name"><spring:message code="label.title.table.department.name"/></form:label>
-                	<form:input path="name" required="true" pattern=""/>
-            	</div>
-            	<div class="form-group">
-                	<form:label path="phone"><spring:message code="label.title.table.department.phone"/></form:label>
-                	<form:input path="phone" required="true" pattern=""/>
-            	</div>
-            	<div class="form-group">
-                	<form:label path="fax"><spring:message code="label.title.table.department.fax"/></form:label>
-                	<form:input path="fax" required="true" pattern=""/>
-            	</div>
+            	<%@include file="../jspf/main-department.jsp" %>
             	<%@include file="../jspf/button-form.jspf" %>
 	        </form:form>
     	</div>

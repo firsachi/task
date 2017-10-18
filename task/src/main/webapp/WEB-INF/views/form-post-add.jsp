@@ -11,7 +11,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title><spring:message code="label.foma.title.add.post"/></title>
+    	<spring:message code="label.foma.title.add.post" var="postTitle"/>
+        <title>${ postTitle }</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <%@include file="../jspf/map-main-css.jspf"%> 
@@ -19,20 +20,10 @@
     <body>
     	<div class="box-form">
     		<div class="page-header">
-            	<h2><spring:message code="label.foma.title.add.post"/></h2>
+            	<h2>${ postTitle }</h2>
         	</div>
         	<form:form class="form-horisontal" modelAttribute="modelPost" method="POST" action="save" acceptCharset="UTF-8">
-            	<div class="form-group">
-                	<form:hidden path="id"/>
-            	</div>
-            	<div class="form-group">
-                	<form:label path="name"><spring:message code="label.title.table.post.name"/></form:label>
-                	<form:input path="name" required="true" pattern=""/>
-            	</div>
-            	<div class="form-group">
-                	<form:label path="heft"><spring:message code="label.title.table.post.heft"/></form:label>
-                	<form:select path="heft" items="${HEFT_POST}"/>
-            	</div>
+            	<%@include file="../jspf/main-post.jsp" %>
             	<%@include file="../jspf/button-form.jspf" %>
         	</form:form>
     	</div>

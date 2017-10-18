@@ -11,7 +11,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title><spring:message code="label.company.new.title"/></title>
+        <spring:message code="label.company.edit.title" var="companyTitle"/>
+        <title>${ companyTitle }</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <%@include file="../jspf/map-main-css.jspf"%>   
@@ -19,16 +20,10 @@
     <body>
     	<div class="box-form">
     		<div class="page-header">
-    			<h2><spring:message code="label.company.edit.title"/></h2>
+    			<h2>{ companyTitle }</h2>
     		</div>
   			<form:form class="form-horisontal" modelAttribute="enterprise" method="POST" action="save" acceptCharset="UTF-8"  role="form">
-            	<div class="form-group">
-               		<form:hidden path="id"/>
-            	</div>
-            	<div class="form-group">
-               		<form:label path="name" class="col-sm-2 control-label" ><spring:message code="label.company.name" /></form:label>
-      				<form:input path="name" required="true" pattern="" class="form-control"/>
-            	</div>
+            	<%@include file="../jspf/main-company.jsp" %>
             	<%@include file="../jspf/button-form.jspf" %>
         	</form:form>
         </div>
