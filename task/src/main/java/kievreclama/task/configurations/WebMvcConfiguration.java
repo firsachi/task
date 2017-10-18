@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.validation.Validator;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.LocaleResolver;
@@ -72,5 +74,19 @@ public class WebMvcConfiguration  extends WebMvcConfigurerAdapter {
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(localeInterceptor());
 	}
+	
+	 @Bean( name = "validationMessageSource" )
+	    public ReloadableResourceBundleMessageSource validationMessageSource() {
+	        ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+	        messageSource.setBasename("classpath:validation");
+	        messageSource.setCacheSeconds(10); // reload messages every 10 seconds
+	        return messageSource;
+	    }
 
+	    @Override
+	    public Validator getValidator() {
+	       LocalValidatorFactoryBean validator = new LocalValidatorFactoryBean();
+	       validator.setValidationMessageSource((MessageSource) validationMessageSource());
+	       return validator;
+	    }
 }

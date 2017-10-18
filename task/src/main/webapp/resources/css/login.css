@@ -9,6 +9,10 @@ body {
 	height: 90vh;
 }
 
+button input h4 label{
+	font-family: Arial, Helvetica, sans-serif;
+}
+
 form {
 	background: white;
 	padding: 24px;
@@ -41,6 +45,6 @@ aside > footer{
 
 .error {
 	background: #FA8072;
-	padding: 24px;
-	margin-bottom: 24px;
+	padding: 12px;
+	margin-bottom: 12px;
 }

@@ -1,7 +1,7 @@
 <%-- 
     Document   : post
-    Created on : Aug 23, 2016, 12:06:44 PM
-    Author     : firsov
+    Created on : 18.10.2017, 12:06:44 PM
+    Author     : firsachi
 --%>
 
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
@@ -18,28 +18,22 @@
     
     <body>
 		<%@include file="../jspf/main-menu.jsp" %>
-    	<div id="menu"><%@include file="../jspf/menu-employee.jsp" %></div>
+    	<div id="menu"><%@include file="../jspf/menu-handbook.jsp" %></div>
         <div class="container-fluid">
         	<table class="table">
-        		<col>
-        		<col>
-    			<col>
-    			<col width="175px">
         		<tr>
         			<th><spring:message code="label.title.table.post.number"/></th>
-        			<th><spring:message code="label.title.table.post.name"/></th>
-        			<th><spring:message code="label.title.table.post.heft"/></th>
+        			<th><spring:message code="label.phone.number"/></th>
         			<th>
     					<button class="button-add" onclick="self.location.href='add';">
     						<spring:message code="label.button.add"/>
     					</button>
     				</th>
         		</tr>
-            	<c:forEach var="value" items="${position}" varStatus="number">
+            	<c:forEach var="value" items="${phones}" varStatus="number">
                 	<tr>
                 		<td>${number.index + 1}</td>
-                		<td>${value.getName()}</td>
-						<td>${value.getHeft()}</td>
+                		<td>${value.number}</td>
 						<td>
 							<button onclick="self.location.href='edit${value.getId()}';">
     							<spring:message code="label.button.edit"/>

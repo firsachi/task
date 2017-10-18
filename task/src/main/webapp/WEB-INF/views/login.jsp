@@ -19,14 +19,14 @@
 	</head>
 	<body>
 		<aside>
-
-			<c:if test="${not empty error}">
-				<div class="error"><strong>Error</strong> - <spring:message code="label.login.error"/></div>
-			</c:if>		
 			
 			<form:form action="/task/login" modelAttribute="user"  method="POST" enctype="utf8">
 				
 				<h4><spring:message code="label.login.titleLogin"/></h4>
+				
+				<c:if test="${error != null}">
+					<div class="error"><strong>Error</strong> - <spring:message code="label.login.error"/></div>
+				</c:if>	
 				
 				<spring:message code="label.login.username" var="username"/>
 				<form:label path="username">${ username }</form:label>

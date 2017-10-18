@@ -1,10 +1,12 @@
 package kievreclama.task.model;
 
+import kievreclama.task.model.dao.PhoneDao;
 import kievreclama.task.model.dao.UserDao;
 
 public abstract class FactoryDao {
 	
 	public abstract UserDao cerateUserDao();
+	public abstract PhoneDao createPhoneDao();
 	
 	public static FactoryDao getInstance() {
 		try {

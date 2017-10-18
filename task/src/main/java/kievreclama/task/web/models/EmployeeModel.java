@@ -7,7 +7,7 @@ public class EmployeeModel {
     private String name;
     private String patronymic;
     private int idPhone;
-    private int phone;
+    private String phone;
     private int idPost;
     private String post;
     private int idDepartment;
@@ -50,10 +50,10 @@ public class EmployeeModel {
 	public void setIdPhone(int idPhone) {
 		this.idPhone = idPhone;
 	}
-	public int getPhone() {
+	public String getPhone() {
 		return phone;
 	}
-	public void setPhone(int phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 	public int getIdPost() {

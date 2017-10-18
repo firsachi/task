@@ -40,12 +40,9 @@ public class Phone implements Serializable {
     private int id;
     
     @Column(name = "number", unique = true)
-    private int number;
+    private String number;
     
     @OneToMany(mappedBy = "phone", fetch = FetchType.LAZY)
-    
-    
-    
     private Set<Employee> employees;
 
     public Phone() {
@@ -61,7 +58,7 @@ public class Phone implements Serializable {
         this.id = id;
     }
 
-    public void setNumber(Integer number) {
+    public void setNumber(String number) {
         this.number = number;
     }
 
@@ -73,7 +70,7 @@ public class Phone implements Serializable {
         return id;
     }
 
-    public int getNumber() {
+    public String getNumber() {
         return number;
     }
 
@@ -87,7 +84,7 @@ public class Phone implements Serializable {
 		int result = 1;
 		result = prime * result + ((employees == null) ? 0 : employees.hashCode());
 		result = prime * result + id;
-		result = prime * result + number;
+		result = prime * result + ((number == null) ? 0 : number.hashCode());
 		return result;
 	}
 
@@ -107,10 +104,12 @@ public class Phone implements Serializable {
 			return false;
 		if (id != other.id)
 			return false;
-		if (number != other.number)
+		if (number == null) {
+			if (other.number != null)
+				return false;
+		} else if (!number.equals(other.number))
 			return false;
 		return true;
 	}
-    
     
 }

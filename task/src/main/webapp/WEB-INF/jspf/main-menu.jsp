@@ -3,7 +3,10 @@
 	<div class="container">
     	<ul>
     		<li>
-				<%@include file="employees-menu.jspf" %>
+				<%@include file="menu-employee.jsp" %>
+        	</li>
+        	<li>
+        		<%@ include file="menu-handbook.jsp" %>
         	</li>
     	</ul>
 	</div>

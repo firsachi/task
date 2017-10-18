@@ -11,7 +11,7 @@
 		<%@include file="../jspf/map-main-css.jspf"%>
 	</head>
 	
-	<body>z
+	<body>
 		<div class="box-form">
     		<div class="page-header">
             	<h2>${ addTitle }</h2>

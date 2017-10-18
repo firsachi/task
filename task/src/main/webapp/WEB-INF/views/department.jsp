@@ -17,8 +17,8 @@
     </head>
     
     <body>
-		<%@include file="../jspf/main-menu.jspf" %>
-    	<div id="menu"><%@include file="../jspf/employees-menu.jspf" %></div>
+		<%@include file="../jspf/main-menu.jsp" %>
+    	<div id="menu"><%@include file="../jspf/menu-employee.jsp" %></div>
         <div class="container-fluid">
         	<table class="table">
         		<col>

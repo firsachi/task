@@ -19,8 +19,8 @@
         <script type="text/javascript" src="<c:url value="/resources/js/filtr-emloyee.js"/>"></script>
     </head>
     <body>
-		<%@include file="../jspf/main-menu.jspf" %>
-    	<div id="menu"><%@include file="../jspf/employees-menu.jspf" %></div>
+		<%@include file="../jspf/main-menu.jsp" %>
+    	<div id="menu"><%@include file="../jspf/menu-employee.jsp" %></div>
         <div class="filtr">
             <div>
                 <spring:message code="label.title.table.employee.room"/>
