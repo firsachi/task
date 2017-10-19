@@ -18,7 +18,7 @@ input, label, select{
 	padding: 6px;
 }
 .button-add{
-	width: 215px;
+	width: 100%;
 }
 .container, #menu, .content{
 	padding-left: 50px;
