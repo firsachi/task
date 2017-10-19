@@ -21,11 +21,14 @@
                 	<form:hidden path="id"/>
             	</div>
             	
+            	<div class="form-group error-message">
+            		<form:errors path="number" cssClass="text-danger" />
+            	</div>
+            	
             	<div class="form-group">
             		<spring:message code="label.phone.number" var="phoneNumber"/>
             		<form:label path="number">${ phoneNumber }</form:label>
             		<form:input path="number" placeholder="${ phoneNumber }"/>
-            		<form:errors path="number" cssClass="text-danger" />
             	</div>
         		
         		<%@include file="../jspf/button-form.jspf" %>

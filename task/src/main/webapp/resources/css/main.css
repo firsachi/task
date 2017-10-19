@@ -5,6 +5,7 @@ html, body {
 	color: #666666;
 	font-family: Sans, Arial;
 }
+
 header{padding-top: 12px;}
 
 button, .button-add{
@@ -17,7 +18,7 @@ input, label, select{
 	padding: 6px;
 }
 .button-add{
-	width: 165px;
+	width: 215px;
 }
 .container, #menu, .content{
 	padding-left: 50px;
@@ -199,7 +200,6 @@ li.select{
 	margin-bottom: 6px;
 }
 .form-group label {
-	padding-left: 24px;
 	flex-shrink: 0;
 	width: 200px;
 	margin-right: 4px;
@@ -229,6 +229,10 @@ li.select{
 .form-group-button button {
 	margin: 2px;
 	margin-top: 6px;
+}
+.error-message > span{
+	padding-right: 12px;
+	color: red;
 }
 .filtr {
     margin: 12px;

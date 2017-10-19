@@ -21,6 +21,9 @@
     	<div id="menu"><%@include file="../jspf/menu-handbook.jsp" %></div>
         <div class="container-fluid">
         	<table class="table">
+        		<col>
+        		<col>
+        		<col width=230px>
         		<tr>
         			<th><spring:message code="label.title.table.post.number"/></th>
         			<th><spring:message code="label.phone.number"/></th>
