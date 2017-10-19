@@ -22,7 +22,7 @@
             	<h2><spring:message code="label.foma.title.edit.employee"/></h2>
         	</div>
         	<form:form class="form-horisontal" modelAttribute="modelEmployee" method="POST" action="save" acceptCharset="UTF-8">
-        		<%@include file="../jspf/main-employee.jsp" %>
+        		<%@include file="../jspf/form-employee.jsp" %>
             	<%@include file="../jspf/button-form.jspf" %>
         	</form:form>
     	</div>
