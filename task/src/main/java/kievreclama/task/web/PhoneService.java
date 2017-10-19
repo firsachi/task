@@ -23,5 +23,17 @@ public class PhoneService {
 		PhoneDao phoneDao = factoryDao.createPhoneDao();
 		phoneDao.add(phoneTransformer.modelToEntity(model));
 	}
+	
+	@Transactional
+	public void update(PhoneModel model) {
+		PhoneDao phoneDao = factoryDao.createPhoneDao();
+		phoneDao.upadte(phoneTransformer.modelToEntity(model));
+	}
+
+	@Transactional
+	public PhoneModel byId(int id) {
+		PhoneDao phoneDao = factoryDao.createPhoneDao();
+		return phoneTransformer.entityToModel(phoneDao.byId(id));
+	}
 
 }

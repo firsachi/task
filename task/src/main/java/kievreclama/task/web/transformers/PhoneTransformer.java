@@ -20,7 +20,7 @@ public class PhoneTransformer implements BaseTransformer<Phone, PhoneModel>{
 	public PhoneModel entityToModel(Phone entity) {
 		PhoneModel model = new PhoneModel();
 		model.setId(entity.getId());
-		model.setNumber(model.getNumber());
+		model.setNumber(entity.getNumber());
 		return model;
 	}
 

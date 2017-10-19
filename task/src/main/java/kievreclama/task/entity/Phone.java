@@ -111,5 +111,11 @@ public class Phone implements Serializable {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "Phone [id=" + id + ", number=" + number + ", employees=" + employees + "]";
+	}
+	
     
 }

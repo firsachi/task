@@ -34,4 +34,16 @@ public class PhoneDaoImpl implements PhoneDao{
 		session.save(phone);
 	}
 
+	@Override
+	public void upadte(Phone phone) {
+		Session session = sessionFactory.getCurrentSession();
+		session.update(phone);
+	}
+
+	@Override
+	public Phone byId(int id) {
+		Session session = sessionFactory.getCurrentSession();
+		return session.find(Phone.class, id);
+	}
+
 }

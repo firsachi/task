@@ -8,4 +8,6 @@ public interface PhoneDao {
 
 	void add(Phone phone);
 	Set<Phone> getAll();
+	void upadte(Phone phone);
+	Phone byId(int id);
 }

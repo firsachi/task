@@ -20,14 +20,14 @@
 		<%@include file="../jspf/main-menu.jsp" %>
     	<div id="menu"><%@include file="../jspf/menu-handbook.jsp" %></div>
         <div class="container-fluid">
-        	<table class="table">
+        	<table class="table" style="table-layout: fixed;">
         		<col>
         		<col>
-        		<col width=230px>
+        		<col width=180px>
         		<tr>
         			<th><spring:message code="label.title.table.post.number"/></th>
         			<th><spring:message code="label.phone.number"/></th>
-        			<th>
+        			<th  >
     					<button class="button-add" onclick="self.location.href='add';">
     						<spring:message code="label.button.add"/>
     					</button>
@@ -38,9 +38,10 @@
                 		<td>${number.index + 1}</td>
                 		<td>${value.number}</td>
 						<td>
-							<button onclick="self.location.href='edit${value.getId()}';">
+							<button onclick="self.location.href='edit/${value.getId()}';">
     							<spring:message code="label.button.edit"/>
     						</button>
+    					
     						<button onclick="self.location.href='delete${value.getId()}';">
     							<spring:message code="label.button.delete"/>
     						</button>
