@@ -25,6 +25,12 @@ import kievreclama.task.web.models.UserModel;
  */
 @Controller
 public class RootController {
+	
+	
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String homePage() {
+		return "redirect:/employee/";
+	}
 
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
