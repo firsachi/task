@@ -24,7 +24,7 @@
         		<col>
         		<col>
     			<col>
-    			<col width="175px">
+    			<col width=180px>
         		<tr>
         			<th><spring:message code="label.title.table.department.name"/></th>
         			<th><spring:message code="label.title.table.department.phone"/></th>

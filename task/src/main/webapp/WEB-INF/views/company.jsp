@@ -22,7 +22,7 @@
     		<table class="table">
     			<col>
     			<col>
-    			<col width="175px">
+    			<col width=180px>
     			<tr>
     				<th><spring:message code="label.title.table.companu.id"/></th>
     				<th><spring:message code="label.title.table.companu.name"/></th>

@@ -49,6 +49,14 @@
         </div>
         <div class="container-fluid">
         	<table class="table">
+        		<col>
+        		<col>
+        		<col>
+        		<col>
+        		<col>
+        		<col>
+        		<col>
+        		<col width=180px>
         		<tr>
         			<th><spring:message code="label.title.table.employee.number"/></th>
         			<th><spring:message code="label.title.table.employee.room"/></th>
