@@ -3,13 +3,15 @@ html, body {
 	margin: 0;
 	padding: 0;
 	color: #666666;
-	font-family: Sans, Arial;
+	font-size: 12pt;
+	font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
 }
 
 header{padding-top: 12px;}
 
 button, .button-add{
-	font-family: Sans, Arial;
+	font-size: 8pt;
+	font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
 	color: #666666;
 	padding:6px;
 	border:1px solid #666666;

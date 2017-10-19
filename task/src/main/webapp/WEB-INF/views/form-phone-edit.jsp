@@ -16,7 +16,7 @@
     		<div class="page-header">
             	<h2>${ addTitle }</h2>
         	</div>
-        	<form:form class="form-horisontal" modelAttribute="phone" method="POST" action="save" acceptCharset="UTF-8">
+        	<form:form class="form-horisontal" modelAttribute="phone" method="POST" action="../save" acceptCharset="UTF-8">
         		<%@include file="../jspf/form-phone.jsp" %>
         		<%@include file="../jspf/button-form.jspf" %>
         	</form:form>

@@ -20,8 +20,8 @@ public class PhoneDaoImpl implements PhoneDao{
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	@Transactional
 	@Override
+	@Transactional
 	public Set<Phone> getAll() {
 		Session session = sessionFactory.getCurrentSession();
 		TypedQuery<Phone> phones = session.createNamedQuery("allPhone", Phone.class);

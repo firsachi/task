@@ -18,9 +18,9 @@ public class Initializer implements WebApplicationInitializer {
 		ctx.register(SecurituSpringConfig.class);
 		servletContext.addListener(new ContextLoaderListener(ctx));
 		ctx.setServletContext(servletContext);
-		 Dynamic servlet = servletContext.addServlet("appServlet", new DispatcherServlet(ctx));
-	        servlet.addMapping("/");
-	        servlet.setLoadOnStartup(1);
+		Dynamic servlet = servletContext.addServlet("appServlet", new DispatcherServlet(ctx));
+	    servlet.addMapping("/");
+	    servlet.setLoadOnStartup(1);
 	}
 
 }
