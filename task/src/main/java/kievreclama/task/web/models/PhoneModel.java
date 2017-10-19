@@ -1,7 +1,8 @@
 package kievreclama.task.web.models;
 
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 /**
 *
@@ -11,8 +12,8 @@ public class PhoneModel {
 	
 	private int id;
 	
-	@NotNull(message = "{error.null}")
-	@Min(value = 3, message = "{error.minimumSize}")
+	@NotBlank(message = "{error.null}")
+	@Min(value = 3, message  = "{error.minimumSize}")
 	private String number;
 
 	public int getId() {
