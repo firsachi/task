@@ -22,7 +22,6 @@ public class InformerUserService implements UserDetailsService{
 	@Override
 	@Transactional
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		System.out.println(username);
 		UserDao userDao = factoryDao.cerateUserDao();
 		User user = null;
 		try {
