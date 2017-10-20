@@ -11,6 +11,7 @@ import javax.persistence.TypedQuery;
 
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import kievreclama.task.dao.MainDao;
 import kievreclama.task.entity.Department;
@@ -36,6 +37,7 @@ public class DepartmentDaoImpl extends MainDao<Department>{
 	}
 
 	@Override
+	@Transactional
 	public List<Department> byList(String namedQery) {
 		Session session = sessionFactory.getCurrentSession();
 		TypedQuery<Department> typedQuery = session.createNamedQuery(namedQery, Department.class);

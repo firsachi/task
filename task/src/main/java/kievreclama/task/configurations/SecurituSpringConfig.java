@@ -29,6 +29,7 @@ public class SecurituSpringConfig extends WebSecurityConfigurerAdapter {
         http
             .authorizeRequests()
             	.antMatchers("/", "/task").permitAll()
+            	.antMatchers("/api/**").permitAll()
             	.antMatchers("/resources/**").permitAll()
             	.anyRequest().authenticated()
                 .and()

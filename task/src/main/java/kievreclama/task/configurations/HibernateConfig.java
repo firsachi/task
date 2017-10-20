@@ -24,8 +24,8 @@ public class HibernateConfig {
 		ComboPooledDataSource dataSource = new ComboPooledDataSource();
 		try {
 			dataSource.setDriverClass("org.postgresql.Driver");
-			dataSource.setJdbcUrl("jdbc:postgresql://localhost:5432/informer");
-			dataSource.setUser("informer");
+			dataSource.setJdbcUrl("jdbc:postgresql://localhost:5432/task");
+			dataSource.setUser("sa");
 			dataSource.setPassword("1q2w3e4r");
 			dataSource.setMaxPoolSize(30);
 			dataSource.setMinPoolSize(2);

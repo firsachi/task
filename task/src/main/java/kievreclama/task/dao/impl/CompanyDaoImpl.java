@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.TypedQuery;
 
 import org.hibernate.Session;
+import org.springframework.transaction.annotation.Transactional;
 
 import kievreclama.task.dao.MainDao;
 import kievreclama.task.entity.Company;
@@ -24,6 +25,7 @@ public class CompanyDaoImpl extends MainDao<Company>{
 	}
 
 	@Override
+	@Transactional
 	public List<Company> byList(String namedQery) {
 		Session session = sessionFactory.getCurrentSession();
 		TypedQuery<Company> typedQuery = session.createNamedQuery(namedQery, Company.class);

@@ -6,6 +6,7 @@ import javax.persistence.TypedQuery;
 
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import kievreclama.task.dao.MainDao;
 import kievreclama.task.entity.Employee;
@@ -33,6 +34,7 @@ public class EmployeeDaoImpl extends MainDao<Employee>{
 	}
 
 
+	@Transactional
 	public List<Employee> byList(String namedQery, int idDepartment) {
 		Session session = sessionFactory.getCurrentSession();
 		TypedQuery<Employee> listEmloyee = session.createNamedQuery(namedQery, Employee.class);
