@@ -36,7 +36,7 @@ public class EmployeeController {
         return "employees";
     }
     
-    @RequestMapping(value = "add")
+    @RequestMapping(value = "/add")
     public ModelAndView getPageFormAdd(){
     	ModelAndView model = new ModelAndView();
     	model.setViewName("form-employee-add");
@@ -45,7 +45,7 @@ public class EmployeeController {
         return model;
     }
     
-    @GetMapping(value = "edit{id}")
+    @GetMapping(value = "/edit/{id}")
     public ModelAndView getPageFormaEmployee(@PathVariable int id){
         ModelAndView model = new ModelAndView();
         model.setViewName("form-employee-edit");
@@ -54,10 +54,10 @@ public class EmployeeController {
         return model;
     }
     
-    @GetMapping(value = "delete{id}")
+    @GetMapping(value = "/delete/{id}")
     public String deletePage(@PathVariable int id){
     	employeeService.delete(id);
-    	return "redirect:../employee/";
+    	return "redirect:../../employee/";
     }
     
     @RequestMapping(value = "save", method = RequestMethod.POST)
@@ -68,7 +68,7 @@ public class EmployeeController {
     	}else{
     		employeeService.update(employeeModel);
     	}
-        return "redirect:../employee/";
+    	return "redirect:../employee/";
     }
 
 }

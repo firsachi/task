@@ -45,17 +45,17 @@ public class DepartmentController {
         return model;
     }
     
-    @GetMapping(value = "/edit{id}")
+    @GetMapping(value = "/edit/{id}")
     public ModelAndView getPageForma( @PathVariable int id ){
         DepartmentModel departmentModel = departmentService.getId(id);
         ModelAndView model = new ModelAndView("form-department-edit", NAME_MODEL_FORM, departmentModel);
         return model;
     }
     
-    @GetMapping(value = "delete{id}")
+    @GetMapping(value = "/delete/{id}")
     public String deletePage(@PathVariable int id ){
     	departmentService.delete(id);
-    	return "redirect:../department/";
+    	return "redirect:../../department/";
     }
     
     @RequestMapping(value = "/save", method = RequestMethod.POST)

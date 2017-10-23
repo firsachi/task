@@ -41,26 +41,26 @@ public class CompamyComtroler {
         return model;
     }
     
-    @GetMapping(value = "/edit{id}")
+    @GetMapping(value = "/edit/{id}")
     public ModelAndView getPagesFormCompany( @PathVariable int id ){
         return new ModelAndView("form-company-edit", "enterprise", companyService.getId(id));
     }
     
-    @GetMapping(value = "/delete{id}")
+    @GetMapping(value = "/delete/{id}")
     public String getPageGeleteCompany(@PathVariable int id){
     	companyService.delete(id);
-    	return "redirect:../company/";
+    	return "redirect:../../company/";
     }
 
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    @RequestMapping(value = "save", method = RequestMethod.POST)
     public String submit(@ModelAttribute("enterprise") CompanyModel companyModel ){
     	int isNew = 0;
     	if (companyModel.getId() == isNew ){
-            companyService.save(companyModel);
+            companyService.save(companyModel);      
         }else{
-            companyService.update(companyModel);
+            companyService.update(companyModel);      
         }
-        return "redirect:../company/";
+    	return "redirect:../company/";
     }
 
 }

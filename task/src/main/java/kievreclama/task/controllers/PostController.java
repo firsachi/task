@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -45,20 +46,20 @@ public class PostController {
         return model;
     }
     
-    @GetMapping(value = "edit{id}")
+    @GetMapping(value = "/edit/{id}")
     public ModelAndView getPagesFormCompany( @PathVariable int id ){
         ModelAndView model = new ModelAndView("form-post-edit", NAME_MODEL, postSercice.getId(id));
         model.addObject("HEFT_POST", HEFT_POST);
         return model;
     }
     
-    @GetMapping(value = "delete{id}")
+    @GetMapping(value = "/delete/{id}")
     public String delete( @PathVariable int id ){
     	postSercice.delete(id);
-    	return "redirect:../post/";
+    	return "redirect:../../post/";
     }
     
-    @RequestMapping(value = "/save")
+    @RequestMapping(value = "save", method = RequestMethod.POST)
     public String submit(@ModelAttribute(NAME_MODEL)PostModel postModel){
     	int isNew = 0;
     	if(postModel.getId() == isNew){
@@ -66,6 +67,6 @@ public class PostController {
     	}else{
     		postSercice.update(postModel);
     	}
-        return "redirect:../post/";
+    	return "redirect:../post/";  
     }
 }

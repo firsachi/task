@@ -60,7 +60,6 @@ public class PhoneController {
 		}else {
 			phoneService.update(phone);
 		}
-		
 		return "redirect:../phone/";
 	}
 }
