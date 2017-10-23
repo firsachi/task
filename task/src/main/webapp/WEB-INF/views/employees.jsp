@@ -85,10 +85,10 @@
                         <td><c:out value="${employee.post}"/></td>
                         <td><c:out value="${employee.email}"/></td>
                         <td>
-        					<button onclick="self.location.href='edit${employee.getId()}';">
+        					<button onclick="self.location.href='edit/${employee.getId()}';">
     							<spring:message code="label.button.edit"/>
     						</button>
-    						<button onclick="self.location.href='delete${employee.getId()}';">
+    						<button onclick="self.location.href='delete/${employee.getId()}';">
     							<spring:message code="label.button.delete"/>
     						</button>
         				</td>

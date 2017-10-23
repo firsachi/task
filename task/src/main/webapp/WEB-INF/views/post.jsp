@@ -41,10 +41,10 @@
                 		<td>${value.getName()}</td>
 						<td>${value.getHeft()}</td>
 						<td>
-							<button onclick="self.location.href='edit${value.getId()}';">
+							<button onclick="self.location.href='edit/${value.getId()}';">
     							<spring:message code="label.button.edit"/>
     						</button>
-    						<button onclick="self.location.href='delete${value.getId()}';">
+    						<button onclick="self.location.href='delete/${value.getId()}';">
     							<spring:message code="label.button.delete"/>
     						</button>
 						</td>

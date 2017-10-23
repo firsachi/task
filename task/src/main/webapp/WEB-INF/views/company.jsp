@@ -37,10 +37,10 @@
     					<td>${loop.index+1}</td>
     					<td>${enterprise.getName()}</td>
     					<td>
-    						<button onclick="self.location.href='edit${enterprise.getId()}';">
+    						<button onclick="self.location.href='edit/${enterprise.id}';">
     							<spring:message code="label.button.edit"/>
     						</button>
-    						<button onclick="self.location.href='delete${enterprise.getId()}';">
+    						<button onclick="self.location.href='delete/${enterprise.id}';">
     							<spring:message code="label.button.delete"/>
     						</button>
     					</td>

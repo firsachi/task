@@ -24,6 +24,7 @@
         	</div>
         	<form:form class="form-horisontal" modelAttribute="enterprise" method="POST" action="save" acceptCharset="UTF-8">
             	<%@include file="../jspf/main-company.jsp" %>
+            	<c:set value="self.location.href='.';" var="backPage" />
 				<%@include file="../jspf/button-form.jspf" %>
         	</form:form>
     	</div>

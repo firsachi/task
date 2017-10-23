@@ -42,7 +42,7 @@
     							<spring:message code="label.button.edit"/>
     						</button>
     					
-    						<button onclick="self.location.href='delete${value.id}';">
+    						<button onclick="self.location.href='delete/${value.id}';">
     							<spring:message code="label.button.delete"/>
     						</button>
 						</td>

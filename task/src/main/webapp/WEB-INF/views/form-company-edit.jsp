@@ -20,10 +20,11 @@
     <body>
     	<div class="box-form">
     		<div class="page-header">
-    			<h2>{ companyTitle }</h2>
+    			<h2>${ companyTitle }</h2>
     		</div>
-  			<form:form class="form-horisontal" modelAttribute="enterprise" method="POST" action="save" acceptCharset="UTF-8"  role="form">
+  			<form:form class="form-horisontal" modelAttribute="enterprise" method="POST" action="../save" acceptCharset="UTF-8">
             	<%@include file="../jspf/main-company.jsp" %>
+            	<c:set value="self.location.href='..';" var="backPage" />
             	<%@include file="../jspf/button-form.jspf" %>
         	</form:form>
         </div>

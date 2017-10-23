@@ -8,6 +8,7 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -24,6 +25,7 @@
         	</div>
         	<form:form class="form-horisontal" modelAttribute="modelPost" method="POST" action="save" acceptCharset="UTF-8">
             	<%@include file="../jspf/main-post.jsp" %>
+            	<c:set value="self.location.href='.';" var="backPage" />
             	<%@include file="../jspf/button-form.jspf" %>
         	</form:form>
     	</div>
