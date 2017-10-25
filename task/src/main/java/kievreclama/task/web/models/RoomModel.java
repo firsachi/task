@@ -1,10 +1,16 @@
 package kievreclama.task.web.models;
 
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.NotBlank;
+
 public class RoomModel {
 	
 	private int id;
 	
-	private Integer numberRoom;
+	@NotBlank(message = "{error.null}")
+	@Pattern(regexp = "([0-9]{3})", message  = "{error.sizeRoom}" )
+	private String numberRoom;
 
 	public int getId() {
 		return id;
@@ -14,11 +20,11 @@ public class RoomModel {
 		this.id = id;
 	}
 
-	public Integer getNumberRoom() {
+	public String getNumberRoom() {
 		return numberRoom;
 	}
 
-	public void setNumberRoom(Integer numberRoom) {
+	public void setNumberRoom(String numberRoom) {
 		this.numberRoom = numberRoom;
 	}
 
@@ -26,7 +32,5 @@ public class RoomModel {
 	public String toString() {
 		return "RoomModel [id=" + id + ", numberRoom=" + numberRoom + "]";
 	}
-	
-	
 	
 }

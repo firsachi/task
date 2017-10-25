@@ -27,4 +27,23 @@ public class RoomDaoImpl implements RoomDao{
 		return rooms.getResultList();
 	}
 
+	@Override
+	public void add(Room room) {
+		Session session = sessionFactory.getCurrentSession();
+		session.save(room);
+	}
+
+	@Override
+	@Transactional
+	public Room byId(int id) {
+		Session session = sessionFactory.getCurrentSession();
+		return session.find(Room.class, id);
+	}
+
+	@Override
+	public void upadte(Room room) {
+		Session session = sessionFactory.getCurrentSession();
+		session.update(room);
+	}
+
 }

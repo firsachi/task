@@ -11,14 +11,14 @@ public class RoomTransformer {
 	public RoomModel entityModel(Room entity) {
 		RoomModel model = new RoomModel();
 		model.setId(entity.getId());
-		model.setNumberRoom(entity.getNumberRoom());
+		model.setNumberRoom(Integer.toString(entity.getNumberRoom()));
 		return model;
 	}
 	
 	public Room modelEntity(RoomModel model) {
 		Room entity = new Room();
 		entity.setId(model.getId());
-		entity.setNumberRoom(model.getNumberRoom());
+		entity.setNumberRoom(new Integer(model.getNumberRoom()));
 		return entity;
 	}
 
