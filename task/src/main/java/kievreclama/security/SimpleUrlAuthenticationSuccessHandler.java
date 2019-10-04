@@ -69,7 +69,7 @@ public class SimpleUrlAuthenticationSuccessHandler implements AuthenticationSucc
 		if (isUser) {
 			return "/profile";
 		} else if (isAdmin) {
-			return "/admin";
+			return "/admin/employee";
 		} else {
 			throw new IllegalStateException();
 		}
