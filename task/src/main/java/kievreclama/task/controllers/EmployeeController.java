@@ -23,13 +23,13 @@ import org.springframework.web.servlet.ModelAndView;
  * @author firsov
  */
 @Controller
-@RequestMapping(value = "/employee/")
+@RequestMapping(value = "/admin/")
 public class EmployeeController {
     
     @Autowired
     private EmployeeService employeeService;
     
-    @RequestMapping(value = "/")
+    @RequestMapping(value = "/employee")
     public String getPageTasks(Model model){
         model.addAttribute("employees", employeeService.getList("employees"));
         model.addAllAttributes(employeeService.allCompnents());
