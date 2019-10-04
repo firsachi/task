@@ -1,7 +1,0 @@
-<%@ page pageEncoding="UTF-8"%>
-<%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<div class="form-group-button">
-	<button type="button" onclick="${backPage}"><spring:message code="label.buttonBack"/></button>
-    <button type="reset"><spring:message code="label.buttonReset"/></button>
-    <button type="submit"><spring:message code="label.buttonSubmit"/></button>
-</div>
