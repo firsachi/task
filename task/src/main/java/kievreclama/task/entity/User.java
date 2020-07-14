@@ -24,7 +24,7 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "username", unique = true, length = 50, nullable = false)
+	@Column(name = "username", unique = true, nullable = false)
 	@NotEmpty(message = "{error.null}")
 	private String username;
 
