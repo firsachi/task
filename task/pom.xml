@@ -5,11 +5,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>kievreclama</groupId>
-	<artifactId>task</artifactId>
+	<artifactId>informer</artifactId>
 	<version>1.2-SNAPSHOT</version>
 	<packaging>war</packaging>
 
-	<name>task</name>
+	<name>informer</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -71,7 +71,7 @@
 			<version>${javax.servlet-api-version}</version>
 			<scope>provided</scope>
 		</dependency>
-		
+
 		<!--jstl -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -112,6 +112,11 @@
 			<artifactId>thymeleaf-spring5</artifactId>
 			<version>3.0.11.RELEASE</version>
 		</dependency>
+		<dependency>
+			<groupId>org.thymeleaf.extras</groupId>
+			<artifactId>thymeleaf-extras-springsecurity5</artifactId>
+			<version>3.0.4.RELEASE</version>
+		</dependency>
 
 		<!-- Spring Security -->
 		<dependency>
@@ -142,7 +147,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>task</finalName>
+		<finalName>informer</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
