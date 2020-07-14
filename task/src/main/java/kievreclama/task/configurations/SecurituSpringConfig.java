@@ -29,11 +29,25 @@ public class SecurituSpringConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/", "/task").permitAll().antMatchers("/api/**").permitAll()
-				.antMatchers("/resources/**").permitAll().anyRequest().authenticated().and().formLogin()
-				.loginPage("/login").successHandler(simpleUrlAuthenticationSuccessHandler())
-				.usernameParameter("username").passwordParameter("password").permitAll().and().logout()
-				.logoutSuccessUrl("/").permitAll().and().csrf().disable();
+		http
+			.authorizeRequests()
+				.antMatchers("/", "/informer", "/api/**", "/resources/**").permitAll()
+				.antMatchers("/employee/").hasAnyAuthority("ADMINISTRATOR")
+				.anyRequest().authenticated()
+				.and()
+			.formLogin()
+				.loginPage("/login")
+					//.successHandler(simpleUrlAuthenticationSuccessHandler())
+				.usernameParameter("username")
+				.passwordParameter("password")
+				.permitAll()
+				.and()
+			.logout()
+				.logoutSuccessUrl("/")
+				.permitAll()
+				.and()
+			.csrf()
+				.disable();
 	}
 
 	@Bean

@@ -3,6 +3,8 @@
  */
 package kievreclama.task.configurations;
 
+import java.util.Locale;
+
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,6 +30,7 @@ public class AppConfiguration {
 	@Bean
 	public LocaleResolver localeResolver() {
 		CookieLocaleResolver localeResolver = new CookieLocaleResolver();
+		localeResolver.setDefaultLocale(new Locale("uk"));
 		return localeResolver;
 }
 
