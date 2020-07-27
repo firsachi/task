@@ -16,7 +16,7 @@ import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 
 @Configuration
-@ComponentScan("kievreclama.task")
+@ComponentScan("kievreclama")
 @EnableWebMvc
 public class WebMvcConfiguration implements WebMvcConfigurer {
 

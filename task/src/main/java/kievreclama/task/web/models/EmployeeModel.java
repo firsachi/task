@@ -122,7 +122,4 @@ public class EmployeeModel {
 	public void setRemove(boolean remove) {
 		this.remove = remove;
 	}
-    
-
-    
 }

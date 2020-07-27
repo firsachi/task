@@ -3,14 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package kievreclama.task.controllers;
+package kievreclama.controller;
 
 import kievreclama.task.web.EmployeeService;
 import kievreclama.task.web.models.EmployeeModel;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,21 +30,26 @@ public class EmployeeController {
     
     @Autowired
     private EmployeeService employeeService;
+
+    @ModelAttribute("allEmployee")
+    public List<EmployeeModel> allEmployee(){
+    	return employeeService.getList("employees");
+    }
+    
+    @ModelAttribute("employee")
+    private EmployeeModel employee() {
+    	return new EmployeeModel();
+    }
     
     @RequestMapping(value = "/employee")
-    public String getPageTasks(Model model){
-        model.addAttribute("employees", employeeService.getList("employees"));
-        model.addAllAttributes(employeeService.allCompnents());
+    public String getPageTasks(){
         return "employees";
     }
     
-    @RequestMapping(value = "/add")
-    public ModelAndView getPageFormAdd(){
-    	ModelAndView model = new ModelAndView();
-    	model.setViewName("form-employee-add");
-    	model.addObject("modelEmployee", new EmployeeModel());
-    	model.addAllObjects(employeeService.allCompnents());
-        return model;
+    @RequestMapping(value = "/employee" , params = {"newEmployee"})
+    public String getPageFormAdd(final EmployeeModel employee, final BindingResult bindingResult){
+    	
+    	return "employees";
     }
     
     @GetMapping(value = "/edit/{id}")
