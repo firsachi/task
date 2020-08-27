@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+				<div class="row">
+					<!-- surname -->
+					<div class="medium-4 columns">
+						<label> 
+							<span th:text="#{inputlabel.surname}"></span> 
+							<input type="text" id="surname" name="surname" th:field="*{surname}" autofocus="autofocus"/>
+							<span th:class="${#fields.hasErrors('surname')} ? 'form-error is-visible' : '' " th:errors="*{surname}"></span>
+						</label>
+					</div>
+					<!-- nameEmployee -->
+					<div class="medium-4 columns">
+						<label> 
+							<span th:text="#{inputlabel.nameEmployee}"></span> 
+							<input type="text" id="name" name="name" th:value="*{name}" autofocus="autofocus" />
+							<span th:class="${#fields.hasErrors('name')} ? 'form-error is-visible' : '' " th:errors="*{name}"></span>
+						</label>
+					</div>
+					<!-- patronymic -->
+					<div class="medium-4 columns">
+						<label> 
+							<span th:text="#{inputlabel.patronymic}"></span> 
+							<input type="text" id="patronymic" name="patronymic" th:value="*{patronymic}" autofocus="autofocus" />
+							<span th:class="${#fields.hasErrors('patronymic')} ? 'form-error is-visible' : '' " th:errors="*{patronymic}"></span>
+						</label>
+					</div>
+				</div>
+				
+				<div class="row">
+					<!-- login -->
+					<div class="medium-4 columns">
+						<label> 
+							<span th:text="#{inputlabel.login}"></span> 
+							<input type="text" id="login" name="login" th:value="*{login}" autofocus="autofocus" />
+							<span th:class="${#fields.hasErrors('login')} ? 'form-error is-visible' : '' " th:errors="*{login}"></span>
+						</label>
+					</div>
+					<!-- email -->
+					<div class="medium-4 columns">
+						<label> 
+							<span th:text="#{inputlabel.email}"></span> 
+							<input type="text" id="email" name="email" th:value="*{email}" autofocus="autofocus" />
+							<span th:class="${#fields.hasErrors('email')} ? 'form-error is-visible' : '' " th:errors="*{email}"></span>
+						</label>
+					</div>
+					<!-- password -->
+					<div class="medium-4 columns">
+						<label> 
+							<span th:text="#{inputlabel.password}"></span> 
+							<input type="text" id="password" name="password" th:value="*{password}" autofocus="autofocus" />
+							<span th:class="${#fields.hasErrors('password')} ? 'form-error is-visible' : '' " th:errors="*{password}"></span>
+						</label>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="medium-4 columns">
+						<span th:text="#{inputlabel.nameEnterprise}"></span>
+						<select id="idEnterprise" th:field="*{idEnterprise}">
+							<option th:each="enterprise : ${allCompany}" th:value="${enterprise.id}" th:text="${enterprise.name}">
+						</select>
+					</div>
+					<div class="medium-4 columns">
+						<span th:text="#{inputlabel.nameDepartment}"></span>
+						<select id="idDepartment" th:field="*{idDepartment}">
+							<option th:each="department : ${allDepartment}" th:value="${department.id}" th:text="${department.name}">
+						</select>
+					</div>
+					<div class="medium-4 columns">
+						<span th:text="#{inputlabel.namePost}"></span>
+						<select id="idPost" th:field="*{idPost}">
+							<option th:each="post : ${allPost}" th:value="${post.id}" th:text="${post.name}">
+						</select>
+					</div>
+				</div>
+				<div class="row">
+					<div class="medium-6 columns">
+						<span th:text="#{inputlabel.numberRoom}"></span>
+						<select id="numberRoom" th:field="*{idRoom}">
+							<option th:each="room : ${allRoom}" th:value="${room.id}" th:text="${room.numberRoom}">
+						</select>
+					</div>
+					<div class="medium-6 columns">
+						<span th:text="#{inputlabel.numberPhone}"></span>
+						<select id="numberPhone" th:field="*{idPhone}">
+							<option th:each="phone : ${allPhone}" th:value="${phone.id}" th:text="${phone.number}">
+						</select>
+					</div>
+				</div>
+				
+				<div class="row ">
+					<fieldset class="column align-right">
+						<button type="submit" class="button" name="newEmployee" th:text="#{buttonname.submit}">Add row</button>
+					</fieldset>
+				</div>
+</html>

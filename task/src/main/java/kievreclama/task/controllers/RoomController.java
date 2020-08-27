@@ -15,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kievreclama.task.model.FactoryDao;
 import kievreclama.task.model.dao.RoomDao;
-import kievreclama.task.web.ServiceRoom;
+import kievreclama.task.web.RoomService;
 import kievreclama.task.web.models.RoomModel;
 
 @Controller
@@ -23,7 +23,7 @@ import kievreclama.task.web.models.RoomModel;
 public class RoomController {
 	
 	@Autowired
-	private ServiceRoom serviceRoom;
+	private RoomService serviceRoom;
 	
 	@Autowired
 	private FactoryDao factoryDao;

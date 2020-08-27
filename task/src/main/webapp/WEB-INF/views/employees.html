@@ -20,7 +20,7 @@
 						<td></td>
 						<td>
 							<ul class="menu">
-								<li><button class="button" data-open="addEmployee">+</button></li>
+								<li><button id="addButton" class="button" data-open="addEmployee">+</button></li>
 							</ul>
 						</td>
 					</tr>
@@ -38,20 +38,12 @@
 			</table>
 		</div>
 		<!-- add form -->
-		<div class="reveal" id="addEmployee" data-reveal>
+		
+		<div class="reveal large" id="addEmployee" th:style="${modalAdd} ? 'display: block; top: 75px;' : ''"  data-reveal data-options="closeOnClick:false; closeOnEsc:false;">
 			<div class="column small-12 large-12">
 			<h1 th:text="#{titleform.newEmployee}">New employee</h1>
-			<form class="row" action="" method="post" th:object="${employee}">
-				<div class="medium-12 cell">
-					<label> <span th:text="#{inputlabel.surname}"></span> <input
-						type="text" id="surname" name="surname" autofocus="autofocus" />
-					</label>
-				</div>
-				<div class="medium-12 cell">
-					<label> <span th:text="#{inputlabel.nameEmployee}"></span> <input
-						type="text" id="nameEmployee" name="nameEmployee" autofocus="autofocus" />
-					</label>
-				</div>
+			<form class="row" th:action="@{/employee}" method="post" th:object="${employee}">
+				<span class="column small-12 large-12" th:insert="templates/employee.html"></span>
 			</form>
 			</div>
 			<button class="close-button" data-close aria-label="Close modal"
@@ -63,5 +55,11 @@
 	<script type="text/javascript">
 		$(document).foundation();
 	</script>
+	
+	<div th:if="${openNewEmployee}">
+		<script type="text/javascript">
+			$('#addEmployee').foundation('open');	
+		</script>
+	</div>
 </body>
 </html>
