@@ -14,6 +14,7 @@ import org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
+import org.thymeleaf.templatemode.TemplateMode;
 
 @Configuration
 @ComponentScan("kievreclama")
@@ -34,8 +35,10 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
 		templateResolver.setApplicationContext(applicationContext);
 		templateResolver.setPrefix("/WEB-INF/views/");
 		templateResolver.setSuffix(".html");
-		templateResolver.setCharacterEncoding("UTF-8");		
-		templateResolver.setCacheable(true);
+		templateResolver.setTemplateMode(TemplateMode.HTML);
+		templateResolver.setCharacterEncoding("UTF-8");
+		templateResolver.setOrder(1);
+		templateResolver.setCacheable(false);
 		return templateResolver;
 	}
 
@@ -52,7 +55,8 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
 	public ThymeleafViewResolver viewResolver() {
 		ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
 		viewResolver.setTemplateEngine(templateEngine());
-		
+		viewResolver.setCharacterEncoding("UTF-8");
+		viewResolver.setContentType("text/html; charset=UTF-8");
 		return viewResolver;
 	}
 
@@ -61,6 +65,8 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
 		ThymeleafViewResolver resolver = new ThymeleafViewResolver();
 		resolver.setTemplateEngine(templateEngine());
 		resolver.setCharacterEncoding("UTF-8");
+		resolver.setForceContentType(true);
+		resolver.setContentType("text/html;charset=UTF-8");
 		registry.viewResolver(resolver);
 	}
 
