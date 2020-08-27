@@ -6,13 +6,13 @@ public class EmployeeModel {
 
     private int id;
     
-    @Size(min = 2, max = 14)
+    @Size(min = 2, max = 150)
     private String surname;
     
-    @Size(min = 2, max = 14)
+    @Size(min = 2, max = 150)
     private String name;
     
-    @Size(min = 2, max = 14)
+    @Size(min = 2, max = 150)
     private String patronymic;
     
     private int idPhone;
