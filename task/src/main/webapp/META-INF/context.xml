@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/ApplicationContext" >
+  <!--
+    "global" attribute links to GlobalNamingResources in the ${catalina.base}/conf/server.xml (server administrator team)
+    "name" attribute is relative to the application-private JNDI context Java:comp/env/ and is looked up from the Java web application (application developer team)
+  -->
+  <ResourceLink name="jdbc/TestDB" global="jdbc/TestDB" type="javax.sql.DataSource"/>
+</Context>

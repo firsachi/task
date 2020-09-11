@@ -16,10 +16,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import kievreclama.task.dao.impl.UserRepositoryImpl;
 import kievreclama.task.entity.Role;
 import kievreclama.task.entity.User;
-import kievreclama.task.model.FactoryDao;
-import kievreclama.task.model.dao.UserDao;
+
 
 /**
  * @author firsov
@@ -32,14 +32,14 @@ public class UserDetailsServiceImp implements UserDetailsService {
 	BCryptPasswordEncoder passwordEncoder;
 	
 	@Autowired
-	private FactoryDao factoryDao;
+	private UserRepositoryImpl userDao;
 
-	@Transactional(readOnly = true)
+	@Transactional
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		System.out.println(passwordEncoder.encode("tomcat"));
-		UserDao repository = factoryDao.cerateUserDao();
-		User user = repository.findByUserName(username);
+		User user = userDao.findByUserName(username);
+		System.out.println("test");
+		System.out.println(user);
 		if (user == null) {
 			throw new UsernameNotFoundException("Invalid username or password.");
 		}

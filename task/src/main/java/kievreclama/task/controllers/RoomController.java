@@ -13,8 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import kievreclama.task.model.FactoryDao;
-import kievreclama.task.model.dao.RoomDao;
+import kievreclama.task.dao.impl.RoomDaoImpl;
 import kievreclama.task.web.ServiceRoom;
 import kievreclama.task.web.models.RoomModel;
 
@@ -26,12 +25,11 @@ public class RoomController {
 	private ServiceRoom serviceRoom;
 	
 	@Autowired
-	private FactoryDao factoryDao;
+	private RoomDaoImpl roomDao;
 	
 	@RequestMapping
 	public String roomPage(Model model) {
-		RoomDao roomDao = factoryDao.createRoomDao();
-		model.addAttribute("rooms", roomDao.all());
+		model.addAttribute("rooms", roomDao.byList("allRooms"));
 		return "room";
 	}
 	

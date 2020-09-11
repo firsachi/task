@@ -32,6 +32,6 @@ public class AppConfiguration {
 		CookieLocaleResolver localeResolver = new CookieLocaleResolver();
 		localeResolver.setDefaultLocale(new Locale("uk"));
 		return localeResolver;
-}
+	}
 
 }

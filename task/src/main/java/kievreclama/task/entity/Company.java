@@ -27,11 +27,11 @@ import javax.persistence.Table;
 		{
 			@NamedQuery(
 					name = "allCompany", 
-					query = "from Company C ORDER BY C.id"
+					query = "select C from Company C ORDER BY C.id"
 					),
 			@NamedQuery(
 					name = "company", 
-					query = "from Company C where C.remove = false ORDER BY C.name"
+					query = "select C from Company C where C.remove = false ORDER BY C.name"
 					),
 			@NamedQuery(
 					name = "deleteCompany", 

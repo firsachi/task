@@ -6,6 +6,10 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.LocalEntityManagerFactoryBean;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
@@ -16,8 +20,9 @@ import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 
 @Configuration
-@ComponentScan("kievreclama.task")
+@ComponentScan("kievreclama")
 @EnableWebMvc
+@EnableTransactionManagement
 public class WebMvcConfiguration implements WebMvcConfigurer {
 
 	@Autowired
@@ -62,6 +67,20 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
 		resolver.setTemplateEngine(templateEngine());
 		resolver.setCharacterEncoding("UTF-8");
 		registry.viewResolver(resolver);
+	}
+	
+	@Bean
+	public LocalEntityManagerFactoryBean getEntityManagerFactoryBean() {
+		LocalEntityManagerFactoryBean lemfb = new LocalEntityManagerFactoryBean();
+		lemfb.setPersistenceUnitName("kyivreclamaDS");
+		return lemfb;
+	}
+
+	@Bean
+	public PlatformTransactionManager transactionManager() {
+		JpaTransactionManager transactionManager = new JpaTransactionManager();
+		transactionManager.setEntityManagerFactory(getEntityManagerFactoryBean().getObject());
+		return transactionManager;
 	}
 
 }

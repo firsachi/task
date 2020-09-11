@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.persistence.TypedQuery;
 
-import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
 import kievreclama.task.dao.MainDao;
@@ -14,21 +13,13 @@ import kievreclama.task.entity.Post;
 public class PostDaoImpl extends MainDao<Post>{
 
 	@Override
-	public void delete(int id) {
-		Session session = sessionFactory.getCurrentSession();
-		session.createNamedQuery("deletePost").setParameter("id", id).executeUpdate();
-	}
-
-	@Override
 	public Post byId(int id) {
-		Session session = sessionFactory.getCurrentSession();
-		return session.get(Post.class, id);
+		return em.find(Post.class, id);
 	}
 
 	@Override
-	public List<Post> byList(String namedQery) {
-		Session session = sessionFactory.getCurrentSession();
-		TypedQuery<Post> postList = session.createNamedQuery(namedQery, Post.class);
+	public List<Post> byList(String namedQery) {;
+		TypedQuery<Post> postList = em.createNamedQuery(namedQery, Post.class);
 		return postList.getResultList();
 	}
 

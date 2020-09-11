@@ -4,31 +4,24 @@ import java.util.List;
 
 import javax.persistence.TypedQuery;
 
-import org.hibernate.Session;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import kievreclama.task.dao.MainDao;
 import kievreclama.task.entity.Company;
 
+@Repository("companyDao")
 public class CompanyDaoImpl extends MainDao<Company>{
-
-	@Override
-	public void delete(int id) {
-		Session session = sessionFactory.getCurrentSession();
-		session.createNamedQuery("deleteCompany").setParameter("id", id).executeUpdate();
-	}
 	
 	@Override
 	public Company byId(int id) {
-		Session session = sessionFactory.getCurrentSession();
-		return session.get(Company.class, id);
+		return em.find(Company.class, id);
 	}
 
 	@Override
 	@Transactional
 	public List<Company> byList(String namedQery) {
-		Session session = sessionFactory.getCurrentSession();
-		TypedQuery<Company> typedQuery = session.createNamedQuery(namedQery, Company.class);
+		TypedQuery<Company> typedQuery = em.createNamedQuery(namedQery, Company.class);
 		return typedQuery.getResultList();
 	}
 

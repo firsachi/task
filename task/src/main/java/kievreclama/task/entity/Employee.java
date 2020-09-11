@@ -28,16 +28,16 @@ import javax.persistence.Table;
 @NamedQueries({
 	@NamedQuery (
 			name = "allEmployee", 
-			query = "FROM Employee E ORDER BY E.id"),
+			query = "SELECT E FROM Employee E ORDER BY E.id"),
 	@NamedQuery (
 			name = "employees", 
-			query = "FROM Employee E WHERE E.remove = false ORDER BY E.id"),
+			query = "SELECT E FROM Employee E WHERE E.remove = false ORDER BY E.id"),
 	@NamedQuery (
 			name = "deleteEmployee", 
 			query = "UPDATE Employee E SET E.remove = true WHERE E.id = :id"),
 	@NamedQuery (
 			name = "selectIdDepartment", 
-			query = "FROM Employee E WHERE E.remove = false AND E.department.id = :departmentId")
+			query = "SELECT E FROM Employee E WHERE E.remove = false AND E.department.id = :departmentId")
 })
 public class Employee implements Cloneable, Serializable{
     
@@ -68,7 +68,6 @@ public class Employee implements Cloneable, Serializable{
     @ManyToOne
     private Post post;
     
-    @ElementCollection(fetch = FetchType.LAZY)
     @JoinColumn(name = "department", referencedColumnName = "id")
     @ManyToOne
     private Department department;

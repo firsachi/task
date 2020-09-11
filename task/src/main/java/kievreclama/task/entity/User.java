@@ -10,12 +10,16 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name = "users")
+@NamedQueries({ @NamedQuery(name = "User.allUsers", query = "SELECT U FROM User U"),
+	@NamedQuery(name = "User.findUsername", query = "SELECT U FROM User U WHERE U.username = :username") })
 public class User implements Serializable {
 
 	/**

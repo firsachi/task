@@ -9,7 +9,6 @@ import java.util.List;
 
 import javax.persistence.TypedQuery;
 
-import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,22 +24,14 @@ import kievreclama.task.entity.Department;
 public class DepartmentDaoImpl extends MainDao<Department>{
 
 	@Override
-	public void delete(int id) {
-		Session session = sessionFactory.getCurrentSession();
-		session.createNamedQuery("deleteDepartment").setParameter("id", id).executeUpdate();
-	}
-
-	@Override
 	public Department byId(int id) {
-		Session session = sessionFactory.getCurrentSession();
-		return session.get(Department.class, id);
+		return em.find(Department.class, id);
 	}
 
 	@Override
 	@Transactional
 	public List<Department> byList(String namedQery) {
-		Session session = sessionFactory.getCurrentSession();
-		TypedQuery<Department> typedQuery = session.createNamedQuery(namedQery, Department.class);
+		TypedQuery<Department> typedQuery = em.createNamedQuery(namedQery, Department.class);
 		return typedQuery.getResultList();
 	}
     

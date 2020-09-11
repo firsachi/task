@@ -23,8 +23,8 @@ import javax.persistence.OneToMany;
  */
 @Entity
 @NamedQueries({
-	@NamedQuery(name = "allPosts", query = "FROM Post P ORDER BY P.id"),
-	@NamedQuery(name = "posts", query = "FROM Post P WHERE P.remove = false ORDER BY P.name"),
+	@NamedQuery(name = "allPosts", query = "SELECT P FROM Post P ORDER BY P.id"),
+	@NamedQuery(name = "posts", query = "SELECT P FROM Post P WHERE P.remove = false ORDER BY P.name"),
 	@NamedQuery(name = "deletePost", query = "UPDATE Post P SET P.remove = true WHERE P.id = :id")
 	})
 public class Post implements Serializable {

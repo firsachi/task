@@ -12,8 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import kievreclama.task.model.FactoryDao;
-import kievreclama.task.model.dao.PhoneDao;
+import kievreclama.task.dao.impl.PhoneDaoImpl;
 import kievreclama.task.web.PhoneService;
 import kievreclama.task.web.models.PhoneModel;
 
@@ -25,12 +24,11 @@ public class PhoneController {
 	private PhoneService phoneService;
 	
 	@Autowired
-	private FactoryDao factoryDao;
+	private PhoneDaoImpl phoneDao;
 	
 	@RequestMapping
 	public String pagePtones(Model model) {
-		PhoneDao phones = factoryDao.createPhoneDao();
-		model.addAttribute("phones", phones.getAll());
+		model.addAttribute("phones", phoneDao.byList("allPhone"));
 		return "phone";
 	}
 
