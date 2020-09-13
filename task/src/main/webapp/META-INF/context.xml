@@ -4,5 +4,5 @@
     "global" attribute links to GlobalNamingResources in the ${catalina.base}/conf/server.xml (server administrator team)
     "name" attribute is relative to the application-private JNDI context Java:comp/env/ and is looked up from the Java web application (application developer team)
   -->
-  <ResourceLink name="jdbc/TestDB" global="jdbc/TestDB" type="javax.sql.DataSource"/>
+  <ResourceLink name="jdbc/InformerDB" global="jdbc/InformerDB" type="javax.sql.DataSource"/>
 </Context>

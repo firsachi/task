@@ -7,9 +7,7 @@ package kievreclama.task.entity;
 
 import java.io.Serializable;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -34,7 +32,7 @@ import javax.persistence.Table;
 			query = "SELECT E FROM Employee E WHERE E.remove = false ORDER BY E.id"),
 	@NamedQuery (
 			name = "deleteEmployee", 
-			query = "UPDATE Employee E SET E.remove = true WHERE E.id = :id"),
+			query = "UPDATE Employee E SET E.remove = true WHERE E.id=:id"),
 	@NamedQuery (
 			name = "selectIdDepartment", 
 			query = "SELECT E FROM Employee E WHERE E.remove = false AND E.department.id = :departmentId")

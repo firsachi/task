@@ -5,6 +5,7 @@ package kievreclama.task.configurations;
 
 import java.util.Locale;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,7 +19,7 @@ import org.springframework.web.servlet.i18n.CookieLocaleResolver;
  */
 @Configuration
 public class AppConfiguration {
-	
+
 	@Bean
 	public MessageSource messageSource() {
 		ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
@@ -34,4 +35,8 @@ public class AppConfiguration {
 		return localeResolver;
 	}
 
+	@Bean
+	public ModelMapper modelMapper() {
+	    return new ModelMapper();
+	}
 }

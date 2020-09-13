@@ -1,12 +1,18 @@
 package kievreclama.task.web;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import javax.transaction.Transactional;
+
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import kievreclama.task.dao.impl.PhoneDaoImpl;
+import kievreclama.task.entity.Phone;
 import kievreclama.task.web.models.PhoneModel;
-import kievreclama.task.web.transformers.PhoneTransformer;
+
 
 @Service
 public class PhoneService {
@@ -15,21 +21,28 @@ public class PhoneService {
 	private PhoneDaoImpl phoneDao;
 	
 	@Autowired
-	private PhoneTransformer phoneTransformer;
+	private ModelMapper modelMapper;
 	
 	@Transactional
 	public void add(PhoneModel model) {
-		phoneDao.insert(phoneTransformer.modelToEntity(model));
+		phoneDao.insert(modelMapper.map(model, Phone.class));
 	}
 	
 	@Transactional
 	public void update(PhoneModel model) {
-		phoneDao.update(phoneTransformer.modelToEntity(model));
+		phoneDao.update(modelMapper.map(model, Phone.class));
 	}
 
 	@Transactional
 	public PhoneModel byId(int id) {
-		return phoneTransformer.entityToModel(phoneDao.byId(id));
+		return modelMapper.map(phoneDao.byId(id), PhoneModel.class);
+	}
+	
+	@Transactional
+	public List<PhoneModel> getAll(String namedQery){
+		return phoneDao.byList(namedQery).stream()
+				.map(phone -> modelMapper.map(phone, PhoneModel.class))
+				.collect(Collectors.toList());
 	}
 
 }
