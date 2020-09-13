@@ -37,7 +37,7 @@ public class EmployeeModel {
     
     private int room;
     
-    @Size(min = 2, max = 14)
+    @Size(min = 2, max = 150)
     private String login;
     
     @Size(min = 8)
