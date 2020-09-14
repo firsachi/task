@@ -20,7 +20,7 @@
 		<version-jstl>1.2</version-jstl>
 		<modelmapper.version>2.3.8</modelmapper.version>
 		<javax.servlet-api-version>4.0.1</javax.servlet-api-version>
-		<springframework-version>5.1.9.RELEASE</springframework-version>
+		<springframework-version>5.2.7.RELEASE</springframework-version>
 		<springframework.security-version>5.1.6.RELEASE</springframework.security-version>
 		<hibernate-validator.version>5.4.2.Final</hibernate-validator.version>
 	</properties>
