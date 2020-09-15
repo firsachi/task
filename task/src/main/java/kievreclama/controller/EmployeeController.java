@@ -41,7 +41,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @author firsov
  */
 @Controller
-@RequestMapping
+@RequestMapping(value = "/employee")
 public class EmployeeController {
     
 	private EmployeeModel employee;
@@ -104,16 +104,20 @@ public class EmployeeController {
     	this.employee = new EmployeeModel();
     }
     
-    @RequestMapping(value = "/employee")
+    @RequestMapping
     public String getPageTasks(Model model){
         return "employees";
+    }
+    
+    @GetMapping(value = "/add")
+    public String getPageAddEmployee() {
+    	return "employee-add";
     }
     
     @PostMapping(value = "/employee" , params = {"newEmployee"})
     public String getPageFormAdd(@Valid @ModelAttribute("employee") EmployeeModel employeeModel , final BindingResult bindingResult, ModelMap model){
     	if(bindingResult.hasErrors()) {
-    		model.addAttribute("openNewEmployee", true);
-    		return "employees";
+    		return "employee-add";
     	}
     	employeeService.save(employeeModel);
     	this.employee = new EmployeeModel();
