@@ -12,8 +12,13 @@
 	<div class="row">	
 		
 			<div class="column small-12 large-12">
+<<<<<<< HEAD
 			<h1 th:text="#{titleform.new}">New employee</h1>
 			<form class="row" th:action="@{add}" method="post" th:object="${employee}">
+=======
+			<h1 th:text="#{titleform.newEmployee}">New employee</h1>
+			<form class="row" th:action="@{newEmployee}" method="post" th:object="${employee}">
+>>>>>>> branch 'master' of https://github.com/firsachi/task.git
 				<span class="column small-12 large-12" th:insert="templates/employee.html"></span>
 				
 			</form>

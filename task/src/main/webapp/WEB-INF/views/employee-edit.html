@@ -12,10 +12,16 @@
 	<div class="row">	
 		
 			<div class="column small-12 large-12">
+<<<<<<< HEAD
 			<h1 th:text="#{titleform.edit}">New employee</h1>
 			<form class="row" th:action="@{{id}(id=${employee.id})}" method="post" th:object="${employee}">
 				<span class="column small-12 large-12" th:insert="templates/employee.html"></span>
 				<input type="hidden" name="id" th:value="*{id}">
+=======
+			<h1 th:text="#{titleform.updateEmployee}">Update employee</h1>
+			<form class="row" th:action="@{newEmployee}" method="post" th:object="${employee}">
+				<span class="column small-12 large-12" th:insert="templates/employee.html"></span>
+>>>>>>> branch 'master' of https://github.com/firsachi/task.git
 			</form>
 			</div>
 	</div>
