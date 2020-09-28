@@ -12,7 +12,7 @@
 				<li>
 					<form name="logonLogoff" th:action="@{/logout}" method="POST">
 						<div sec:authorize="!isAuthenticated()">
-							<a th:href="employee" th:text="#{buttonname.login}" class="button">Sing in</a>
+							<a href="#" th:href="home" th:text="#{buttonname.login}" class="button">Sing in</a>
 						</div>
 						<div sec:authorize="isAuthenticated()">
 							<input class="button expanded" type="submit" th:value="#{buttonname.logoff}" value="Sing out">

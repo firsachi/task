@@ -17,7 +17,7 @@ public abstract class MainDao<T> {
 		em.persist(value);
 	}
 	
-	public void update(T value){
+	public void update(T value){	
 		em.merge(value);
 	}
 	
