@@ -19,11 +19,7 @@
 						<td th:text="#{inputlabel.department}"></td>
 						<td>
 							<ul class="menu">
-<<<<<<< HEAD
 								<li><a th:href="@{add}" th:text="#{buttonname.add}" class="button">add</a></li>
-=======
-								<li><a th:href="@{employee/add}" th:text="#{buttonname.add}" class="button">New employee</a></li>
->>>>>>> branch 'master' of https://github.com/firsachi/task.git
 							</ul>
 						</td>
 
@@ -35,11 +31,7 @@
 							th:text="${employee.surname + ' ' + employee.name + ' ' + employee.patronymic}"></td>
 						<td th:text="${employee.enterprise}"></td>
 						<td th:text="${employee.department}"></td>
-<<<<<<< HEAD
 						<td><a th:href="@{edit/{id}(id=${employee.id})}" th:text="#{buttonname.edit}">edit</a> </td>
-=======
-						<td><a th:href="@{employee/update/}" th:text="#{buttonname.edit}">edit</a> </td>
->>>>>>> branch 'master' of https://github.com/firsachi/task.git
 						<td><a data-open="exampleModal1">delete</a></td>
 					</tr>
 				</tbody>
@@ -49,9 +41,5 @@
 	<script type="text/javascript">
 		$(document).foundation();
 	</script>
-<<<<<<< HEAD
-	
-=======
->>>>>>> branch 'master' of https://github.com/firsachi/task.git
 </body>
 </html>

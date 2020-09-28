@@ -9,20 +9,14 @@
 <body>
 	<div th:insert="templates/top-bar.html"></div>
 	<br>
-	<div class="row">	
-		
-			<div class="column small-12 large-12">
-<<<<<<< HEAD
+	<div class="row">
+		<div class="column small-12 large-12">
 			<h1 th:text="#{titleform.new}">New employee</h1>
 			<form class="row" th:action="@{add}" method="post" th:object="${employee}">
-=======
-			<h1 th:text="#{titleform.newEmployee}">New employee</h1>
-			<form class="row" th:action="@{newEmployee}" method="post" th:object="${employee}">
->>>>>>> branch 'master' of https://github.com/firsachi/task.git
+				<h1 th:text="#{titleform.newEmployee}">New employee</h1>
 				<span class="column small-12 large-12" th:insert="templates/employee.html"></span>
-				
 			</form>
-			</div>
+		</div>
 	</div>
 	<script type="text/javascript">
 		$(document).foundation();
