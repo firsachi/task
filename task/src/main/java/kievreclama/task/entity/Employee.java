@@ -84,108 +84,115 @@ public class Employee implements Cloneable, Serializable{
     
     @Column(name = "login", unique = true)
     private String login;
+    
+    @Column(name = "pass", nullable = false)
+    private String pass;
 
     @Column (name = "remove", columnDefinition = "boolean default false", nullable = false)
     private Boolean remove = false;
-    
-    public void setId(int id) {
-        this.id = id;
-    }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
+	public int getId() {
+		return id;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    public void setPatronymic(String patronymic) {
-        this.patronymic = patronymic;
-    }
+	public String getSurname() {
+		return surname;
+	}
 
-    public void setPhone(Phone phone) {
-        this.phone = phone;
-    }
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
 
-    public void setPost(Post post) {
-        this.post = post;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setDepartment(Department department) {
-        this.department = department;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public void setEnterprise(Company enterprise) {
-        this.enterprise = enterprise;
-    }
+	public String getPatronymic() {
+		return patronymic;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public void setPatronymic(String patronymic) {
+		this.patronymic = patronymic;
+	}
 
-    public void setRemove(Boolean remove) {
-        this.remove = remove;
-    }
+	public Phone getPhone() {
+		return phone;
+	}
 
-    public void setRoom(Room room) {
-        this.room = room;
-    }
+	public void setPhone(Phone phone) {
+		this.phone = phone;
+	}
 
-    public void setLogin(String login) {
-        this.login = login;
-    }    
-    
-    public int getId() {
-        return id;
-    }
+	public Post getPost() {
+		return post;
+	}
 
-    public String getSurname() {
-        return surname;
-    }
+	public void setPost(Post post) {
+		this.post = post;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public Department getDepartment() {
+		return department;
+	}
 
-    public String getPatronymic() {
-        return patronymic;
-    }
-    
-    public String getFullName(){
-        return surname + " " + name + " " + patronymic;
-    }
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
 
-    public Phone getPhone() {
-        return phone;
-    }
+	public Company getEnterprise() {
+		return enterprise;
+	}
 
-    public Post getPost() {
-        return post;
-    }
+	public void setEnterprise(Company enterprise) {
+		this.enterprise = enterprise;
+	}
 
-    public Department getDepartment() {
-        return department;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    public Company getEnterprise() {
-        return enterprise;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public Room getRoom() {
+		return room;
+	}
 
-    public Room getRoom() {
-        return room;
-    }
+	public void setRoom(Room room) {
+		this.room = room;
+	}
 
-    public String getLogin() {
-        return login;
-    }
+	public String getLogin() {
+		return login;
+	}
 
-    public Boolean getRemove() {
-        return remove;
-    }
-    
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	public String getPass() {
+		return pass;
+	}
+
+	public void setPass(String pass) {
+		this.pass = pass;
+	}
+
+	public Boolean getRemove() {
+		return remove;
+	}
+
+	public void setRemove(Boolean remove) {
+		this.remove = remove;
+	}
+   
 }

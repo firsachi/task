@@ -21,7 +21,6 @@ import kievreclama.task.web.models.EmployeeModel;
 import kievreclama.task.web.transformers.EmployeeTransformer;
 
 @Service
-@Transactional
 public class EmployeeService extends ServiseTask<EmployeeModel>{
 	
 	@Autowired
@@ -46,11 +45,13 @@ public class EmployeeService extends ServiseTask<EmployeeModel>{
 	private CompanyDaoImpl comapnyDao;
 
 	@Override
+	@Transactional
 	public void save(EmployeeModel value) {
 		employeeDao.insert(employeeTransformer.modelToEntity(value));
 	}
 
 	@Override
+	@Transactional
 	public void update(EmployeeModel value) {
 		employeeDao.update(employeeTransformer.modelToEntity(value));
 	}

@@ -20,7 +20,7 @@
 						<td></td>
 						<td>
 							<ul class="menu">
-								<li><a th:href="@{employee/add}" th:text="#{buttonname.login}" class="button">Sing in</a></li>
+								<li><a th:href="@{add}" th:text="#{buttonname.add}" class="button">add</a></li>
 							</ul>
 						</td>
 					</tr>
@@ -31,35 +31,16 @@
 							th:text="${employee.surname + ' ' + employee.name + ' ' + employee.patronymic}"></td>
 						<td th:text="${employee.enterprise}"></td>
 						<td th:text="${employee.department}"></td>
-						<td><a>edit</a> </td>
+						<td><a th:href="@{edit/{id}(id=${employee.id})}" th:text="#{buttonname.edit}">edit</a> </td>
 						<td><a data-open="exampleModal1">delete</a></td>
 					</tr>
 				</tbody>
 			</table>
-		</div>
-		<!-- add form -->
-		
-		<div class="reveal large" id="addEmployee" th:style="${modalAdd} ? 'display: block; top: 75px;' : ''"  data-reveal data-options="closeOnClick:false; closeOnEsc:false;">
-			<div class="column small-12 large-12">
-			<h1 th:text="#{titleform.newEmployee}">New employee</h1>
-			<form class="row" th:action="@{/employee}" method="post" th:object="${employee}">
-				<span class="column small-12 large-12" th:insert="templates/employee.html"></span>
-			</form>
-			</div>
-			<button class="close-button" data-close aria-label="Close modal"
-				type="button">
-				<span aria-hidden="true">&times;</span>
-			</button>
 		</div>
 	</div>
 	<script type="text/javascript">
 		$(document).foundation();
 	</script>
 	
-	<div th:if="${openNewEmployee}">
-		<script type="text/javascript">
-			$('#addEmployee').foundation('open');	
-		</script>
-	</div>
 </body>
 </html>

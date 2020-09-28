@@ -31,6 +31,8 @@ public class EmployeeTransformer {
 		model.setDisable(entity.getRemove());
 		model.setIdRoom(entity.getRoom().getId());
 		model.setRoom(entity.getRoom().getNumberRoom());
+		model.setLogin(entity.getLogin());
+		model.setPassword(entity.getPass());
 		return model;
 	}
 
@@ -47,6 +49,8 @@ public class EmployeeTransformer {
 		employee.setPost(new Post(model.getIdPost()));
 		employee.setRemove(model.isDisable());
 		employee.setRoom(new Room(model.getIdRoom()));
+		employee.setLogin(model.getLogin());
+		employee.setPass(model.getPassword());
 		return employee;
 	}
 }
