@@ -36,7 +36,7 @@ public class DepartmentService extends ServiseTask<DepartmentModel>{
 
 	@Override
 	public void delete(int id) {
-		departmentDao.delete(id);
+		departmentDao.delete(departmentDao.byId(id));
 	}
 
 	@Override

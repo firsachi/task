@@ -21,8 +21,8 @@ public abstract class MainDao<T> {
 		em.merge(value);
 	}
 	
-	public void delete(Integer primaryKey) {
-		em.remove(primaryKey);
+	public void delete(T entity) {
+		em.remove(entity);
 	}
 	public abstract T byId(int id);
 	public abstract List<T> byList(String namedQery);

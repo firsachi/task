@@ -35,7 +35,7 @@ public class CompanyService extends ServiseTask<CompanyModel>{
 
 	@Override
 	public void delete(int id) {
-		companyDao.delete(id);
+		companyDao.delete(companyDao.byId(id));
 	}
 
 	@Override

@@ -58,7 +58,7 @@ public class EmployeeService extends ServiseTask<EmployeeModel>{
 
 	@Override
 	public void delete(int id) {
-		employeeDao.delete(id);
+		employeeDao.delete(employeeDao.byId(id));
 	}
 
 	@Override
