@@ -14,7 +14,7 @@ import kievreclama.task.dao.impl.CompanyDaoImpl;
 import kievreclama.task.dao.impl.DepartmentDaoImpl;
 import kievreclama.task.dao.impl.EmployeeDaoImpl;
 import kievreclama.task.dao.impl.PhoneDaoImpl;
-import kievreclama.task.dao.impl.PostDaoImpl;
+import kievreclama.task.dao.impl.PositionDaoImpl;
 import kievreclama.task.dao.impl.RoomDaoImpl;
 import kievreclama.task.entity.Employee;
 import kievreclama.task.web.models.EmployeeModel;
@@ -36,7 +36,7 @@ public class EmployeeService extends ServiseTask<EmployeeModel>{
 	private PhoneDaoImpl phoneDao;
 	
 	@Autowired
-	private PostDaoImpl postDao;
+	private PositionDaoImpl postDao;
 	
 	@Autowired 
 	private DepartmentDaoImpl departmentDao;

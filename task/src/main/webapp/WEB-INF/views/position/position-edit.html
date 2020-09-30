@@ -4,16 +4,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link th:insert="templates/head.html" />
-<title>title</title>
+<title th:text="#{titleform.editPosition}">title</title>
 </head>
 <body>
 	<div th:insert="templates/top-bar.html"></div>
 	<br>
 	<div class="row">
 		<div class="column small-12 large-12">
-			<h1 th:text="#{titleform.new}">New employee</h1>
-			<form class="row" th:action="@{add}" method="post" th:object="${employee}">
-				<span class="column small-12 large-12" th:insert="templates/employee.html"></span>
+			<h1 th:text="#{titleform.editPosition}">edit position</h1>
+			<form class="row" th:action="@{{id}(id=${position.id})}" method="post" th:object="${position}">
+				<span class="column small-12 large-12" th:insert="templates/post-form.html"></span>
 			</form>
 		</div>
 	</div>

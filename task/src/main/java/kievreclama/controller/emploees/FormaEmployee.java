@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import kievreclama.task.web.CompanyService;
 import kievreclama.task.web.DepartmentService;
 import kievreclama.task.web.PhoneService;
-import kievreclama.task.web.PostService;
+import kievreclama.task.web.PositionService;
 import kievreclama.task.web.RoomService;
 import kievreclama.task.web.models.CompanyModel;
 import kievreclama.task.web.models.DepartmentModel;
 import kievreclama.task.web.models.EmployeeModel;
 import kievreclama.task.web.models.PhoneModel;
-import kievreclama.task.web.models.PostModel;
+import kievreclama.task.web.models.PositionModel;
 import kievreclama.task.web.models.RoomModel;
 
 public abstract class FormaEmployee {
@@ -30,7 +30,7 @@ public abstract class FormaEmployee {
     private DepartmentService departmentService;
     
     @Autowired
-    private PostService postService;
+    private PositionService postService;
     
     @Autowired
     private RoomService roomService;
@@ -49,7 +49,7 @@ public abstract class FormaEmployee {
     }
     
     @ModelAttribute("allPost")
-    public List<PostModel> allPost() {
+    public List<PositionModel> allPost() {
     	return postService.getList("posts");
     }
     

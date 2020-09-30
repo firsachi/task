@@ -9,7 +9,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kievreclama.task.dao.impl.PostDaoImpl;
+import kievreclama.task.dao.impl.PositionDaoImpl;
 import kievreclama.task.entity.Position;
 import kievreclama.task.web.models.PositionModel;
 
@@ -17,7 +17,7 @@ import kievreclama.task.web.models.PositionModel;
 public class PositionService extends ServiseTask<PositionModel> {
 
 	@Autowired
-	private PostDaoImpl postDao;
+	private PositionDaoImpl postDao;
 
 	@Autowired
 	private ModelMapper modelMapper;

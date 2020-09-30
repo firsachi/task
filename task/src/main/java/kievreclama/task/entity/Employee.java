@@ -26,7 +26,7 @@ import javax.persistence.Table;
 @NamedQueries({
 	@NamedQuery (
 			name = "allEmployee", 
-			query = "SELECT E FROM Employee E ORDER BY E.id"),
+			query = "SELECT E FROM Employee E ORDER BY E.remove"),
 	@NamedQuery (
 			name = "employees", 
 			query = "SELECT E FROM Employee E WHERE E.remove = false ORDER BY E.id"),
@@ -64,7 +64,7 @@ public class Employee implements Cloneable, Serializable{
     
     @JoinColumn(name = "post", referencedColumnName = "id")
     @ManyToOne
-    private Post post;
+    private Position post;
     
     @JoinColumn(name = "department", referencedColumnName = "id")
     @ManyToOne
@@ -131,11 +131,11 @@ public class Employee implements Cloneable, Serializable{
 		this.phone = phone;
 	}
 
-	public Post getPost() {
+	public Position getPost() {
 		return post;
 	}
 
-	public void setPost(Post post) {
+	public void setPost(Position post) {
 		this.post = post;
 	}
 

@@ -6,7 +6,7 @@ import kievreclama.task.entity.Company;
 import kievreclama.task.entity.Department;
 import kievreclama.task.entity.Employee;
 import kievreclama.task.entity.Phone;
-import kievreclama.task.entity.Post;
+import kievreclama.task.entity.Position;
 import kievreclama.task.entity.Room;
 import kievreclama.task.web.models.EmployeeModel;
 
@@ -46,7 +46,9 @@ public class EmployeeTransformer {
 		employee.setPatronymic(model.getPatronymic());
 		employee.setSurname(model.getSurname());
 		employee.setPhone(new Phone(model.getIdPhone()));
-		employee.setPost(new Post(model.getIdPost()));
+		Position post = new Position();
+		post.setId(model.getIdPost());
+		employee.setPost(post);
 		employee.setRemove(model.isDisable());
 		employee.setRoom(new Room(model.getIdRoom()));
 		employee.setLogin(model.getLogin());
