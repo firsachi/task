@@ -7,7 +7,10 @@
 <title th:text="#{titleform.home}">title</title>
 </head>
 <body>
-	<div th:insert="templates/top-bar.html"></div>
+	<div class="top-bar" >
+		<div th:insert="templates/menu/top-directories.html"></div>
+		<div th:insert="templates/menu/logof-logon.html"></div>
+	</div>
 	<br>
 	<div class="row">
 		<div class="columns">

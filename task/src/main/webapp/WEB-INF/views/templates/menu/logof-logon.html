@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+		<div class="top-bar-right">
+			<ul class="menu">
+				<li>
+					<form name="logonLogoff" th:action="@{/logout}" method="POST">
+						<div sec:authorize="!isAuthenticated()">
+							<a href="#" th:href="home" th:text="#{buttonname.login}" class="button">Sing in</a>
+						</div>
+						<div sec:authorize="isAuthenticated()">
+							<input class="button expanded" type="submit" th:value="#{buttonname.logoff}" value="Sing out">
+						</div>
+					</form>
+				</li>
+			</ul>
+		</div>
+</html>

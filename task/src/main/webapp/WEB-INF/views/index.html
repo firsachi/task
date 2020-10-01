@@ -7,7 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div th:insert="templates/top-bar.html"></div>
+	<div class="top-bar" >
+		<div class="top-bar-left"></div>
+		<div th:insert="templates/menu/logof-logon.html"></div>
+	</div>
 	<div sec:authorize="hasRole('ROLE_USER')"></div>
 </body>
 </html>

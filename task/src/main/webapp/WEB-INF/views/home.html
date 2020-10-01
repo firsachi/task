@@ -10,10 +10,16 @@
 	<div th:insert="templates/top-bar.html"></div>
 	<br>
 	<div class="row">
-		<a href="#" th:href="@{employee/}" th:text="#{titleform.emploee}" class="column small-12 large-4 callout">
-		</a>
-		<a href="#" th:href="@{position/}" th:text="#{titleform.position}" class="column small-12 large-4 callout">
-		</a>
+		<div class="columns">
+			<div class="row">
+				<div class="column small-12 large-4">
+					<a href="#" th:href="@{employee/}" th:text="#{titleform.admin}" class="hollow large button expanded"></a>
+				</div>
+				<div class="column small-12 large-4">
+					<a href="#" th:href="@{position}" th:text="#{titleform.home.directories}" class="hollow large button expanded"></a>
+				</div>
+			</div>
+		</div>
 	</div>
 	<script type="text/javascript">
 		$(document).foundation();

@@ -38,8 +38,6 @@ public class UserDetailsServiceImp implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		User user = userDao.findByUserName(username);
-		System.out.println("test");
-		System.out.println(user);
 		if (user == null) {
 			throw new UsernameNotFoundException("Invalid username or password.");
 		}
