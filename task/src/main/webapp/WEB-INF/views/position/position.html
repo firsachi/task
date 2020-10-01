@@ -17,7 +17,11 @@
 						<th th:text="#{inputlabel.namePost}">name post</th>
 						<th th:text="#{inputlabel.heftPost}">heft post</th>
 						<th></th>
-						<th><a th:href="@{add}" th:text="#{buttonname.add}" class="button">add</a></th>
+						<th>
+							<ul class="menu expanded">
+								<li><a th:href="@{add}" class="step fi-page-add size-21 button expanded"></a></li>
+							</ul>
+						</th>
 					</tr>
 				</thead>
 				<tbody th:each="position : ${allPositions}">
@@ -26,17 +30,38 @@
 						<td th:text="${position.heft}"></td>
 						<td th:text="${position.disable}"></td>
 						<td>
-							<a th:href="@{edit/{id}(id=${position.id})}" th:text="#{buttonname.edit}">edit</a>
-							<a th:href="@{delete/{id}(id=${position.id})}" th:text="#{buttonname.delete}">delete</a>
+							<div class="menu expanded button-group">
+
+									<!-- edit -->
+									<a th:href="@{edit/{id}(id=${position.id})}" 
+										class="small small-only-expanded fi-page-edit button"></a>
+
+									<!-- delete -->
+									<a th:href="@{delete/{id}(id=${position.id})}" 
+										class="small large-only-expanded fi-skull button" ></a>
+							</div>	
 						</td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
 	</div>
+	<!-- modal -->
+	<div class="reveal" id="deletePosition" data-reveal data-options="closeOnClick:false; closeOnEsc:false;">
+  		<h1>Неможливо видалити.</h1>
+  			<p class="lead">Бо запис має залежності.</p>
+  			<p class="lead">Наркотична, ігрова, сексуальна, алкогольна, інтернет і далі за списком.</p>
+  		<button class="close-button" data-close aria-label="Close modal" type="button">
+    		<span aria-hidden="true">&times;</span>
+  		</button>
+	</div>
 	<script type="text/javascript">
 		$(document).foundation();
 	</script>
-	
+	<div th:if="${deletePosition}">
+		<script type="text/javascript">
+			$('#deletePosition').foundation('open');	
+		</script>
+	</div>
 </body>
 </html>
