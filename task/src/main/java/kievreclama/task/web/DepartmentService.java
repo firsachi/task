@@ -34,7 +34,6 @@ public class DepartmentService extends ServiseTask<DepartmentModel>{
 		departmentDao.update(departmentTransformer.modelToEntity(value));
 	}
 
-	@Override
 	public void delete(int id) {
 		departmentDao.delete(departmentDao.byId(id));
 	}

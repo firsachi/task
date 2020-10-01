@@ -34,10 +34,13 @@ public class PositionService extends ServiseTask<PositionModel> {
 		postDao.update(modelMapper.map(value, Position.class));
 	}
 
-	@Override
 	@Transactional
-	public void delete(int id) {
-		postDao.delete(postDao.byId(id));
+	public boolean delete(int id) {
+		if (0 == postDao.byId(id).getEmployees().size()) {
+			postDao.delete(postDao.byId(id));
+			return true;
+		}
+		return false;
 	}
 
 	@Override

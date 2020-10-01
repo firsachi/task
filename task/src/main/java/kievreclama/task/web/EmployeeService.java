@@ -56,7 +56,6 @@ public class EmployeeService extends ServiseTask<EmployeeModel>{
 		employeeDao.update(employeeTransformer.modelToEntity(value));
 	}
 
-	@Override
 	public void delete(int id) {
 		employeeDao.delete(employeeDao.byId(id));
 	}

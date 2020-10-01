@@ -33,7 +33,6 @@ public class CompanyService extends ServiseTask<CompanyModel>{
 		companyDao.update(companyTransformer.modelToEntity(value));
 	}
 
-	@Override
 	public void delete(int id) {
 		companyDao.delete(companyDao.byId(id));
 	}
