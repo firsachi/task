@@ -9,7 +9,6 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,7 +24,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "room")
 @NamedQueries({
-	@NamedQuery ( name = "allRooms", query = "SELECT R FROM Room R ORDER BY R.id" )
+	@NamedQuery ( name = "allRooms", query = "SELECT R FROM Room R ORDER BY R.numberRoom" )
 })
 public class Room implements Serializable {
     
@@ -36,13 +35,13 @@ public class Room implements Serializable {
 
 	@Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     
     @Column(name = "number_room", nullable = false, length = 3)
     private int numberRoom;
     
-    @OneToMany(mappedBy = "room", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "room")
     private List<Employee> employees;
 
     
@@ -107,6 +106,10 @@ public class Room implements Serializable {
 			return false;
 		return true;
 	}
-    
+
+	@Override
+	public String toString() {
+		return "Room [id=" + id + ", numberRoom=" + numberRoom + ", employees=" + employees + "]";
+	}
     
 }

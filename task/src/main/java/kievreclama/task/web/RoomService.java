@@ -22,14 +22,16 @@ public class RoomService {
 	@Autowired
 	private RoomDaoImpl roomDao;
 
-	public void add(RoomModel model) {
-		roomDao.insert(modelMapper.map(model, Room.class));
+	@Transactional
+	public void save(RoomModel room) {
+		roomDao.insert(modelMapper.map(room, Room.class));
 	}
 
 	public Object byId(int id) {
 		return modelMapper.map(roomDao.byId(id), RoomModel.class);
 	}
 
+	@Transactional
 	public void update(RoomModel room) {
 		roomDao.update(modelMapper.map(room, Room.class));
 	}

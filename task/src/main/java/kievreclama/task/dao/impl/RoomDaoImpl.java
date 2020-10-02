@@ -14,8 +14,7 @@ public class RoomDaoImpl extends MainDao<Room>{
 
 	@Override
 	public Room byId(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return em.find(Room.class, id);
 	}
 
 	@Override

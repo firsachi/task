@@ -8,8 +8,8 @@ public class RoomModel {
 	
 	private int id;
 	
-	@NotBlank(message = "{error.null}")
-	@Pattern(regexp = "([0-9]{3})", message  = "{error.sizeRoom}" )
+	@NotBlank
+	@Pattern(regexp = "([0-9]{3})")
 	private String numberRoom;
 
 	public int getId() {

@@ -25,7 +25,6 @@ public class PositionService extends ServiseTask<PositionModel> {
 	@Override
 	@Transactional
 	public void save(PositionModel value) {
-		System.out.println(value);
 		postDao.update(modelMapper.map(value, Position.class));
 	}
 
