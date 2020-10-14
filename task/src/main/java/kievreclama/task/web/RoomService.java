@@ -12,15 +12,17 @@ import org.springframework.stereotype.Service;
 import kievreclama.task.dao.impl.RoomDaoImpl;
 import kievreclama.task.entity.Room;
 import kievreclama.task.web.models.RoomModel;
+import kievreclama.validator.unique.FieldValueExists;
 
 @Service
-public class RoomService {
+public class RoomService implements FieldValueExists {
 
 	@Autowired
 	private ModelMapper modelMapper;
 	
 	@Autowired
 	private RoomDaoImpl roomDao;
+	
 
 	@Transactional
 	public void save(RoomModel room) {
@@ -42,5 +44,11 @@ public class RoomService {
 				.map(room -> modelMapper.map(room, RoomModel.class))
 				.collect(Collectors.toList());
 	}
-	
+
+	@Override
+	public boolean fieldValueExists(Object value, String fieldName) throws UnsupportedOperationException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }
