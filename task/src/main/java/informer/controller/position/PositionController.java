@@ -47,9 +47,7 @@ public class PositionController {
     	deletePosition = false;
         return "position/position";
     }
-    /*
 
-    */
     @GetMapping(value = "/delete/{id}")
     public String delete( @PathVariable Integer id, final ModelMap model ){
     	if (positionService.delete(id)) {

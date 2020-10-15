@@ -9,7 +9,7 @@ public class RoomModel {
 	
 	private int id;
 	
-	@Pattern(regexp = "[\\s]*[0-9]*[1-9]+")
+	@Pattern(regexp = "[0-9]{3}")
 	@Unique(service = RoomService.class, fieldName = "numberRoom")
 	private String numberRoom;
 

@@ -60,11 +60,25 @@ public class RoomServiceImpl implements RoomService {
         	Integer numberRoom = Integer.parseInt((String) value);
         	if (this.roomDao.existsByRoom(numberRoom).isEmpty()) {
             	return false;
-            }
+            } else {
+				return true;
+			}
+        	
         } catch (NumberFormatException e) {
         	return false;
 		}
-        return false;
+	}
+
+	@Override
+	@Transactional
+	public boolean delete(Integer id) {
+		if (roomDao.byId(id).getEmployees().isEmpty()) {
+			roomDao.delete(roomDao.byId(id));
+			return true;
+		} else {
+			return false;
+		}
+		
 	}
 
 }

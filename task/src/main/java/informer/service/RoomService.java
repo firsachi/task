@@ -22,4 +22,6 @@ public interface RoomService extends FieldValueExists {
 
 	Object byId(int id);
 
+	boolean delete(Integer id);
+
 }
