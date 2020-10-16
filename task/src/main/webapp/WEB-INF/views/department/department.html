@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link th:insert="templates/head.html" />
+<title th:text="#{titleform.home}">title</title>
+</head>
+<body>
+	<div class="top-bar" >
+		<div th:insert="templates/menu/top-directories.html"></div>
+		<div th:insert="templates/menu/logof-logon.html"></div>
+	</div>
+	<br>
+	<div class="row">
+		<div class="columns">
+			<table class="table">
+				<thead>
+					<tr>
+						<th th:text="#{inputlabel.nameDepartment}">name department</th>
+						<th th:text="#{inputlabel.numberPhone}">phone department</th>
+						<th th:text="#{inputlabel.numberFax}">fax department</th>
+						<th></th>
+						<th>
+							<ul class="menu expanded">
+								<li><a th:href="@{add}" class="step fi-page-add size-21 button expanded"></a></li>
+							</ul>
+						</th>
+					</tr>
+				</thead>
+				<tbody th:each="department : ${departments}">
+					<tr>
+						<td th:text="${department.name}"></td>
+						<td th:text="${department.phone}"></td>
+						<td th:text="${department.fax}"></td>
+						<td th:text="${department.disable}"></td>
+						<td>
+							<div class="menu expanded button-group">
+
+									<!-- edit -->
+									<a th:href="@{edit/{id}(id=${department.id})}" 
+										class="small small-only-expanded fi-page-edit button"></a>
+
+									<!-- delete -->
+									<a th:href="@{delete/{id}(id=${department.id})}" 
+										class="small large-only-expanded fi-skull button" ></a>
+							</div>	
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<!-- modal -->
+	<div class="reveal" id="deletePosition" data-reveal data-options="closeOnClick:false; closeOnEsc:false;">
+  		<h1>Неможливо видалити.</h1>
+  			<p class="lead">Бо запис має залежності.</p>
+  			<p class="lead">Наркотична, ігрова, сексуальна, алкогольна, інтернет і далі за списком.</p>
+  		<button class="close-button" data-close aria-label="Close modal" type="button">
+    		<span aria-hidden="true">&times;</span>
+  		</button>
+	</div>
+	<script type="text/javascript">
+		$(document).foundation();
+	</script>
+	<div th:if="${deletePosition}">
+		<script type="text/javascript">
+			$('#deletePosition').foundation('open');	
+		</script>
+	</div>
+</body>
+</html>

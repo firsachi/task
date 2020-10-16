@@ -6,10 +6,14 @@ import org.springframework.stereotype.Component;
 public class DepartmentModel {
 	
 	private int id;
+	
 	private String name;
+	
 	private String phone;
+	
 	private String fax;
-	private boolean remove;
+	
+	private boolean disable;
 	
 	public int getId() {
 		return id;
@@ -42,19 +46,19 @@ public class DepartmentModel {
 	public void setFax(String fax) {
 		this.fax = fax;
 	}
-	
-	public boolean getRemove() {
-		return remove;
+
+	public boolean isDisable() {
+		return disable;
 	}
-	
-	public void setRemove(boolean remove) {
-		this.remove = remove;
+
+	public void setDisable(boolean disable) {
+		this.disable = disable;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "DepartmentModel [id=" + id + ", name=" + name + ", phone=" + phone + ", fax=" + fax + ", remove="
-				+ remove + "]";
+		return "DepartmentModel [id=" + id + ", name=" + name + ", phone=" + phone + ", fax=" + fax + ", disable="
+				+ disable + "]";
 	}
 	
 }

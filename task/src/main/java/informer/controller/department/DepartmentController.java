@@ -3,12 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package informer.old;
+package informer.controller.department;
 
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,10 +34,14 @@ public class DepartmentController {
     @Autowired
     private DepartmentService departmentService;
     
+    @ModelAttribute("departments")
+    public List<DepartmentModel> getAllDepartments(){
+    	return departmentService.getList("allDepartments");
+    }
+    
     @RequestMapping
-    public String getPageDepartment(Model model){
-        model.addAttribute("departments", departmentService.getList("department"));
-        return "department";
+    public String getPageDepartment(){
+        return "department/department";
     }
     
     @RequestMapping(value = "/add")

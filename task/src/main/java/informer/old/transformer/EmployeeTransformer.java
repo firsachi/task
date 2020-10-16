@@ -39,7 +39,9 @@ public class EmployeeTransformer {
 	public Employee modelToEntity(EmployeeModel model){
 		Employee employee = new Employee();
 		employee.setId(model.getId());
-		employee.setDepartment(new Department(model.getIdDepartment()));
+		Department department = new Department();
+		department.setId(model.getIdDepartment());
+		employee.setDepartment(department);
 		employee.setEmail(model.getEmail());
 		employee.setEnterprise(new Company(model.getIdEnterprise()));
 		employee.setName(model.getName());
