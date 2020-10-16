@@ -1,16 +1,16 @@
 package informer.service;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import informer.entity.Department;
 import informer.model.DepartmentModel;
-import informer.old.transformer.DepartmentTransformer;
 import informer.repository.DepartmentDaoImpl;
 
 @Service
@@ -21,17 +21,17 @@ public class DepartmentService extends ServiseTask<DepartmentModel>{
 	private DepartmentDaoImpl departmentDao;
 	
 	@Autowired 
-	private DepartmentTransformer departmentTransformer;
+	private ModelMapper modelMapper;
 
 	@Override
 	public void save(DepartmentModel value) {
-		departmentDao.insert(departmentTransformer.modelToEntity(value));
+		departmentDao.insert(modelMapper.map(value, Department.class));
 		
 	}
 
 	@Override
 	public void update(DepartmentModel value) {
-		departmentDao.update(departmentTransformer.modelToEntity(value));
+		departmentDao.update(modelMapper.map(value, Department.class));
 	}
 
 	public void delete(int id) {
@@ -40,16 +40,14 @@ public class DepartmentService extends ServiseTask<DepartmentModel>{
 
 	@Override
 	public DepartmentModel getId(int id) {
-		return departmentTransformer.entityToModel(departmentDao.byId(id));
+		return modelMapper.map(departmentDao.byId(id), DepartmentModel.class);
 	}
 
 	@Override
 	public List<DepartmentModel> getList(String namedQery) {
-		List<DepartmentModel> list = new ArrayList<>();
-		for (Department department: departmentDao.byList(namedQery)){
-			list.add(departmentTransformer.entityToModel(department));
-		}
-		return list;
+		return departmentDao.byList(namedQery).stream()
+				.map(department -> modelMapper.map(department, DepartmentModel.class))
+				.collect(Collectors.toList());
 	}
 
 }
