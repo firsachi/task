@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import informer.model.DepartmentModel;
-import informer.old.models.ModelDepartment;
 import informer.service.DepartmentService;
 
 /**
@@ -42,12 +41,6 @@ public class DepartmentController {
     @RequestMapping
     public String getPageDepartment(){
         return "department/department";
-    }
-    
-    @RequestMapping(value = "/add")
-    public ModelAndView getPegeAdd(){
-        ModelAndView model = new ModelAndView("form-department-add", NAME_MODEL_FORM, new ModelDepartment());
-        return model;
     }
     
     @GetMapping(value = "/edit/{id}")
