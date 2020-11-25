@@ -5,11 +5,33 @@
 <div class="row">
 	<!-- name -->
 	<div class="medium-12 columns">
-		<span th:text="#{inputlabel.numberRoom}"></span> 
+		<span th:text="#{inputlabel.nameDepartment}"></span> 
 		<input type="text"
-			id="numberRoom" name="numberRoom" th:field="*{numberRoom}" autofocus="autofocus" /> <span
-			th:class="${#fields.hasErrors('numberRoom')} ? 'form-error is-visible' : '' "
-			th:errors="*{numberRoom}"></span>
+			id="name" name="name" th:field="*{name}" autofocus="autofocus" /> <span
+			th:class="${#fields.hasErrors('name')} ? 'form-error is-visible' : '' "
+			th:errors="*{name}"></span>
+	</div>
+</div>
+
+<!-- phone -->
+<div class="row">
+	<div class="medium-12 columns">
+		<span th:text="#{inputlabel.numberPhone}"></span>
+		<input type="text"
+			id="phone" name="phone" th:field="*{phone}" autofocus="autofocus" /> <span
+			th:class="${#fields.hasErrors('phone')} ? 'form-error is-visible' : '' "
+			th:errors="*{phone}"></span>
+	</div>
+</div>
+
+<!-- fax -->
+<div class="row">
+	<div class="medium-12 columns">
+		<span th:text="#{inputlabel.numberFax}"></span>
+		<input type="text"
+			id="fax" name="fax" th:field="*{fax}" autofocus="autofocus" /> <span
+			th:class="${#fields.hasErrors('fax')} ? 'form-error is-visible' : '' "
+			th:errors="*{fax}"></span>
 	</div>
 </div>
 
