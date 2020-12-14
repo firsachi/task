@@ -9,9 +9,7 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -39,7 +37,7 @@ public class Department implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Basic(optional = false)
     @Column(name = "id")
     private int id;
@@ -56,7 +54,6 @@ public class Department implements Serializable {
     @Column(name = "fax")
     private String fax;
     
-    @ElementCollection(fetch = FetchType.LAZY)
     @OneToMany(mappedBy = "department")
     private List<Employee> employees;
     

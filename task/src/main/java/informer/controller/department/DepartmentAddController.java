@@ -36,7 +36,7 @@ public class DepartmentAddController extends MainDepartment {
 		}
 		departmentService.save(model);
 		departmentModel = new DepartmentModel();
-		return "redirect:/departmet/";
+		return "redirect:/department/";
 	}
 
 }
