@@ -6,9 +6,10 @@
 	<!-- name -->
 	<div class="medium-12 columns">
 		<span th:text="#{inputlabel.nameDepartment}"></span> 
-		<input type="text"
-			id="name" name="name" th:field="*{name}" autofocus="autofocus" /> <span
-			th:class="${#fields.hasErrors('name')} ? 'form-error is-visible' : '' "
+		<input
+			type="text" id="name" name="name" th:field="*{name}"
+			autofocus="autofocus" th:placeholder="#{inputlabel.nameDepartment}" /> 
+		<span th:class="${#fields.hasErrors('name')} ? 'form-error is-visible' : '' "
 			th:errors="*{name}"></span>
 	</div>
 </div>
@@ -16,9 +17,9 @@
 <!-- phone -->
 <div class="row">
 	<div class="medium-12 columns">
-		<span th:text="#{inputlabel.numberPhone}"></span>
-		<input type="text"
-			id="phone" name="phone" th:field="*{phone}" autofocus="autofocus" /> <span
+		<span th:text="#{inputlabel.numberPhone}"></span> <input type="text"
+			id="phone" name="phone" th:field="*{phone}" autofocus="autofocus" th:placeholder="#{placeholder.phone}"/>
+		<span
 			th:class="${#fields.hasErrors('phone')} ? 'form-error is-visible' : '' "
 			th:errors="*{phone}"></span>
 	</div>
@@ -27,9 +28,8 @@
 <!-- fax -->
 <div class="row">
 	<div class="medium-12 columns">
-		<span th:text="#{inputlabel.numberFax}"></span>
-		<input type="text"
-			id="fax" name="fax" th:field="*{fax}" autofocus="autofocus" /> <span
+		<span th:text="#{inputlabel.numberFax}"></span> <input type="text"
+			id="fax" name="fax" th:field="*{fax}" autofocus="autofocus" th:placeholder="#{placeholder.fax}"/> <span
 			th:class="${#fields.hasErrors('fax')} ? 'form-error is-visible' : '' "
 			th:errors="*{fax}"></span>
 	</div>
@@ -37,8 +37,8 @@
 
 <div class="row">
 	<div class="medium-12 columns">
-		<span th:text="#{inputlabel.isdisable}"></span> 
-		<input type="checkbox" id="disable" th:field="*{disable}">
+		<span th:text="#{inputlabel.isdisable}"></span> <input type="checkbox"
+			id="disable" th:field="*{disable}">
 	</div>
 </div>
 
