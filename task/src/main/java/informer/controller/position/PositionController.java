@@ -27,7 +27,7 @@ import informer.service.PositionService;
 @RequestMapping(value = "/position")
 public class PositionController {
 	
-	private boolean deletePosition = false;
+	private boolean deleteRecord = false;
 	
     @Autowired
     private PositionService positionService;
@@ -39,21 +39,18 @@ public class PositionController {
     
     @ModelAttribute("deletePosition")
     public boolean deletePosition() {
-    	return deletePosition;
+    	return deleteRecord;
     }
     
     @RequestMapping
     public String getPostPage(){
-    	deletePosition = false;
+    	deleteRecord = false;
         return "position/position";
     }
 
     @GetMapping(value = "/delete/{id}")
     public String delete( @PathVariable Integer id, final ModelMap model ){
-    	if (positionService.delete(id)) {
-    		return "redirect:/position/";
-    	}
-    	deletePosition = true;
+    	deleteRecord = positionService.delete(id);
     	return "redirect:/position/";
     }
     
