@@ -37,9 +37,9 @@ public class PositionService extends ServiseTask<PositionModel> {
 	public boolean delete(int id) {
 		if (0 == postDao.byId(id).getEmployees().size()) {
 			postDao.delete(postDao.byId(id));
-			return true;
+			return false;
 		}
-		return false;
+		return true;
 	}
 
 	@Override

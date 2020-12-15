@@ -26,7 +26,6 @@ public class DepartmentService extends ServiseTask<DepartmentModel>{
 	@Override
 	public void save(DepartmentModel value) {
 		departmentDao.insert(modelMapper.map(value, Department.class));
-		
 	}
 
 	@Override
@@ -34,8 +33,12 @@ public class DepartmentService extends ServiseTask<DepartmentModel>{
 		departmentDao.update(modelMapper.map(value, Department.class));
 	}
 
-	public void delete(int id) {
-		departmentDao.delete(departmentDao.byId(id));
+	public boolean delete(int id) {
+		if (0 == departmentDao.byId(id).getEmployees().size()) {
+			departmentDao.delete(departmentDao.byId(id));
+			return false;
+		}
+		return true;
 	}
 
 	@Override
