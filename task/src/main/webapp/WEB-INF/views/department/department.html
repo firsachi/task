@@ -51,21 +51,18 @@
 			</table>
 		</div>
 	</div>
+	
 	<!-- modal -->
-	<div class="reveal" id="deletePosition" data-reveal data-options="closeOnClick:false; closeOnEsc:false;">
-  		<h1>Неможливо видалити.</h1>
-  			<p class="lead">Бо запис має залежності.</p>
-  			<p class="lead">Наркотична, ігрова, сексуальна, алкогольна, інтернет і далі за списком.</p>
-  		<button class="close-button" data-close aria-label="Close modal" type="button">
-    		<span aria-hidden="true">&times;</span>
-  		</button>
-	</div>
+	<span th:insert="templates/error-dependencies.html">
+	</span>
+	
 	<script type="text/javascript">
 		$(document).foundation();
 	</script>
+	
 	<div th:if="${deletePosition}">
 		<script type="text/javascript">
-			$('#deletePosition').foundation('open');	
+			$('#deleteRecord').foundation('open');	
 		</script>
 	</div>
 </body>

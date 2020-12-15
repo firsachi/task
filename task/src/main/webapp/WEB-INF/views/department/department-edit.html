@@ -14,8 +14,8 @@
 	<br>
 	<div class="row">
 		<div class="column small-12 large-12">
-			<h1 th:text="#{titleform.new}">New department</h1>
-			<form class="row" th:action="@{add}" method="post" th:object="${department}">
+			<h1 th:text="#{titleform.edit}">New department</h1>
+			<form class="row" th:action="@{{id}(id=${department.id})}" method="post" th:object="${department}">
 				<span class="column small-12 large-12" th:insert="templates/department-form.html"></span>
 			</form>
 		</div>
