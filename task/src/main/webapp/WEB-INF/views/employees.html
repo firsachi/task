@@ -14,6 +14,8 @@
 	<br>
 	<div class="row">
 		<div class="columns">
+		
+			<!-- table -->
 			<table class="table">
 				<thead>
 					<tr>
@@ -35,14 +37,40 @@
 						<td th:text="${employee.enterprise}"></td>
 						<td th:text="${employee.department}"></td>
 						<td><a th:href="@{edit/{id}(id=${employee.id})}" th:text="#{buttonname.edit}">edit</a> </td>
-						<td><a data-open="exampleModal1">delete</a></td>
+						<td><a data-open="deleteRecord" th:attr="data-employee-id=${employee.id}"  >delete</a></td>
 					</tr>
 				</tbody>
 			</table>
+			
+			<!-- modal window delete -->
+			<div class="reveal" th:id="deleteRecord" data-reveal data-options="closeOnClick:false; closeOnEsc:false;">
+  				<div th:fragment="view">
+  					<p class="lead">Ви дійсно бажаєте видалити користувача</p>
+  					<p class="lead"  th:text="${selectEmployee.surname + ' ' + selectEmployee.name + ' ' + selectEmployee.patronymic}">Full username</p>
+  					<button class="button" data-close aria-label="Close modal">Cansel</button>
+  					<button class="close-button" data-close aria-label="Close modal" type="button">
+    					<span aria-hidden="true">&times;</span>
+  					</button>
+  				</div>
+			</div>
+			
 		</div>
 	</div>
 	<script type="text/javascript">
 		$(document).foundation();
+		
+		$('[data-open]').on('click', function() {
+			var ajax_url = "delete/" + $(this).data('employeeId');
+			  $(document).on('open.zf.reveal', "#deleteRecord", function (e) {
+				  var $modal = $(this);
+				  if (ajax_url) {
+					  $.ajax(ajax_url).done(function (response) {
+					      $modal.html(response);
+					});
+				  }  
+			  });
+			});
+		
 	</script>
 </body>
 </html>
