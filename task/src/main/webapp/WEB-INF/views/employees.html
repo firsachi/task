@@ -45,8 +45,9 @@
 			<!-- modal window delete -->
 			<div class="reveal" th:id="deleteRecord" data-reveal data-options="closeOnClick:false; closeOnEsc:false;">
 				<div th:fragment="viewDeleteEmployee">
-					<form id="deleteEmployee" th:action="@{delete/{id}(id=${selectEmployee.id})}" method="post" th:object="${department}">
+					<form id="deleteEmployee" th:action="@{delete/{id}(id=${selectEmployee.id})}" method="post" th:object="${selectEmployee}">
   					<p class="lead" th:text="#{titleform.deleteEmployee}">kill employee</p>
+  					<p th:text="${selectEmployee.surname} + ' ' + ${selectEmployee.name} + ' ' + ${selectEmployee.patronymic}">Full user name</p>
   					<div class="small button-group align-right">
   						<button class="button"  data-close  th:text="#{buttonname.submit}" name="save">Submit</button>
   					</div>
