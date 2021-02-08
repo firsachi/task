@@ -13,7 +13,7 @@
 	</div>
 	<br>
 	<div class="row">
-		<div class="columns">
+		<div class="columns" th:fragment="tableEmployee">
 		
 			<!-- table -->
 			<table class="table">
@@ -44,13 +44,16 @@
 			
 			<!-- modal window delete -->
 			<div class="reveal" th:id="deleteRecord" data-reveal data-options="closeOnClick:false; closeOnEsc:false;">
-  				<div th:fragment="view">
-  					<p class="lead">Ви дійсно бажаєте видалити користувача</p>
-  					<p class="lead"  th:text="${selectEmployee.surname + ' ' + selectEmployee.name + ' ' + selectEmployee.patronymic}">Full username</p>
-  					<button class="button" data-close aria-label="Close modal">Cansel</button>
+				<div th:fragment="viewDeleteEmployee">
+					<form id="deleteEmployee" th:action="@{delete/{id}(id=${selectEmployee.id})}" method="post" th:object="${department}">
+  					<p class="lead" th:text="#{titleform.deleteEmployee}">kill employee</p>
+  					<div class="small button-group align-right">
+  						<button class="button"  data-close  th:text="#{buttonname.submit}" name="save">Submit</button>
+  					</div>
   					<button class="close-button" data-close aria-label="Close modal" type="button">
     					<span aria-hidden="true">&times;</span>
   					</button>
+  					</form>
   				</div>
 			</div>
 			
@@ -58,18 +61,20 @@
 	</div>
 	<script type="text/javascript">
 		$(document).foundation();
-		
-		$('[data-open]').on('click', function() {
-			var ajax_url = "delete/" + $(this).data('employeeId');
-			  $(document).on('open.zf.reveal', "#deleteRecord", function (e) {
-				  var $modal = $(this);
-				  if (ajax_url) {
-					  $.ajax(ajax_url).done(function (response) {
-					      $modal.html(response);
-					});
-				  }  
-			  });
-			});
+
+		$('[data-open][data-employee-id]').on(
+				'click',
+				function() {
+					var ajax_url = "selectedEmployee/"
+							+ $(this).data('employeeId');
+					
+					var $modal = $('#deleteRecord');
+					if (ajax_url) {
+						$.ajax(ajax_url).done(function(modalBodyResponse) {
+							$modal.html(modalBodyResponse);
+						});
+					}
+				});
 		
 	</script>
 </body>

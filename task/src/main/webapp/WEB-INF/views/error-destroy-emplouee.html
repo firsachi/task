@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	</head>
+	
+	
+  				<p class="lead">Ви дійсно бажаєте видалити користувача</p>
+  				<p class="lead"  th:text="${selectEmployee.surname + ' ' + selectEmployee.name + ' ' + selectEmployee.patronymic}">Full username</p>
+  				<button class="close-button" data-close aria-label="Close modal" type="button">
+    				<span aria-hidden="true">&times;</span>
+  				</button>
+			
+</html>

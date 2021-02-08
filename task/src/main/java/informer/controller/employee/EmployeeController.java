@@ -38,6 +38,11 @@ public class EmployeeController extends FormaEmployee{
     public List<EmployeeModel> allEmployee(){
     	return employeeService.getList("employees");
     }
+    
+    @ModelAttribute("selectEmployee")
+    public EmployeeModel selectEmployee() {
+    	return new EmployeeModel();
+    }
      
     @RequestMapping
     public String getPageTasks(Model model){
@@ -74,6 +79,18 @@ public class EmployeeController extends FormaEmployee{
 		}
 		employeeService.update(employeeModel);
 		this.employee = new EmployeeModel();
+		return "redirect:/employee/";
+	}
+	
+	@GetMapping(value = "/selectedEmployee/{id}")
+	public String getPadeDelete(@PathVariable int id, @ModelAttribute("selectEmployee") EmployeeModel employee, ModelMap model) {
+		model.addAttribute("selectEmployee", employeeService.getId(id));
+		return "employees :: viewDeleteEmployee";
+	}
+	
+	@PostMapping(value = "/delete/{id}", params = { "save" })
+	public String getPageDelete(@ModelAttribute("selectEmployee") EmployeeModel employeeModel, ModelMap model) {
+		employeeService.delete(employeeModel.getId());
 		return "redirect:/employee/";
 	}
     
