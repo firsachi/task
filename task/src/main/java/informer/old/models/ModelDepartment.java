@@ -5,6 +5,8 @@
  */
 package informer.old.models;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
+
 /**
  *
  * @author firsov
@@ -36,6 +38,7 @@ public class ModelDepartment {
         return id;
     }
 
+    @JsonGetter("name")
     public String getName() {
         return name;
     }
