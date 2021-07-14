@@ -1,13 +1,16 @@
 package informer.rest;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import javax.transaction.Transactional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import informer.old.ModelDepartment;
 import informer.repository.DepartmentDaoImpl;
+import informer.rest.model.DepartmentModel;
 
 @Service
 @Transactional
@@ -20,8 +23,15 @@ public class DepartmentServiceREST {
 	private ModelMapper mapper;
 	
 	@Transactional
-	public ModelDepartment byDepartment(int id) {
-		return mapper.map( departmentDao.byId(id), ModelDepartment.class);
+	public DepartmentModel byDepartment(int id) {
+		return mapper.map( departmentDao.byId(id), DepartmentModel.class);
+	}
+
+	@Transactional
+	public List<DepartmentModel> getListDepartments() {
+		return departmentDao.byList("allDepartments")
+				.stream().map(department -> mapper.map(department, DepartmentModel.class))
+				.collect(Collectors.toList());
 	}
 
 }
