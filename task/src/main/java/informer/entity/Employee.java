@@ -35,7 +35,7 @@ import javax.persistence.Table;
 			query = "UPDATE Employee E SET E.remove = true WHERE E.id=:id"),
 	@NamedQuery (
 			name = "selectIdDepartment", 
-			query = "SELECT E FROM Employee E WHERE E.remove = false AND E.department.id = :departmentId")
+			query = "SELECT E FROM Employee E WHERE E.remove = false AND E.department.id = :departmentId ORDER BY E.position.heft")
 })
 public class Employee implements Cloneable, Serializable{
     
@@ -64,7 +64,7 @@ public class Employee implements Cloneable, Serializable{
     
     @JoinColumn(name = "post", referencedColumnName = "id")
     @ManyToOne
-    private Position post;
+    private Position position;
     
     @JoinColumn(name = "department", referencedColumnName = "id")
     @ManyToOne
@@ -131,12 +131,12 @@ public class Employee implements Cloneable, Serializable{
 		this.phone = phone;
 	}
 
-	public Position getPost() {
-		return post;
+	public Position getPosition() {
+		return position;
 	}
 
-	public void setPost(Position post) {
-		this.post = post;
+	public void setPosition(Position position) {
+		this.position = position;
 	}
 
 	public Department getDepartment() {
@@ -194,5 +194,106 @@ public class Employee implements Cloneable, Serializable{
 	public void setRemove(Boolean remove) {
 		this.remove = remove;
 	}
-   
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((department == null) ? 0 : department.hashCode());
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result + ((enterprise == null) ? 0 : enterprise.hashCode());
+		result = prime * result + id;
+		result = prime * result + ((login == null) ? 0 : login.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((pass == null) ? 0 : pass.hashCode());
+		result = prime * result + ((patronymic == null) ? 0 : patronymic.hashCode());
+		result = prime * result + ((phone == null) ? 0 : phone.hashCode());
+		result = prime * result + ((position == null) ? 0 : position.hashCode());
+		result = prime * result + ((remove == null) ? 0 : remove.hashCode());
+		result = prime * result + ((room == null) ? 0 : room.hashCode());
+		result = prime * result + ((surname == null) ? 0 : surname.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Employee other = (Employee) obj;
+		if (department == null) {
+			if (other.department != null)
+				return false;
+		} else if (!department.equals(other.department))
+			return false;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
+			return false;
+		if (enterprise == null) {
+			if (other.enterprise != null)
+				return false;
+		} else if (!enterprise.equals(other.enterprise))
+			return false;
+		if (id != other.id)
+			return false;
+		if (login == null) {
+			if (other.login != null)
+				return false;
+		} else if (!login.equals(other.login))
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (pass == null) {
+			if (other.pass != null)
+				return false;
+		} else if (!pass.equals(other.pass))
+			return false;
+		if (patronymic == null) {
+			if (other.patronymic != null)
+				return false;
+		} else if (!patronymic.equals(other.patronymic))
+			return false;
+		if (phone == null) {
+			if (other.phone != null)
+				return false;
+		} else if (!phone.equals(other.phone))
+			return false;
+		if (position == null) {
+			if (other.position != null)
+				return false;
+		} else if (!position.equals(other.position))
+			return false;
+		if (remove == null) {
+			if (other.remove != null)
+				return false;
+		} else if (!remove.equals(other.remove))
+			return false;
+		if (room == null) {
+			if (other.room != null)
+				return false;
+		} else if (!room.equals(other.room))
+			return false;
+		if (surname == null) {
+			if (other.surname != null)
+				return false;
+		} else if (!surname.equals(other.surname))
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Employee [id=" + id + ", surname=" + surname + ", name=" + name + ", patronymic=" + patronymic
+				+ ", phone=" + phone + ", position=" + position + ", department=" + department + ", enterprise="
+				+ enterprise + ", email=" + email + ", room=" + room + ", login=" + login + ", pass=" + pass
+				+ ", remove=" + remove + "]";
+	}
 }

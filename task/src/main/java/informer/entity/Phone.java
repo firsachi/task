@@ -40,43 +40,42 @@ public class Phone implements Serializable {
     private int id;
     
     @Column(name = "number", unique = true)
-    private String number;
+    private String phoneNumber;
     
     @OneToMany(mappedBy = "phone", fetch = FetchType.LAZY)
     private Set<Employee> employees;
 
     public Phone() {
 	}
-
+    
 	public Phone(int id) {
+		super();
 		this.id = id;
 	}
 
+	public int getId() {
+		return id;
+	}
 
+	public void setId(int id) {
+		this.id = id;
+	}
 
-	public void setId(Integer id) {
-        this.id = id;
-    }
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
 
-    public void setNumber(String number) {
-        this.number = number;
-    }
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
 
-    public void setEmployees(Set<Employee> employees) {
-        this.employees = employees;
-    }
-    
-    public int getId() {
-        return id;
-    }
+	public Set<Employee> getEmployees() {
+		return employees;
+	}
 
-    public String getNumber() {
-        return number;
-    }
-
-    public Set<Employee> getEmployees() {
-        return employees;
-    }
+	public void setEmployees(Set<Employee> employees) {
+		this.employees = employees;
+	}
 
 	@Override
 	public int hashCode() {
@@ -84,7 +83,7 @@ public class Phone implements Serializable {
 		int result = 1;
 		result = prime * result + ((employees == null) ? 0 : employees.hashCode());
 		result = prime * result + id;
-		result = prime * result + ((number == null) ? 0 : number.hashCode());
+		result = prime * result + ((phoneNumber == null) ? 0 : phoneNumber.hashCode());
 		return result;
 	}
 
@@ -104,18 +103,17 @@ public class Phone implements Serializable {
 			return false;
 		if (id != other.id)
 			return false;
-		if (number == null) {
-			if (other.number != null)
+		if (phoneNumber == null) {
+			if (other.phoneNumber != null)
 				return false;
-		} else if (!number.equals(other.number))
+		} else if (!phoneNumber.equals(other.phoneNumber))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Phone [id=" + id + ", number=" + number + ", employees=" + employees + "]";
+		return "Phone [id=" + id + ", phoneNumber=" + phoneNumber + ", employees=" + employees + "]";
 	}
-	
     
 }

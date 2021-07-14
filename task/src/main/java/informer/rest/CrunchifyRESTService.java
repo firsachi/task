@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package informer.old;
+package informer.rest;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,21 +15,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import informer.entity.Company;
-import informer.entity.Department;
 import informer.entity.Employee;
 import informer.repository.CompanyDaoImpl;
-import informer.repository.DepartmentDaoImpl;
 import informer.repository.EmployeeDaoImpl;
-import informer.rest.DepartmentServiceREST;
-import informer.service.DepartmentService;
 
 /**
  *
@@ -38,19 +30,10 @@ import informer.service.DepartmentService;
 @RestController
 @RequestMapping(value = "/api/", produces = "text/plain;charset=UTF-8")
 public class CrunchifyRESTService {
-	
-	@Autowired
-	private ObjectMapper mapper;
 
 	@Autowired
 	private CompanyDaoImpl companyDao;
-
-	@Autowired
-	private DepartmentDaoImpl departmentDao;
 	
-	@Autowired
-	private DepartmentServiceREST departmentServiceREST;
-
 	@Autowired
 	private EmployeeDaoImpl employeeDao;
 
@@ -72,57 +55,6 @@ public class CrunchifyRESTService {
 		return array.toString();
 	}
 
-	@CrossOrigin
-	@RequestMapping(value = "loadDepartments")
-	public String listDepartments() {
-		JSONArray rsultArray = new JSONArray();
-		for (Department department : departmentDao.byList("department")) {
-			try {
-				JSONObject obj = new JSONObject();
-				obj.put("idDepartment", department.getId());
-				obj.put("name", department.getName());
-				obj.put("phone", department.getPhone());
-				obj.put("fax", department.getFax());
-				rsultArray.put(obj);
-			} catch (JSONException ex) {
-				Logger.getLogger(CrunchifyRESTService.class.getName()).log(Level.SEVERE, null, ex);
-			}
-		}
-		return rsultArray.toString();
-	}
 
-	@CrossOrigin
-	@PostMapping(value = "/department/{id}")
-	public String byDepartment(@PathVariable int id) {
-		 String result = "";
-		try {
-			result = mapper.writeValueAsString(departmentServiceREST.byDepartment(id));
-		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return result;
-	}
-
-	@CrossOrigin
-	@GetMapping(value = "/loadEmployes/{id}")
-	public String listEmployees(@PathVariable int id) {
-		JSONArray resultArray = new JSONArray();
-		for (Employee employee : employeeDao.byList("selectIdDepartment", id)) {
-			try {
-				JSONObject jsonObjekt = new JSONObject();
-				jsonObjekt.put("fullName",
-						employee.getSurname() + " " + employee.getName() + " " + employee.getPatronymic());
-				jsonObjekt.put("post", employee.getPost().getName());
-				jsonObjekt.put("phone", employee.getPhone().getNumber());
-				jsonObjekt.put("room", employee.getRoom().getNumberRoom());
-				jsonObjekt.put("email", employee.getEmail());
-				jsonObjekt.put("importance", employee.getPost().getHeft());
-				resultArray.put(jsonObjekt);
-			} catch (JSONException ex) {
-				Logger.getLogger(CrunchifyRESTService.class.getName()).log(Level.SEVERE, null, ex);
-			}
-		}
-		return resultArray.toString();
-	}
+	
 }

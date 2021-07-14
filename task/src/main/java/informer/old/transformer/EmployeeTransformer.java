@@ -25,9 +25,9 @@ public class EmployeeTransformer {
 		model.setSurname(entity.getSurname());
 		model.setPatronymic(entity.getPatronymic());
 		model.setIdPhone(entity.getPhone().getId());
-		model.setPhone(entity.getPhone().getNumber());
-		model.setIdPost(entity.getPost().getId());
-		model.setPost(entity.getPost().getName());
+		model.setPhone(entity.getPhone().getPhoneNumber());
+		model.setIdPost(entity.getPosition().getId());
+		model.setPost(entity.getPosition().getNamePosition());
 		model.setDisable(entity.getRemove());
 		model.setIdRoom(entity.getRoom().getId());
 		model.setRoom(entity.getRoom().getNumberRoom());
@@ -50,7 +50,7 @@ public class EmployeeTransformer {
 		employee.setPhone(new Phone(model.getIdPhone()));
 		Position post = new Position();
 		post.setId(model.getIdPost());
-		employee.setPost(post);
+		employee.setPosition(post);
 		employee.setRemove(model.isDisable());
 		employee.setRoom(new Room(model.getIdRoom()));
 		employee.setLogin(model.getLogin());
