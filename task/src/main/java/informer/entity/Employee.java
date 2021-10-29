@@ -8,6 +8,7 @@ package informer.entity;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -59,27 +60,27 @@ public class Employee implements Cloneable, Serializable{
     private String patronymic;
     
     @JoinColumn(name = "phone", referencedColumnName = "id")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Phone phone;
     
     @JoinColumn(name = "post", referencedColumnName = "id")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Position position;
     
     @JoinColumn(name = "department", referencedColumnName = "id")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Department department;
     
     
     @JoinColumn(name = "enterprise", referencedColumnName = "id")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Company enterprise;
     
     @Column(name = "email")
     private String email;
     
     @JoinColumn(name = "room", referencedColumnName = "id")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Room room;
     
     @Column(name = "login", unique = true)

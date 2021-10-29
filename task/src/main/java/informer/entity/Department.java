@@ -13,6 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -53,6 +54,9 @@ public class Department implements Serializable {
     @Basic(optional = false)
     @Column(name = "fax")
     private String fax;
+    
+    @ManyToMany(mappedBy = "departments")
+    private List<Company> companies;
     
     @OneToMany(mappedBy = "department")
     private List<Employee> employees;
@@ -95,6 +99,14 @@ public class Department implements Serializable {
 		this.fax = fax;
 	}
 
+	public List<Company> getCompanies() {
+		return companies;
+	}
+
+	public void setCompanies(List<Company> companies) {
+		this.companies = companies;
+	}
+
 	public List<Employee> getEmployees() {
 		return employees;
 	}
@@ -112,9 +124,64 @@ public class Department implements Serializable {
 	}
 
 	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((companies == null) ? 0 : companies.hashCode());
+		result = prime * result + (disable ? 1231 : 1237);
+		result = prime * result + ((employees == null) ? 0 : employees.hashCode());
+		result = prime * result + ((fax == null) ? 0 : fax.hashCode());
+		result = prime * result + id;
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((phone == null) ? 0 : phone.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Department other = (Department) obj;
+		if (companies == null) {
+			if (other.companies != null)
+				return false;
+		} else if (!companies.equals(other.companies))
+			return false;
+		if (disable != other.disable)
+			return false;
+		if (employees == null) {
+			if (other.employees != null)
+				return false;
+		} else if (!employees.equals(other.employees))
+			return false;
+		if (fax == null) {
+			if (other.fax != null)
+				return false;
+		} else if (!fax.equals(other.fax))
+			return false;
+		if (id != other.id)
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (phone == null) {
+			if (other.phone != null)
+				return false;
+		} else if (!phone.equals(other.phone))
+			return false;
+		return true;
+	}
+
+	@Override
 	public String toString() {
-		return "Department [id=" + id + ", name=" + name + ", phone=" + phone + ", fax=" + fax + ", employees="
-				+ employees + ", disable=" + disable + "]";
+		return "Department [id=" + id + ", name=" + name + ", phone=" + phone + ", fax=" + fax + ", companies="
+				+ companies + ", employees=" + employees + ", disable=" + disable + "]";
 	}
 
 }

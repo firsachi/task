@@ -40,13 +40,6 @@
 			<version>${version-hibernate}</version>
 		</dependency>
 
-		<!-- json -->
-		<dependency>
-			<groupId>org.json</groupId>
-			<artifactId>json</artifactId>
-			<version>${json.version}</version>
-		</dependency>
-
 		<!-- javax.servlet-api -->
 		<dependency>
 			<groupId>javax.servlet</groupId>

@@ -37,7 +37,7 @@ public class RoomServiceImpl implements RoomService {
 		roomDao.update(modelMapper.map(room, Room.class));
 	}
 	
-	@Transactional
+
 	public List<RoomModel> allRoom(String namedQery) {
 		return roomDao.byList(namedQery).stream()
 				.map(room -> modelMapper.map(room, RoomModel.class))
@@ -45,7 +45,6 @@ public class RoomServiceImpl implements RoomService {
 	}
 	
 	@Override
-	@Transactional
 	public boolean fieldValueExists(Object value, String fieldName) throws UnsupportedOperationException {
 		Assert.notNull(fieldName);
 		if (!fieldName.equals("numberRoom")) {
