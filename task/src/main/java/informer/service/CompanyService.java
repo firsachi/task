@@ -14,7 +14,6 @@ import informer.old.transformer.CompanyTransformer;
 import informer.repository.CompanyDaoImpl;
 
 @Service
-@Transactional
 public class CompanyService extends ServiseTask<CompanyModel>{
 	
 	@Autowired

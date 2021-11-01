@@ -7,12 +7,17 @@ package informer.entity;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -58,10 +63,17 @@ public class Company implements Serializable {
     @Column(name = "delete")
     private boolean remove = false;
 
-	@OneToMany(mappedBy = "enterprise", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "enterprise", fetch = FetchType.EAGER)
     private List<Employee> employees;
-
 	
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(
+			name = "company_department",
+			joinColumns = {	@JoinColumn(name = "department_id")},
+			inverseJoinColumns = {@JoinColumn(name = "company_id")}
+	)
+	private Set<Department> departments;
+
     public Company() {
 	}
 
@@ -69,31 +81,23 @@ public class Company implements Serializable {
 		this.id = id;
 	}
 
-	public void setId(Integer id) {
-        this.id = id;
-    }
+	public int getId() {
+		return id;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    public void setEmployees(List<Employee> employees) {
-        this.employees = employees;
-    }
-    
-    public Integer getId() {
-        return id;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public List<Employee> getEmployees() {
-        return employees;
-    }
-    
-    public boolean getRemove() {
+	public boolean isRemove() {
 		return remove;
 	}
 
@@ -101,41 +105,26 @@ public class Company implements Serializable {
 		this.remove = remove;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((employees == null) ? 0 : employees.hashCode());
-		result = prime * result + id;
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + (remove ? 1231 : 1237);
-		return result;
+	public List<Employee> getEmployees() {
+		return employees;
+	}
+
+	public void setEmployees(List<Employee> employees) {
+		this.employees = employees;
+	}
+
+	public Set<Department> getDepartments() {
+		return departments;
+	}
+
+	public void setDepartments(Set<Department> departments) {
+		this.departments = departments;
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Company other = (Company) obj;
-		if (employees == null) {
-			if (other.employees != null)
-				return false;
-		} else if (!employees.equals(other.employees))
-			return false;
-		if (id != other.id)
-			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		if (remove != other.remove)
-			return false;
-		return true;
+	public String toString() {
+		return "Company [id=" + id + ", name=" + name + ", remove=" + remove + ", employees=" + employees
+				+ ", departments=" + departments + "]";
 	}
-	
+
 }
