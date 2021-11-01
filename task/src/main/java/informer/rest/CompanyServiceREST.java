@@ -1,6 +1,7 @@
 package informer.rest;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ public class CompanyServiceREST {
 	private ModelMapper mapper;
 	
 	public List<CompanyModelSmall> getListModel(){
-		return companyDao.byList("company").stream().map(company -> mapper.map(company, CompanyModelSmall.class)).toList();
+		return companyDao.byList("company").stream().map(company -> mapper.map(company, CompanyModelSmall.class)).collect(Collectors.toList());
 	}
 	
 	public CompanyModel byCompany(int id) {
