@@ -1,4 +1,3 @@
-
 package informer.configuration;
 
 import java.nio.charset.StandardCharsets;
