@@ -30,12 +30,9 @@ public class UserRepositoryImpl extends MainDao<User>{
 	}
 
 	public User findByUserName(String username) {
-		System.out.println(username);
 		TypedQuery<User> query = em.createNamedQuery("User.findUsername", User.class);
 		query.setParameter("username", username);
-		System.out.println(1);
 		User user = query.getSingleResult();
-		System.out.println(user.getUsername());
 		return user;
 	}
 
