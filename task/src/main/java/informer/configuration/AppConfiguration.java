@@ -15,6 +15,7 @@ import org.springframework.orm.jpa.LocalEntityManagerFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -32,12 +33,12 @@ public class AppConfiguration {
 		messageSource.setDefaultEncoding("UTF-8");
 		return messageSource;
 	}
-
+	
 	@Bean
 	public LocaleResolver localeResolver() {
-		CookieLocaleResolver localeResolver = new CookieLocaleResolver();
-		localeResolver.setDefaultLocale(new Locale("uk"));
-		return localeResolver;
+	  SessionLocaleResolver localeResolver = new SessionLocaleResolver();
+	  localeResolver.setDefaultLocale(new Locale("uk"));
+	  return localeResolver;
 	}
 
 	@Bean
