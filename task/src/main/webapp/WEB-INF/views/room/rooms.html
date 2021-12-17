@@ -1,26 +1,66 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorator="template.html">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link th:insert="templates/head.html" />
-<title th:text="#{titleform.home}">title</title>
+	<th:block th:insert="templates/head.html :: link"></th:block>
+	<th:block th:insert="templates/head.html :: script"></th:block>
+<title th:text="#{titleform.room}">title</title>
 </head>
 <body>
+	<!-- 
 	<div class="top-bar" >
 		<div th:insert="templates/menu/top-directories.html"></div>
 		<div th:insert="templates/menu/logof-logon.html"></div>
 	</div>
-	<br>
-	<div class="row">
-		<div class="columns">
-			<table class="table">
+ -->
+
+<div class="app-dashboard shrink-medium">
+		<div class="row expanded app-dashboard-top-nav-bar">
+			<div class="columns medium-2">
+				<button data-toggle="app-dashboard-sidebar"
+					class="menu-icon hide-for-medium"></button>
+				<a class="app-dashboard-logo" th:text="#{titleform.room}"></a>
+			</div>
+			<div class="columns show-for-medium">
+				<div class="app-dashboard-search-bar-container">
+					<input class="app-dashboard-search" type="search"
+						placeholder="Search"> <i
+						class="app-dashboard-search-icon fa fa-search"></i>
+				</div>
+			</div>
+			<div th:insert="templates/menu/logof-logon.html"></div>
+		</div>
+
+		<div class="app-dashboard-body off-canvas-wrapper">
+			<div id="app-dashboard-sidebar"
+				class="app-dashboard-sidebar position-left off-canvas off-canvas-absolute reveal-for-medium"
+				data-off-canvas>
+				<div class="app-dashboard-sidebar-title-area">
+					<div class="app-dashboard-close-sidebar">
+						<ul class="vertical menu expanded">
+							
+							<li>
+								<a href="#" th:href="@{employee/}" th:text="#{titleform.admin}" class="expanded"></a>
+							</li>
+							<li>
+								<a href="#" th:href="@{position/}" th:text="#{titleform.home.directories}" class="expanded" ></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div class="app-dashboard-body-content off-canvas-content"data-off-canvas-content>
+				<table class="table">
 				<thead>
 					<tr>
 						<th th:text="#{inputlabel.numberRoom}">name room</th>
 						<th>
-							<ul class="menu expanded">
-								<li><a th:href="@{add}" class="step fi-page-add size-21 button expanded"></a></li>
+							<ul class="menu align-right">
+								<li><a th:href="@{add}"	class="fi-page-add button "></a></li>
 							</ul>
 						</th>
 					</tr>
@@ -29,34 +69,59 @@
 					<tr>
 						<td th:text="${room.numberRoom}"></td>
 						<td>
-							<div class="menu expanded button-group">
-								<!-- edit -->
-								<a th:href="@{edit/{id}(id=${room.id})}" 
-									class="small small-only-expanded fi-page-edit button"></a>
-								<!-- delete -->
-								<a th:href="@{delete/{id}(id=${room.id})}" 
-									class="small large-only-expanded fi-skull button" ></a>
-							</div>	
+						<ul class="menu align-right">
+						<li>
+						<button class="button fi-list" type="button" th:attr="data-toggle='example-' + @{{id}(id=${room.id})}" ></button>
+						<div class="dropdown-pane dropdown-pane-zie" th:id="'example-' + @{{id}(id=${room.id})}" data-dropdown data-auto-focus="true" data-close-on-click="true">
+							<ul class="menu vertical">
+    							<li><a th:href="@{edit/{id}(id=${room.id})}" th:text="#{buttonname.edit}"></a></li>
+      							<li><a th:href="@{delete/{id}(id=${room.id})}" th:text="#{buttonname.delete}" ></a></li>
+      						</ul>
+      						<!-- 
+							<ul class="dropdown menu align-right" data-dropdown-menu>
+  								<li>
+  									<a href="#" class="fi-list"></a>
+    								
+      							</li>
+      						</ul>
+      						 -->
+      					 </div>
+      					 </li>
+      					 </ul>
 						</td>
 					</tr>
 				</tbody>
 			</table>
+			</div>
+		</div>
+	</div>
+
+	<br>
+	<div class="row">
+		<div class="columns">
+			
 		</div>
 	</div>
 	<!-- modal -->
-	<div class="reveal" id="deleteRoom" data-reveal data-options="closeOnClick:false; closeOnEsc:false;">
-  		<h1>Неможливо видалити.</h1>
-  			<p class="lead">Бо запис має залежності.</p>
-  			<p class="lead">Наркотична, ігрова, сексуальна, алкогольна, інтернет і далі за списком.</p>
-  		<button class="close-button" data-close aria-label="Close modal" type="button">
-    		<span aria-hidden="true">&times;</span>
-  		</button>
+	<div class="reveal" id="deleteRoom" data-reveal
+		data-options="closeOnClick:false; closeOnEsc:false;">
+		<h1>Неможливо видалити.</h1>
+		<p class="lead">Бо запис має залежності.</p>
+		<p class="lead">Наркотична, ігрова, сексуальна, алкогольна,
+			інтернет і далі за списком.</p>
+		<button class="close-button" data-close aria-label="Close modal"
+			type="button">
+			<span aria-hidden="true">&times;</span>
+		</button>
 	</div>
-	<script type="text/javascript">
+	
+	
+	
+	<script type="application/javascript" th:inline="javascript">
 		$(document).foundation();
 	</script>
 	<div th:if="${deleteRoom}">
-		<script type="text/javascript">
+		<script type="application/javascript" th:inline="javascript">
 			$('#deleteRoom').foundation('open');	
 		</script>
 	</div>
