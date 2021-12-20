@@ -1,6 +1,7 @@
 package informer.service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
@@ -28,8 +29,8 @@ public class RoomServiceImpl implements RoomService {
 		roomDao.insert(modelMapper.map(room, Room.class));
 	}
 
-	public RoomModel byId(int id) {
-		return modelMapper.map(roomDao.byId(id), RoomModel.class);
+	public Optional<RoomModel> byId(int id) {
+		return Optional.of(modelMapper.map(roomDao.byId(id), RoomModel.class));
 	}
 
 	@Transactional
