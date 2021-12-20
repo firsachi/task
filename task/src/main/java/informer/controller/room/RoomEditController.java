@@ -6,11 +6,9 @@ package informer.controller.room;
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -24,10 +22,9 @@ import informer.model.RoomModel;
 @RequestMapping(value = "/room")
 public class RoomEditController extends MainRoomController {
 	
-	@GetMapping(value = "/edit/{id}")
-	public String pageEdit(@PathVariable int id, ModelMap model) {
-		model.addAttribute("room", roomService.byId(id));
-		return "room/room-edit";
+	@GetMapping(value = "/edit")
+	public String pageEdit(Integer id) {
+		return "room/rooms";
 	}
 	
 	@PostMapping(value = "/edit/{id}", params = {"save"})

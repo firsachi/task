@@ -2,6 +2,7 @@ package informer.controller.room;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,12 +22,19 @@ public class RoomController {
 	
 	private boolean deleteRoom = false;
 	
+	private RoomModel room;
+	
 	@Autowired
 	private RoomService roomService;
 	
 	@ModelAttribute("allRooms")
 	public List<RoomModel> allRooms(){
 		return roomService.allRoom("allRooms");
+	}
+	
+	@ModelAttribute("room")
+	public RoomModel getRoom() {
+		return room;
 	}
 	
 	@ModelAttribute("deleteRoom")
@@ -37,6 +45,7 @@ public class RoomController {
 	@RequestMapping
 	public String roomPage(Model model) {
 		deleteRoom=false;
+		room = new RoomModel();
 		return "room/rooms";
 	}
 	

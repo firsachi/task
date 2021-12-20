@@ -28,7 +28,7 @@ public class RoomServiceImpl implements RoomService {
 		roomDao.insert(modelMapper.map(room, Room.class));
 	}
 
-	public Object byId(int id) {
+	public RoomModel byId(int id) {
 		return modelMapper.map(roomDao.byId(id), RoomModel.class);
 	}
 

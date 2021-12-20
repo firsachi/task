@@ -20,7 +20,7 @@ public interface RoomService extends FieldValueExists {
 
 	void update(RoomModel model);
 
-	Object byId(int id);
+	RoomModel byId(int id);
 
 	boolean delete(Integer id);
 

@@ -4,7 +4,8 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
     layout:decorator="template.html">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<th:block th:insert="templates/head.html :: link"></th:block>
 	<th:block th:insert="templates/head.html :: script"></th:block>
 <title th:text="#{titleform.room}">title</title>
@@ -26,9 +27,8 @@
 			</div>
 			<div class="columns show-for-medium">
 				<div class="app-dashboard-search-bar-container">
-					<input class="app-dashboard-search" type="search"
-						placeholder="Search"> <i
-						class="app-dashboard-search-icon fa fa-search"></i>
+					<input class="app-dashboard-search" type="search" placeholder="Search"> 
+					<i class="app-dashboard-search-icon fa fa-search"></i>
 				</div>
 			</div>
 			<div th:insert="templates/menu/logof-logon.html"></div>
@@ -60,7 +60,10 @@
 						<th th:text="#{inputlabel.numberRoom}">name room</th>
 						<th>
 							<ul class="menu align-right">
-								<li><a th:href="@{add}"	class="fi-page-add button "></a></li>
+								<li>
+									<!-- <a th:href="@{add}"	class="fi-page-add button "></a> -->
+									<button class="button fi-page-add" th:attr="data-open='addRoom'"></button>
+								</li>
 							</ul>
 						</th>
 					</tr>
@@ -69,25 +72,17 @@
 					<tr>
 						<td th:text="${room.numberRoom}"></td>
 						<td>
-						<ul class="menu align-right">
-						<li>
-						<button class="button fi-list" type="button" th:attr="data-toggle='example-' + @{{id}(id=${room.id})}" ></button>
-						<div class="dropdown-pane dropdown-pane-zie" th:id="'example-' + @{{id}(id=${room.id})}" data-dropdown data-auto-focus="true" data-close-on-click="true">
-							<ul class="menu vertical">
-    							<li><a th:href="@{edit/{id}(id=${room.id})}" th:text="#{buttonname.edit}"></a></li>
-      							<li><a th:href="@{delete/{id}(id=${room.id})}" th:text="#{buttonname.delete}" ></a></li>
-      						</ul>
-      						<!-- 
-							<ul class="dropdown menu align-right" data-dropdown-menu>
-  								<li>
-  									<a href="#" class="fi-list"></a>
-    								
-      							</li>
-      						</ul>
-      						 -->
-      					 </div>
-      					 </li>
-      					 </ul>
+							<ul class="menu align-right">
+								<li>
+									<button class="button fi-list" type="button" th:attr="data-toggle='example-' + @{{id}(id=${room.id})}" ></button>
+									<div class="dropdown-pane dropdown-pane-zie" th:id="'example-' + @{{id}(id=${room.id})}" data-dropdown data-auto-focus="true" data-close-on-click="true">
+										<ul class="menu vertical">
+    										<li><a th:href="@{edit/(id=${room.id})}" th:text="#{buttonname.edit}" th:attr="data-open='editRoom'"></a></li>
+      										<li><a th:href="@{delete/{id}(id=${room.id})}" th:text="#{buttonname.delete}"></a></li>
+      									</ul>
+      					 			</div>
+      					 		</li>
+      					 	</ul>
 						</td>
 					</tr>
 				</tbody>
@@ -97,29 +92,32 @@
 	</div>
 
 	<br>
-	<div class="row">
-		<div class="columns">
-			
-		</div>
-	</div>
-	<!-- modal -->
-	<div class="reveal" id="deleteRoom" data-reveal
-		data-options="closeOnClick:false; closeOnEsc:false;">
-		<h1>Неможливо видалити.</h1>
-		<p class="lead">Бо запис має залежності.</p>
-		<p class="lead">Наркотична, ігрова, сексуальна, алкогольна,
-			інтернет і далі за списком.</p>
-		<button class="close-button" data-close aria-label="Close modal"
-			type="button">
+	<!-- modal add  -->
+	<div class="reveal" id="addRoom" data-reveal	data-options="closeOnClick:false; closeOnEsc:false;">
+		<h1 th:text="#{titleform.new}">new room</h1>
+		<form class="row" th:action="@{add}" method="post" th:object="${room}">
+			<span class="column small-12 large-12" th:insert="templates/room-form.html"></span>
+		</form>
+		<button class="close-button" data-close aria-label="Close modal" type="button">
 			<span aria-hidden="true">&times;</span>
 		</button>
 	</div>
 	
-	
+	<!-- modal edit  -->
+	<div class="reveal" id="addRoom" data-reveal	data-options="closeOnClick:false; closeOnEsc:false;">
+		<h1 th:text="#{titleform.edit}">edit room</h1>
+			<form class="row" th:action="@{{id}(id=${room.id})}" method="post" th:object="${room}">
+				<span class="column small-12 large-12" th:insert="templates/room-form.html"></span>
+			</form>
+		<button class="close-button" data-close aria-label="Close modal" type="button">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
 	
 	<script type="application/javascript" th:inline="javascript">
 		$(document).foundation();
 	</script>
+	
 	<div th:if="${deleteRoom}">
 		<script type="application/javascript" th:inline="javascript">
 			$('#deleteRoom').foundation('open');	
