@@ -1,20 +1,13 @@
-<!DOCTYPE html>
-<html 
-	xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:th="http://www.thymeleaf.org"
-    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorator="template.html">
     
-	<th:blick layout:fragment="link">
+	<th:blick th:fragment="link" xmlns:th="http://www.thymeleaf.org">
 		<link th:href="@{/resources/css/foundation.css}" rel="stylesheet" />
 		<link th:href="@{/resources/fonts/foundation-icons.css}" rel="stylesheet" />
 		<link th:href="@{/resources/css/app.css}" rel="stylesheet" />
 	</th:blick>
 	
 	
-	<th:block layout:fragment="script">
+	<th:block th:fragment="script" xmlns:th="http://www.thymeleaf.org">
 		<script type="application/javascript" th:src="@{/resources/js/vendor/jquery.js}"></script>
 		<script type="application/javascript" th:src="@{/resources/js/vendor/foundation.js}"></script>
 		<script type="application/javascript" th:src="@{/resources/js/vendor/what-input.js}"></script>
 	</th:block>
-</html>

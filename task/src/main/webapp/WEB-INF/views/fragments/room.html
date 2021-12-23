@@ -1,0 +1,20 @@
+	
+	<div th:fragment="info-form" xmlns:th="http://www.thymeleaf.org" th:remove="tag">
+		<div class="row">
+		<!-- name -->
+			<div class="medium-12 columns">
+				<span th:text="#{inputlabel.numberRoom}"></span> 
+				<input type="text"
+					id="numberRoom" name="numberRoom" th:field="*{numberRoom}" autofocus="autofocus" /> <span
+					th:class="${#fields.hasErrors('numberRoom')} ? 'form-error is-visible' : '' "
+					th:errors="*{numberRoom}"></span>
+			</div>
+		</div>
+		<div class="row ">
+				<fieldset class="column align-right">
+					<input type="submit" class="button" name="save" th:value="#{buttonname.submit}">
+			    </fieldset>
+			</div>
+	</div>
+	
+	

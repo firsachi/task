@@ -32,7 +32,7 @@ public class RoomAddController extends MainRoomController {
 			final BindingResult bindingResult) {
 		model.setId(0);
 		if (bindingResult.hasErrors()) {
-			return "room/room-add";
+			return "fragments/room-add";
 		}
 		roomService.save(model);
 		roomModel = new RoomModel();

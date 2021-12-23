@@ -2,7 +2,6 @@ package informer.controller.room;
 
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,14 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import informer.model.RoomModel;
 import informer.service.RoomService;
 
-
 @Controller
 @RequestMapping("/room/")
 public class RoomController {
 	
 	private boolean deleteRoom = false;
 	
-	private RoomModel room;
+	protected RoomModel room;
 	
 	@Autowired
 	private RoomService roomService;
@@ -42,10 +40,10 @@ public class RoomController {
     	return deleteRoom;
     }
 	
-	@RequestMapping
+	@GetMapping
 	public String roomPage(Model model) {
-		deleteRoom=false;
 		room = new RoomModel();
+		deleteRoom=false;
 		return "room/rooms";
 	}
 	
@@ -54,7 +52,6 @@ public class RoomController {
     	if (roomService.delete(id)) {
     		return "redirect:/room/";
     	}
-    	
     	deleteRoom = true;
     	return "redirect:/room/";
     }
