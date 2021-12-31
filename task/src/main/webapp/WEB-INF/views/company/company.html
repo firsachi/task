@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	<head>
+		<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1"/>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<th:block th:insert="templates/head.html :: link"></th:block>
+		<th:block th:insert="templates/head.html :: script"></th:block>
+		<title th:text="#{titleform.company}">title</title>
+	</head>
+<body>
+
+<div class="app-dashboard shrink-medium">
+		<div class="row expanded app-dashboard-top-nav-bar">
+			<div class="columns medium-2">
+				<button data-toggle="app-dashboard-sidebar"
+					class="menu-icon hide-for-medium"></button>
+				<a class="app-dashboard-logo" th:text="#{titleform.company}"></a>
+			</div>
+			<div class="columns show-for-medium">
+			
+			</div>
+			<div th:insert="templates/menu/logof-logon.html"></div>
+		</div>
+
+		<div class="app-dashboard-body off-canvas-wrapper">
+			<div id="app-dashboard-sidebar"
+				class="app-dashboard-sidebar position-left off-canvas off-canvas-absolute reveal-for-medium"
+				data-off-canvas>
+				<div class="app-dashboard-sidebar-title-area">
+					<div class="app-dashboard-close-sidebar">
+						<ul class="vertical menu expanded">
+							<th:bloc th:insert="fragments/menu.html :: top-directories"></th:bloc>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div class="app-dashboard-body-content off-canvas-content"data-off-canvas-content>
+				
+			</div>
+		</div>
+	</div>
+	
+	<script type="application/javascript" th:inline="javascript">
+		$(document).foundation();
+	</script>
+	
+	<div th:if="${deleteRoom}">
+		<script type="application/javascript" th:inline="javascript">
+			$('#deleteRoom').foundation('open');	
+		</script>
+	</div>
+</body>
+</html>
