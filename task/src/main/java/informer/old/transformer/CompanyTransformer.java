@@ -12,7 +12,7 @@ public class CompanyTransformer {
 		Company company = new Company();
 		company.setId(companyModel.getId());
 		company.setName(companyModel.getName());
-		company.setRemove(companyModel.getRemove());
+		company.setDisable(companyModel.getRemove());
 		return company;
 	}
 	
@@ -20,7 +20,7 @@ public class CompanyTransformer {
 		CompanyModel companyModel = new CompanyModel();
 		companyModel.setId(company.getId());
 		companyModel.setName(company.getName());
-		companyModel.setRemove(company.isRemove());
+		companyModel.setRemove(company.isDisable());
 		return companyModel;
 	}
 

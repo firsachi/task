@@ -36,11 +36,11 @@ import javax.persistence.Table;
 					),
 			@NamedQuery(
 					name = "company", 
-					query = "select C from Company C where C.remove = false ORDER BY C.name"
+					query = "select C from Company C where C.disable = false ORDER BY C.name"
 					),
 			@NamedQuery(
 					name = "deleteCompany", 
-					query = "UPDATE Company C SET C.remove = true WHERE C.id = :id"
+					query = "UPDATE Company C SET C.disable = true WHERE C.id = :id"
 					)
 		}
 	)
@@ -61,7 +61,7 @@ public class Company implements Serializable {
     private String name;
     
     @Column(name = "delete")
-    private boolean remove = false;
+    private boolean disable = false;
 
 	@OneToMany(mappedBy = "enterprise", fetch = FetchType.EAGER)
     private List<Employee> employees;
@@ -97,12 +97,12 @@ public class Company implements Serializable {
 		this.name = name;
 	}
 
-	public boolean isRemove() {
-		return remove;
+	public boolean isDisable() {
+		return disable;
 	}
 
-	public void setRemove(boolean remove) {
-		this.remove = remove;
+	public void setDisable(boolean disable) {
+		this.disable = disable;
 	}
 
 	public List<Employee> getEmployees() {
@@ -123,7 +123,7 @@ public class Company implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Company [id=" + id + ", name=" + name + ", remove=" + remove + ", employees=" + employees
+		return "Company [id=" + id + ", name=" + name + ", remove=" + disable + ", employees=" + employees
 				+ ", departments=" + departments + "]";
 	}
 
