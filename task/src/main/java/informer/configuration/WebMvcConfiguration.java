@@ -1,7 +1,5 @@
 package informer.configuration;
 
-import java.nio.charset.StandardCharsets;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.MessageSource;
@@ -75,19 +73,20 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
 		resolver.setContentType("text/html;charset=UTF-8");
 		registry.viewResolver(resolver);
 	}
-	
-	@Override
-    public org.springframework.validation.Validator getValidator() {
-        LocalValidatorFactoryBean factory = new LocalValidatorFactoryBean();
-        factory.setValidationMessageSource(сustomMessages());
-        return factory;
-    }
-	
-	private MessageSource сustomMessages() {
-        ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-        messageSource.setBasename("classpath:CustomMessages");
-        messageSource.setDefaultEncoding(StandardCharsets.UTF_8.displayName());
-        return messageSource;
-    }
 
+	@Bean
+	public MessageSource messageSource() {
+	    ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+	    messageSource.setBasename("classpath:messages");
+	    messageSource.setDefaultEncoding("UTF-8");
+	    return messageSource;
+	}
+	
+	@Bean
+	public LocalValidatorFactoryBean getValidator() {
+	    LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
+	    bean.setValidationMessageSource(messageSource());
+	    return bean;
+	}
+	
 }
