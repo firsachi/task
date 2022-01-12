@@ -11,7 +11,7 @@ public class CompanyModel {
 
 	private int id;
 
-	//@NotBlank
+	@NotBlank
 	@Unique(service = CompanyService.class, fieldName = "nameCompany")
 	private String nameCompany;
 	
