@@ -6,6 +6,7 @@
 		<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1"/>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<th:block th:insert="templates/head.html :: link"></th:block>
+		<th:block th:insert="templates/head.html :: script"></th:block>
 		<title th:text="#{titleform.company}">title</title>
 	</head>
 <body>
@@ -27,26 +28,33 @@
 			<div id="app-dashboard-sidebar"	class="app-dashboard-sidebar position-left off-canvas off-canvas-absolute reveal-for-medium" data-off-canvas>
 				<div class="app-dashboard-sidebar-inner">
 					<ul class="vertical menu">
-						<th:bloc data-th-replace="fragments/menu.html :: top-directories"></th:bloc>
+						<th:bloc th:insert="fragments/menu.html :: top-directories"></th:bloc>
 					</ul>
 				</div>
 			</div>
 
 			<div class="app-dashboard-body-content off-canvas-content" data-off-canvas-content>
-				<div data-th-replace="fragments/company-fargment :: table"></div>
+				<div class="column small-12 large-12">
+					
+					<form data-th-action="@{add}" method="POST" data-th-object="${company}">
+						<div class="medium-12 columns">
+							<h3 data-th-text="#{titleform.new}">new</h3>
+						</div>
+						<div data-th-replace="fragments/company-fargment :: core-form" data-th-remove="tag"></div>
+						<div data-th-replace="templates/core-tag :: button-submit" data-th-remove="tag"></div>
+					</form>
+				</div>
+						
 			</div>
 		</div>
 	</div>
-	
-	<div data-th-insert="templates/head.html :: script"></div>
 	
 	<script type="application/javascript" th:inline="javascript">
 		$(document).foundation();
 	</script>
 	
-	<div data-th-if="${deleteRoom}">
+	<div th:if="${deleteRoom}">
 		<script type="application/javascript" th:inline="javascript">
-		
 			$('#deleteRoom').foundation('open');	
 		</script>
 	</div>

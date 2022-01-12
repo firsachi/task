@@ -2,7 +2,7 @@ package informer.model;
 
 import javax.validation.constraints.Pattern;
 
-import informer.service.RoomService;
+import informer.service.CoreService;
 import informer.validator.unique.Unique;
 
 public class RoomModel {
@@ -10,7 +10,7 @@ public class RoomModel {
 	private int id;
 	
 	@Pattern(regexp = "[0-9]{3}")
-	@Unique(service = RoomService.class, fieldName = "numberRoom")
+//	@Unique(service = CoreService.class, fieldName = "numberRoom")
 	private String numberRoom;
 
 	public int getId() {

@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import informer.model.RoomModel;
-import informer.service.RoomService;
+import informer.service.RoomServiceImpl;
 
 /**
  * @author firsov
@@ -20,7 +20,7 @@ public abstract class MainRoomController {
 	protected RoomModel roomModel;
 	
 	@Autowired
-	protected RoomService roomService;
+	protected RoomServiceImpl roomService;
 	
 	@ModelAttribute("room")
 	public RoomModel getModel() {

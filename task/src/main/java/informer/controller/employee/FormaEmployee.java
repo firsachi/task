@@ -13,11 +13,11 @@ import informer.model.EmployeeModel;
 import informer.model.PhoneModel;
 import informer.model.PositionModel;
 import informer.model.RoomModel;
-import informer.service.CompanyService;
 import informer.service.DepartmentService;
 import informer.service.PhoneService;
 import informer.service.PositionService;
-import informer.service.RoomService;
+import informer.service.RoomServiceImpl;
+import informer.service.CompanyService;
 
 public abstract class FormaEmployee {
 	
@@ -33,14 +33,14 @@ public abstract class FormaEmployee {
     private PositionService postService;
     
     @Autowired
-    private RoomService roomService;
+    private RoomServiceImpl roomService;
     
     @Autowired
     private PhoneService phoneService;
     
     @ModelAttribute("allCompany")
     public List<CompanyModel> allCompany(){
-    	return companyService.getList("company");
+    	return companyService.all("company");
     }
     
     @ModelAttribute("allDepartment")
@@ -55,7 +55,7 @@ public abstract class FormaEmployee {
     
     @ModelAttribute("allRoom")
     public List<RoomModel> allRoom(){
-    	return roomService.allRoom("allRooms");
+    	return roomService.all("allRooms");
     }
     
     @ModelAttribute("allPhone")

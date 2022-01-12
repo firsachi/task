@@ -106,7 +106,7 @@
   overflow-x: visible;
   overflow-y: auto;
   z-index: 1;
-  transition: all 0.5s ease;
+
 }
 
 .app-dashboard-sidebar .app-dashboard-open-sidebar, .app-dashboard-sidebar .app-dashboard-close-sidebar {
@@ -161,7 +161,6 @@
 }
 
 .app-dashboard-body-content {
-  transition: all 0.5s ease;
   overflow-y: auto;
   -webkit-flex: 1 1 0;
       -ms-flex: 1 1 0px;
@@ -199,7 +198,6 @@
   .app-dashboard.shrink-medium .menu li::after {
     display: none;
     opacity: 0;
-    transition: opacity 0.5s ease-in-out;
   }
   .app-dashboard.shrink-medium .menu li a {
     padding: 0.75rem;
@@ -210,7 +208,7 @@
   .app-dashboard.shrink-medium .menu li a span {
     display: none;
     opacity: 0;
-    transition: opacity 0.5s ease-in-out;
+    
   }
 }
 
@@ -243,7 +241,7 @@
   .app-dashboard.shrink-large .menu li::after {
     display: none;
     opacity: 0;
-    transition: opacity 0.5s ease-in-out;
+    
   }
   .app-dashboard.shrink-large .menu li a {
     padding: 0.75rem;
@@ -254,7 +252,7 @@
   .app-dashboard.shrink-large .menu li a span {
     display: none;
     opacity: 0;
-    transition: opacity 0.5s ease-in-out;
+
   }
 }
 

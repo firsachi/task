@@ -2,9 +2,6 @@ package informer.service;
 
 import java.util.List;
 
-import org.springframework.transaction.annotation.Transactional;
-
-@Transactional
 public abstract class ServiseTask<T> {
 	
 	public abstract void save(T value);

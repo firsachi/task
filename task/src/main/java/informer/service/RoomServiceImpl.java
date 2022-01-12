@@ -13,9 +13,10 @@ import org.springframework.stereotype.Service;
 import informer.entity.Room;
 import informer.model.RoomModel;
 import informer.repository.RoomDaoImpl;
+import informer.validator.unique.FieldValueExists;
 
-@Service
-public class RoomServiceImpl implements RoomService {
+@Service("roomService")
+public class RoomServiceImpl {
 
 	@Autowired
 	private ModelMapper modelMapper;
@@ -38,12 +39,12 @@ public class RoomServiceImpl implements RoomService {
 	}
 	
 
-	public List<RoomModel> allRoom(String namedQery) {
+	public List<RoomModel> all(String namedQery) {
 		return roomDao.byList(namedQery).stream()
 				.map(room -> modelMapper.map(room, RoomModel.class))
 				.collect(Collectors.toList());
 	}
-	
+	/*
 	@Override
 	public boolean fieldValueExists(Object value, String fieldName) throws UnsupportedOperationException {
 		Assert.notNull(fieldName);
@@ -67,10 +68,9 @@ public class RoomServiceImpl implements RoomService {
         	return false;
 		}
 	}
-
-	@Override
+*/
 	@Transactional
-	public boolean delete(Integer id) {
+	public boolean delete(int id) {
 		if (roomDao.byId(id).getEmployees().isEmpty()) {
 			roomDao.delete(roomDao.byId(id));
 			return true;

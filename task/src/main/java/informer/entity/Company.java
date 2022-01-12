@@ -22,6 +22,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 /**
  *
@@ -39,12 +40,16 @@ import javax.persistence.Table;
 					query = "select C from Company C where C.disable = false ORDER BY C.name"
 					),
 			@NamedQuery(
+					name = "uniqieNameCompany",
+					query = "select C from Company C where C.name = :nameCompany"
+					),
+			@NamedQuery(
 					name = "deleteCompany", 
 					query = "UPDATE Company C SET C.disable = true WHERE C.id = :id"
 					)
 		}
 	)
-@Table(name = "company")
+@Table(name = "company", uniqueConstraints = { @UniqueConstraint(columnNames = "name")})
 public class Company implements Serializable {
     
     /**
@@ -57,7 +62,7 @@ public class Company implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     
-    @Column(name = "name", unique = true, nullable = false)
+    @Column(name = "name", nullable = false)
     private String name;
     
     @Column(name = "delete")

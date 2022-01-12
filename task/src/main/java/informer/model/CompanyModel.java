@@ -1,28 +1,66 @@
 package informer.model;
 
-public class CompanyModel{
-	
+import java.util.Objects;
+
+import javax.validation.constraints.NotBlank;
+
+import informer.service.CompanyService;
+import informer.validator.unique.Unique;
+
+public class CompanyModel {
+
 	private int id;
-	private String name;
-	private boolean remove;
+
+	//@NotBlank
+	@Unique(service = CompanyService.class, fieldName = "nameCompany")
+	private String nameCompany;
 	
+	private boolean disable;
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getName() {
-		return name;
+
+	public String getNameCompany() {
+		return nameCompany;
 	}
-	public void setName(String name) {
-		this.name = name;
+
+	public void setNameCompany(String nameCompany) {
+		this.nameCompany = nameCompany;
 	}
-	public boolean getRemove() {
-		return remove;
+
+	public boolean isDisable() {
+		return disable;
 	}
-	public void setRemove(boolean remove) {
-		this.remove = remove;
+
+	public void setDisable(boolean disable) {
+		this.disable = disable;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(disable, id, nameCompany);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CompanyModel other = (CompanyModel) obj;
+		return disable == other.disable && id == other.id && Objects.equals(nameCompany, other.nameCompany);
+	}
+
+	@Override
+	public String toString() {
+		return "CompanyModel [id=" + id + ", nameCompany=" + nameCompany + ", disable=" + disable + "]";
 	}
 
 }

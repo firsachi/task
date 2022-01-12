@@ -41,7 +41,7 @@
 					<div class="column small-12 large-12">
 					<h3 th:text="#{titleform.new}">new room</h3>
 					<form class="row" th:action="@{add}" method="post" th:object="${room}">
-						<span class="column small-12 large-12" th:insert="fragments/room.html :: info-form"></span>
+						<div th:insert="fragments/room.html :: info-form" data-th-remove="tag"></div>
 					</form>
 				</div>
 			</div>

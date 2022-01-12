@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import informer.model.RoomModel;
-import informer.service.RoomService;
+
+import informer.service.RoomServiceImpl;
 
 @Controller
 @RequestMapping("/room/")
@@ -23,11 +24,11 @@ public class RoomController {
 	protected RoomModel room;
 	
 	@Autowired
-	private RoomService roomService;
+	private RoomServiceImpl roomService;
 	
 	@ModelAttribute("allRooms")
 	public List<RoomModel> allRooms(){
-		return roomService.allRoom("allRooms");
+		return roomService.all("allRooms");
 	}
 	
 	@ModelAttribute("room")

@@ -1,0 +1,42 @@
+	
+	<div data-ht-fragment="table"  data-th-remove="tag" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+		<table id="fragment-test" class="table">
+			<thead>
+				<tr>
+					<th data-th-text="#{inputlabel.nameCompany}"></th>
+					<th sec:authorize="hasAuthority('ADMINISTRATOR')">
+						<div data-th-replace="templates/core-tag :: button-add" data-th-remove="tag"></div>
+					</th>
+				</tr>
+			</thead>
+			<tbody data-th-each="company : ${companies}">
+				<tr>
+					<td data-th-text="${company.nameCompany}"></td>
+					<td>
+						<ul class="menu align-right">
+								<li>
+									<button class="button fi-list" type="button" data-th-attr="data-toggle='example-' + @{{id}(id=${company.id})}" ></button>
+									<div class="dropdown-pane dropdown-pane-zie" data-th-id="'example-' + @{{id}(id=${company.id})}" data-dropdown data-auto-focus="true" data-close-on-click="true">
+										<ul class="menu vertical">
+    										<li><a data-th-href="@{edit/{id}(id=${company.id})}" data-th-text="#{buttonname.edit}" data-open="editRoom" data-th-attr="data-ajax-url='edit/?id='+${company.id}"></a></li>
+      										<li><a data-th-href="@{delete/{id}(id=${company.id})}" data-th-text="#{buttonname.delete}"></a></li>
+      									</ul>
+      					 			</div>
+      					 		</li>
+      					 	</ul>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+	
+	<div data-th-fragment="core-form" data-th-remove="tag">
+		<!-- name -->
+			<div data-th-class="${#fields.hasErrors('nameCompany')} ? 'medium-12 columns invalid' : 'medium-12 columns' " >
+				<label data-th-text="#{inputlabel.nameCompany}"></label> 
+				<input type="text" id="nameCompany" name="nameCompany" data-th-field="*{nameCompany}" data-th-placeholder="#{inputlabel.nameCompany}" autofocus="autofocus" /> 
+				<span class="form-error is-visible" data-th-errors="*{nameCompany}" ></span>
+			</div>
+			
+	</div>

@@ -10,9 +10,12 @@ import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -55,7 +58,12 @@ public class Department implements Serializable {
     @Column(name = "fax")
     private String fax;
     
-    @ManyToMany(mappedBy = "departments")
+    @ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(
+			name = "company_department",
+			joinColumns = {	@JoinColumn(name = "department_id")},
+			inverseJoinColumns = {@JoinColumn(name = "company_id")}
+	)
     private List<Company> companies;
     
     @OneToMany(mappedBy = "department")

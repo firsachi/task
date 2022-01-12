@@ -40,7 +40,7 @@ public class PhoneService {
 	
 	@Transactional
 	public List<PhoneModel> getAll(String namedQery){
-		return phoneDao.byList(namedQery).stream()
+		return phoneDao.byList(namedQery).stream().parallel()
 				.map(phone -> modelMapper.map(phone, PhoneModel.class))
 				.collect(Collectors.toList());
 	}

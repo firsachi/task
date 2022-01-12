@@ -10,12 +10,6 @@
 		<title th:text="#{titleform.room}">title</title>
 	</head>
 <body>
-	<!-- 
-	<div class="top-bar" >
-		<div th:insert="templates/menu/top-directories.html"></div>
-		<div th:insert="templates/menu/logof-logon.html"></div>
-	</div>
- -->
 
 <div class="app-dashboard shrink-medium">
 		<div class="row expanded app-dashboard-top-nav-bar">
@@ -49,11 +43,7 @@
 					<tr>
 						<th th:text="#{inputlabel.numberRoom}">name room</th>
 						<th>
-							<ul class="menu align-right">
-								<li>
-									<a class="button fi-page-add" data-th-href="add"></a>
-								</li>
-							</ul>
+							<div data-th-replace="templates/core-tag :: button-add" data-th-remove="tag"></div>
 						</th>
 					</tr>
 				</thead>
