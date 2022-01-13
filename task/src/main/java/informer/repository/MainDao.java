@@ -25,5 +25,6 @@ public abstract class MainDao<T> {
 		em.remove(entity);
 	}
 	public abstract T byId(int id);
+	
 	public abstract List<T> byList(String namedQery);
 }

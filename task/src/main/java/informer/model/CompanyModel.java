@@ -4,15 +4,11 @@ import java.util.Objects;
 
 import javax.validation.constraints.NotBlank;
 
-import informer.service.CompanyService;
-import informer.validator.unique.Unique;
-
 public class CompanyModel {
 
 	private int id;
 
 	@NotBlank
-	@Unique(service = CompanyService.class, fieldName = "nameCompany")
 	private String nameCompany;
 	
 	private boolean disable;

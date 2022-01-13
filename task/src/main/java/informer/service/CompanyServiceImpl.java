@@ -25,8 +25,13 @@ public class CompanyServiceImpl implements CompanyService {
 	private ModelMapper modelMapper;
 
 	@Transactional
-	public void save(CompanyModel value) {
-		companyDao.add(modelMapper.map(value, Company.class));
+	public boolean save(CompanyModel value) {
+		if (companyDao.existsByCompanyName(value.getNameCompany())) {
+			companyDao.add(modelMapper.map(value, Company.class));
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 	@Transactional

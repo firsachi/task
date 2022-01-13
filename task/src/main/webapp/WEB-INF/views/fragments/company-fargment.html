@@ -32,6 +32,9 @@
 	
 	
 	<div data-th-fragment="core-form" data-th-remove="tag">
+			<div class="medium-12 columns">
+				<input type="hidden" name="id" data-th-field="*{id}" /> 
+			</div>
 		<!-- name -->
 			<div data-th-class="${#fields.hasErrors('nameCompany')} ? 'medium-12 columns invalid' : 'medium-12 columns' " >
 				<label data-th-text="#{inputlabel.nameCompany}"></label> 
