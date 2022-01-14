@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 import javax.transaction.Transactional;
 
 import org.modelmapper.ModelMapper;
-import org.modelmapper.internal.util.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,43 +23,12 @@ public class CompanyServiceImpl implements CompanyService {
 	@Autowired
 	private ModelMapper modelMapper;
 
-	@Transactional
-	public boolean save(CompanyModel value) {
-		if (companyDao.existsByCompanyName(value.getNameCompany())) {
-			companyDao.add(modelMapper.map(value, Company.class));
-			return false;
-		} else {
-			return true;
-		}
+	public void save(CompanyModel value) {
+		companyDao.add(modelMapper.map(value, Company.class));
 	}
 
-	@Transactional
 	public void update(CompanyModel value) {
 		companyDao.update(modelMapper.map(value, Company.class));
-	}
-
-	@Override
-	public boolean fieldValueExists(Object value, String fieldName) throws UnsupportedOperationException {
-		Assert.notNull(fieldName);
-		if (!fieldName.equals("nameCompany")) {
-            throw new UnsupportedOperationException("Field name not supported");
-        }
-
-        if (value == null) {
-            return false;
-        }
-        
-        try {
-        	String nameCompany = (String) value;
-        	if (this.companyDao.existsByCompanyName(nameCompany)) {
-            	return false;
-            } else {
-				return true;
-			}
-        	
-        } catch (NumberFormatException e) {
-        	return false;
-		}
 	}
 
 	public List<CompanyModel> all(String namedQery) {
@@ -81,6 +49,17 @@ public class CompanyServiceImpl implements CompanyService {
 		} else {
 			return false;
 		}
+	}
+
+	@Override
+	public boolean findQnique(CompanyModel model) {
+		return companyDao.existsByCompanyName(model.getId(), model.getNameCompany());
+	}
+	
+	@Transactional
+	@Override
+	public void delete(CompanyModel companyModel) {
+		companyDao.delete(companyDao.byId(companyModel.getId()));
 	}
 
 }

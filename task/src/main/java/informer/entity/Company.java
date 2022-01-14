@@ -41,7 +41,7 @@ import javax.persistence.UniqueConstraint;
 					),
 			@NamedQuery(
 					name = "uniqieNameCompany",
-					query = "select C from Company C where C.name = :nameCompany"
+					query = "select C from Company C WHERE C.id <> :id AND  C.name = :nameCompany"
 					),
 			@NamedQuery(
 					name = "deleteCompany", 

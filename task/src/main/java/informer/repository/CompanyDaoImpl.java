@@ -2,17 +2,14 @@ package informer.repository;
 
 import java.util.List;
 
-import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
 
-import org.hibernate.service.spi.ServiceException;
 import org.springframework.stereotype.Repository;
 
 import informer.entity.Company;
 
 @Repository("companyDao")
 public class CompanyDaoImpl extends MainDao<Company> implements CompanyDao{
-	
 	
 	@Override
 	public Company byId(int id) {
@@ -25,12 +22,12 @@ public class CompanyDaoImpl extends MainDao<Company> implements CompanyDao{
 		return typedQuery.getResultList();
 	}
 
-	public boolean existsByCompanyName(String nameCompany) {
-		return em.createNamedQuery("uniqieNameCompany", Company.class).setParameter("nameCompany", nameCompany).getResultList().isEmpty();
+	public boolean existsByCompanyName(int id, String nameCompany) {
+		return em.createNamedQuery("uniqieNameCompany", Company.class).setParameter("id", id).setParameter("nameCompany", nameCompany).getResultList().isEmpty();
 	}
 
 	@Override
-	public void add(Company entity) throws PersistenceException, ServiceException {
+	public void add(Company entity) {
 		em.persist(entity);
 	}
 

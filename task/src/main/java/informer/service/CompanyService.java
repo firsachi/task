@@ -2,17 +2,22 @@ package informer.service;
 
 import java.util.List;
 
-import informer.model.CompanyModel;
-import informer.validator.unique.FieldValueExists;
+import javax.validation.Valid;
 
-public interface CompanyService extends FieldValueExists {
+import informer.model.CompanyModel;
+
+public interface CompanyService {
 
 	List<CompanyModel> all(String string);
 
-	boolean save(CompanyModel model);
+	void save(CompanyModel model);
 
 	CompanyModel byId(int id);
 
-	void update(CompanyModel model);
+	 void update(CompanyModel model);
+
+	boolean findQnique(@Valid CompanyModel model);
+
+	void delete(CompanyModel companyModel);
 
 }

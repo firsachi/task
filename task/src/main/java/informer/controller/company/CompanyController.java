@@ -2,6 +2,7 @@ package informer.controller.company;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,8 @@ public class CompanyController {
 	}		
 	
 	@GetMapping
-	public String showCompany() {
+	public String showCompany(ModelMap model) {
+		model.addAttribute("selectedCompany", new CompanyModel());
 		return "company/company";
 	}
 	
@@ -40,17 +42,18 @@ public class CompanyController {
 		return "company/company-add";
 	}
 	
+	@Transactional
 	@PostMapping(path = {"add", "/add/"},  params = {"save"})
 	public String add(@Valid @ModelAttribute("company") CompanyModel model,
 			final BindingResult bindingResult) {
 		model.setId(0);		
-		if (companyService.save(model)) {
+		if (!companyService.findQnique(model)) {
 			bindingResult.rejectValue("nameCompany","unique.value.violation");
 		}
 		if (bindingResult.hasErrors()) {
 			return "company/company-add";
 		}else {
-			
+			companyService.save(model);
 			return "redirect:/company/";
 		}
 	}
@@ -61,10 +64,11 @@ public class CompanyController {
 		return "company/company-edit";
 	}
 	
+	@Transactional
 	@PostMapping(path = {"edit/{id}","/edit/{id}", "/edit/{id}/", "edit/{id/}" },  params = {"save"})
 	public String update(@Valid @ModelAttribute("company") CompanyModel model,
 			final BindingResult bindingResult) {
-		if (companyService.save(model)) {
+		if (!companyService.findQnique(model)) {
 			bindingResult.rejectValue("nameCompany","unique.value.violation");
 		}
 		if (bindingResult.hasErrors()) {
@@ -73,6 +77,20 @@ public class CompanyController {
 			companyService.update(model);
 			return "redirect:/company/";
 		}
+	}
+	
+	@GetMapping(path = "/selectedCompany/{id}")
+	public String getPadeDelete(@PathVariable int id, ModelMap model) {
+		model.addAttribute("selectedCompany", companyService.byId(id));
+		return "fragments/company-fargment :: deleteModalWindow";
+	}
+	
+	@PostMapping(path = {"/delete", "delete/", "/delete/"})
+	public String getPageDelete(@ModelAttribute("selectedCompany") CompanyModel companyModel) {
+		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+		System.out.println(companyModel);
+		companyService.delete(companyModel);
+		return "redirect:/company/";
 	}
 
 }

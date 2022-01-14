@@ -6,14 +6,13 @@ import java.util.stream.Collectors;
 import javax.transaction.Transactional;
 
 import org.modelmapper.ModelMapper;
-import org.modelmapper.internal.util.Assert;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import informer.entity.Room;
 import informer.model.RoomModel;
 import informer.repository.RoomDaoImpl;
-import informer.validator.unique.FieldValueExists;
 
 @Service("roomService")
 public class RoomServiceImpl {
