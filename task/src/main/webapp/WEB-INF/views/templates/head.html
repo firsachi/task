@@ -8,13 +8,6 @@
 		<title data-th-utext="${titleName}">title</title>
 	</head>
 	
-	<th:blick th:fragment="link" xmlns:th="http://www.thymeleaf.org">
-		<link data-th-href="@{/resources/css/foundation.css}" rel="stylesheet" />
-		<link data-th-href="@{/resources/fonts/foundation-icons.css}" rel="stylesheet" />
-		<link data-th-href="@{/resources/css/app.css}" rel="stylesheet" />
-	</th:blick>
-	
-	
 	<th:block th:fragment="script" xmlns:th="http://www.thymeleaf.org">
 		<script type="application/javascript" th:src="@{/resources/js/vendor/jquery.js}"></script>
 		<script type="application/javascript" th:src="@{/resources/js/vendor/foundation.js}"></script>
