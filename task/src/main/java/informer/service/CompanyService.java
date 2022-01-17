@@ -2,8 +2,6 @@ package informer.service;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import informer.model.CompanyModel;
 
 public interface CompanyService {
@@ -16,7 +14,7 @@ public interface CompanyService {
 
 	 void update(CompanyModel model);
 
-	boolean findQnique(@Valid CompanyModel model);
+	boolean findQnique(CompanyModel model);
 
 	void delete(CompanyModel companyModel);
 

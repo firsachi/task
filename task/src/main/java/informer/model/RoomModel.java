@@ -2,9 +2,6 @@ package informer.model;
 
 import javax.validation.constraints.Pattern;
 
-import informer.service.CoreService;
-import informer.validator.unique.Unique;
-
 public class RoomModel {
 	
 	private int id;
