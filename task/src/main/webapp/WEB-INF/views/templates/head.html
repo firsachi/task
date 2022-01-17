@@ -8,8 +8,8 @@
 		<title data-th-utext="${titleName}">title</title>
 	</head>
 	
-	<th:block th:fragment="script" xmlns:th="http://www.thymeleaf.org">
-		<script type="application/javascript" th:src="@{/resources/js/vendor/jquery.js}"></script>
-		<script type="application/javascript" th:src="@{/resources/js/vendor/foundation.js}"></script>
-		<script type="application/javascript" th:src="@{/resources/js/vendor/what-input.js}"></script>
-	</th:block>
+	<div data-th-fragment="script" data-th-remove="tag">
+		<script type="application/javascript" data-th-src="@{/resources/js/vendor/jquery.js}"></script>
+		<script type="application/javascript" data-th-src="@{/resources/js/vendor/foundation.js}"></script>
+		<script type="application/javascript" data-th-src="@{/resources/js/vendor/what-input.js}"></script>
+	</div>
