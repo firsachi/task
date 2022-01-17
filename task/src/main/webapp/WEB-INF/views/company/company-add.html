@@ -2,12 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-	<head>
-		<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1"/>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<th:block th:insert="templates/head.html :: link"></th:block>
-		<th:block th:insert="templates/head.html :: script"></th:block>
-		<title th:text="#{titleform.company}">title</title>
+	<head data-th-replace="templates/head :: head(#{titleform.company})">
 	</head>
 <body>
 

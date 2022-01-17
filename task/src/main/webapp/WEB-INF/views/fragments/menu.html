@@ -1,10 +1,10 @@
 
 
-	<th:bloc th:fragment="top-directories" xmlns:th="http://www.thymeleaf.org">
-				<li><a th:href="@{/home}" th:text="#{titleform.home}">home</a></li>
-				<li><a th:href="@{/company/}" th:text="#{titleform.company}">room</a></li>
-				<li><a th:href="@{/department/}" th:text="#{titleform.departments}">department</a></li>
-				<li><a th:href="@{/position/}" th:text="#{titleform.position}">position</a></li>
-				<li><a th:href="@{/room/}" th:text="#{titleform.room}">room</a></li>
-	</th:bloc>
+	<ul class="vertical menu" data-th-fragment="top-directories">
+				<li><a data-th-href="@{/home}" data-th-text="#{titleform.home}">home</a></li>
+				<li><a data-th-href="@{/company/}" data-th-text="#{titleform.company}">room</a></li>
+				<li><a data-th-href="@{/department/}" data-th-text="#{titleform.departments}">department</a></li>
+				<li><a data-th-href="@{/position/}" data-th-text="#{titleform.position}">position</a></li>
+				<li><a data-th-href="@{/room/}" data-th-text="#{titleform.room}">room</a></li>
+	</ul>
 		

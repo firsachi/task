@@ -1,8 +1,17 @@
     
+	<head data-th-fragment="head(titleName)">
+		<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1"/>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<link data-th-href="@{/resources/css/foundation.css}" rel="stylesheet" />
+		<link data-th-href="@{/resources/fonts/foundation-icons.css}" rel="stylesheet" />
+		<link data-th-href="@{/resources/css/app.css}" rel="stylesheet" />
+		<title data-th-utext="${titleName}">title</title>
+	</head>
+	
 	<th:blick th:fragment="link" xmlns:th="http://www.thymeleaf.org">
-		<link th:href="@{/resources/css/foundation.css}" rel="stylesheet" />
-		<link th:href="@{/resources/fonts/foundation-icons.css}" rel="stylesheet" />
-		<link th:href="@{/resources/css/app.css}" rel="stylesheet" />
+		<link data-th-href="@{/resources/css/foundation.css}" rel="stylesheet" />
+		<link data-th-href="@{/resources/fonts/foundation-icons.css}" rel="stylesheet" />
+		<link data-th-href="@{/resources/css/app.css}" rel="stylesheet" />
 	</th:blick>
 	
 	
