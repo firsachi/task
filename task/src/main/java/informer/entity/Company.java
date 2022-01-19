@@ -44,8 +44,8 @@ import javax.persistence.UniqueConstraint;
 					query = "select C from Company C WHERE C.id <> :id AND  C.name = :nameCompany"
 					),
 			@NamedQuery(
-					name = "deleteCompany", 
-					query = "UPDATE Company C SET C.disable = true WHERE C.id = :id"
+					name = "isDisabelList", 
+					query = "SELECT C FROM Company C WHERE C.disable = :disable"
 					)
 		}
 	)
@@ -59,7 +59,7 @@ public class Company implements Serializable {
 
 	@Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     
     @Column(name = "name", nullable = false)
