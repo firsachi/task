@@ -87,8 +87,6 @@ public class CompanyController {
 	
 	@PostMapping(path = {"/delete", "delete/", "/delete/"})
 	public String getPageDelete(@ModelAttribute("selectedCompany") CompanyModel companyModel) {
-		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-		System.out.println(companyModel);
 		companyService.delete(companyModel);
 		return "redirect:/company/";
 	}
