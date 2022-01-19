@@ -31,4 +31,8 @@ public class CompanyDaoImpl extends MainDao<Company> implements CompanyDao{
 		em.persist(entity);
 	}
 
+	public List<Company> byList(boolean disable) {
+		return em.createNamedQuery("isDisabelList", Company.class).setParameter("disable", disable).getResultList();
+	}
+
 }
