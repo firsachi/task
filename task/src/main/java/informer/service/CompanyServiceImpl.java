@@ -1,6 +1,7 @@
 package informer.service;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
@@ -60,6 +61,13 @@ public class CompanyServiceImpl implements CompanyService {
 	@Override
 	public void delete(CompanyModel companyModel) {
 		companyDao.delete(companyDao.byId(companyModel.getId()));
+	}
+
+	@Override
+	public Set<CompanyModel> all(boolean disable) {
+		return companyDao.byList(disable)
+				.stream().map(company -> modelMapper.map(company, CompanyModel.class))
+				.collect(Collectors.toSet());
 	}
 
 }

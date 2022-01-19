@@ -1,6 +1,7 @@
 package informer.service;
 
 import java.util.List;
+import java.util.Set;
 
 import informer.model.CompanyModel;
 
@@ -17,5 +18,7 @@ public interface CompanyService {
 	boolean findQnique(CompanyModel model);
 
 	void delete(CompanyModel companyModel);
+
+	Set<CompanyModel> all(boolean b);
 
 }
