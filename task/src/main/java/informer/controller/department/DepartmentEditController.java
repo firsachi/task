@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import informer.model.DepartmentModel;
+import informer.model.DepartmentCoreModel;
 
 /**
  * @author firsov
@@ -22,22 +22,21 @@ import informer.model.DepartmentModel;
  */
 @Controller
 @RequestMapping(value = "/department/")
-public class DepartmentEditController extends MainDepartment {
+public class DepartmentEditController  {
 	
     @GetMapping(value = "/edit/{id}")
     public String getPageForma( @PathVariable int id, ModelMap model ){
-    	model.addAttribute("department", departmentService.getId(id));
+    //	model.addAttribute("department", departmentService.getId(id));
         return "department/department-edit";
     }
     
     @PostMapping(value = "/edit/{id}", params = { "save" })
-    public String getPageSubmit(@Valid @ModelAttribute("department") DepartmentModel model,
+    public String getPageSubmit(@Valid @ModelAttribute("department") DepartmentCoreModel model,
 			final BindingResult bindingResult) {
     	if (bindingResult.hasErrors()) {
 			return "department/department-edit";
 		}
-    	departmentService.update(model);
-		departmentModel = new DepartmentModel();
+    //	departmentService.update(model);
 		return "redirect:/department/";
     }
 

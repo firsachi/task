@@ -7,7 +7,8 @@ package informer.entity;
 
 import java.io.Serializable;
 import java.util.List;
-import javax.persistence.Basic;
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -21,17 +22,20 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 /**
  *
  * @author firsov
  */
 @Entity
-@Table(name = "department")
+@Table(name = "department", uniqueConstraints = { @UniqueConstraint(columnNames = "name"), @UniqueConstraint(columnNames = "atsgroup")})
 @NamedQueries({
 	@NamedQuery(name = "allDepartments", query = "SELECT D FROM Department D ORDER BY D.name"),
 	@NamedQuery(name = "department", query = "SELECT D FROM Department D WHERE D.disable = false ORDER BY D.name" ),
-	@NamedQuery(name = "deleteDepartment", query = "UPDATE Department D SET D.disable = true WHERE D.id = :id")
+	@NamedQuery(name = "deleteDepartment", query = "UPDATE Department D SET D.disable = true WHERE D.id = :id"),
+	@NamedQuery(name = "existsName", query = "SELECT D FROM Department D WHERE D.id <> :id AND D.name = :param"),
+	@NamedQuery(name = "existsAtsGroup", query = "SELECT D FROM Department D WHERE D.id <> :id AND D.atsGroup = :atsGroup")
 })
 public class Department implements Serializable {
     
@@ -41,28 +45,24 @@ public class Department implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Basic(optional = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
     
-    @Basic(optional = false)
-    @Column(name = "name")
+	@Column(name = "name")
     private String name;
     
-    @Basic(optional = false)
     @Column(name = "phone") 
     private String phone;
     
-    @Basic(optional = false)
-    @Column(name = "fax")
-    private String fax;
+    @Column(name = "atsgroup")
+    private int atsGroup;
     
     @ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(
 			name = "company_department",
-			joinColumns = {	@JoinColumn(name = "department_id")},
-			inverseJoinColumns = {@JoinColumn(name = "company_id")}
+			joinColumns = {	@JoinColumn(name = "company_id")},
+			inverseJoinColumns = {@JoinColumn(name = "department_id")}
 	)
     private List<Company> companies;
     
@@ -99,12 +99,12 @@ public class Department implements Serializable {
 		this.phone = phone;
 	}
 
-	public String getFax() {
-		return fax;
+	public int getAtsGroup() {
+		return atsGroup;
 	}
 
-	public void setFax(String fax) {
-		this.fax = fax;
+	public void setAtsGroup(int atsGroup) {
+		this.atsGroup = atsGroup;
 	}
 
 	public List<Company> getCompanies() {
@@ -133,16 +133,7 @@ public class Department implements Serializable {
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((companies == null) ? 0 : companies.hashCode());
-		result = prime * result + (disable ? 1231 : 1237);
-		result = prime * result + ((employees == null) ? 0 : employees.hashCode());
-		result = prime * result + ((fax == null) ? 0 : fax.hashCode());
-		result = prime * result + id;
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((phone == null) ? 0 : phone.hashCode());
-		return result;
+		return Objects.hash(atsGroup, companies, disable, employees, id, name, phone);
 	}
 
 	@Override
@@ -154,42 +145,15 @@ public class Department implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Department other = (Department) obj;
-		if (companies == null) {
-			if (other.companies != null)
-				return false;
-		} else if (!companies.equals(other.companies))
-			return false;
-		if (disable != other.disable)
-			return false;
-		if (employees == null) {
-			if (other.employees != null)
-				return false;
-		} else if (!employees.equals(other.employees))
-			return false;
-		if (fax == null) {
-			if (other.fax != null)
-				return false;
-		} else if (!fax.equals(other.fax))
-			return false;
-		if (id != other.id)
-			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		if (phone == null) {
-			if (other.phone != null)
-				return false;
-		} else if (!phone.equals(other.phone))
-			return false;
-		return true;
+		return atsGroup == other.atsGroup && Objects.equals(companies, other.companies) && disable == other.disable
+				&& Objects.equals(employees, other.employees) && id == other.id && Objects.equals(name, other.name)
+				&& Objects.equals(phone, other.phone);
 	}
 
 	@Override
 	public String toString() {
-		return "Department [id=" + id + ", name=" + name + ", phone=" + phone + ", fax=" + fax + ", companies="
-				+ companies + ", employees=" + employees + ", disable=" + disable + "]";
+		return "Department [id=" + id + ", name=" + name + ", phone=" + phone + ", atsGroup=" + atsGroup
+				+ ", companies=" + companies + ", employees=" + employees + ", disable=" + disable + "]";
 	}
 
 }

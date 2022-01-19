@@ -3,15 +3,15 @@ package informer.model;
 import java.util.List;
 import java.util.Objects;
 
-public class DepartmentModel extends DepartmentCoreModel {
-	
-	private List<CompanyModel> companies;
+public class DepartmentFormModel extends DepartmentCoreModel {
 
-	public List<CompanyModel> getCompanies() {
+	private List<Integer> companies;
+
+	public List<Integer> getCompanies() {
 		return companies;
 	}
 
-	public void setCompanies(List<CompanyModel> companies) {
+	public void setCompanies(List<Integer> companies) {
 		this.companies = companies;
 	}
 
@@ -31,13 +31,14 @@ public class DepartmentModel extends DepartmentCoreModel {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		DepartmentModel other = (DepartmentModel) obj;
+		DepartmentFormModel other = (DepartmentFormModel) obj;
 		return Objects.equals(companies, other.companies);
 	}
 
 	@Override
 	public String toString() {
-		return "DepartmentModel [companies=" + companies + "]";
+		return "DepartmentFormModel [id=" + id + ", name=" + name + ", phone=" + phone + ", atsGroup=" + atsGroup
+				+ ", disable=" + disable + "companies=" + companies + "]";
 	}
 
 }
