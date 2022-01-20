@@ -1,74 +1,37 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link th:insert="templates/head.html" />
-<title th:text="#{titleform.home}">title</title>
-</head>
+<html>
+
+	<head data-th-replace="templates/head :: head(#{titleform.home})"></head>
+
 <body>
 
 	<div class="app-dashboard shrink-medium">
 		<div class="row expanded app-dashboard-top-nav-bar">
 			<div class="columns medium-2">
-				<button data-toggle="app-dashboard-sidebar"
-					class="menu-icon hide-for-medium"></button>
-				<a class="app-dashboard-logo">INFORMER</a>
+				<button data-toggle="app-dashboard-sidebar"	class="menu-icon hide-for-medium"></button>
+				<a class="app-dashboard-logo" data-th-text="#{titleform.home}" data-th-thref="@{/home}">home</a>
 			</div>
 			<div class="columns show-for-medium">
-				<div class="app-dashboard-search-bar-container">
-					<input class="app-dashboard-search" type="search"
-						placeholder="Search"> <i
-						class="app-dashboard-search-icon fa fa-search"></i>
-				</div>
+				
 			</div>
-			<div class="columns shrink app-dashboard-top-bar-actions">
-				<div sec:authorize="!isAuthenticated()">
-					<button th:href="home" th:text="#{buttonname.login}"
-						class="button hollow">Sing in</button>
-				</div>
-				<div sec:authorize="isAuthenticated()">
-					<form name="logonLogoff" th:action="@{/logout}" method="POST">
-						<button class="button hollow expanded" type="submit"
-							th:text="#{buttonname.logoff}" value="Sing out"></button>
-					</form>
-				</div>
-
-			</div>
+			<div data-th-insert="templates/menu/logof-logon.html"></div>
 		</div>
 
 		<div class="app-dashboard-body off-canvas-wrapper">
-			<div id="app-dashboard-sidebar"
-				class="app-dashboard-sidebar position-left off-canvas off-canvas-absolute reveal-for-medium"
-				data-off-canvas>
+			<div id="app-dashboard-sidebar"	class="app-dashboard-sidebar position-left off-canvas off-canvas-absolute reveal-for-medium" data-off-canvas>
 				<div class="app-dashboard-sidebar-title-area">
 					<div class="app-dashboard-close-sidebar">
-						<ul class="vertical menu expanded">
-							
-							<li>
-								<a href="#" th:href="@{employee/}" th:text="#{titleform.admin}" class="expanded"></a>
-							</li>
-							<li>
-								<a href="#" th:href="@{position/}" th:text="#{titleform.home.directories}" class="expanded" ></a>
-							</li>
-						</ul>
+						<ul data-th-replace="fragments/menu :: home-menu"></ul>
 					</div>
 				</div>
 			</div>
 
-			<div class="app-dashboard-body-content off-canvas-content"
-				data-off-canvas-content></div>
+			<div class="app-dashboard-body-content off-canvas-content" data-off-canvas-content></div>
 		</div>
 	</div>
 	
 	<script type="text/javascript">
 		$(document).foundation();
-		/*
-		$('[data-app-dashboard-toggle-shrink]').on('click', function(e) {
-			  e.preventDefault();
-			  $(this).parents('.app-dashboard').toggleClass('shrink-medium').toggleClass('shrink-large');
-			});
-		*/
 	</script>
 
 </body>
