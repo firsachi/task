@@ -75,7 +75,7 @@
 	</div>
 	
 	<div data-th-fragment="deleteModalWindow" data-th-remove="tag">
-		<form data-th-id="deleteCompany" data-th-action="@{delete}" method="POST" data-th-object="${selectedCompany}">
+		<form data-th-id="deleteDepartment" data-th-action="@{delete}" method="POST" data-th-object="${selectedDepartment}">
 			
 			<button class="close-button" data-close aria-label="Close modal" type="button">
     			<span aria-hidden="true">&times;</span>
@@ -84,7 +84,7 @@
   			<p></p>
   			<p class="lead">
   				<span data-th-text="#{titleform.deleteCompany}"></span>
-  				<span data-th-text="${selectedCompany.nameCompany}"></span>
+  				<span data-th-text="${selectedDepartment.name}"></span>
   			</p>
   			
   			<input type="hidden" name="id" data-th-field="*{id}" /> 

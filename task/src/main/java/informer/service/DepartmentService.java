@@ -38,16 +38,25 @@ public class DepartmentService {
 		departmentDao.update(modelMapper.map(value, Department.class));
 	}
 
-	public boolean delete(int id) {
-		if (0 == departmentDao.byId(id).getEmployees().size()) {
-			departmentDao.delete(departmentDao.byId(id));
-			return false;
-		}
-		return true;
+	@Transactional
+	public void delete(DepartmentFormModel model) {
+		departmentDao.delete(departmentDao.byId(model.getId()));
 	}
 
-	public DepartmentCoreModel getId(int id) {
-		return modelMapper.map(departmentDao.byId(id), DepartmentCoreModel.class);
+	public DepartmentFormModel getId(int id) {
+		Department department = departmentDao.byId(id);
+		List<Integer> companies = department.getCompanies().stream()
+				.map(entiry -> entiry.getId())
+				.collect(Collectors.toList());
+		DepartmentFormModel model = new DepartmentFormModel().newBuilder()
+				.setId(department.getId()).
+				setName(department.getName())
+				.setPhone(department.getPhone())
+				.setDisable(department.isDisable())
+				.setCompanies(companies)
+				.setAtsGroup(String.valueOf(department.getAtsGroup()))
+				.build();
+		return model;
 	}
 
 	public List<DepartmentModel> getList(String namedQery) {

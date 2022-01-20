@@ -30,13 +30,32 @@
 				</div>
 			</div>
 		</div>
-		
+	
+	<!-- modal window delete -->
+	<div class="reveal" data-th-id="deleteRecord" data-reveal data-options="closeOnClick:false; closeOnEsc:false;">
+		<div data-th-replace="fragments/department-fargment :: deleteModalWindow"></div>
+	</div>	
 	
 	<div data-th-insert="templates/head :: script" data-th-remove="tag"></div>
 	
 	<script type="application/javascript" data-th-inline="javascript">
 		$(document).foundation();
 	</script>
+	
+	<script type="application/javascript" data-th-inline="javascript">
+			var openModal = $('[data-open][data-department-id]').on('click',
+				function() {
+					var ajax_url = "selectedDepartment/"	+ $(this).data('departmentId');
+					var $modal = $('#deleteRecord');
+					if (ajax_url) {
+						$.ajax(ajax_url).done(function(modalBodyResponse) {
+							$modal.html(modalBodyResponse);
+						});
+					}
+			});
+				
+			//$('#deleteRoom').foundation('open');	
+		</script>
 	
 	</body>
 </html>

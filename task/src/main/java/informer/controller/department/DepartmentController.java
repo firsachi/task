@@ -35,8 +35,6 @@ import informer.service.DepartmentService;
 @Controller
 @RequestMapping(path = {"department/", "/department"})
 public class DepartmentController {
-	
-	private boolean deleteRecord = false;
     
 	@Autowired
 	private CompanyService companyService;
@@ -49,13 +47,9 @@ public class DepartmentController {
     	return departmentService.getList("allDepartments");
     }
     @ModelAttribute("companiesList")
-    public Set<CompanyModel> companiesList() {
+    public Set<CompanyModel> companiesList(ModelMap model) {
+    	model.addAttribute("selectedDepartment", new DepartmentFormModel());
     	return companyService.all(false);
-    }
-    
-    @ModelAttribute("deleteRecord")
-    public boolean deletePosition() {
-    	return deleteRecord;
     }
     
     @RequestMapping
@@ -64,24 +58,16 @@ public class DepartmentController {
     }
     
     @GetMapping(path = {"/add", "add/"})
-    public String getPegeAdd( ModelMap model){
+    public String getPegeAdd(ModelMap model){
     	DepartmentFormModel department = new DepartmentFormModel();
     	model.addAttribute("department", department);
         return "department/department-add";
     }
     
     @PostMapping(path = {"/add", "add/"}, params = { "save" })
-	public String getSubmitPage(@Valid @ModelAttribute("department") DepartmentFormModel model,
-			final BindingResult bindingResult) {
+	public String getSubmitPage(@Valid @ModelAttribute("department") DepartmentFormModel model, BindingResult bindingResult) {
 		model.setId(0);
-		
-		Map<String, Boolean> resultExists = departmentService.findQnique(model);
-		if (!resultExists.get(model.getName())) {
-			bindingResult.rejectValue("name","unique.value.violation");
-		}
-		if (!resultExists.get(model.getAtsGroup())) {
-			bindingResult.rejectValue("atsGroup","unique.value.violation");
-		}
+		bindingResult = validate(bindingResult, model);
 		if (bindingResult.hasErrors()) {
 			return "department/department-add";
 		}
@@ -89,10 +75,43 @@ public class DepartmentController {
 		return "redirect:/department/";
 	}
     
-    @GetMapping(value = "/delete/{id}")
-    public String deletePage(@PathVariable Integer id, final ModelMap model){
-    	deleteRecord = departmentService.delete(id);
-    	return "redirect:/department/";
+    @GetMapping(value = "/edit/{id}")
+    public String getPageForma( @PathVariable int id, ModelMap model ){
+    	model.addAttribute("department", departmentService.getId(id));
+        return "department/department-edit";
     }
+    
+    @PostMapping(value = "/edit/{id}", params = { "save" })
+    public String getPageSubmit(@Valid @ModelAttribute("department") DepartmentFormModel model, BindingResult bindingResult) {
+    	bindingResult = validate(bindingResult, model);
+    	if (bindingResult.hasErrors()) {
+			return "department/department-edit";
+		}
+    	departmentService.update(model);
+		return "redirect:/department/";
+    }
+    
+    private BindingResult validate(BindingResult bindingResult, DepartmentFormModel model) {
+    	Map<String, Boolean> resultExists = departmentService.findQnique(model);
+		if (!resultExists.get(model.getName())) {
+			bindingResult.rejectValue("name","unique.value.violation");
+		}
+		if (!resultExists.get(model.getAtsGroup())) {
+			bindingResult.rejectValue("atsGroup","unique.value.violation");
+		}
+		return bindingResult;
+    }
+    		
+    @GetMapping(path = "/selectedDepartment/{id}")
+    public String deletePage(@PathVariable Integer id, final ModelMap model){
+    	model.addAttribute("selectedDepartment", departmentService.getId(id));
+    	return "fragments/department-fargment :: deleteModalWindow";
+    }
+    
+    @PostMapping(path = {"/delete", "delete/", "/delete/"})
+	public String getPageDelete(@ModelAttribute("selectedDepartment") DepartmentFormModel model) {
+		departmentService.delete(model);
+		return "redirect:/department/";
+	}
     
 }

@@ -14,6 +14,10 @@ public class DepartmentFormModel extends DepartmentCoreModel {
 	public void setCompanies(List<Integer> companies) {
 		this.companies = companies;
 	}
+	
+	public Builder newBuilder() {
+		return new DepartmentFormModel().new Builder();
+	}
 
 	@Override
 	public int hashCode() {
@@ -39,6 +43,46 @@ public class DepartmentFormModel extends DepartmentCoreModel {
 	public String toString() {
 		return "DepartmentFormModel [id=" + id + ", name=" + name + ", phone=" + phone + ", atsGroup=" + atsGroup
 				+ ", disable=" + disable + "companies=" + companies + "]";
+	}
+	
+public class Builder {
+		
+		private Builder() {
+		}
+		
+		public Builder setId(int id) {
+			DepartmentFormModel.this.id = id;
+			return this;
+		}
+		
+		public Builder setName(String name) {
+			DepartmentFormModel.this.name = name;
+			return this;
+		}
+		
+		public Builder setPhone(String phone) {
+			DepartmentFormModel.this.phone = phone;
+			return this;
+		}
+		
+		public Builder setAtsGroup(String atsGroup) {
+			DepartmentFormModel.this.atsGroup = atsGroup;
+			return this;
+		}
+		
+		public Builder setDisable(boolean disable) {
+			DepartmentFormModel.this.disable = disable;
+			return this;
+		}
+		
+		public Builder setCompanies(List<Integer> companies) {
+			DepartmentFormModel.this.companies = companies;
+			return this;
+		}
+		
+		public DepartmentFormModel build() {
+			return DepartmentFormModel.this;
+		}
 	}
 
 }

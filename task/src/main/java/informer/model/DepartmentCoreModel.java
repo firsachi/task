@@ -19,7 +19,7 @@ public abstract class DepartmentCoreModel {
 	protected String phone;
 	
 	@NotBlank
-	@Pattern(regexp = "[0-9]{3}")
+	@Pattern(regexp = "[0]{1}|[0-9]{3}")
 	protected String atsGroup;
 	
 	protected boolean disable;
