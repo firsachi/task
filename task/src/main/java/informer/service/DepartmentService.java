@@ -60,7 +60,11 @@ public class DepartmentService {
 		Department department = modelMapper.map(model, Department.class);
 		Map<String, Boolean> result = new HashMap<String, Boolean>();
 		result.put(model.getName(), departmentDao.existsName(department.getId(), department.getName()));
-		result.put(model.getAtsGroup(), departmentDao.existsAtsGroup(department.getId(), department.getAtsGroup()));
+		if (0 < department.getAtsGroup()) {
+			result.put(model.getAtsGroup(), departmentDao.existsAtsGroup(department.getId(), department.getAtsGroup()));
+		} else {
+			result.put(model.getAtsGroup(), true);
+		}
 		return result;
 	}
 

@@ -29,7 +29,7 @@ import javax.persistence.UniqueConstraint;
  * @author firsov
  */
 @Entity
-@Table(name = "department", uniqueConstraints = { @UniqueConstraint(columnNames = "name"), @UniqueConstraint(columnNames = "atsgroup")})
+@Table(name = "department", uniqueConstraints = { @UniqueConstraint(columnNames = "name")})
 @NamedQueries({
 	@NamedQuery(name = "allDepartments", query = "SELECT D FROM Department D ORDER BY D.name"),
 	@NamedQuery(name = "department", query = "SELECT D FROM Department D WHERE D.disable = false ORDER BY D.name" ),
