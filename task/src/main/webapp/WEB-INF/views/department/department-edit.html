@@ -28,7 +28,7 @@
 			<div class="app-dashboard-body-content off-canvas-content" data-off-canvas-content>
 				<div class="column small-12 large-12">
 					
-					<form data-th-action="@{edit}" method="POST" data-th-object="${department}">
+					<form data-th-action="@{{id}(id=${department.id})}" method="POST" data-th-object="${department}">
 						<div class="medium-12 columns">
 							<h3 data-th-text="#{titleform.edit}">edit</h3>
 						</div>

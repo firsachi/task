@@ -35,7 +35,7 @@ import javax.persistence.UniqueConstraint;
 	@NamedQuery(name = "department", query = "SELECT D FROM Department D WHERE D.disable = false ORDER BY D.name" ),
 	@NamedQuery(name = "deleteDepartment", query = "UPDATE Department D SET D.disable = true WHERE D.id = :id"),
 	@NamedQuery(name = "existsName", query = "SELECT D FROM Department D WHERE D.id <> :id AND D.name = :param"),
-	@NamedQuery(name = "existsAtsGroup", query = "SELECT D FROM Department D WHERE D.id <> :id AND D.atsGroup = :atsGroup")
+	@NamedQuery(name = "existsAtsGroup", query = "SELECT D FROM Department D WHERE D.id <> :id AND D.atsGroup = :atsGroup"),
 })
 public class Department implements Serializable {
     

@@ -41,5 +41,9 @@ public class DepartmentDaoImpl extends MainDao<Department>{
 	public boolean existsAtsGroup(int id, int atsGroup) {
 		return em.createNamedQuery("existsAtsGroup", Department.class).setParameter("id", id).setParameter("atsGroup", atsGroup).getResultList().isEmpty();
 	}
+
+	public List<Department> byList(String string, int idCompany) {
+		return em.createNamedQuery(string, Department.class).setParameter("idCompany", idCompany).getResultList();
+	}
     
 }

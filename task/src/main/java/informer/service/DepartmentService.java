@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 
 import informer.entity.Company;
 import informer.entity.Department;
-import informer.model.DepartmentCoreModel;
 import informer.model.DepartmentFormModel;
 import informer.model.DepartmentModel;
 import informer.repository.DepartmentDaoImpl;
@@ -34,8 +33,10 @@ public class DepartmentService {
 		departmentDao.insert(department);
 	}
 
-	public void update(DepartmentCoreModel value) {
-		departmentDao.update(modelMapper.map(value, Department.class));
+	public void update(DepartmentFormModel value) {
+		Department department = modelMapper.map(value, Department.class);
+		department.setCompanies(value.getCompanies().stream().map(id -> new Company(id)).collect(Collectors.toList()));
+		departmentDao.update(department);
 	}
 
 	@Transactional
