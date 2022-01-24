@@ -1,25 +1,44 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link th:insert="templates/head.html" />
-<title th:text="#{titleform.position}">title</title>
-</head>
+<html>
+	<head data-th-replace="templates/head :: head(#{titleform.position})"></head>
+
 <body>
-	<div class="top-bar" >
-		<div th:insert="templates/menu/top-directories.html"></div>
-		<div th:insert="templates/menu/logof-logon.html"></div>
-	</div>
-	<br>
-	<div class="row">
-		<div class="column small-12 large-12">
-			<h1 th:text="#{titleform.new}">New employee</h1>
-			<form class="row" th:action="@{add}" method="post" th:object="${position}">
-				<span class="column small-12 large-12" th:insert="templates/post-form.html"></span>
-			</form>
+
+		<div class="app-dashboard shrink-medium">
+			<div class="row expanded app-dashboard-top-nav-bar">
+				<div class="columns medium-2">
+					<button data-toggle="app-dashboard-sidebar"
+						class="menu-icon hide-for-medium"></button>
+					<a class="app-dashboard-logo" data-th-text="#{titleform.position}"></a>
+				</div>
+				<div class="columns show-for-medium">
+				
+				</div>
+				<div data-th-insert="templates/menu/logof-logon.html"></div>
+			</div>
+	
+			<div class="app-dashboard-body off-canvas-wrapper">
+				<div id="app-dashboard-sidebar"	class="app-dashboard-sidebar position-left off-canvas off-canvas-absolute reveal-for-medium" data-off-canvas>
+					<div class="app-dashboard-sidebar-inner">
+						<ul  data-th-replace="fragments/menu :: top-directories"></ul>
+					</div>
+				</div>
+	
+				<div class="app-dashboard-body-content off-canvas-content" data-off-canvas-content>
+					<form class="row" data-th-action="@{{id}(id=${position.id})}" method="post" data-th-object="${position}">
+						<div data-th-replace="fragments/position-fargment :: core-form-position(#{titleform.new})"></div>
+					</form>
+				</div>
+			</div>
 		</div>
-	</div>
+		
+		<div data-th-insert="templates/head :: script" data-th-remove="tag"></div>
+		
+		<script type="application/javascript" data-th-inline="javascript">
+			$(document).foundation();
+		</script>
+
+	
 	<script type="text/javascript">
 		$(document).foundation();
 	</script>

@@ -1,66 +1,40 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link th:insert="templates/head.html" />
-<title th:text="#{titleform.home}">title</title>
-</head>
-<body>
-	<div class="top-bar" >
-		<div th:insert="templates/menu/top-directories.html"></div>
-		<div th:insert="templates/menu/logof-logon.html"></div>
-	</div>
-	<br>
-	<div class="row">
-		<div class="columns">
-			<table class="table">
-				<thead>
-					<tr>
-						<th th:text="#{inputlabel.namePost}">name post</th>
-						<th th:text="#{inputlabel.heftPost}">heft post</th>
-						<th></th>
-						<th>
-							<ul class="menu expanded">
-								<li><a th:href="@{add}" class="step fi-page-add size-21 button expanded"></a></li>
-							</ul>
-						</th>
-					</tr>
-				</thead>
-				<tbody th:each="position : ${allPositions}">
-					<tr>
-						<td th:text="${position.name}"></td>
-						<td th:text="${position.heft}"></td>
-						<td th:text="${position.disable}"></td>
-						<td>
-							<div class="menu expanded button-group">
+<html>
+	<head data-th-replace="templates/head :: head(#{titleform.positions})"></head>
+	
+	<body>
 
-									<!-- edit -->
-									<a th:href="@{edit/{id}(id=${position.id})}" 
-										class="small small-only-expanded fi-page-edit button"></a>
-
-									<!-- delete -->
-									<a th:href="@{delete/{id}(id=${position.id})}" 
-										class="small large-only-expanded fi-skull button" ></a>
-							</div>	
-						</td>
-					</tr>
-				</tbody>
-			</table>
+		<div class="app-dashboard shrink-medium">
+			<div class="row expanded app-dashboard-top-nav-bar">
+				<div class="columns medium-2">
+					<button data-toggle="app-dashboard-sidebar"
+						class="menu-icon hide-for-medium"></button>
+					<a class="app-dashboard-logo" data-th-text="#{titleform.positions}"></a>
+				</div>
+				<div class="columns show-for-medium">
+				
+				</div>
+				<div data-th-insert="templates/menu/logof-logon.html"></div>
+			</div>
+	
+			<div class="app-dashboard-body off-canvas-wrapper">
+				<div id="app-dashboard-sidebar"	class="app-dashboard-sidebar position-left off-canvas off-canvas-absolute reveal-for-medium" data-off-canvas>
+					<div class="app-dashboard-sidebar-inner">
+						<ul  data-th-replace="fragments/menu :: top-directories"></ul>
+					</div>
+				</div>
+	
+				<div class="app-dashboard-body-content off-canvas-content" data-off-canvas-content>
+					<div data-th-replace="fragments/position-fargment :: table-position"></div>
+				</div>
+			</div>
 		</div>
-	</div>
-	
-	<!-- modal -->
-	<span th:insert="templates/error-dependencies.html">
-	</span>
-	
-	<script type="text/javascript">
-		$(document).foundation();
-	</script>
-	<div th:if="${deletePosition}">
-		<script type="text/javascript">
-			$('#deleteRecord').foundation('open');	
+		
+		<div data-th-insert="templates/head :: script" data-th-remove="tag"></div>
+		
+		<script type="application/javascript" data-th-inline="javascript">
+			$(document).foundation();
 		</script>
-	</div>
-</body>
+
+	</body>
 </html>

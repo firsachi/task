@@ -1,0 +1,90 @@
+	
+	<div data-th-fragment="table-position"  data-th-remove="tag">
+
+		<table class="table">
+				<thead>
+					<tr>
+						<th data-th-text="#{inputlabel.namePost}">name post</th>
+						<th data-th-text="#{inputlabel.heftPost}">heft post</th>
+						<th data-sec-authorize="hasAuthority('ADMINISTRATOR')">
+							<div data-th-replace="templates/core-tag :: button-add" data-th-remove="tag"></div>
+						</th>
+					</tr>
+				</thead>
+				<tbody data-th-each="position : ${allPositions}">
+					<tr>
+						<td data-th-text="${position.name}"></td>
+						<td data-th-text="${position.heft}"></td>
+						<td>
+							<div class="menu expanded button-group">
+
+									<!-- edit -->
+									<a data-th-href="@{edit/{id}(id=${position.id})}" 
+										class="small small-only-expanded fi-page-edit button"></a>
+
+									<!-- delete -->
+									<a data-th-href="@{delete/{id}(id=${position.id})}" 
+										class="small large-only-expanded fi-skull button" ></a>
+							</div>	
+						</td>
+					</tr>
+				</tbody>
+			</table>
+	</div>
+	
+	
+	<div data-th-fragment="core-form-position(nameForm)" data-th-remove="tag">
+			
+			<div class="medium-12 columns">
+				<h3 data-th-text="${nameForm}">new</h3>
+			</div>
+	
+			<!--  -->
+			<div class="medium-12 columns">
+				<input type="hidden" name="id" data-th-field="*{id}" /> 
+			</div>
+
+			<!-- name -->
+			<div data-th-class="${#fields.hasErrors('name')} ? 'medium-12 columns invalid' : 'medium-12 columns' " >
+				<label data-th-text="#{inputlabel.namePost}"></label> 
+				<input type="text" id="name" name="name" data-th-field="*{name}" data-th-placeholder="#{inputlabel.nameDepartment}" autofocus="autofocus" /> 
+				<span class="form-error is-visible" data-th-errors="*{name}" ></span>
+			</div>
+			
+			<!-- heftPost -->
+			<div data-th-class="${#fields.hasErrors('name')} ? 'medium-12 columns invalid' : 'medium-12 columns' ">
+				<Label data-th-text="#{inputlabel.heftPost}"></Label> 
+				<select id="heft" data-th-field="*{heft}">
+					<option data-th-each="heft : ${allHeft}" data-th-value="${heft}" data-th-text="${heft}">
+				</select>
+			</div>
+			
+			<!-- disable -->
+			<div class="medium-12 columns">
+				<label data-th-text="#{inputlabel.isdisable}"></label>
+				<input type="checkbox" id="disable" data-th-field="*{disable}">
+			</div>
+			<!-- button submit -->
+			<div data-th-replace="templates/core-tag :: button-submit" data-th-remove="tag"></div>
+	</div>
+	
+	<div data-th-fragment="deleteModalWindow" data-th-remove="tag">
+		<form data-th-id="deleteDepartment" data-th-action="@{delete}" method="POST" data-th-object="${selectedDepartment}">
+			
+			<button class="close-button" data-close aria-label="Close modal" type="button">
+    			<span aria-hidden="true">&times;</span>
+  			</button>
+  			
+  			<p></p>
+  			<p class="lead">
+  				<span data-th-text="#{titleform.deleteCompany}"></span>
+  				<span data-th-text="${selectedDepartment.name}"></span>
+  			</p>
+  			
+  			<input type="hidden" name="id" data-th-field="*{id}" /> 
+  			
+  			<div class="small button-group align-right">
+  				<button class="button"  data-close  data-th-text="#{buttonname.submit}" data-th-name="save">Submit</button>
+  			</div>
+		</form>
+	</div>
