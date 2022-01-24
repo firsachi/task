@@ -40,6 +40,7 @@ public class CompanyControllerREST {
 		}
 	}
 	
+	@CrossOrigin
 	@GetMapping(value = "crunchifyService/{id}")
 	public String byCompany(@PathVariable int id) {
 		try {

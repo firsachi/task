@@ -10,8 +10,8 @@ public class CompanyModel extends CompanyModelSmall {
 		return departments;
 	}
 
-	public void setDepartments(List<DepartmentModel> departments) {
-		this.departments = departments;
+	public void setDepartments(List<DepartmentModel> departments2) {
+		this.departments = departments2;
 	}
 	
 }

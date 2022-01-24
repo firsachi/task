@@ -1,5 +1,7 @@
 package informer.rest;
 
+
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Service;
 import informer.repository.CompanyDaoImpl;
 import informer.rest.model.CompanyModel;
 import informer.rest.model.CompanyModelSmall;
+import informer.rest.model.DepartmentModel;
 
 @Service
 public class CompanyServiceREST {
@@ -25,7 +28,15 @@ public class CompanyServiceREST {
 	}
 	
 	public CompanyModel byCompany(int id) {
-		return mapper.map(companyDao.byId(id), CompanyModel.class);
+		CompanyModel company = mapper.map(companyDao.byId(id), CompanyModel.class);
+		
+		List<DepartmentModel> departments = company.getDepartments().stream()
+				.map(department -> mapper.map(department, DepartmentModel.class))
+				.sorted(Comparator.comparing(DepartmentModel::getName))
+				.collect(Collectors.toList());
+		company.setDepartments(departments);		
+	//	company.setDepartments(company.getDepartments().stream().sorted().collect(Collectors.toList()));
+		return company;
 	}
 
 }
