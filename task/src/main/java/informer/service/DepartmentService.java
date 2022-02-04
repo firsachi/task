@@ -52,10 +52,8 @@ public class DepartmentService {
 		DepartmentFormModel model = new DepartmentFormModel().newBuilder()
 				.setId(department.getId()).
 				setName(department.getName())
-				.setPhone(department.getPhone())
 				.setDisable(department.isDisable())
 				.setCompanies(companies)
-				.setAtsGroup(String.valueOf(department.getAtsGroup()))
 				.build();
 		return model;
 	}
@@ -70,11 +68,6 @@ public class DepartmentService {
 		Department department = modelMapper.map(model, Department.class);
 		Map<String, Boolean> result = new HashMap<String, Boolean>();
 		result.put(model.getName(), departmentDao.existsName(department.getId(), department.getName()));
-		if (0 < department.getAtsGroup()) {
-			result.put(model.getAtsGroup(), departmentDao.existsAtsGroup(department.getId(), department.getAtsGroup()));
-		} else {
-			result.put(model.getAtsGroup(), true);
-		}
 		return result;
 	}
 

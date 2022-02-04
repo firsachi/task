@@ -41,8 +41,7 @@ public class DepartmentFormModel extends DepartmentCoreModel {
 
 	@Override
 	public String toString() {
-		return "DepartmentFormModel [id=" + id + ", name=" + name + ", phone=" + phone + ", atsGroup=" + atsGroup
-				+ ", disable=" + disable + "companies=" + companies + "]";
+		return "DepartmentFormModel [id=" + id + ", name=" + name + ", disable=" + disable + "companies=" + companies + "]";
 	}
 	
 public class Builder {
@@ -57,16 +56,6 @@ public class Builder {
 		
 		public Builder setName(String name) {
 			DepartmentFormModel.this.name = name;
-			return this;
-		}
-		
-		public Builder setPhone(String phone) {
-			DepartmentFormModel.this.phone = phone;
-			return this;
-		}
-		
-		public Builder setAtsGroup(String atsGroup) {
-			DepartmentFormModel.this.atsGroup = atsGroup;
 			return this;
 		}
 		

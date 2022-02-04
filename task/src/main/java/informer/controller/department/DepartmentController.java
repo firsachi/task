@@ -96,9 +96,6 @@ public class DepartmentController {
 		if (!resultExists.get(model.getName())) {
 			bindingResult.rejectValue("name","unique.value.violation");
 		}
-		if (!resultExists.get(model.getAtsGroup())) {
-			bindingResult.rejectValue("atsGroup","unique.value.violation");
-		}
 		return bindingResult;
     }
     		

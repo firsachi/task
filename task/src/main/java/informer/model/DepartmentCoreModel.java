@@ -2,7 +2,6 @@ package informer.model;
 import java.util.Objects;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
 
 import org.springframework.stereotype.Component;
 
@@ -13,14 +12,6 @@ public abstract class DepartmentCoreModel {
 	
 	@NotBlank
 	protected String name;
-	
-	@NotBlank
-	@Pattern(regexp = "[0-9]{3}(-| |)[0-9]{2}(-| |)[0-9]{2}")
-	protected String phone;
-	
-	@NotBlank
-	@Pattern(regexp = "[0]{1}|[0-9]{3}")
-	protected String atsGroup;
 	
 	protected boolean disable;
 
@@ -40,22 +31,6 @@ public abstract class DepartmentCoreModel {
 		this.name = name;
 	}
 
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-
-	public String getAtsGroup() {
-		return atsGroup;
-	}
-
-	public void setAtsGroup(String atsGroup) {
-		this.atsGroup = atsGroup;
-	}
-
 	public boolean isDisable() {
 		return disable;
 	}
@@ -66,7 +41,7 @@ public abstract class DepartmentCoreModel {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(atsGroup, disable, id, name, phone);
+		return Objects.hash(disable, id, name);
 	}
 
 	@Override
@@ -78,14 +53,12 @@ public abstract class DepartmentCoreModel {
 		if (getClass() != obj.getClass())
 			return false;
 		DepartmentCoreModel other = (DepartmentCoreModel) obj;
-		return Objects.equals(atsGroup, other.atsGroup) && disable == other.disable && id == other.id
-				&& Objects.equals(name, other.name) && Objects.equals(phone, other.phone);
+		return disable == other.disable && id == other.id && Objects.equals(name, other.name);
 	}
 
 	@Override
 	public String toString() {
-		return "DepartmentCoreModel [id=" + id + ", name=" + name + ", phone=" + phone + ", atsGroup=" + atsGroup
-				+ ", disable=" + disable + "]";
+		return "DepartmentCoreModel [id=" + id + ", name=" + name + ", disable=" + disable + "]";
 	}
 
 }

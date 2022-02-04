@@ -35,7 +35,6 @@ import javax.persistence.UniqueConstraint;
 	@NamedQuery(name = "department", query = "SELECT D FROM Department D WHERE D.disable = false ORDER BY D.name" ),
 	@NamedQuery(name = "deleteDepartment", query = "UPDATE Department D SET D.disable = true WHERE D.id = :id"),
 	@NamedQuery(name = "existsName", query = "SELECT D FROM Department D WHERE D.id <> :id AND D.name = :param"),
-	@NamedQuery(name = "existsAtsGroup", query = "SELECT D FROM Department D WHERE D.id <> :id AND D.atsGroup = :atsGroup"),
 })
 public class Department implements Serializable {
     
@@ -52,12 +51,6 @@ public class Department implements Serializable {
 	@Column(name = "name")
     private String name;
     
-    @Column(name = "phone") 
-    private String phone;
-    
-    @Column(name = "atsgroup")
-    private int atsGroup;
-    
     @ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(
 			name = "company_department",
@@ -71,9 +64,6 @@ public class Department implements Serializable {
     
     @Column(name = "disable", nullable = false, columnDefinition = "boolean default false")
     private boolean disable;
-
-    public Department() {
-	}
 
 	public int getId() {
 		return id;
@@ -89,22 +79,6 @@ public class Department implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-
-	public int getAtsGroup() {
-		return atsGroup;
-	}
-
-	public void setAtsGroup(int atsGroup) {
-		this.atsGroup = atsGroup;
 	}
 
 	public List<Company> getCompanies() {
@@ -133,7 +107,7 @@ public class Department implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(atsGroup, companies, disable, employees, id, name, phone);
+		return Objects.hash(companies, disable, employees, id, name);
 	}
 
 	@Override
@@ -145,15 +119,14 @@ public class Department implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Department other = (Department) obj;
-		return atsGroup == other.atsGroup && Objects.equals(companies, other.companies) && disable == other.disable
-				&& Objects.equals(employees, other.employees) && id == other.id && Objects.equals(name, other.name)
-				&& Objects.equals(phone, other.phone);
+		return Objects.equals(companies, other.companies) && disable == other.disable
+				&& Objects.equals(employees, other.employees) && id == other.id && Objects.equals(name, other.name);
 	}
 
 	@Override
 	public String toString() {
-		return "Department [id=" + id + ", name=" + name + ", phone=" + phone + ", atsGroup=" + atsGroup
-				+ ", companies=" + companies + ", employees=" + employees + ", disable=" + disable + "]";
+		return "Department [id=" + id + ", name=" + name + ", companies=" + companies + ", employees=" + employees
+				+ ", disable=" + disable + "]";
 	}
 
 }

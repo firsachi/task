@@ -5,8 +5,6 @@
 			<thead>
 				<tr>
 					<th data-th-text="#{inputlabel.nameDepartment}"></th>
-					<th data-th-text="#{inputlabel.numberPhone}"></th>
-					<th data-th-text="#{inputlabel.atsGroup}"></th>
 					<th data-sec-authorize="hasAuthority('ADMINISTRATOR')">
 						<div data-th-replace="templates/core-tag :: button-add" data-th-remove="tag"></div>
 					</th>
@@ -15,8 +13,6 @@
 			<tbody data-th-each="department : ${departments}">
 				<tr>
 					<td data-th-text="${department.name}"></td>
-					<td data-th-text="${department.phone}"></td>
-					<td data-th-text="${department.atsGroup}"></td>
 					<td>
 						<ul class="menu align-right">
 							<li>
@@ -46,18 +42,6 @@
 				<label data-th-text="#{inputlabel.nameDepartment}"></label> 
 				<input type="text" id="name" name="name" data-th-field="*{name}" data-th-placeholder="#{inputlabel.nameDepartment}" autofocus="autofocus" /> 
 				<span class="form-error is-visible" data-th-errors="*{name}" ></span>
-			</div>
-			<!-- phone -->
-			<div data-th-class="${#fields.hasErrors('phone')} ? 'medium-12 columns invalid' : 'medium-12 columns' ">
-				<label data-th-text="#{inputlabel.numberPhone}"></label> 
-				<input type="text" id="phone" name="phone" data-th-field="*{phone}" autofocus="autofocus" data-th-placeholder="#{placeholder.phone}"/>
-				<span class="form-error is-visible"	data-th-errors="*{phone}"></span>
-			</div>
-			<!-- ats group -->
-			<div data-th-class="${#fields.hasErrors('atsGroup')} ? 'medium-12 columns invalid' : 'medium-12 columns' ">
-				<label data-th-text="#{inputlabel.atsGroup}"></label> 
-				<input type="text" id="atsGroup" name="atsGroup" data-th-field="*{atsGroup}" autofocus="autofocus" data-th-placeholder="#{placeholder.atsGroup}"/>
-				<span class="form-error is-visible"	data-th-errors="*{atsGroup}"></span>
 			</div>
 			<!-- companies -->
 			<div class="medium-12 columns">
