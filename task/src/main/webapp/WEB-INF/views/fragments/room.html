@@ -4,9 +4,8 @@
 		<!-- name -->
 			<div class="medium-12 columns">
 				<label data-th-text="#{inputlabel.numberRoom}"></label> 
-				<input type="text"
-					id="numberRoom" name="numberRoom" data-th-field="*{numberRoom}" autofocus="autofocus" /> 
-					<span data-th-class="${#fields.hasErrors('numberRoom')} ? 'form-error is-visible' : '' " data-th-errors="*{numberRoom}"></span>
+				<input type="text" id="numberRoom" name="numberRoom" data-th-field="*{numberRoom}" autofocus="autofocus" /> 
+				<span data-th-class="${#fields.hasErrors('numberRoom')} ? 'form-error is-visible' : '' " data-th-errors="*{numberRoom}"></span>
 			</div>
 		
 		<div data-th-replace="templates/core-tag :: button-submit" data-th-remove="tag"></div>
