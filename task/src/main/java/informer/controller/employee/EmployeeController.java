@@ -28,7 +28,7 @@ import informer.service.EmployeeService;
  * @author firsov
  */
 @Controller
-@RequestMapping(value = "/employee")
+@RequestMapping(path = {"/employee", "employee/"})
 public class EmployeeController extends FormaEmployee{
     
     @Autowired
@@ -46,12 +46,12 @@ public class EmployeeController extends FormaEmployee{
      
     @RequestMapping
     public String getPageTasks(Model model){
-        return "employees";
+        return "employee/employees";
     }
     
     @GetMapping(value = "/add")
 	public String getPageAddEmployee() {
-		return "employee-add";
+		return "employee/employee-add";
 	}
 
 	@PostMapping(value = "/add", params = { "save" })
