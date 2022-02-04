@@ -37,15 +37,15 @@
 				</div>
 			</div>
 
-			<div class="app-dashboard-body-content off-canvas-content"data-off-canvas-content>
-				<div class="column small-12 large-12">
+			<div class="app-dashboard-body-content off-canvas-content" data-off-canvas-content>
 					
-					<form class="row" th:action="@{{id}(id=${room.id})}" method="post" th:object="${room}">
-						<h1 th:text="#{titleform.edit}">edit room</h1>
+					<form  th:action="@{{id}(id=${room.id})}" method="post" th:object="${room}">
+						<div class="medium-12 columns">
+							<h3 th:text="#{titleform.edit}">edit room</h3>
+						</div>
 						<span class="column small-12 large-12" th:insert="fragments/room.html :: info-form"></span>
 					</form>
 
-				</div>
 			</div>
 		</div>
 	</div>

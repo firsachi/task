@@ -36,15 +36,14 @@
 				</div>
 			</div>
 
-			<div class="app-dashboard-body-content off-canvas-content"data-off-canvas-content>
-				<div class="row">
-					<div class="column small-12 large-12">
-					<h3 th:text="#{titleform.new}">new room</h3>
-					<form class="row" th:action="@{add}" method="post" th:object="${room}">
+			<div class="app-dashboard-body-content off-canvas-content" data-off-canvas-content>
+					
+					<form th:action="@{add}" method="post" th:object="${room}">
+						<div class="medium-12 columns">
+							<h3 th:text="#{titleform.new}">new room</h3>
+						</div>
 						<div th:insert="fragments/room.html :: info-form" data-th-remove="tag"></div>
 					</form>
-				</div>
-			</div>
 			</div>
 		</div>
 	</div>
