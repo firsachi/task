@@ -30,10 +30,41 @@
 			</div>
 		</div>
 		
+		<!-- modal window delete -->
+		<div class="reveal" data-th-id="deleteRecord" data-reveal data-options="closeOnClick:false; closeOnEsc:false;">
+			<form data-th-id="deletePosition" data-th-action="@{delete}" method="POST" data-th-object="${position}">
+			
+				<button class="close-button" data-close aria-label="Close modal" type="button">
+	    			<span aria-hidden="true">&times;</span>
+	  			</button>
+	  			
+	  			<div data-th-id="bodyForm" >
+	  			</div>
+	  			
+	  			<div class="small button-group align-right">
+	  				<button class="button"  data-close  data-th-text="#{buttonname.submit}" data-th-name="save">Submit</button>
+	  			</div>
+			</form>
+		</div>
+		
 		<div data-th-insert="templates/head :: script" data-th-remove="tag"></div>
 		
 		<script type="application/javascript" data-th-inline="javascript">
 			$(document).foundation();
+		</script>
+		
+		<script type="application/javascript" data-th-inline="javascript">
+			var openModal = $('[data-open][data-position-id]').on('click',
+				function() {
+					var ajax_url = "selectedPosition/"	+ $(this).data('positionId');
+					var $modal = $('#bodyForm');
+					if (ajax_url) {
+						$.ajax(ajax_url).done(function(modalBodyResponse) {
+							$modal.html(modalBodyResponse);
+						});
+					}
+			});
+				
 		</script>
 
 	</body>

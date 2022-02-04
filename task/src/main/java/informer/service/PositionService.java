@@ -28,6 +28,7 @@ public class PositionService extends ServiseTask<PositionModel> {
 		postDao.update(modelMapper.map(value, Position.class));
 	}
 
+	@Transactional
 	@Override
 	public void update(PositionModel value) {
 		postDao.update(modelMapper.map(value, Position.class));

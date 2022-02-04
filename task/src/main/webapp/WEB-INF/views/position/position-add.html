@@ -25,7 +25,7 @@
 				</div>
 	
 				<div class="app-dashboard-body-content off-canvas-content" data-off-canvas-content>
-					<form class="row" data-th-action="@{{id}(id=${position.id})}" method="post" data-th-object="${position}">
+					<form class="row" data-th-action="@{add}" method="POST" data-th-object="${position}">
 						<div data-th-replace="fragments/position-fargment :: core-form-position(#{titleform.new})"></div>
 					</form>
 				</div>

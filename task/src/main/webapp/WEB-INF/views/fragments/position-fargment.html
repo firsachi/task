@@ -16,16 +16,17 @@
 						<td data-th-text="${position.name}"></td>
 						<td data-th-text="${position.heft}"></td>
 						<td>
-							<div class="menu expanded button-group">
-
-									<!-- edit -->
-									<a data-th-href="@{edit/{id}(id=${position.id})}" 
-										class="small small-only-expanded fi-page-edit button"></a>
-
-									<!-- delete -->
-									<a data-th-href="@{delete/{id}(id=${position.id})}" 
-										class="small large-only-expanded fi-skull button" ></a>
-							</div>	
+							<ul class="menu align-right">
+								<li>
+									<button class="button fi-list" type="button" data-th-attr="data-toggle='example-' + @{{id}(id=${position.id})}" ></button>
+									<div class="dropdown-pane dropdown-pane-zie" data-th-id="'example-' + @{{id}(id=${position.id})}" data-dropdown data-auto-focus="true" data-close-on-click="true">
+										<ul class="menu vertical">
+	    									<li><a data-th-href="@{edit/{id}(id=${position.id})}" data-th-text="#{buttonname.edit}" data-th-attr="data-ajax-url='edit/?id='+${position.id}"></a></li>
+	      									<li><a data-open="deleteRecord" data-th-attr="data-position-id=${position.id}" data-th-text="#{buttonname.delete}"></a></li>
+	      								</ul>
+	      				 			</div>
+	      				 		</li>
+   					 		</ul>
 						</td>
 					</tr>
 				</tbody>
@@ -69,22 +70,13 @@
 	</div>
 	
 	<div data-th-fragment="deleteModalWindow" data-th-remove="tag">
-		<form data-th-id="deleteDepartment" data-th-action="@{delete}" method="POST" data-th-object="${selectedDepartment}">
-			
-			<button class="close-button" data-close aria-label="Close modal" type="button">
-    			<span aria-hidden="true">&times;</span>
-  			</button>
-  			
-  			<p></p>
+
+			<p></p>
   			<p class="lead">
-  				<span data-th-text="#{titleform.deleteCompany}"></span>
-  				<span data-th-text="${selectedDepartment.name}"></span>
+  				<span data-th-text="#{titleform.deletePosition}"></span>
+  				<span data-th-text="${position.name}"></span>
   			</p>
   			
-  			<input type="hidden" name="id" data-th-field="*{id}" /> 
-  			
-  			<div class="small button-group align-right">
-  				<button class="button"  data-close  data-th-text="#{buttonname.submit}" data-th-name="save">Submit</button>
-  			</div>
-		</form>
+  			<input type="hidden" name="id" data-th-field="${position.id}" />
+
 	</div>

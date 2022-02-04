@@ -13,7 +13,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import informer.model.PositionModel;
@@ -24,10 +24,8 @@ import informer.service.PositionService;
  * @author firsov
  */
 @Controller
-@RequestMapping(value = "/position")
+@RequestMapping(path = {"/position", "position/"})
 public class PositionController {
-	
-	private boolean deleteRecord = false;
 	
     @Autowired
     private PositionService positionService;
@@ -37,20 +35,20 @@ public class PositionController {
     	return positionService.getList("allPositions");
     }
     
-    @ModelAttribute("deletePosition")
-    public boolean deletePosition() {
-    	return deleteRecord;
-    }
-    
     @RequestMapping
     public String getPostPage(){
-    	deleteRecord = false;
         return "position/position";
     }
-
-    @GetMapping(value = "/delete/{id}")
-    public String delete( @PathVariable Integer id, final ModelMap model ){
-    	deleteRecord = positionService.delete(id);
+    
+    @GetMapping(value = "/selectedPosition/{id}")
+    public String selectedPosition( @PathVariable Integer id, final ModelMap model ){
+    	model.addAttribute("position", positionService.getId(id));
+    	return "fragments/position-fargment :: deleteModalWindow";
+    }
+    
+    @PostMapping(path = {"/delete", "delete/", "/delete/"})
+    public String deletePosition(@ModelAttribute("position") PositionModel model) {
+    	positionService.delete(model.getId());
     	return "redirect:/position/";
     }
     
