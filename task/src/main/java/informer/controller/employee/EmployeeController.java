@@ -49,26 +49,26 @@ public class EmployeeController extends FormaEmployee{
         return "employee/employees";
     }
     
-    @GetMapping(value = "/add")
+    @GetMapping(path = {"/add", "add/"})
 	public String getPageAddEmployee() {
 		return "employee/employee-add";
 	}
 
-	@PostMapping(value = "/add", params = { "save" })
+	@PostMapping(path = {"/add", "add/"}, params = { "save" })
 	public String getPageFormAdd(@Valid @ModelAttribute("employee") EmployeeModel employeeModel,
 			final BindingResult bindingResult, ModelMap model) {
 		if (bindingResult.hasErrors()) {
-			return "employee-add";
+			return "employee/employee-add";
 		}
 		employeeService.save(employeeModel);
 		this.employee = new EmployeeModel();
 		return "redirect:/employee/";
 	}
 	
-	@GetMapping(value = "/edit/{id}")
+	@GetMapping(path =  {"/edit/{id}", "edit/{id}", "/edit/{id}/", "edit/{id}/"})
 	public String getEditPage(@PathVariable int id, ModelMap model) {
 		model.addAttribute("employee", employeeService.getId(id));
-		return "employee-edit";
+		return "employee/employee-edit";
 	}
 	
 	@PostMapping(value = "/edit/{id}", params = { "save" })

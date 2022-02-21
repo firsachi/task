@@ -1,16 +1,15 @@
 package informer.service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import informer.entity.Employee;
 import informer.model.EmployeeModel;
 import informer.old.transformer.EmployeeTransformer;
 import informer.repository.CompanyDaoImpl;
@@ -67,11 +66,9 @@ public class EmployeeService extends ServiseTask<EmployeeModel>{
 
 	@Override
 	public List<EmployeeModel> getList(String namedQery) {
-		List<EmployeeModel> listResult = new ArrayList<EmployeeModel>();
-		for (Employee entity: employeeDao.byList(namedQery)){
-			listResult.add(employeeTransformer.entityToModel(entity));
-		}
-		return listResult;
+		return employeeDao.byList(namedQery)
+				.stream().map(entity -> employeeTransformer.entityToModel(entity))
+				.collect(Collectors.toList());
 	}
 
 	public Map<String, List<?>> allCompnents(){

@@ -18,13 +18,13 @@
 						<td data-th-text="${employee.enterprise}"></td>
 						<td data-th-text="${employee.department}"></td>
 						<td>
-							<ul class="menu align-right">
+							<ul class="menu align-right" >
 								<li>
-									<button class="button fi-list" type="button" data-th-attr="data-toggle='example-' + @{{id}(id=${employee.id})}" ></button>
+									<button class="button fi-list" type="button" data-th-classappend="${employee.disable} ? 'hollow'" data-th-attr="data-toggle='example-' + @{{id}(id=${employee.id})}" ></button>
 									<div class="dropdown-pane dropdown-pane-zie" data-th-id="'example-' + @{{id}(id=${employee.id})}" data-dropdown data-auto-focus="true" data-close-on-click="true">
 										<ul class="menu vertical">
-	    									<li><a data-th-href="@{edit/{id}(id=${employee.id})}" data-th-text="#{employee.edit}" data-th-attr="data-ajax-url='edit/?id='+${employee.id}"></a></li>
-	      									<li><a data-open="deleteRecord" data-th-attr="data-employee-id=${employee.id}" data-th-text="#{employee.delete}"></a></li>
+	    									<li><a data-th-href="@{edit/{id}(id=${employee.id})}" data-th-text="#{buttonname.edit}" data-th-attr="data-ajax-url='edit/?id='+${employee.id}"></a></li>
+	      									<li><a data-open="deleteRecord" data-th-attr="data-employee-id=${employee.id}" data-th-text="#{buttonname.delete}"></a></li>
 	      								</ul>
 	      				 			</div>
 	      				 		</li>

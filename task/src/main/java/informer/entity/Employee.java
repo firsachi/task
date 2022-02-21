@@ -30,7 +30,7 @@ import javax.persistence.Table;
 			query = "SELECT E FROM Employee E ORDER BY E.remove"),
 	@NamedQuery (
 			name = "employees", 
-			query = "SELECT E FROM Employee E WHERE E.remove = false ORDER BY E.id"),
+			query = "SELECT E FROM Employee E ORDER BY E.id"),
 	@NamedQuery (
 			name = "deleteEmployee", 
 			query = "UPDATE Employee E SET E.remove = true WHERE E.id=:id"),

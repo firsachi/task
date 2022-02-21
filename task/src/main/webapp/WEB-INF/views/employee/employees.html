@@ -55,32 +55,7 @@
 	<div class="row">
 		<div class="columns" th:fragment="tableEmployee">
 		
-			<!-- table -->
-			<table class="table">
-				<thead>
-					<tr>
-						<td th:text="#{inputlabel.fullname}"></td>
-						<td th:text="#{inputlabel.company}"></td>
-						<td th:text="#{inputlabel.department}"></td>
-						<td>
-							<ul class="menu">
-								<li><a th:href="@{add}" th:text="#{buttonname.add}" class="button">add</a></li>
-							</ul>
-						</td>
-
-					</tr>
-				</thead>
-				<tbody th:each="employee : ${allEmployee}">
-					<tr>
-						<td
-							th:text="${employee.surname + ' ' + employee.name + ' ' + employee.patronymic}"></td>
-						<td th:text="${employee.enterprise}"></td>
-						<td th:text="${employee.department}"></td>
-						<td><a th:href="@{edit/{id}(id=${employee.id})}" th:text="#{buttonname.edit}">edit</a> </td>
-						<td><a data-open="deleteRecord" th:attr="data-employee-id=${employee.id}"  >delete</a></td>
-					</tr>
-				</tbody>
-			</table>
+			
 			
 			<!-- modal window delete -->
 			<div class="reveal" th:id="deleteRecord" data-reveal data-options="closeOnClick:false; closeOnEsc:false;">
