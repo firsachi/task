@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import informer.rest.model.DepartmentModel;
+import informer.rest.model.FilterParm;
 
 @RestController
 @RequestMapping(value = "/api", produces = "text/plain;charset=UTF-8")
@@ -24,12 +24,13 @@ public class EmployeeControllerREST {
 	
 	@CrossOrigin
 	@PostMapping(value = "/loadEmployes/")
-	public String listEmployees(@ModelAttribute DepartmentModel department) {
+	public String listEmployees(@ModelAttribute FilterParm filterParm ) {
 		try {
-			return mapper.writeValueAsString(service.getListEmployeeDepartment(department.getId()));
+			return mapper.writeValueAsString(service.getListEmployeeDepartment(filterParm));
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 			return "eroor";
 		}
 	}
+	
 }

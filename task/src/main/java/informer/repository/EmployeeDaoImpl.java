@@ -30,4 +30,12 @@ public class EmployeeDaoImpl extends MainDao<Employee>{
 		listEmloyee.setParameter("departmentId", idDepartment);
 		return listEmloyee.getResultList();
 	}
+	
+	@Transactional
+	public List<Employee> byList(String namedQery, int idCompany, int idDepartment) {
+		TypedQuery<Employee> listEmloyee = em.createNamedQuery(namedQery, Employee.class);
+		listEmloyee.setParameter("companuId", idCompany);
+		listEmloyee.setParameter("departmentId", idDepartment);
+		return listEmloyee.getResultList();
+	}
 }

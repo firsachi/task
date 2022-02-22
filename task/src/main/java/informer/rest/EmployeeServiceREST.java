@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import informer.repository.EmployeeDaoImpl;
 import informer.rest.model.EmployeeModel;
+import informer.rest.model.FilterParm;
 
 @Service
 @Transactional
@@ -23,8 +24,8 @@ public class EmployeeServiceREST {
 	private ModelMapper mapper;
 	
 	@Transactional
-	public List<EmployeeModel> getListEmployeeDepartment(int id){
-		return repositoryEmployee.byList("selectIdDepartment", id)
+	public List<EmployeeModel> getListEmployeeDepartment(FilterParm filterParm){
+		return repositoryEmployee.byList("employeeDepartment", filterParm.getCompanyId(), filterParm.getDeparmentId())
 				.stream().map(employee -> mapper.map(employee, EmployeeModel.class))
 				.collect(Collectors.toList());
 	}

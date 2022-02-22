@@ -41,7 +41,7 @@ public class Position implements Serializable {
     @Column(name = "name", unique = true, nullable = false)
     private String namePosition;
     
-    @Column(name = "heft", unique = true, nullable = false)
+    @Column(name = "heft", nullable = false)
     private String heft;
     
     @OneToMany(mappedBy = "position")
