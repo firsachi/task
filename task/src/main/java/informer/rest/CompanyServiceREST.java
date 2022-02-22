@@ -9,9 +9,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import informer.entity.Company;
 import informer.repository.CompanyDaoImpl;
 import informer.rest.model.CompanyModel;
-import informer.rest.model.CompanyModelSmall;
 import informer.rest.model.DepartmentModel;
 
 @Service
@@ -23,19 +23,22 @@ public class CompanyServiceREST {
 	@Autowired
 	private ModelMapper mapper;
 	
-	public List<CompanyModelSmall> getListModel(){
-		return companyDao.byList("company").stream().map(company -> mapper.map(company, CompanyModelSmall.class)).collect(Collectors.toList());
+	public List<CompanyModel> getListModel(){
+		return companyDao.byList("company").stream().map(company -> mapper(company)).collect(Collectors.toList());
 	}
 	
-	public CompanyModel byCompany(int id) {
-		CompanyModel company = mapper.map(companyDao.byId(id), CompanyModel.class);
+	public CompanyModel byCompany(int id) {		
+		return mapper(companyDao.byId(id));
+	}
+	
+	private CompanyModel mapper(Company ent) {
+		CompanyModel company = mapper.map(ent, CompanyModel.class);
 		
 		List<DepartmentModel> departments = company.getDepartments().stream()
 				.map(department -> mapper.map(department, DepartmentModel.class))
 				.sorted(Comparator.comparing(DepartmentModel::getName))
 				.collect(Collectors.toList());
-		company.setDepartments(departments);		
-	//	company.setDepartments(company.getDepartments().stream().sorted().collect(Collectors.toList()));
+		company.setDepartments(departments);
 		return company;
 	}
 
