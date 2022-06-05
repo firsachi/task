@@ -3,11 +3,14 @@ package informer.model;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 import javax.validation.constraints.NotNull;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import informer.entity.Role;
 
 public class UserModel implements UserDetails{
 	
@@ -22,6 +25,8 @@ public class UserModel implements UserDetails{
 	
 	@NotNull
 	private String password;
+	
+	private Set<Role> roles;
 	
 	private boolean enabled;
 
@@ -39,6 +44,14 @@ public class UserModel implements UserDetails{
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
 	}
 
 	public boolean isEnabled() {
