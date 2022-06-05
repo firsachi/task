@@ -14,13 +14,11 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
 @Entity
 @Table(name = "users")
-@NamedQueries({ @NamedQuery(name = "User.allUsers", query = "SELECT U FROM User U"),
-	@NamedQuery(name = "User.findUsername", query = "SELECT U FROM User U WHERE U.username = :username") })
-public class User implements Serializable {
+@NamedQueries({ @NamedQuery(name = "User.allUsers", query = "SELECT U FROM UserApp U"),
+	@NamedQuery(name = "User.findUsername", query = "SELECT U FROM UserApp U WHERE U.username = :username") })
+public class UserApp implements Serializable {
 
 	/**
 	 * 
@@ -29,10 +27,8 @@ public class User implements Serializable {
 
 	@Id
 	@Column(name = "username", unique = true, nullable = false)
-	@NotEmpty(message = "{error.null}")
 	private String username;
 
-	@NotEmpty(message = "{error.null}")
 	@Column(name = "password", nullable = false)
 	private String password;
 
@@ -43,7 +39,7 @@ public class User implements Serializable {
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles;
 
-	public User() {
+	public UserApp() {
 		super();
 	}
 
@@ -98,7 +94,7 @@ public class User implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		User other = (User) obj;
+		UserApp other = (UserApp) obj;
 		if (enabled != other.enabled)
 			return false;
 		if (password == null) {
