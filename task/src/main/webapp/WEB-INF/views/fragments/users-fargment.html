@@ -6,14 +6,7 @@
 					<th data-th-text="#{inputlabel.login}"></th>
 					<th data-th-text="#{inputlabel.roles}"></th>
 					<th data-sec-authorize="hasAuthority('ADMINISTRATOR')">
-						<ul class="menu align-right">
-							<li>
-								<a class="button fi-plus" data-th-name="add"></a>
-							</li>
-						</ul>
-						<!-- 
-						<div data-th-replace="templates/core-tag :: button-add" data-th-remove="tag"></div>
-						-->
+						<ul data-th-replace="templates/core-tag :: add-button"></ul>
 					</th>
 				</tr>
 			</thead>
@@ -45,21 +38,30 @@
 	
 	
 	<div data-th-fragment="core-form" data-th-remove="tag">
-			<!--  -->
-			<div class="medium-12 columns">
-				<input type="hidden" name="id" data-th-field="*{id}" /> 
-			</div>
 			<!-- name -->
-			<div data-th-class="${#fields.hasErrors('nameCompany')} ? 'medium-12 columns invalid' : 'medium-12 columns' " >
-				<label data-th-text="#{inputlabel.nameCompany}"></label> 
-				<input type="text" id="nameCompany" name="nameCompany" data-th-field="*{nameCompany}" data-th-placeholder="#{inputlabel.nameCompany}" autofocus="autofocus" /> 
-				<span class="form-error is-visible" data-th-errors="*{nameCompany}" ></span>
+			<div data-th-class="${#fields.hasErrors('username')} ? 'medium-12 columns invalid' : 'medium-12 columns' " >
+				<label data-th-text="#{inputlabel.username}"></label> 
+				<input type="text" id="username" name="username" data-th-field="*{username}" data-th-placeholder="#{inputlabel.username}" autofocus="autofocus" /> 
+				<span class="form-error is-visible" data-th-errors="*{username}" ></span>
+			</div>
+			<!-- password -->
+			<div data-th-class="${#fields.hasErrors('password')} ? 'medium-12 columns invalid' : 'medium-12 columns' " >
+				<label data-th-text="#{inputlabel.password}"></label>
+				<input type="password" id="password" name="password" data-th-field="*{password}" data-th-placeholder="#{inputlabel.password}" autofocus="autofocus">
+				<span class="form-error is-visible" data-th-errors="*{password}" ></span>
+			</div>
+			<!-- repeat password -->
+			<div data-th-class="${#fields.hasErrors('repeatPassword')} ? 'medium-12 columns invalid' : 'medium-12 columns' " >
+				<label data-th-text="#{inputlabel.repeatPassword}"></label>
+				<input type="password" id="repeatPassword" name="repeatPassword" data-th-field="*{repeatPassword}" data-th-placeholder="#{inputlabel.repeatPassword}" autofocus="autofocus">
+				<span class="form-error is-visible" data-th-errors="*{repeatPassword}" ></span>
 			</div>
 			<!-- disable -->
 			<div class="medium-12 columns">
 				<label data-th-text="#{inputlabel.isdisable}"></label>
-				<input type="checkbox" id="disable" data-th-field="*{disable}">
+				<input type="checkbox" id="disable" data-th-field="*{enabled}">
 			</div>
+			
 	</div>
 	
 	<div data-th-fragment="deleteModalWindow" data-th-remove="tag">

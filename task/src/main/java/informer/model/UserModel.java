@@ -5,7 +5,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,16 +19,15 @@ public class UserModel implements UserDetails{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@NotNull
-	private String username;
+	@NotBlank
+	protected String username;
 	
+	@NotBlank
+	protected String password;
 	
-	@NotNull
-	private String password;
+	protected Set<Role> roles;
 	
-	private Set<Role> roles;
-	
-	private boolean enabled;
+	protected boolean enabled;
 
 	public String getUsername() {
 		return username;
@@ -82,6 +81,11 @@ public class UserModel implements UserDetails{
 	public boolean isCredentialsNonExpired() {
 		return false;
 	}
-	
 
+	@Override
+	public String toString() {
+		return "UserModel [username=" + username + ", password=" + password + ", roles=" + roles + ", enabled="
+				+ enabled + "]";
+	}
+	
 }

@@ -25,13 +25,24 @@
 			</div>
 
 			<div class="app-dashboard-body-content off-canvas-content" data-off-canvas-content>
-			
-				<div data-th-name="user-list" data-th-replace="fragments/users-fargment :: table"></div>
+				<div data-th-unless="${param.page}">
+					<div data-th-name="user-list" data-th-replace="fragments/users-fargment :: table"></div>
+				</div>
+				<!-- form add -->
+				<div data-th-if="${#strings.toString(param.page)} == 'add'">
+					<form data-th-action="@{${url}(page=add)}" method="POST" data-th-object="${user}">
+						<div class="medium-12 columns">
+							<h3 data-th-text="#{titleform.new}">new</h3>
+						</div>
+						<div data-th-replace="fragments/users-fargment :: core-form" data-th-remove="tag"></div>
+						<div data-th-replace="templates/core-tag :: button-submit" data-th-remove="tag"></div>
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>
 	
-	<div data-th-insert="templates/head :: script"></div>
+	<div data-th-replace="templates/head :: script" data-th-remove="tag"></div>
 	
 	<script type="text/javascript" data-th-inline="javascript">
 		$(document).foundation();
