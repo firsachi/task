@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,7 +23,7 @@ public class UserModel implements UserDetails{
 	@NotBlank
 	protected String username;
 	
-	@NotBlank
+	@Size(min = 8)
 	protected String password;
 	
 	protected Set<Role> roles;

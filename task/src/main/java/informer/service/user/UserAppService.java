@@ -27,4 +27,8 @@ public class UserAppService {
 				.stream().map(userApp -> modelMapper.map(userApp, UserModel.class))
 				.collect(Collectors.toList());
 	}
+
+	public boolean findUsername(String username) {
+		return userRepository.uniqueUsermane(username);
+	}
 }

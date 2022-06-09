@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import informer.controller.PageAddEdit;
 import informer.model.UserAddFormModel;
-import informer.model.UserModel;
 import informer.service.user.UserAppService;
 
 @Controller
@@ -41,6 +40,13 @@ public class UsersAppController {
 	
 	@PostMapping(params = {"page"})
 	public String userAddPage(@Valid @ModelAttribute("user") UserAddFormModel userModel, final BindingResult bindingResult) {
+		if (!userAppService.findUsername(userModel.getUsername())) {
+			bindingResult.rejectValue("username","unique.value.violation");
+		}
+		if (!userModel.getPassword().equals(userModel.getRepeatPassword())) {
+			bindingResult.rejectValue("password","unique.password");
+			bindingResult.rejectValue("repeatPassword","unique.password");
+		}
 		if (bindingResult.hasErrors()) {
 			return "users/users";
 		}

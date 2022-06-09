@@ -34,5 +34,9 @@ public class UserRepositoryImpl extends MainDao<UserApp>{
 		UserApp user = query.getSingleResult();
 		return user;
 	}
+	
+	public boolean uniqueUsermane(String username) {
+		return em.createNamedQuery("User.findUsername", UserApp.class).setParameter("username", username).getResultList().isEmpty();
+	}
 
 }
