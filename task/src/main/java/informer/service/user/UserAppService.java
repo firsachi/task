@@ -9,8 +9,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import informer.db.UserRepositoryImpl;
 import informer.model.UserModel;
-import informer.repository.UserRepositoryImpl;
 
 @Service
 public class UserAppService {

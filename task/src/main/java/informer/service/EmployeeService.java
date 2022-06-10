@@ -10,14 +10,14 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import informer.db.CompanyDaoImpl;
+import informer.db.DepartmentDaoImpl;
+import informer.db.EmployeeDaoImpl;
+import informer.db.PhoneDaoImpl;
+import informer.db.PositionDaoImpl;
+import informer.db.RoomDaoImpl;
 import informer.model.EmployeeModel;
 import informer.old.transformer.EmployeeTransformer;
-import informer.repository.CompanyDaoImpl;
-import informer.repository.DepartmentDaoImpl;
-import informer.repository.EmployeeDaoImpl;
-import informer.repository.PhoneDaoImpl;
-import informer.repository.PositionDaoImpl;
-import informer.repository.RoomDaoImpl;
 
 @Service
 public class EmployeeService extends ServiseTask<EmployeeModel>{

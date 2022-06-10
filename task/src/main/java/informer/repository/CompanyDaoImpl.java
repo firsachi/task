@@ -1,4 +1,4 @@
-package informer.repository;
+package informer.db;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 
-import informer.entity.Company;
+import informer.db.entity.Company;
 
 @Repository("companyDao")
 public class CompanyDaoImpl extends MainDao<Company> implements CompanyDao{

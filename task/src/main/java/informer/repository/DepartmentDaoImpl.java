@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package informer.repository;
+package informer.db;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ import javax.persistence.TypedQuery;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import informer.entity.Department;
+import informer.db.entity.Department;
 
 /**
  *

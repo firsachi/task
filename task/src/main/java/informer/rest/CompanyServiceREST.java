@@ -9,8 +9,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import informer.entity.Company;
-import informer.repository.CompanyDaoImpl;
+import informer.db.CompanyDaoImpl;
+import informer.db.entity.Company;
 import informer.rest.model.CompanyModel;
 import informer.rest.model.DepartmentModel;
 
