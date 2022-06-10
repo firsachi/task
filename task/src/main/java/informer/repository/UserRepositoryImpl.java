@@ -9,7 +9,7 @@ import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 
-import informer.entity.UserApp;
+import informer.repository.entity.UserApp;
 
 /**
  * @author firsov

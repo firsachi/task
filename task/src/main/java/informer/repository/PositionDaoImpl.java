@@ -6,7 +6,7 @@ import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 
-import informer.entity.Position;
+import informer.repository.entity.Position;
 
 @Repository("postDao")
 public class PositionDaoImpl extends MainDao<Position>{

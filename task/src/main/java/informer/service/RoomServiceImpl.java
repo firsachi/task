@@ -10,9 +10,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import informer.entity.Room;
 import informer.model.RoomModel;
 import informer.repository.RoomDaoImpl;
+import informer.repository.entity.Room;
 
 @Service("roomService")
 public class RoomServiceImpl {

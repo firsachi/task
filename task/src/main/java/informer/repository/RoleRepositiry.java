@@ -1,8 +1,6 @@
-package informer.db;
+package informer.repository;
 
 import java.util.List;
-
-import informer.db.entity.Role;
 
 public class RoleRepositiry extends MainDao<Role> {
 

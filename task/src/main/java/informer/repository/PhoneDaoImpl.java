@@ -6,7 +6,7 @@ import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 
-import informer.entity.Phone;
+import informer.repository.entity.Phone;
 
 @Repository("phoneDao")
 public class PhoneDaoImpl extends MainDao<Phone>{

@@ -7,7 +7,7 @@ import javax.persistence.TypedQuery;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import informer.entity.Employee;
+import informer.repository.entity.Employee;
 
 @Repository("employeeDao")
 public class EmployeeDaoImpl extends MainDao<Employee>{

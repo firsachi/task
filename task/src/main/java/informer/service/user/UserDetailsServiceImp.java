@@ -18,9 +18,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import informer.entity.Role;
-import informer.entity.UserApp;
 import informer.repository.UserRepositoryImpl;
+import informer.repository.entity.Role;
+import informer.repository.entity.UserApp;
 
 
 /**

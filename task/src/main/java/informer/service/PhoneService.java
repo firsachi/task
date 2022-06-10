@@ -9,9 +9,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import informer.entity.Phone;
 import informer.model.PhoneModel;
 import informer.repository.PhoneDaoImpl;
+import informer.repository.entity.Phone;
 
 
 @Service

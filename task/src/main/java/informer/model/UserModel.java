@@ -11,7 +11,7 @@ import javax.validation.constraints.Size;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import informer.entity.Role;
+import informer.repository.entity.Role;
 
 public class UserModel implements UserDetails{
 	

@@ -13,8 +13,8 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.modelmapper.ModelMapper;
 
-import informer.db.CompanyDaoImpl;
-import informer.db.entity.Company;
+import informer.repository.CompanyDaoImpl;
+import informer.repository.entity.Company;
 
 class CompanyServiceImplTest {
 	

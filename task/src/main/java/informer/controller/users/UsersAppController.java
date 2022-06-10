@@ -14,11 +14,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import informer.controller.PageAddEdit;
 import informer.model.UserAddFormModel;
+import informer.repository.RoleRepositiry;
 import informer.service.user.UserAppService;
 
 @Controller
 @RequestMapping(path = {"/users", "/users/"})
 public class UsersAppController {
+	@Autowired
+	private RoleRepositiry rolleRepository;
 	
 	@Autowired
 	private UserAppService userAppService;
@@ -31,8 +34,8 @@ public class UsersAppController {
 	
 	@GetMapping(params = {"page"})
 	public String userPage(@Param(value = "page") String page, ModelMap model) {
-		model.addAttribute("user", new UserAddFormModel());
 		if (page.toLowerCase().equals(PageAddEdit.ADD.toString().toLowerCase())) {
+			model.addAttribute("user", new UserAddFormModel());
 			return "users/users";
 		}
 		return "redirect:/users";

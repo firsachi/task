@@ -1,4 +1,4 @@
-package informer.entity;
+package informer.repository.entity;
 
 import java.io.Serializable;
 import java.util.Set;

@@ -10,9 +10,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import informer.db.CompanyDaoImpl;
-import informer.db.entity.Company;
 import informer.model.CompanyModel;
+import informer.repository.CompanyDaoImpl;
+import informer.repository.entity.Company;
 
 
 @Service

@@ -1,6 +1,6 @@
-package informer.db;
+package informer.repository;
 
-import informer.db.entity.Company;
+import informer.repository.entity.Company;
 
 public interface CompanyDao {
 	

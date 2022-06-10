@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import informer.db.PhoneDaoImpl;
 import informer.model.PhoneModel;
+import informer.repository.PhoneDaoImpl;
 import informer.service.PhoneService;
 
 @RequestMapping("/phone/")

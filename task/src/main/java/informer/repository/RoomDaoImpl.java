@@ -6,7 +6,7 @@ import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 
-import informer.entity.Room;
+import informer.repository.entity.Room;
 
 @Repository("roomDao")
 public class RoomDaoImpl extends MainDao<Room>{

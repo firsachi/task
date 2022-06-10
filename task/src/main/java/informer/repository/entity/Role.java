@@ -1,7 +1,7 @@
 /**
  * 
  */
-package informer.entity;
+package informer.repository.entity;
 
 import java.io.Serializable;
 
@@ -20,6 +20,7 @@ import javax.persistence.Table;
 @Entity
 @Table
 @SequenceGenerator(name = "role_id", sequenceName = "role_id", allocationSize = 1)
+
 public class Role implements Serializable {
 
 	/**
