@@ -2,6 +2,8 @@ package informer.repository;
 
 import java.util.List;
 
+import informer.repository.entity.Role;
+
 public class RoleRepositiry extends MainDao<Role> {
 
 	@Override
