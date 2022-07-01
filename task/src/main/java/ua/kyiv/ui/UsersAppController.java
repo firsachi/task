@@ -1,7 +1,6 @@
 package ua.kyiv.ui;
 
 import java.util.List;
-import java.util.Set;
 
 import javax.validation.Valid;
 
