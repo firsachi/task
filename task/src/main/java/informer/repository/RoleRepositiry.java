@@ -2,8 +2,11 @@ package informer.repository;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import informer.repository.entity.Role;
 
+@Repository
 public class RoleRepositiry extends MainDao<Role> {
 
 	@Override
@@ -14,8 +17,7 @@ public class RoleRepositiry extends MainDao<Role> {
 
 	@Override
 	public List<Role> byList(String namedQery) {
-		// TODO Auto-generated method stub
-		return null;
+		return em.createNamedQuery(namedQery, Role.class).getResultList();
 	}
 
 }
