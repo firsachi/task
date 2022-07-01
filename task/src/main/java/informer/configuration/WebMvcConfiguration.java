@@ -20,7 +20,7 @@ import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
 
 @Configuration
-@ComponentScan("informer")
+@ComponentScan({"informer", "ua.kyiv"})
 @EnableWebMvc
 @EnableTransactionManagement
 public class WebMvcConfiguration implements WebMvcConfigurer {
