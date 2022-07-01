@@ -1,4 +1,4 @@
-package ua.kyiv.ui.model;
+package ua.kyiv.informer.ui.model;
 
 import java.util.ArrayList;
 import java.util.Collection;

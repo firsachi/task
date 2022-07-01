@@ -1,4 +1,4 @@
-package ua.kyiv.logic;
+package ua.kyiv.informer.logic;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,8 +13,8 @@ import org.springframework.stereotype.Service;
 import informer.repository.RoleRepositiry;
 import informer.repository.UserRepositoryImpl;
 import informer.repository.entity.UserApp;
-import ua.kyiv.ui.model.UserAddFormModel;
-import ua.kyiv.ui.model.UserModel;
+import ua.kyiv.informer.ui.model.UserAddFormModel;
+import ua.kyiv.informer.ui.model.UserModel;
 
 @Service
 public class UserAppService {

@@ -38,6 +38,14 @@
 						<div data-th-replace="templates/core-tag :: button-submit" data-th-remove="tag"></div>
 					</form>
 				</div>
+				<!-- delete page -->
+				<div data-th-if="${#strings.toString(param.page)} == 'delete'">
+					<form data-th-action="@{${url}(page=delete)}" method="DELETE"  data-th-object="${user}">
+						<div class="medium-12 columns">
+							<h3 data-th-text="#{titleform.new}">new</h3>
+						</div>
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>

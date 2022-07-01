@@ -1,4 +1,4 @@
-package ua.kyiv.ui;
+package ua.kyiv.informer.ui;
 
 import java.util.List;
 
@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import informer.controller.PageAddEdit;
 import informer.repository.RoleRepositiry;
 import informer.repository.entity.Role;
-import ua.kyiv.logic.UserAppService;
-import ua.kyiv.ui.model.UserAddFormModel;
+import ua.kyiv.informer.logic.UserAppService;
+import ua.kyiv.informer.ui.model.UserAddFormModel;
 
 @Controller
 @RequestMapping(path = {"/users", "/users/"})
@@ -42,7 +42,7 @@ public class UsersAppController {
 	
 	@GetMapping(params = {"page"})
 	public String userPage(@Param(value = "page") String page, ModelMap model) {
-		if (page.toLowerCase().equals(PageAddEdit.ADD.toString().toLowerCase())) {
+		if (page.toLowerCase().equals(PageAddEdit.ADD.label)) {
 			model.addAttribute("user", new UserAddFormModel());
 			return "users/users";
 		}
@@ -62,6 +62,15 @@ public class UsersAppController {
 			return "users/users";
 		}
 		userAppService.save(userModel);
+		return "redirect:/users";
+	}
+	
+	@GetMapping(params = {"page", "username"})
+	public String padeDelete(@Param(value = "page") String page, @Param(value = "username") String username, ModelMap model) {
+		if (page.toLowerCase().equals(PageAddEdit.DELETE.label)) {
+			
+			return "users/users";
+		}
 		return "redirect:/users";
 	}
 

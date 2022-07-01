@@ -1,7 +1,7 @@
 /**
  * 
  */
-package ua.kyiv.ui;
+package ua.kyiv.informer.ui;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

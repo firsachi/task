@@ -2,7 +2,7 @@
 /**
  * 
  */
-package ua.kyiv.logic;
+package ua.kyiv.informer.logic;
 
 import java.util.Collection;
 import java.util.stream.Collectors;
