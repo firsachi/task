@@ -1,4 +1,4 @@
-package informer;
+package ua.kyiv;
 
 import javax.servlet.Filter;
 
