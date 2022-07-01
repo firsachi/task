@@ -2,7 +2,7 @@
 /**
  * 
  */
-package informer.service.user;
+package ua.kyiv.logic;
 
 import java.util.Collection;
 import java.util.stream.Collectors;
@@ -31,7 +31,7 @@ import informer.repository.entity.UserApp;
 public class UserDetailsServiceImp implements UserDetailsService {
 	
 	@Autowired
-	BCryptPasswordEncoder passwordEncoder;
+	private BCryptPasswordEncoder passwordEncoder;
 	
 	@Autowired
 	private UserRepositoryImpl userDao;

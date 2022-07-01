@@ -39,22 +39,29 @@
 	
 	<div data-th-fragment="core-form" data-th-remove="tag">
 			<!-- name -->
-			<div data-th-class="${#fields.hasErrors('username')} ? 'medium-12 columns invalid' : 'medium-12 columns' " >
-				<label data-th-text="#{inputlabel.username}"></label> 
-				<input type="text" id="username" name="username" data-th-field="*{username}" data-th-placeholder="#{inputlabel.username}" autofocus="autofocus" /> 
+			<div class="medium-12 columns" >
+				<label data-th-class="${#fields.hasErrors('username')}? 'is-invalid-label'" data-th-text="#{inputlabel.username}"></label> 
+				<input data-th-class="${#fields.hasErrors('username')}? 'is-invalid-input'" type="text" id="username" name="username" data-th-field="*{username}" data-th-placeholder="#{inputlabel.username}" autofocus="autofocus" /> 
 				<span class="form-error is-visible" data-th-errors="*{username}" ></span>
 			</div>
 			<!-- password -->
-			<div data-th-class="${#fields.hasErrors('password')} ? 'medium-12 columns invalid' : 'medium-12 columns' " >
-				<label data-th-text="#{inputlabel.password}"></label>
-				<input type="password" id="password" name="password" data-th-field="*{password}" data-th-placeholder="#{inputlabel.password}" autofocus="autofocus">
+			<div class="medium-12 columns"  >
+				<label data-th-class="${#fields.hasErrors('username')}? 'is-invalid-label'" data-th-text="#{inputlabel.password}"></label>
+				<input data-th-class="${#fields.hasErrors('username')}? 'is-invalid-input'" type="password" id="pass" name="password" data-th-value="*{password}" data-th-placeholder="#{inputlabel.password}" autocomplete="off">
 				<span class="form-error is-visible" data-th-errors="*{password}" ></span>
 			</div>
 			<!-- repeat password -->
-			<div data-th-class="${#fields.hasErrors('repeatPassword')} ? 'medium-12 columns invalid' : 'medium-12 columns' " >
-				<label data-th-text="#{inputlabel.repeatPassword}"></label>
-				<input type="password" id="repeatPassword" name="repeatPassword" data-th-field="*{repeatPassword}" data-th-placeholder="#{inputlabel.repeatPassword}" autofocus="autofocus">
+			<div class="medium-12 columns" >
+				<label data-th-class="${#fields.hasErrors('username')}? 'is-invalid-label'" data-th-text="#{inputlabel.repeatPassword}"></label>
+				<input data-th-class="${#fields.hasErrors('username')}? 'is-invalid-input'" type="password" id="repeatPassword" name="repeatPassword" data-th-value="*{repeatPassword}" data-th-placeholder="#{inputlabel.repeatPassword}" autofocus="autofocus">
 				<span class="form-error is-visible" data-th-errors="*{repeatPassword}" ></span>
+			</div>
+			<!-- role -->
+			<div class="medium-12 columns">
+				<label >
+					<span data-th-text="#{titleform.roles}"></span>:
+    				<input type="checkbox" name="role" data-th-each="role : ${roles}" data-th-text="${role.roleName} + ' '" data-th-field="*{selectedRole}" data-th-value="${role.roleId}">
+    			</label>
 			</div>
 			<!-- disable -->
 			<div class="medium-12 columns">

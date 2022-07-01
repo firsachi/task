@@ -11,8 +11,7 @@ public class RoleRepositiry extends MainDao<Role> {
 
 	@Override
 	public Role byId(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return em.find(Role.class, id);
 	}
 
 	@Override

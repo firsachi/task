@@ -1,4 +1,7 @@
-package informer.controller.users;
+package ua.kyiv.ui;
+
+import java.util.List;
+import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -13,18 +16,24 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import informer.controller.PageAddEdit;
-import informer.model.UserAddFormModel;
 import informer.repository.RoleRepositiry;
-import informer.service.user.UserAppService;
+import informer.repository.entity.Role;
+import ua.kyiv.logic.UserAppService;
+import ua.kyiv.ui.model.UserAddFormModel;
 
 @Controller
 @RequestMapping(path = {"/users", "/users/"})
 public class UsersAppController {
 	@Autowired
-	private RoleRepositiry rolleRepository;
+	private RoleRepositiry roleRepository;
 	
 	@Autowired
 	private UserAppService userAppService;
+	
+	@ModelAttribute("roles")
+	public List<Role> getRoleList() {
+		return roleRepository.byList("Role.All");
+	}
 	
 	@GetMapping
 	public String usersPage( ModelMap model) {
@@ -53,6 +62,7 @@ public class UsersAppController {
 		if (bindingResult.hasErrors()) {
 			return "users/users";
 		}
+		userAppService.save(userModel);
 		return "redirect:/users";
 	}
 
