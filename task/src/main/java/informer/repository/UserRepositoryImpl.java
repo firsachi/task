@@ -39,4 +39,8 @@ public class UserRepositoryImpl extends MainDao<UserApp>{
 		return em.createNamedQuery("User.findUsername", UserApp.class).setParameter("username", username).getResultList().isEmpty();
 	}
 
+	public UserApp byId(String username) {
+		return em.find(UserApp.class, username);
+	}
+
 }

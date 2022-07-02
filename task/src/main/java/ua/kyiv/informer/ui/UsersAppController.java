@@ -50,7 +50,10 @@ public class UsersAppController {
 	}
 	
 	@PostMapping(params = {"page"})
-	public String userAddPage(@Valid @ModelAttribute("user") UserAddFormModel userModel, final BindingResult bindingResult) {
+	public String userAddPage(@Param(value = "page") String page, @Valid @ModelAttribute("user") UserAddFormModel userModel, final BindingResult bindingResult) {
+		if (page.toLowerCase().equals(PageAddEdit.DELETE.label)) {
+			return delete(userModel.getUsername());
+		}
 		if (!userAppService.findUsername(userModel.getUsername())) {
 			bindingResult.rejectValue("username","unique.value.violation");
 		}
@@ -68,9 +71,15 @@ public class UsersAppController {
 	@GetMapping(params = {"page", "username"})
 	public String padeDelete(@Param(value = "page") String page, @Param(value = "username") String username, ModelMap model) {
 		if (page.toLowerCase().equals(PageAddEdit.DELETE.label)) {
-			
+			model.addAttribute("user", userAppService.byUserApp(username));
 			return "users/users";
 		}
+		return "redirect:/users";
+	}
+	
+	
+	private String delete(String username) {
+		userAppService.delete(username);
 		return "redirect:/users";
 	}
 

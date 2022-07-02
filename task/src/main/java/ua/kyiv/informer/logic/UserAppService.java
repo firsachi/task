@@ -41,6 +41,11 @@ public class UserAppService {
 	public boolean findUsername(String username) {
 		return userRepository.uniqueUsermane(username);
 	}
+	
+	@Transactional
+	public UserModel byUserApp(String username) {
+		return modelMapper.map(userRepository.byId(username), UserModel.class);
+	}
 
 	@Transactional
 	public void save(UserAddFormModel userModel) {
@@ -48,5 +53,10 @@ public class UserAppService {
 		userApp.setRoles(userModel.getSelectedRole().stream().map(roleId -> roleRepositiry.byId(roleId)).collect(Collectors.toSet()));
 		userApp.setPassword(passwordEncoder.encode(userApp.getPassword()));
 		userRepository.insert(userApp);
+	}
+	
+	@Transactional
+	public void delete(String username) {
+		userRepository.delete(userRepository.byId(username));
 	}
 }
