@@ -1,7 +1,7 @@
 /**
  * 
  */
-package informer.configuration;
+package ua.kyiv.informer.config;
 
 import java.util.Locale;
 

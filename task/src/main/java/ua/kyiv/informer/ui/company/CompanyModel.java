@@ -1,4 +1,4 @@
-package informer.model;
+package ua.kyiv.informer.ui.company;
 
 import java.util.Objects;
 

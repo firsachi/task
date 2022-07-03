@@ -9,8 +9,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import informer.repository.DepartmentDaoImpl;
 import informer.rest.model.DepartmentModel;
+import ua.kyiv.informer.repository.DepartmentDaoImpl;
 
 @Service
 @Transactional

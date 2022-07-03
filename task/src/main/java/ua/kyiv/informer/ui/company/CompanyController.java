@@ -1,4 +1,4 @@
-package informer.controller.company;
+package ua.kyiv.informer.ui.company;
 
 import java.util.List;
 
@@ -15,8 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import informer.model.CompanyModel;
-import informer.service.CompanyService;
+import ua.kyiv.informer.logic.CompanyService;
 
 @Controller
 @RequestMapping(path = {"company/", "/company"})

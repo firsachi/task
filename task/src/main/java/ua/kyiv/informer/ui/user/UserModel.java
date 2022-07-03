@@ -1,4 +1,4 @@
-package ua.kyiv.informer.ui.model;
+package ua.kyiv.informer.ui.user;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -11,7 +11,7 @@ import javax.validation.constraints.Size;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import informer.repository.entity.Role;
+import ua.kyiv.informer.repository.entity.Role;
 
 public class UserModel implements UserDetails{
 	

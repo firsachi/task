@@ -17,9 +17,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import informer.repository.UserRepositoryImpl;
-import informer.repository.entity.Role;
-import informer.repository.entity.UserApp;
+import ua.kyiv.informer.repository.UserRepositoryImpl;
+import ua.kyiv.informer.repository.entity.Role;
+import ua.kyiv.informer.repository.entity.UserApp;
 
 
 /**

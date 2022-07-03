@@ -1,7 +1,7 @@
 /**
  * 
  */
-package informer.repository.entity;
+package ua.kyiv.informer.repository.entity;
 
 import java.io.Serializable;
 

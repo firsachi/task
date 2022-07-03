@@ -1,4 +1,4 @@
-package informer.service;
+package ua.kyiv.informer.logic;
 
 import java.util.List;
 

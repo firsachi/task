@@ -1,9 +1,9 @@
-package informer.service;
+package ua.kyiv.informer.logic;
 
 import java.util.List;
 import java.util.Set;
 
-import informer.model.CompanyModel;
+import ua.kyiv.informer.ui.company.CompanyModel;
 
 public interface CompanyService {
 

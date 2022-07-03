@@ -1,4 +1,4 @@
-package ua.kyiv.informer.ui.model;
+package ua.kyiv.informer.ui.user;
 
 import java.util.Set;
 

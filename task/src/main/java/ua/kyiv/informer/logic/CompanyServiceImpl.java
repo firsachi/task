@@ -1,4 +1,4 @@
-package informer.service;
+package ua.kyiv.informer.logic;
 
 import java.util.List;
 import java.util.Set;
@@ -10,9 +10,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import informer.model.CompanyModel;
-import informer.repository.CompanyDaoImpl;
-import informer.repository.entity.Company;
+import ua.kyiv.informer.repository.CompanyDaoImpl;
+import ua.kyiv.informer.repository.entity.Company;
+import ua.kyiv.informer.ui.company.CompanyModel;
 
 
 @Service

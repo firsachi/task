@@ -1,4 +1,4 @@
-package ua.kyiv.informer.ui;
+package ua.kyiv.informer.ui.user;
 
 import java.util.List;
 
@@ -15,10 +15,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import informer.controller.PageAddEdit;
-import informer.repository.RoleRepositiry;
-import informer.repository.entity.Role;
 import ua.kyiv.informer.logic.UserAppService;
-import ua.kyiv.informer.ui.model.UserAddFormModel;
+import ua.kyiv.informer.repository.RoleRepositiry;
+import ua.kyiv.informer.repository.entity.Role;
 
 @Controller
 @RequestMapping(path = {"/users", "/users/"})
@@ -40,46 +39,69 @@ public class UsersAppController {
 		return "users/users";
 	}
 	
-	@GetMapping(params = {"page"})
-	public String userPage(@Param(value = "page") String page, ModelMap model) {
-		if (page.toLowerCase().equals(PageAddEdit.ADD.label)) {
+	@GetMapping(params = {"add"})
+	public String userPage( ModelMap model) {
+		System.out.println(1);
+
 			model.addAttribute("user", new UserAddFormModel());
 			return "users/users";
-		}
-		return "redirect:/users";
+
 	}
-	
-	@PostMapping(params = {"page"})
-	public String userAddPage(@Param(value = "page") String page, @Valid @ModelAttribute("user") UserAddFormModel userModel, final BindingResult bindingResult) {
+	/*
+	@GetMapping(params = {"page", "username"})
+	public String router(@Param(value = "page") String page, @Param(value = "username") String username, ModelMap model) {
+		String changePass = "pass";
+		System.out.println(2);
 		if (page.toLowerCase().equals(PageAddEdit.DELETE.label)) {
-			return delete(userModel.getUsername());
+			model.addAttribute("user", new UserDelete(username));
+			return "users/users";
+		} else if(page.toLowerCase().equals(PageAddEdit.EDIT.label)) {
+			
+			return "users/users";
+		} else if (page.toLowerCase().equals(changePass)) {
+			model.addAttribute("userChangePass", new UserChangePass(username));
+			return "users/users";
 		}
+		return redirectPageUsers();
+	}
+	*/
+	@PostMapping(params = {"add"})
+	public String userAddPage(@Param(value = "add") String page, @Valid @ModelAttribute("user") UserAddFormModel userModel, final BindingResult bindingResult) {
 		if (!userAppService.findUsername(userModel.getUsername())) {
 			bindingResult.rejectValue("username","unique.value.violation");
 		}
-		if (!userModel.getPassword().equals(userModel.getRepeatPassword())) {
-			bindingResult.rejectValue("password","unique.password");
-			bindingResult.rejectValue("repeatPassword","unique.password");
-		}
+		//validatePass(userModel.getPassword(), userModel.getRepeatPassword(), bindingResult);
 		if (bindingResult.hasErrors()) {
 			return "users/users";
 		}
 		userAppService.save(userModel);
 		return "redirect:/users";
 	}
-	
-	@GetMapping(params = {"page", "username"})
-	public String padeDelete(@Param(value = "page") String page, @Param(value = "username") String username, ModelMap model) {
-		if (page.toLowerCase().equals(PageAddEdit.DELETE.label)) {
-			model.addAttribute("user", userAppService.byUserApp(username));
+	/*
+	@PostMapping(params = {"page", "username"})
+	private String changePassword(@Valid @ModelAttribute("userChangePass") UserChangePass model, final BindingResult bindingResult) {
+		validatePass(model.getPassword(), model.getRepeatPassword(), bindingResult);
+		if (bindingResult.hasErrors()) {
 			return "users/users";
 		}
-		return "redirect:/users";
+		userAppService.changePassword(model);
+		return redirectPageUsers();
 	}
-	
-	
-	private String delete(String username) {
-		userAppService.delete(username);
+	/*
+	@PostMapping(params = {"page", "username"})
+	public String pageDelete(@ModelAttribute("userDelete") UserDelete model) {
+		userAppService.delete(model.getUsername());
+		return redirectPageUsers();
+	}
+	*/
+	private void validatePass(String password, String repeatPassword, BindingResult bindingResult) {
+		if (!password.equals(repeatPassword)) {
+			bindingResult.rejectValue("password","unique.password");
+			bindingResult.rejectValue("repeatPassword","unique.password");
+		}
+	}
+
+	private String redirectPageUsers() {
 		return "redirect:/users";
 	}
 

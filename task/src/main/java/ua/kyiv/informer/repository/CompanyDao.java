@@ -1,6 +1,6 @@
-package informer.repository;
+package ua.kyiv.informer.repository;
 
-import informer.repository.entity.Company;
+import ua.kyiv.informer.repository.entity.Company;
 
 public interface CompanyDao {
 	

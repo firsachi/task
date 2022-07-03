@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import informer.model.RoomModel;
-import informer.service.RoomServiceImpl;
+import ua.kyiv.informer.logic.RoomServiceImpl;
 
 /**
  * @author firsov

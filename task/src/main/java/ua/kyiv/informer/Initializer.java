@@ -5,7 +5,7 @@ import javax.servlet.Filter;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-import informer.configuration.WebMvcConfiguration;
+import ua.kyiv.informer.config.WebMvcConfiguration;
 
 public class Initializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 

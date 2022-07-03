@@ -7,17 +7,17 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
-import informer.model.CompanyModel;
 import informer.model.DepartmentModel;
 import informer.model.EmployeeModel;
 import informer.model.PhoneModel;
 import informer.model.PositionModel;
 import informer.model.RoomModel;
-import informer.service.DepartmentService;
-import informer.service.PhoneService;
-import informer.service.PositionService;
-import informer.service.RoomServiceImpl;
-import informer.service.CompanyService;
+import ua.kyiv.informer.logic.CompanyService;
+import ua.kyiv.informer.logic.DepartmentService;
+import ua.kyiv.informer.logic.PhoneService;
+import ua.kyiv.informer.logic.PositionService;
+import ua.kyiv.informer.logic.RoomServiceImpl;
+import ua.kyiv.informer.ui.company.CompanyModel;
 
 public abstract class FormaEmployee {
 	

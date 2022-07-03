@@ -10,11 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import informer.repository.RoleRepositiry;
-import informer.repository.UserRepositoryImpl;
-import informer.repository.entity.UserApp;
-import ua.kyiv.informer.ui.model.UserAddFormModel;
-import ua.kyiv.informer.ui.model.UserModel;
+import ua.kyiv.informer.repository.RoleRepositiry;
+import ua.kyiv.informer.repository.UserRepositoryImpl;
+import ua.kyiv.informer.repository.entity.UserApp;
+import ua.kyiv.informer.ui.user.UserAddFormModel;
+import ua.kyiv.informer.ui.user.UserChangePass;
+import ua.kyiv.informer.ui.user.UserModel;
 
 @Service
 public class UserAppService {
@@ -58,5 +59,12 @@ public class UserAppService {
 	@Transactional
 	public void delete(String username) {
 		userRepository.delete(userRepository.byId(username));
+	}
+	
+	@Transactional
+	public void changePassword(UserChangePass model) {
+		UserApp user = userRepository.byId(model.getUsername());
+		user.setPassword(passwordEncoder.encode(model.getPassword()));
+		userRepository.update(user);
 	}
 }

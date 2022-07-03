@@ -1,4 +1,4 @@
-package informer.service;
+package ua.kyiv.informer.logic;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,8 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import informer.model.PositionModel;
-import informer.repository.PositionDaoImpl;
-import informer.repository.entity.Position;
+import ua.kyiv.informer.repository.PositionDaoImpl;
+import ua.kyiv.informer.repository.entity.Position;
 
 @Service
 public class PositionService extends ServiseTask<PositionModel> {

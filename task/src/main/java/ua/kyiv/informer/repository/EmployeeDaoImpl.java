@@ -1,4 +1,4 @@
-package informer.repository;
+package ua.kyiv.informer.repository;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import javax.persistence.TypedQuery;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import informer.repository.entity.Employee;
+import ua.kyiv.informer.repository.entity.Employee;
 
 @Repository("employeeDao")
 public class EmployeeDaoImpl extends MainDao<Employee>{

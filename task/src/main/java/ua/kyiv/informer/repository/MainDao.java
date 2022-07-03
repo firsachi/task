@@ -1,4 +1,4 @@
-package informer.repository;
+package ua.kyiv.informer.repository;
 
 import java.util.List;
 
