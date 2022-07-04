@@ -25,34 +25,25 @@
 			</div>
 
 			<div class="app-dashboard-body-content off-canvas-content" data-off-canvas-content>
-				<div data-th-unless="${param.page}">
-					<div data-th-name="user-list" data-th-replace="fragments/users-fargment :: table"></div>
+				
+				<div data-th-if="${#strings.isEmpty(page)}">
+					<div data-th-replace="users/users-fargment :: table" data-th-remove="tag"></div>
 				</div>
-				<!-- form add -->
-				<div data-th-if="${#strings.toString(param.page)} == 'add'">
-					<form data-th-action="@{${url}(page=add)}" method="POST" data-th-object="${user}">
-						<div class="medium-12 columns">
-							<h3 data-th-text="#{titleform.new}">new</h3>
-						</div>
-						<div data-th-replace="fragments/users-fargment :: core-form" data-th-remove="tag"></div>
-						<div data-th-replace="templates/core-tag :: button-submit" data-th-remove="tag"></div>
-					</form>
+				
+				<div data-th-if="${page eq 'add'}">
+					<div data-th-replace="users/users-fargment :: form-add" data-th-remove="tad"></div>
 				</div>
-				<!-- delete page -->
-				<div data-th-if="${#strings.toString(param.page)} == 'delete'">
-					<form data-th-action="@{${url}(page=delete)}" method="POST"  data-th-object="${user}">
-						<div class="medium-12 columns">
-							<h3 data-th-text="#{titleform.deleteUser}">delete</h3>
-							<!-- name -->
-							<div class="medium-12 columns" >
-								<input type="hidden" id="username" name="username" data-th-field="*{username}" /> 
-							</div>
-							<span data-th-text="#{placeholder.userdell(${user.username})}"></span>
-							<div data-th-replace="templates/core-tag :: button-submit" data-th-remove="tag"></div>
-						</div>
-					</form>
+				
+				<div data-th-if="${page eq 'pass'}">
+					<div data-th-replace="users/users-fargment :: form-pass" data-th-remove="tag"></div>
 				</div>
+				
+				<div data-th-if="${#strings.toString(param.page) eq 'delete'}">
+					<div data-th-replace="users/users-fargment :: form-delete" data-th-remove="tad"></div>
+				</div>
+
 			</div>
+			
 		</div>
 	</div>
 	

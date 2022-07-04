@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import informer.controller.PageAddEdit;
 import ua.kyiv.informer.logic.UserAppService;
@@ -22,6 +23,7 @@ import ua.kyiv.informer.repository.entity.Role;
 @Controller
 @RequestMapping(path = {"/users", "/users/"})
 public class UsersAppController {
+	
 	@Autowired
 	private RoleRepositiry roleRepository;
 	
@@ -34,66 +36,66 @@ public class UsersAppController {
 	}
 	
 	@GetMapping
-	public String usersPage( ModelMap model) {
+	public String usersPage(ModelMap model) {
 		model.addAttribute("userList", userAppService.getListUser());
+		model.addAttribute("page", "");
 		return "users/users";
 	}
 	
-	@GetMapping(params = {"add"})
-	public String userPage( ModelMap model) {
-		System.out.println(1);
-
-			model.addAttribute("user", new UserAddFormModel());
-			return "users/users";
-
+	@GetMapping(path = {"/add", "/add/"})
+	public String userPage(ModelMap model) {
+		model.addAttribute("user", new UserAddFormModel());
+		model.addAttribute("page", "add");
+		return "users/users";
 	}
-	/*
-	@GetMapping(params = {"page", "username"})
-	public String router(@Param(value = "page") String page, @Param(value = "username") String username, ModelMap model) {
-		String changePass = "pass";
-		System.out.println(2);
-		if (page.toLowerCase().equals(PageAddEdit.DELETE.label)) {
-			model.addAttribute("user", new UserDelete(username));
-			return "users/users";
-		} else if(page.toLowerCase().equals(PageAddEdit.EDIT.label)) {
-			
-			return "users/users";
-		} else if (page.toLowerCase().equals(changePass)) {
-			model.addAttribute("userChangePass", new UserChangePass(username));
-			return "users/users";
-		}
-		return redirectPageUsers();
-	}
-	*/
-	@PostMapping(params = {"add"})
-	public String userAddPage(@Param(value = "add") String page, @Valid @ModelAttribute("user") UserAddFormModel userModel, final BindingResult bindingResult) {
+	
+	@PostMapping(path = {"/add", "/add/"})
+	public String userAddPage(@Valid @ModelAttribute("user") UserAddFormModel userModel, BindingResult bindingResult, ModelMap model) {
 		if (!userAppService.findUsername(userModel.getUsername())) {
 			bindingResult.rejectValue("username","unique.value.violation");
 		}
-		//validatePass(userModel.getPassword(), userModel.getRepeatPassword(), bindingResult);
+		validatePass(userModel.getPassword(), userModel.getRepeatPassword(), bindingResult);
 		if (bindingResult.hasErrors()) {
+			model.addAttribute("page", "add");
 			return "users/users";
 		}
 		userAppService.save(userModel);
-		return "redirect:/users";
+		return "redirect:/users/";
 	}
-	/*
-	@PostMapping(params = {"page", "username"})
-	private String changePassword(@Valid @ModelAttribute("userChangePass") UserChangePass model, final BindingResult bindingResult) {
-		validatePass(model.getPassword(), model.getRepeatPassword(), bindingResult);
+	
+	@GetMapping(path = {"/pass", "/pass/"}, params = {"username"})
+	public String pass(@Param(value = "username") String username, ModelMap model) {
+		model.addAttribute("userChangePass", new UserChangePass(username));
+		model.addAttribute("page", "pass");
+		return "users/users";
+	}
+	
+	@PostMapping(path = {"/pass", "/pass/"})
+	public String pass(@Valid @ModelAttribute("userChangePass") UserChangePass userModel, BindingResult bindingResult, ModelMap model) {
+		validatePass(userModel.getPassword(), userModel.getRepeatPassword(), bindingResult);
 		if (bindingResult.hasErrors()) {
+			model.addAttribute("page", "pass");
 			return "users/users";
 		}
-		userAppService.changePassword(model);
+		userAppService.changePassword(userModel);
+		return "redirect:/users/";
+	}
+	
+	@GetMapping(params = {"page", "username"})
+	public String delete(@RequestParam("page") String page, @RequestParam("username") String username,  ModelMap model) {
+		if (page.equals(PageAddEdit.DELETE.label)) {
+			model.addAttribute("userdel", new UserDelete(username));
+			return "users/users";
+		}
 		return redirectPageUsers();
 	}
-	/*
-	@PostMapping(params = {"page", "username"})
-	public String pageDelete(@ModelAttribute("userDelete") UserDelete model) {
+	
+	@PostMapping(path = {"/del", "/del/"})
+	public String delete(@ModelAttribute("userdel") UserDelete model) {
 		userAppService.delete(model.getUsername());
-		return redirectPageUsers();
+		return "redirect:/users/";
 	}
-	*/
+	
 	private void validatePass(String password, String repeatPassword, BindingResult bindingResult) {
 		if (!password.equals(repeatPassword)) {
 			bindingResult.rejectValue("password","unique.password");
