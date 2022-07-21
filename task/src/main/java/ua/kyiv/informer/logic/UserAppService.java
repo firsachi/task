@@ -15,6 +15,7 @@ import ua.kyiv.informer.repository.UserRepositoryImpl;
 import ua.kyiv.informer.repository.entity.UserApp;
 import ua.kyiv.informer.ui.user.UserAddFormModel;
 import ua.kyiv.informer.ui.user.UserChangePass;
+import ua.kyiv.informer.ui.user.UserEditModel;
 import ua.kyiv.informer.ui.user.UserModel;
 
 @Service
@@ -47,6 +48,13 @@ public class UserAppService {
 	public UserModel byUserApp(String username) {
 		return modelMapper.map(userRepository.byId(username), UserModel.class);
 	}
+	
+	public UserEditModel byUserApp(UserEditModel userEditModel) {
+		UserModel userModel = byUserApp(userEditModel.getUsername());
+		userEditModel.setSelectedRole(userModel.getRoles().stream().map(role -> role.getRoleId()).collect(Collectors.toSet()));
+		userEditModel.setEnabled(userModel.isEnabled());
+		return userEditModel;
+	}
 
 	@Transactional
 	public void save(UserAddFormModel userModel) {
@@ -66,5 +74,13 @@ public class UserAppService {
 		UserApp user = userRepository.byId(model.getUsername());
 		user.setPassword(passwordEncoder.encode(model.getPassword()));
 		userRepository.update(user);
+	}
+
+	@Transactional
+	public void update(UserEditModel userModel) {
+		UserApp userApp = modelMapper.map(userModel, UserApp.class);
+		userApp.setPassword(userRepository.findByUserName(userApp.getUsername()).getPassword());
+		userApp.setRoles(userModel.getSelectedRole().stream().map(roleId -> roleRepositiry.byId(roleId)).collect(Collectors.toSet()));
+		userRepository.update(userApp);
 	}
 }

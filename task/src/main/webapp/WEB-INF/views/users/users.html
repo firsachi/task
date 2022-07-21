@@ -38,8 +38,12 @@
 					<div data-th-replace="users/users-fargment :: form-pass" data-th-remove="tag"></div>
 				</div>
 				
-				<div data-th-if="${#strings.toString(param.page) eq 'delete'}">
-					<div data-th-replace="users/users-fargment :: form-delete" data-th-remove="tad"></div>
+				<div data-th-if="${page eq 'del'}">
+					<div data-th-replace="users/users-fargment :: form-del" data-th-remove="tad"></div>
+				</div>
+				
+				<div data-th-if="${page eq 'edit'}">
+					<div data-th-replace="users/users-fargment :: form-edit" data-th-remove="tag"></div>
 				</div>
 
 			</div>
