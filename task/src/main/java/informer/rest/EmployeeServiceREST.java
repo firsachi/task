@@ -9,9 +9,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import informer.repository.EmployeeDaoImpl;
 import informer.rest.model.EmployeeModel;
 import informer.rest.model.FilterParm;
+import ua.kyiv.informer.repository.EmployeeDaoImpl;
 
 @Service
 @Transactional

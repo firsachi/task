@@ -7,7 +7,6 @@ public class RoomModel {
 	private int id;
 	
 	@Pattern(regexp = "[0-9]{3}")
-//	@Unique(service = CoreService.class, fieldName = "numberRoom")
 	private String numberRoom;
 
 	public int getId() {

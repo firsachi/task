@@ -9,10 +9,10 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import informer.entity.Company;
-import informer.repository.CompanyDaoImpl;
 import informer.rest.model.CompanyModel;
 import informer.rest.model.DepartmentModel;
+import ua.kyiv.informer.repository.CompanyDaoImpl;
+import ua.kyiv.informer.repository.entity.Company;
 
 @Service
 public class CompanyServiceREST {

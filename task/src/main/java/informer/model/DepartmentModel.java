@@ -3,6 +3,8 @@ package informer.model;
 import java.util.List;
 import java.util.Objects;
 
+import ua.kyiv.informer.ui.company.CompanyModel;
+
 public class DepartmentModel extends DepartmentCoreModel {
 	
 	private List<CompanyModel> companies;

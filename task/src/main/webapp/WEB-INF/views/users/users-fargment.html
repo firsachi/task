@@ -1,0 +1,138 @@
+<!-- table -->	
+	<div data-ht-fragment="table"  data-th-remove="tag" data-sec-authorize="hasAuthority('ADMINISTRATOR')">
+		<table id="fragment-test" class="table">
+			<thead>
+				<tr>
+					<th data-th-text="#{inputlabel.login}"></th>
+					<th data-th-text="#{inputlabel.roles}"></th>
+					<th data-sec-authorize="hasAuthority('ADMINISTRATOR')">
+						<ul data-th-replace="templates/core-tag :: button-add"></ul>
+					</th>
+				</tr>
+			</thead>
+			<tbody data-th-each="user : ${userList}">
+				<tr>
+					<td data-th-text="${user.username}"></td>
+					<td>
+						<span data-th-each="role : ${user.roles}" data-th-remove="tag">
+							<span data-th-text="${role.roleName}"></span>
+						</span>
+					</td>
+					<td>
+						<ul class="menu align-right">
+							<li>
+								<button class="button fi-list" data-th-classappend="${user.enabled} ? 'hollow'" type="button" data-th-attr="data-toggle='example-' + @{{id}(id=${user.username})}" ></button>
+								<div class="dropdown-pane dropdown-pane-zie" data-th-id="'example-' + @{{id}(id=${user.username})}" data-dropdown data-auto-focus="true" data-close-on-click="true">
+									<ul class="menu vertical">
+										<li><a data-th-href="@{pass(username=${user.username})}" data-th-text="#{buttonname.changePass}">change pass</a></li>
+    									<li><a data-th-href="@{edit(username=${user.username})}" data-th-text="#{buttonname.edit}">edit</a></li>
+    									<li><a data-th-href="@{del(username=${user.username})}" data-th-text="#{buttonname.delete}">delete</a></li>
+      								</ul>
+      				 			</div>
+      				 		</li>
+   					 	</ul>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+<!-- form add -->
+	<div data-th-fragment="form-add" data-th-remove="tag">
+		<form data-th-action="@{add}" method="POST" data-th-object="${user}">
+			<div class="medium-12 columns">
+				<h3 data-th-text="#{titleform.new}">new</h3>
+			</div>
+			<!-- name -->
+			<div class="medium-12 columns" >
+				<label data-th-class="${#fields.hasErrors('username')}? 'is-invalid-label'" data-th-text="#{inputlabel.username}"></label> 
+				<input data-th-class="${#fields.hasErrors('username')}? 'is-invalid-input'" type="text" id="username" name="username" data-th-field="*{username}" data-th-placeholder="#{inputlabel.username}" autofocus="autofocus" /> 
+				<span class="form-error is-visible" data-th-errors="*{username}" ></span>
+			</div>
+			<div data-th-replace="users/users-fargment :: chenge-pass" data-th-remove="tag"></div>
+			<div data-th-replace="users/users-fargment :: core-form" data-th-remove="tag"></div>
+			<div data-th-replace="templates/core-tag :: button-submit" data-th-remove="tag"></div>		
+		</form>
+	</div>
+	
+	<!-- delete form -->
+	<div data-th-fragment="form-del" data-th-remove="tag">
+		<form data-th-action="@{del}" method="POST"  data-th-object="${userdel}">
+		
+			<div class="medium-12 columns">
+				<h3 data-th-text="#{titleform.deleteUser}">delete</h3>
+			</div>
+			<!-- name -->
+			<div class="medium-12 columns" >
+				<input type="hidden" id="username" name="username" data-th-field="*{username}" /> 
+			</div>
+			<span data-th-text="#{placeholder.userdell(${userdel.username})}"></span>
+			<div data-th-replace="templates/core-tag :: button-submit" data-th-remove="tag"></div>
+		</form>
+	</div>
+	
+	<!-- form change password -->
+	<div data-th-fragment="form-pass" data-th-remove="tag">
+		<form data-th-action="@{pass}" method="POST"  data-th-object="${userChangePass}">
+			<div class="medium-12 columns">
+				<h3 data-th-text="#{titleform.userChangePass(${userChangePass.username})}">title</h3>
+			</div>
+			<div class="medium-12 columns" >
+				<input type="hidden" id="username" name="username" data-th-field="*{username}" />
+			</div>
+			<div data-th-replace="users/users-fargment :: chenge-pass" data-th-remove="tag"></div>
+			<div data-th-replace="templates/core-tag :: button-submit" data-th-remove="tag"></div>					
+		</form>
+	</div>
+	
+	<!-- form edit user -->
+	<div data-th-fragment="form-edit" data-th-remove="tag">
+		<form data-th-action="@{edit}" method="post" data-th-object="${user}">
+			<div class="medium-12 columns">
+				<h3 data-th-text="#{titleform.edit}">title</h3>
+				<h3 data-th-text="*{username}" >username</h3>
+			</div>
+			<div>
+				<input type="hidden" id="username" name="username" data-th-field="*{username}" /> 
+			</div>
+			<div data-th-replace="users/users-fargment :: core-form" data-th-remove="tag"></div>
+			<div data-th-text="*{enabled}"></div>
+			<div data-th-replace="templates/core-tag :: button-submit" data-th-remove="tag"></div>
+		</form>
+	</div>
+	
+	<div data-th-fragment="core-form" data-th-remove="tag">
+			
+			<!-- role -->
+			<div class="medium-12 columns">
+				<label >
+					<span data-th-text="#{titleform.roles}"></span>:
+    				<input type="checkbox" name="role" data-th-each="role : ${roles}" data-th-text="${role.roleName} + ' '" data-th-field="*{selectedRole}" data-th-value="${role.roleId}">
+    			</label>
+			</div>
+			<!-- disable -->
+			<div class="medium-12 small-12 columns">
+				<label data-th-text="#{inputlabel.isdisable}"></label>
+				<input type="checkbox" id="enabled" data-th-field="*{enabled}">
+			</div>
+	</div>
+		
+	<div data-th-fragment="chenge-pass" data-th-remove="tag">
+			<div data-th-replace="users/users-fargment :: input-pass" data-th-remove="tag"></div>
+			<!-- repeat password -->
+			<div class="medium-12 columns" >
+				<label data-th-class="${#fields.hasErrors('repeatPassword')}? 'is-invalid-label'" data-th-text="#{inputlabel.repeatPassword}"></label>
+				<input data-th-class="${#fields.hasErrors('repeatPassword')}? 'is-invalid-input'" type="password" id="repeatPassword" name="repeatPassword" data-th-value="*{repeatPassword}" data-th-placeholder="#{inputlabel.repeatPassword}" autofocus="autofocus">
+				<span class="form-error is-visible" data-th-errors="*{repeatPassword}" ></span>
+			</div>
+	</div>
+		
+	<div data-th-fragment="input-pass" data-th-remove="tag">
+		<!-- password -->
+			<div class="medium-12 columns"  >
+				<label data-th-class="${#fields.hasErrors('password')}? 'is-invalid-label'" data-th-text="#{inputlabel.password}"></label>
+				<input data-th-class="${#fields.hasErrors('password')}? 'is-invalid-input'" type="password" id="pass" name="password" data-th-value="*{password}" data-th-placeholder="#{inputlabel.password}" autocomplete="off">
+				<span class="form-error is-visible" data-th-errors="*{password}" ></span>
+			</div>
+			
+	</div>	

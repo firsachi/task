@@ -22,11 +22,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import informer.model.CompanyModel;
 import informer.model.DepartmentFormModel;
 import informer.model.DepartmentModel;
-import informer.service.CompanyService;
-import informer.service.DepartmentService;
+import ua.kyiv.informer.logic.CompanyService;
+import ua.kyiv.informer.logic.DepartmentService;
+import ua.kyiv.informer.ui.company.CompanyModel;
 
 /**
  *

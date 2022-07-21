@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head data-th-replace="templates/head :: head(#{titleform.users})">
+	</head>
+	
+	<body>
+		<div class="app-dashboard shrink-medium">
+		<div class="row expanded app-dashboard-top-nav-bar">
+			<div class="columns medium-2">
+				<button data-toggle="app-dashboard-sidebar"
+					class="menu-icon hide-for-medium"></button>
+				<a class="app-dashboard-logo" data-th-text="#{titleform.users}"></a>
+			</div>
+			<div class="columns show-for-medium">
+			
+			</div>
+			<div data-th-insert="templates/menu/logof-logon.html"></div>
+		</div>
+
+		<div class="app-dashboard-body off-canvas-wrapper">
+			<div id="app-dashboard-sidebar"	class="app-dashboard-sidebar position-left off-canvas off-canvas-absolute reveal-for-medium" data-off-canvas>
+				<div class="app-dashboard-sidebar-inner">
+					<ul data-th-replace="fragments/menu :: home-admin"></ul>
+				</div>
+			</div>
+
+			<div class="app-dashboard-body-content off-canvas-content" data-off-canvas-content>
+				
+				<div data-th-if="${#strings.isEmpty(page)}">
+					<div data-th-replace="users/users-fargment :: table" data-th-remove="tag"></div>
+				</div>
+				
+				<div data-th-if="${page eq 'add'}">
+					<div data-th-replace="users/users-fargment :: form-add" data-th-remove="tad"></div>
+				</div>
+				
+				<div data-th-if="${page eq 'pass'}">
+					<div data-th-replace="users/users-fargment :: form-pass" data-th-remove="tag"></div>
+				</div>
+				
+				<div data-th-if="${page eq 'del'}">
+					<div data-th-replace="users/users-fargment :: form-del" data-th-remove="tad"></div>
+				</div>
+				
+				<div data-th-if="${page eq 'edit'}">
+					<div data-th-replace="users/users-fargment :: form-edit" data-th-remove="tag"></div>
+				</div>
+
+			</div>
+			
+		</div>
+	</div>
+	
+	<div data-th-replace="templates/head :: script" data-th-remove="tag"></div>
+	
+	<script type="text/javascript" data-th-inline="javascript">
+		$(document).foundation();
+	</script>
+
+	</body>
+</html>
