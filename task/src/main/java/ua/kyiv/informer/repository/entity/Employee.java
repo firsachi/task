@@ -74,7 +74,6 @@ public class Employee implements Cloneable, Serializable{
     @ManyToOne(fetch = FetchType.EAGER)
     private Department department;
     
-    
     @JoinColumn(name = "enterprise", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.EAGER)
     private Company enterprise;
