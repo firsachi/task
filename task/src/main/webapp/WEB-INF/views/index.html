@@ -1,18 +1,15 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head>
-<meta charset="UTF-8">
-<link th:insert="templates/head.html" />
-<title>Insert title here</title>
-</head>
-<body>
-
-	<div class="top-bar" >
-		<div class="top-bar-left"></div>
-		<div th:insert="templates/menu/logof-logon.html"></div>
-	</div>
-	<div sec:authorize="hasRole('ROLE_USER')"></div>
+<html>
+	<head data-th-replace="templates/head :: head(#{titleform.login})"></head>
 	
-</body>
+	<body>
+
+		<div class="top-bar" >
+			<div class="top-bar-left"></div>
+			<div data-th-insert="templates/menu/logof-logon.html"></div>
+		</div>
+		
+		<div data-sec-authorize="hasRole('ROLE_USER')"></div>
+	
+	</body>
 </html>

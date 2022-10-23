@@ -1,32 +1,31 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<link th:href="@{/resources/css/foundation.css}" rel="stylesheet" />
-<title th:text="#{titlepage.login}">Login</title>
-</head>
-<body>
-<div style="margin-top: 10%" class="row align-center">
-		<div class="column small-12 large-6">
-			<form id="login" action="#" method="post" th:object="${user}">
-				<h3 style="text-align: center;">
-					<span th:text="#{titleform.login}"></span>
-				</h3>
+<html>
 
-				<div class="medium-12 cell">
-					<label> <span th:text="#{inputlabel.username}"></span> <input
-						type="text" id="username" name="username" autofocus="autofocus" />
-					</label>
-				</div>
-				<div class="medium-12 cell">
-					<label> <span th:text="#{inputlabel.password}"></span> <input
-						type="password" id="password" name="password"
-						autofocus="autofocus" />
-					</label>
-				</div>
-				<button class="button expanded" th:text="#{buttonname.login}"></button>
-			</form>
+	<head data-th-replace="templates/head :: head(#{titleform.login})"></head>
+	
+	<body>
+		<div style="margin-top: 10%" class="row align-center">
+			<div class="column small-12 large-6">
+				<form id="login" action="#" method="post" data-th-object="${user}">
+					<h3 style="text-align: center;">
+						<span data-th-text="#{titleform.login}"></span>
+					</h3>
+
+					<div class="medium-12 cell">
+						<label> <span data-th-text="#{inputlabel.username}"></span> <input
+							type="text" id="username" name="username" autofocus="autofocus" />
+						</label>
+					</div>
+					<div class="medium-12 cell">
+						<label> <span data-th-text="#{inputlabel.password}"></span> <input
+							type="password" id="password" name="password"
+							autofocus="autofocus" />
+						</label>
+					</div>
+					
+					<button class="button expanded" data-th-text="#{buttonname.login}"></button>
+				</form>
+			</div>
 		</div>
-	</div>
-</body>
+	</body>
 </html>
