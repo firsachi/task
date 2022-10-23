@@ -1,15 +1,57 @@
 <!DOCTYPE html>
 <html>
+	
 	<head data-th-replace="templates/head :: head(#{titleform.login})"></head>
 	
 	<body>
+	
+	<!-- Navigation -->
+	<div class="title-bar" data-responsive-toggle="realEstateMenu" data-hide-for="small">
+	  <button class="menu-icon" type="button" data-toggle></button>
+	  <div class="title-bar-title">Menu</div>
+	</div>
+	
+	<div class="top-bar" id="realEstateMenu">
+	  <div class="top-bar-left">
+	    
+	  </div>
+	  <div class="top-bar-right">
+	    <ul class="menu">
+	      <li><a data-th-href="home" data-th-text="#{buttonname.login}" class="button">Sing in</a></li>
+	    </ul>
+	  </div>
+	</div>
+	<!-- /Navigation -->
 
+	<br>	
+	<div class="row">
+
+	  <div class="medium-7 large-8 columns">
+	    <h1 data-th-text="#{titleform.login}" ></h1>
+	  </div>
+	
+	  <div class="medium-5 large-4 columns">
+	    <div class="callout secondary">
+	 
+	    </div>
+	  </div>
+	
+	</div>
+	
+	<div data-th-insert="templates/head :: script"></div>
+	
+	<script type="text/javascript">
+		$(document).foundation();
+	</script>
+
+<!-- old 
 		<div class="top-bar" >
 			<div class="top-bar-left"></div>
 			<div data-th-insert="templates/menu/logof-logon.html"></div>
 		</div>
 		
 		<div data-sec-authorize="hasRole('ROLE_USER')"></div>
-	
+	 -->
+	 
 	</body>
 </html>

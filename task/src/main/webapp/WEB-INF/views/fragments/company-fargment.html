@@ -4,7 +4,7 @@
 			<thead>
 				<tr>
 					<th data-th-text="#{inputlabel.nameCompany}"></th>
-					<th sec:authorize="hasAuthority('ADMINISTRATOR')">
+					<th>
 						<div data-th-replace="templates/core-tag :: button-add" data-th-remove="tag"></div>
 					</th>
 				</tr>
@@ -50,13 +50,14 @@
 	</div>
 	
 	<div data-th-fragment="deleteModalWindow" data-th-remove="tag">
+		<button class="close-button" data-close aria-label="Close modal" type="button">
+    		<span aria-hidden="true">&times;</span>
+  		</button>
+		
 		<form data-th-id="deleteCompany" data-th-action="@{delete}" method="POST" data-th-object="${selectedCompany}">
 			
-			<button class="close-button" data-close aria-label="Close modal" type="button">
-    			<span aria-hidden="true">&times;</span>
-  			</button>
+			
   			
-  			<p></p>
   			<p class="lead">
   				<span data-th-text="#{titleform.deleteCompany}"></span>
   				<span data-th-text="${selectedCompany.nameCompany}"></span>
@@ -64,8 +65,7 @@
   			
   			<input type="hidden" name="id" data-th-field="*{id}" /> 
   			
-  			<div class="small button-group align-right">
-  				<button class="button"  data-close  data-th-text="#{buttonname.submit}" data-th-name="save">Submit</button>
-  			</div>
+  			<div data-th-replace="templates/core-tag :: submit-buttpn-reval"></div>
+  			
 		</form>
 	</div>
