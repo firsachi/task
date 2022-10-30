@@ -1,8 +1,5 @@
-/**
- * 
- */
- async function GetFragment({Url, Id}) {
-	const connectUrl = `${Url}\/${Id}`;
+ async function GetFragment({url, id}) {
+	const connectUrl = `${url}/${id}`;
 	return await $.ajax(connectUrl);
 };
  export {GetFragment};
