@@ -1,22 +1,15 @@
-/**
- * 
- */
- import {GetFragment} from './connect-ajax.js';
+import {GetFragment} from './connect-ajax.js';
  
- const param = {
-	Url: "selectedCompany",
-	Id: 0
+const param = {
+	url: "selectedCompany",
+	id: 0
 };
  
  $(document).foundation();
  
- const fun = SetClickButtonDelete();
- function SetClickButtonDelete () {
-	$(`ul.menu.vertical > li > a[data-open][data-company-id]`).on(`click`, async function(){
-		param.Id = $(this).data('companyId');
-		const fragment = await GetFragment(param);
-		var modal = $('#deleteRecord');
-		modal.html(fragment);
+(function SetClickButtonDelete (){
+	$(`ul.menu.vertical > li > a[data-open][data-company-id]`).on(`click`, async function () {
+		param.id = $(this).data('companyId');
+		$('#deleteRecord').html(await GetFragment(param));
 	});
-};
-
+})();
