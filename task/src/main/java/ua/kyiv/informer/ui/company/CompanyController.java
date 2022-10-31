@@ -42,7 +42,7 @@ public class CompanyController {
 	}
 	
 	@Transactional
-	@PostMapping(path = {"add", "/add/"},  params = {"save"})
+	@PostMapping(path = {"add", "/add/"})
 	public String add(@Valid @ModelAttribute("company") CompanyModel model,
 			final BindingResult bindingResult) {
 		model.setId(0);		
@@ -89,5 +89,4 @@ public class CompanyController {
 		companyService.delete(companyModel);
 		return "redirect:/company/";
 	}
-
 }
