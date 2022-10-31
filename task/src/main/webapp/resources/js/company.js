@@ -7,9 +7,13 @@ const param = {
  
  $(document).foundation();
  
-(function SetClickButtonDelete (){
+(() => {
+	SetClickButtonDelete();	
+})();
+
+function SetClickButtonDelete(){
 	$(`ul.menu.vertical > li > a[data-open][data-company-id]`).on(`click`, async function () {
 		param.id = $(this).data('companyId');
 		$('#deleteRecord').html(await GetFragment(param));
 	});
-})();
+};
