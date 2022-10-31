@@ -4,7 +4,7 @@
 			<thead>
 				<tr>
 					<th data-th-text="#{inputlabel.nameCompany}"></th>
-					<th>
+					<th> 
 						<div data-th-replace="templates/core-tag :: button-add" data-th-remove="tag"></div>
 					</th>
 				</tr>
@@ -18,6 +18,7 @@
 								<button class="button fi-list" data-th-classappend="${company.disable} ? 'hollow'" type="button" data-th-attr="data-toggle='example-' + @{{id}(id=${company.id})}" ></button>
 								<div class="dropdown-pane dropdown-pane-zie" data-th-id="'example-' + @{{id}(id=${company.id})}" data-dropdown data-auto-focus="true" data-close-on-click="true">
 									<ul class="menu vertical">
+										<!--  -->
     									<li><a data-th-href="@{edit/{id}(id=${company.id})}" data-th-text="#{buttonname.edit}" data-open="editRoom" data-th-attr="data-ajax-url='edit/?id='+${company.id}"></a></li>
       									<li><a data-open="deleteRecord" data-th-attr="data-company-id=${company.id}" data-th-text="#{buttonname.delete}"></a></li>
       								</ul>
@@ -56,8 +57,6 @@
 		
 		<form data-th-id="deleteCompany" data-th-action="@{delete}" method="POST" data-th-object="${selectedCompany}">
 			
-			
-  			
   			<p class="lead">
   				<span data-th-text="#{titleform.deleteCompany}"></span>
   				<span data-th-text="${selectedCompany.nameCompany}"></span>
