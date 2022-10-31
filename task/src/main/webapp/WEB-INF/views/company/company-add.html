@@ -2,16 +2,15 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-	<head data-th-replace="templates/head :: head(#{titleform.company})">
-	</head>
+	<head data-th-replace="templates/head :: head(#{titleform.company})"></head>
 <body>
 
-<div class="app-dashboard shrink-medium">
+	<div class="app-dashboard shrink-medium">
 		<div class="row expanded app-dashboard-top-nav-bar">
 			<div class="columns medium-2">
 				<button data-toggle="app-dashboard-sidebar"
 					class="menu-icon hide-for-medium"></button>
-				<a class="app-dashboard-logo" th:text="#{titleform.company}"></a>
+				<a class="app-dashboard-logo" data-th-text="#{titleform.company}"></a>
 			</div>
 			<div class="columns show-for-medium">
 			
@@ -23,7 +22,7 @@
 			<div id="app-dashboard-sidebar"	class="app-dashboard-sidebar position-left off-canvas off-canvas-absolute reveal-for-medium" data-off-canvas>
 				<div class="app-dashboard-sidebar-inner">
 					<ul class="vertical menu">
-						<th:bloc th:insert="fragments/menu.html :: top-directories"></th:bloc>
+						<th:bloc data-th-insert="fragments/menu.html :: top-directories"></th:bloc>
 					</ul>
 				</div>
 			</div>
@@ -43,6 +42,8 @@
 			</div>
 		</div>
 	</div>
+	
+	<div data-th-insert="templates/head :: script" data-th-remove="tag"></div>
 	
 	<script type="application/javascript" th:inline="javascript">
 		$(document).foundation();
