@@ -29,70 +29,11 @@
 				</div>
 			</div>
 		</div>
-		
-		<!-- modal window delete -->
-		<div class="reveal" data-th-id="deleteRecord" data-reveal data-options="closeOnClick:false; closeOnEsc:false;">
-			<form data-th-id="deletePosition" data-th-action="@{delete}" method="POST" data-th-object="${position}">
-			
-				<button class="close-button" data-close aria-label="Close modal" type="button">
-	    			<span aria-hidden="true">&times;</span>
-	  			</button>
-	  			
-	  			<div data-th-id="bodyForm" >
-	  			</div>
-	  			
-	  			<div class="small button-group align-right">
-	  				<button class="button"  data-close  data-th-text="#{buttonname.submit}" data-th-name="save">Submit</button>
-	  			</div>
-			</form>
-		</div>
-		
-		<div data-th-insert="templates/head :: script" data-th-remove="tag"></div>
-		
-		<script type="application/javascript" data-th-inline="javascript">
-			$(document).foundation();
-		</script>
-
-	<div class="row">
-		<div class="columns" th:fragment="tableEmployee">
-		
-			
-			
-			<!-- modal window delete -->
-			<div class="reveal" th:id="deleteRecord" data-reveal data-options="closeOnClick:false; closeOnEsc:false;">
-				<div th:fragment="viewDeleteEmployee">
-					<form id="deleteEmployee" th:action="@{delete/{id}(id=${selectEmployee.id})}" method="post" th:object="${selectEmployee}">
-  					<p class="lead" th:text="#{titleform.deleteEmployee}">kill employee</p>
-  					<p th:text="${selectEmployee.surname} + ' ' + ${selectEmployee.name} + ' ' + ${selectEmployee.patronymic}">Full user name</p>
-  					<div class="small button-group align-right">
-  						<button class="button"  data-close  th:text="#{buttonname.submit}" name="save">Submit</button>
-  					</div>
-  					<button class="close-button" data-close aria-label="Close modal" type="button">
-    					<span aria-hidden="true">&times;</span>
-  					</button>
-  					</form>
-  				</div>
-			</div>
-			
-		</div>
-	</div>
-	<script type="text/javascript" data-sec-authorize="hasAuthority('ADMINISTRATOR')">
-		$(document).foundation();
-
-		$('[data-open][data-employee-id]').on(
-				'click',
-				function() {
-					var ajax_url = "selectedEmployee/"
-							+ $(this).data('employeeId');
-					
-					var $modal = $('#deleteRecord');
-					if (ajax_url) {
-						$.ajax(ajax_url).done(function(modalBodyResponse) {
-							$modal.html(modalBodyResponse);
-						});
-					}
-				});
-		
-	</script>
+	<!-- modal window delete -->
+	<div class="reveal" data-th-id="deleteRecord" data-reveal data-options="closeOnClick:false; closeOnEsc:false;"></div>
+	
+	<div data-th-insert="templates/head :: script" data-th-remove="tag"></div>
+	<script type="module" data-th-src="@{/resources/js/employee.js}"></script>
+	
 </body>
 </html>

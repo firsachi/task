@@ -85,10 +85,10 @@ public class Employee implements Cloneable, Serializable{
     @ManyToOne(fetch = FetchType.EAGER)
     private Room room;
     
-    @Column(name = "login", unique = true)
+    @Column(name = "login", unique = true, nullable = true)
     private String login;
     
-    @Column(name = "pass", nullable = false)
+    @Column(name = "pass", nullable = true)
     private String pass;
 
     @Column (name = "remove", columnDefinition = "boolean default false", nullable = false)

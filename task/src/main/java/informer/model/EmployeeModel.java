@@ -188,6 +188,10 @@ public class EmployeeModel {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	public String getFullName() {
+		return this.surname + " " + this.name + " " + this.patronymic;
+	}
 
 	@Override
 	public String toString() {

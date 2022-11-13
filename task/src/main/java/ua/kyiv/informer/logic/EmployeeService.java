@@ -46,15 +46,30 @@ public class EmployeeService extends ServiseTask<EmployeeModel>{
 	@Override
 	@Transactional
 	public void save(EmployeeModel value) {
+		value = setDefaultPhoneRomm(value );
 		employeeDao.insert(employeeTransformer.modelToEntity(value));
 	}
 
 	@Override
 	@Transactional
 	public void update(EmployeeModel value) {
+		value = setDefaultPhoneRomm(value);
 		employeeDao.update(employeeTransformer.modelToEntity(value));
 	}
-
+	
+	private EmployeeModel setDefaultPhoneRomm(EmployeeModel value) {
+		if (0 == value.getIdPhone()) {
+			value.setIdPhone(1);
+			value.setPhone("0");
+		}
+		if (0 == value.getIdRoom()) {
+			value.setIdRoom(1);
+			value.setRoom(0);
+		}
+		return value;
+	}
+	
+	@Transactional
 	public void delete(int id) {
 		employeeDao.delete(employeeDao.byId(id));
 	}

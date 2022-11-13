@@ -83,13 +83,13 @@ public class EmployeeController extends FormaEmployee{
 	}
 	
 	@GetMapping(value = "/selectedEmployee/{id}")
-	public String getPadeDelete(@PathVariable int id, @ModelAttribute("selectEmployee") EmployeeModel employee, ModelMap model) {
-		model.addAttribute("selectEmployee", employeeService.getId(id));
-		return "employees :: viewDeleteEmployee";
+	public String getPadeDelete(@PathVariable int id, ModelMap model) {
+		model.addAttribute("employee", employeeService.getId(id));
+		return "fragments/employee-fargment :: deleteModalWindow";
 	}
 	
-	@PostMapping(value = "/delete/{id}", params = { "save" })
-	public String getPageDelete(@ModelAttribute("selectEmployee") EmployeeModel employeeModel, ModelMap model) {
+	@PostMapping(path = {"/delete", "delete/", "/delete/"})
+	public String getPageDelete(@ModelAttribute("employee") EmployeeModel employeeModel, ModelMap model) {
 		employeeService.delete(employeeModel.getId());
 		return "redirect:/employee/";
 	}

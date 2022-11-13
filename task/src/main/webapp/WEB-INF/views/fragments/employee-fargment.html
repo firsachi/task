@@ -14,7 +14,7 @@
 				</thead>
 				<tbody data-th-each="employee : ${allEmployee}">
 					<tr>
-						<td	data-th-text="${employee.surname + ' ' + employee.name + ' ' + employee.patronymic}"></td>
+						<td	data-th-text="${employee.getFullName()}"></td>
 						<td data-th-text="${employee.enterprise}"></td>
 						<td data-th-text="${employee.department}"></td>
 						<td>
@@ -138,15 +138,19 @@
 			<!-- button submit -->
 			<div data-th-replace="templates/core-tag :: button-submit" data-th-remove="tag"></div>
 	</div>
-	m
+	
 	<div data-th-fragment="deleteModalWindow" data-th-remove="tag">
-
-			<p></p>
-  			<p class="lead">
-  				<span data-th-text="#{titleform.deletePosition}"></span>
-  				<span data-th-text="${position.name}"></span>
-  			</p>
+			<button class="close-button" data-close aria-label="Close modal" type="button">
+    			<span aria-hidden="true">&times;</span>
+  			</button>
+			<form data-th-id="deletePosition" data-th-action="@{delete}" method="POST" data-th-object="${employee}">
+				<p class="lead">
+  					<span data-th-text="#{titleform.deleteEmployee}"></span>
+  					<span data-th-text="${employee.getFullName()}"></span>
+  				</p>
   			
-  			<input type="hidden" name="id" data-th-field="${position.id}" />
-
+  				<input type="hidden" name="id" data-th-field="*{id}" /> 
+  			
+  				<div data-th-replace="templates/core-tag :: submit-buttpn-reval"></div>
+			</form>
 	</div>
