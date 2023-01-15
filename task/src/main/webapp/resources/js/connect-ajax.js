@@ -10,8 +10,4 @@
 	return await $.ajax(connectUrl);
 };
 
-async function AddRecord () {
-	
-}
-
  export {GetFragment};
