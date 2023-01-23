@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import ua.kyiv.informer.logic.CompanyService;
+import ua.kyiv.informer.logic.service.CompanyService;
 
 @Controller
 @RequestMapping(path = {"company/", "/company"})

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import informer.rest.model.EmployeeModel;
 import informer.rest.model.FilterParm;
-import ua.kyiv.informer.repository.EmployeeDaoImpl;
+import ua.kyiv.informer.logic.repository.EmployeeDaoImpl;
 
 @Service
 @Transactional

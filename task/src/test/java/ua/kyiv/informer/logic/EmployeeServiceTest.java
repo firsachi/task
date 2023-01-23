@@ -16,13 +16,14 @@ import org.modelmapper.ModelMapper;
 
 import informer.model.EmployeeModel;
 import informer.old.transformer.EmployeeTransformer;
-import ua.kyiv.informer.repository.EmployeeDaoImpl;
-import ua.kyiv.informer.repository.entity.Company;
-import ua.kyiv.informer.repository.entity.Department;
-import ua.kyiv.informer.repository.entity.Employee;
-import ua.kyiv.informer.repository.entity.Phone;
-import ua.kyiv.informer.repository.entity.Position;
-import ua.kyiv.informer.repository.entity.Room;
+import ua.kyiv.informer.logic.entity.Company;
+import ua.kyiv.informer.logic.entity.Department;
+import ua.kyiv.informer.logic.entity.Employee;
+import ua.kyiv.informer.logic.entity.Phone;
+import ua.kyiv.informer.logic.entity.Position;
+import ua.kyiv.informer.logic.entity.Room;
+import ua.kyiv.informer.logic.repository.EmployeeDaoImpl;
+import ua.kyiv.informer.logic.service.EmployeeService;
 
 class EmployeeServiceTest {
 	

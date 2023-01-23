@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import informer.rest.model.DepartmentModel;
-import ua.kyiv.informer.repository.DepartmentDaoImpl;
+import ua.kyiv.informer.logic.repository.DepartmentDaoImpl;
 
 @Service
 @Transactional

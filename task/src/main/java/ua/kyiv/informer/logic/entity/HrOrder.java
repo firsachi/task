@@ -1,4 +1,4 @@
-package ua.kyiv.informer.repository.entity;
+package ua.kyiv.informer.logic.entity;
 
 import java.sql.Date;
 import java.util.Objects;

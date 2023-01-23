@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import ua.kyiv.informer.logic.PositionService;
+import ua.kyiv.informer.logic.service.PositionService;
 
 /**
  * @author firsov

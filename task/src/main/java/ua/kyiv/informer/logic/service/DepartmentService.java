@@ -1,4 +1,4 @@
-package ua.kyiv.informer.logic;
+package ua.kyiv.informer.logic.service;
 
 import java.util.HashMap;
 import java.util.List;
@@ -13,9 +13,9 @@ import org.springframework.stereotype.Service;
 
 import informer.model.DepartmentFormModel;
 import informer.model.DepartmentModel;
-import ua.kyiv.informer.repository.DepartmentDaoImpl;
-import ua.kyiv.informer.repository.entity.Company;
-import ua.kyiv.informer.repository.entity.Department;
+import ua.kyiv.informer.logic.entity.Company;
+import ua.kyiv.informer.logic.entity.Department;
+import ua.kyiv.informer.logic.repository.DepartmentDaoImpl;
 
 @Service
 @Transactional

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ua.kyiv.informer.repository;
+package ua.kyiv.informer.logic.repository;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ import javax.persistence.TypedQuery;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import ua.kyiv.informer.repository.entity.Department;
+import ua.kyiv.informer.logic.entity.Department;
 
 /**
  *

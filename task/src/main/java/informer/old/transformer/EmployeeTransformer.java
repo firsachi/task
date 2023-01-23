@@ -3,12 +3,12 @@ package informer.old.transformer;
 import org.springframework.stereotype.Component;
 
 import informer.model.EmployeeModel;
-import ua.kyiv.informer.repository.entity.Company;
-import ua.kyiv.informer.repository.entity.Department;
-import ua.kyiv.informer.repository.entity.Employee;
-import ua.kyiv.informer.repository.entity.Phone;
-import ua.kyiv.informer.repository.entity.Position;
-import ua.kyiv.informer.repository.entity.Room;
+import ua.kyiv.informer.logic.entity.Company;
+import ua.kyiv.informer.logic.entity.Department;
+import ua.kyiv.informer.logic.entity.Employee;
+import ua.kyiv.informer.logic.entity.Phone;
+import ua.kyiv.informer.logic.entity.Position;
+import ua.kyiv.informer.logic.entity.Room;
 
 @Component
 public class EmployeeTransformer {

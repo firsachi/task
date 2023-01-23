@@ -24,8 +24,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import informer.model.DepartmentFormModel;
 import informer.model.DepartmentModel;
-import ua.kyiv.informer.logic.CompanyService;
-import ua.kyiv.informer.logic.DepartmentService;
+import ua.kyiv.informer.logic.service.CompanyService;
+import ua.kyiv.informer.logic.service.DepartmentService;
 import ua.kyiv.informer.ui.company.CompanyModel;
 
 /**

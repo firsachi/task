@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 
 import informer.rest.model.CompanyModel;
 import informer.rest.model.DepartmentModel;
-import ua.kyiv.informer.repository.CompanyDaoImpl;
-import ua.kyiv.informer.repository.entity.Company;
+import ua.kyiv.informer.logic.entity.Company;
+import ua.kyiv.informer.logic.repository.CompanyDaoImpl;
 
 @Service
 public class CompanyServiceREST {

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package ua.kyiv.informer.logic;
+package ua.kyiv.informer.logic.service;
 
 import java.util.List;
 

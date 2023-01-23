@@ -1,4 +1,4 @@
-package ua.kyiv.informer.logic;
+package ua.kyiv.informer.logic.service;
 
 import java.util.HashMap;
 import java.util.List;
@@ -12,12 +12,12 @@ import org.springframework.stereotype.Service;
 
 import informer.model.EmployeeModel;
 import informer.old.transformer.EmployeeTransformer;
-import ua.kyiv.informer.repository.CompanyDaoImpl;
-import ua.kyiv.informer.repository.DepartmentDaoImpl;
-import ua.kyiv.informer.repository.EmployeeDaoImpl;
-import ua.kyiv.informer.repository.PhoneDaoImpl;
-import ua.kyiv.informer.repository.PositionDaoImpl;
-import ua.kyiv.informer.repository.RoomDaoImpl;
+import ua.kyiv.informer.logic.repository.CompanyDaoImpl;
+import ua.kyiv.informer.logic.repository.DepartmentDaoImpl;
+import ua.kyiv.informer.logic.repository.EmployeeDaoImpl;
+import ua.kyiv.informer.logic.repository.PhoneDaoImpl;
+import ua.kyiv.informer.logic.repository.PositionDaoImpl;
+import ua.kyiv.informer.logic.repository.RoomDaoImpl;
 
 @Service
 public class EmployeeService extends ServiseTask<EmployeeModel>{

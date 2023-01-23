@@ -12,11 +12,11 @@ import informer.model.EmployeeModel;
 import informer.model.PhoneModel;
 import informer.model.PositionModel;
 import informer.model.RoomModel;
-import ua.kyiv.informer.logic.CompanyService;
-import ua.kyiv.informer.logic.DepartmentService;
-import ua.kyiv.informer.logic.PhoneService;
-import ua.kyiv.informer.logic.PositionService;
-import ua.kyiv.informer.logic.RoomServiceImpl;
+import ua.kyiv.informer.logic.service.CompanyService;
+import ua.kyiv.informer.logic.service.DepartmentService;
+import ua.kyiv.informer.logic.service.PhoneService;
+import ua.kyiv.informer.logic.service.PositionService;
+import ua.kyiv.informer.logic.service.RoomServiceImpl;
 import ua.kyiv.informer.ui.company.CompanyModel;
 
 public abstract class FormaEmployee {

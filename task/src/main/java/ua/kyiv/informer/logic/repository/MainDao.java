@@ -1,4 +1,4 @@
-package ua.kyiv.informer.repository;
+package ua.kyiv.informer.logic.repository;
 
 import java.util.List;
 

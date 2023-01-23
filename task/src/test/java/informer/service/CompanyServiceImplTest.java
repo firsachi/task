@@ -13,10 +13,10 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.modelmapper.ModelMapper;
 
-import ua.kyiv.informer.logic.CompanyService;
-import ua.kyiv.informer.logic.CompanyServiceImpl;
-import ua.kyiv.informer.repository.CompanyDaoImpl;
-import ua.kyiv.informer.repository.entity.Company;
+import ua.kyiv.informer.logic.entity.Company;
+import ua.kyiv.informer.logic.repository.CompanyDaoImpl;
+import ua.kyiv.informer.logic.service.CompanyService;
+import ua.kyiv.informer.logic.service.CompanyServiceImpl;
 
 class CompanyServiceImplTest {
 	
