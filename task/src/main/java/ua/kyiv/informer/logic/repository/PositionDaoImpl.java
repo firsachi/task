@@ -1,4 +1,4 @@
-package ua.kyiv.informer.repository;
+package ua.kyiv.informer.logic.repository;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 
-import ua.kyiv.informer.repository.entity.Position;
+import ua.kyiv.informer.logic.entity.Position;
 
 @Repository("postDao")
 public class PositionDaoImpl extends MainDao<Position>{

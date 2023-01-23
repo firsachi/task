@@ -1,4 +1,4 @@
-package ua.kyiv.informer.repository.entity;
+package ua.kyiv.informer.logic.entity;
 
 import java.io.Serializable;
 import java.util.Set;

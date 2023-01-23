@@ -1,7 +1,7 @@
 /**
  * 
  */
-package ua.kyiv.informer.repository;
+package ua.kyiv.informer.logic.repository;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 
-import ua.kyiv.informer.repository.entity.UserApp;
+import ua.kyiv.informer.logic.entity.UserApp;
 
 /**
  * @author firsov

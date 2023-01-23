@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import ua.kyiv.informer.logic.UserAppService;
-import ua.kyiv.informer.repository.RoleRepositiry;
-import ua.kyiv.informer.repository.entity.Role;
+import ua.kyiv.informer.logic.entity.Role;
+import ua.kyiv.informer.logic.repository.RoleRepositiry;
+import ua.kyiv.informer.logic.service.UserAppService;
 
 @Controller
 @RequestMapping(path = {"/users", "/users/"})

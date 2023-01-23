@@ -2,7 +2,7 @@
 /**
  * 
  */
-package ua.kyiv.informer.logic;
+package ua.kyiv.informer.logic.service;
 
 import java.util.Collection;
 import java.util.stream.Collectors;
@@ -17,9 +17,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import ua.kyiv.informer.repository.UserRepositoryImpl;
-import ua.kyiv.informer.repository.entity.Role;
-import ua.kyiv.informer.repository.entity.UserApp;
+import ua.kyiv.informer.logic.entity.Role;
+import ua.kyiv.informer.logic.entity.UserApp;
+import ua.kyiv.informer.logic.repository.UserRepositoryImpl;
 
 
 /**

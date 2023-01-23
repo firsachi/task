@@ -1,4 +1,4 @@
-package ua.kyiv.informer.logic;
+package ua.kyiv.informer.logic.service;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,9 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import ua.kyiv.informer.repository.RoleRepositiry;
-import ua.kyiv.informer.repository.UserRepositoryImpl;
-import ua.kyiv.informer.repository.entity.UserApp;
+import ua.kyiv.informer.logic.entity.UserApp;
+import ua.kyiv.informer.logic.repository.RoleRepositiry;
+import ua.kyiv.informer.logic.repository.UserRepositoryImpl;
 import ua.kyiv.informer.ui.user.UserAddFormModel;
 import ua.kyiv.informer.ui.user.UserChangePass;
 import ua.kyiv.informer.ui.user.UserEditModel;

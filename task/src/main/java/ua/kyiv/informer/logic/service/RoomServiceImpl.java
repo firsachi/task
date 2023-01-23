@@ -1,4 +1,4 @@
-package ua.kyiv.informer.logic;
+package ua.kyiv.informer.logic.service;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,8 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import informer.model.RoomModel;
-import ua.kyiv.informer.repository.RoomDaoImpl;
-import ua.kyiv.informer.repository.entity.Room;
+import ua.kyiv.informer.logic.entity.Room;
+import ua.kyiv.informer.logic.repository.RoomDaoImpl;
 
 @Service("roomService")
 public class RoomServiceImpl {

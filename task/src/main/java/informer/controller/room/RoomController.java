@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import informer.model.RoomModel;
-import ua.kyiv.informer.logic.RoomServiceImpl;
+import ua.kyiv.informer.logic.service.RoomServiceImpl;
 
 @Controller
 @RequestMapping("/room/")
