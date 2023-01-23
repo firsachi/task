@@ -6,6 +6,9 @@
 package ua.kyiv.informer.repository.entity;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,6 +16,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -90,9 +94,16 @@ public class Employee implements Cloneable, Serializable{
     
     @Column(name = "pass", nullable = true)
     private String pass;
+    
+    @ManyToMany(mappedBy = "employee")
+    private List<HrOrder> hrOrderList;
 
     @Column (name = "remove", columnDefinition = "boolean default false", nullable = false)
     private Boolean remove = false;
+
+	public Employee() {
+		super();
+	}
 
 	public int getId() {
 		return id;
@@ -190,6 +201,14 @@ public class Employee implements Cloneable, Serializable{
 		this.pass = pass;
 	}
 
+	public List<HrOrder> getHrOrderList() {
+		return hrOrderList;
+	}
+
+	public void setHrOrderList(List<HrOrder> hrOrderList) {
+		this.hrOrderList = hrOrderList;
+	}
+
 	public Boolean getRemove() {
 		return remove;
 	}
@@ -200,22 +219,8 @@ public class Employee implements Cloneable, Serializable{
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((department == null) ? 0 : department.hashCode());
-		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result + ((enterprise == null) ? 0 : enterprise.hashCode());
-		result = prime * result + id;
-		result = prime * result + ((login == null) ? 0 : login.hashCode());
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((pass == null) ? 0 : pass.hashCode());
-		result = prime * result + ((patronymic == null) ? 0 : patronymic.hashCode());
-		result = prime * result + ((phone == null) ? 0 : phone.hashCode());
-		result = prime * result + ((position == null) ? 0 : position.hashCode());
-		result = prime * result + ((remove == null) ? 0 : remove.hashCode());
-		result = prime * result + ((room == null) ? 0 : room.hashCode());
-		result = prime * result + ((surname == null) ? 0 : surname.hashCode());
-		return result;
+		return Objects.hash(department, email, enterprise, hrOrderList, id, login, name, pass, patronymic, phone,
+				position, remove, room, surname);
 	}
 
 	@Override
@@ -227,69 +232,13 @@ public class Employee implements Cloneable, Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Employee other = (Employee) obj;
-		if (department == null) {
-			if (other.department != null)
-				return false;
-		} else if (!department.equals(other.department))
-			return false;
-		if (email == null) {
-			if (other.email != null)
-				return false;
-		} else if (!email.equals(other.email))
-			return false;
-		if (enterprise == null) {
-			if (other.enterprise != null)
-				return false;
-		} else if (!enterprise.equals(other.enterprise))
-			return false;
-		if (id != other.id)
-			return false;
-		if (login == null) {
-			if (other.login != null)
-				return false;
-		} else if (!login.equals(other.login))
-			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		if (pass == null) {
-			if (other.pass != null)
-				return false;
-		} else if (!pass.equals(other.pass))
-			return false;
-		if (patronymic == null) {
-			if (other.patronymic != null)
-				return false;
-		} else if (!patronymic.equals(other.patronymic))
-			return false;
-		if (phone == null) {
-			if (other.phone != null)
-				return false;
-		} else if (!phone.equals(other.phone))
-			return false;
-		if (position == null) {
-			if (other.position != null)
-				return false;
-		} else if (!position.equals(other.position))
-			return false;
-		if (remove == null) {
-			if (other.remove != null)
-				return false;
-		} else if (!remove.equals(other.remove))
-			return false;
-		if (room == null) {
-			if (other.room != null)
-				return false;
-		} else if (!room.equals(other.room))
-			return false;
-		if (surname == null) {
-			if (other.surname != null)
-				return false;
-		} else if (!surname.equals(other.surname))
-			return false;
-		return true;
+		return Objects.equals(department, other.department) && Objects.equals(email, other.email)
+				&& Objects.equals(enterprise, other.enterprise) && Objects.equals(hrOrderList, other.hrOrderList)
+				&& id == other.id && Objects.equals(login, other.login) && Objects.equals(name, other.name)
+				&& Objects.equals(pass, other.pass) && Objects.equals(patronymic, other.patronymic)
+				&& Objects.equals(phone, other.phone) && Objects.equals(position, other.position)
+				&& Objects.equals(remove, other.remove) && Objects.equals(room, other.room)
+				&& Objects.equals(surname, other.surname);
 	}
 
 	@Override
@@ -297,6 +246,6 @@ public class Employee implements Cloneable, Serializable{
 		return "Employee [id=" + id + ", surname=" + surname + ", name=" + name + ", patronymic=" + patronymic
 				+ ", phone=" + phone + ", position=" + position + ", department=" + department + ", enterprise="
 				+ enterprise + ", email=" + email + ", room=" + room + ", login=" + login + ", pass=" + pass
-				+ ", remove=" + remove + "]";
+				+ ", hrOrderList=" + hrOrderList + ", remove=" + remove + "]";
 	}
 }
