@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import informer.model.PositionModel;
-import ua.kyiv.informer.logic.PositionService;
+import ua.kyiv.informer.logic.service.PositionService;
 
 /**
  *

@@ -12,10 +12,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "hr_order")
+@NamedQueries({
+	@NamedQuery(name = "HrOrder.listAll", query = "select H from HrOrder H")
+})
 public class HrOrder {
 	
 	@Id
@@ -141,6 +146,5 @@ public class HrOrder {
 				+ ", hrOrderJobBuh=" + hrOrderJobBuh + ", employee=" + employee + ", hrOrderNotes=" + hrOrderNotes
 				+ "]";
 	}
-	
 	
 }
