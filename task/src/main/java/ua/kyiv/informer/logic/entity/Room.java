@@ -36,7 +36,7 @@ public class Room implements Serializable {
 
 	@Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     
     @Column(name = "number_room", nullable = false, length = 3)
