@@ -5,7 +5,7 @@
 			<thead>
 				<tr>
 					<th data-th-text="#{inputlabel.nameDepartment}"></th>
-					<th data-sec-authorize="hasAuthority('ADMINISTRATOR')">
+					<th data-sec-authorize="hasAnyAuthority('ADMINISTRATOR','HR')">
 						<div data-th-replace="templates/core-tag :: button-add" data-th-remove="tag"></div>
 					</th>
 				</tr>

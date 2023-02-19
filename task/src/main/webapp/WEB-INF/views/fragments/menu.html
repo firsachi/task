@@ -17,7 +17,7 @@
 		<li><a data-th-href="@{/company/}" data-th-text="#{titleform.company}">room</a></li>
 		<li><a data-th-href="@{/department/}" data-th-text="#{titleform.departments}">department</a></li>
 		<li><a data-th-href="@{/position/}" data-th-text="#{titleform.position}">position</a></li>
-		<li><a data-th-href="@{/room/}" data-th-text="#{titleform.room}">room</a></li>
+		<li><a data-th-href="@{/room/}" data-th-text="#{titleform.room}" data-sec-authorize="hasAuthority('ADMINISTRATOR')">room</a></li>
 	</ul>
 		
 	<ul class="vertical menu expanded" data-th-fragment="hr-order">
