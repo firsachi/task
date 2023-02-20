@@ -24,8 +24,15 @@
 	
 				<div class="app-dashboard-body-content off-canvas-content" data-off-canvas-content>
 				
-					<div data-th-each="hrOrderModel : ${hrOrderModelList}" data-th-remove="tag">
-						<div data-th-replace="hr-order-fragmet :: hr-order-callout(${hrOrderModel})" data-th-remove="tag"></div>
+					<div class="column small-12 large-12">
+					
+						<form data-th-action="@{add}" method="POST" data-th-object="${hrOrderModel}">
+							<div class="medium-12 columns">
+								<h3 data-th-text="#{titleform.new}">new</h3>
+							</div>
+							<div data-th-replace="hr-order-fragment :: core-form"></div>
+							<div data-th-replace="templates/core-tag :: button-submit" data-th-remove="tag"></div>
+						</form>
 					</div>
 					
 				</div>
