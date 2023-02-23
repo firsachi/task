@@ -1,12 +1,7 @@
 package ua.kyiv.informer.logic.repository;
 
 import java.util.List;
-import java.util.UUID;
 
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import ua.kyiv.informer.logic.entity.HrOrder;

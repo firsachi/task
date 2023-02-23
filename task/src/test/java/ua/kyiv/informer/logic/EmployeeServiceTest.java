@@ -1,6 +1,5 @@
 package ua.kyiv.informer.logic;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
@@ -12,16 +11,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.modelmapper.ModelMapper;
 
-import informer.model.EmployeeModel;
 import informer.old.transformer.EmployeeTransformer;
-import ua.kyiv.informer.logic.entity.Company;
-import ua.kyiv.informer.logic.entity.Department;
-import ua.kyiv.informer.logic.entity.Employee;
-import ua.kyiv.informer.logic.entity.Phone;
-import ua.kyiv.informer.logic.entity.Position;
-import ua.kyiv.informer.logic.entity.Room;
 import ua.kyiv.informer.logic.repository.EmployeeDaoImpl;
 import ua.kyiv.informer.logic.service.EmployeeService;
 
