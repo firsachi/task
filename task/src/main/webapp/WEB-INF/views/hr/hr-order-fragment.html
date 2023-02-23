@@ -1,6 +1,58 @@
 <!DOCTYPE html>
 
-<div data-th-fragmment="" >
+<div data-th-fragment="core-form" data-th-remove="tag">
+
+	<div class="medium-12 columns">
+		<input type="hidden" name="hrOrderId" data-th-field="*{hrOrderId}" />
+	</div>
+
+	<div class="roe expanded" >
+		<div data-th-replace="templates/input-custom :: input-12-text(nameTag='hrOrderName', textTag='inputlabel.hrOrderName')" 
+		     data-sec-authorize="hasAnyAuthority('ADMINISTRATOR','HR')"></div>
+	</div>
+	
+	<div class="row expanded">
+		<div data-th-replace="templates/input-custom :: input-4-date(nameTag='hrOrderDate', textTag='inputlabel.hrOrderDate')" 
+			 data-sec-authorize="hasAnyAuthority('ADMINISTRATOR','HR')" ></div>	
+		
+		<div data-th-replace="templates/input-custom :: input-4-text(nameTag='hrOrderNumber', textTag='inputlabel.hrOrderNumber' )" 
+			data-sec-authorize="hasAnyAuthority('ADMINISTRATOR','HR')"></div>
+		
+		<div data-th-replace="templates/input-custom :: input-4-text(nameTag='hrOrderNumberJurnal', textTag='inputlabel.hrOrderNumberJurnal')" 
+			 data-sec-authorize="hasAnyAuthority('ADMINISTRATOR','HR')" ></div>
+	</div>
+	
+	<div class="row expanded">
+		<div class="medium-12 small-12 columns">
+		<table>
+			<thead>
+				<tr>
+					<th data-th-text="#{inputlabel.fullNameEmployee}" ></th>
+					<th>
+						<span data-th-text="#{inputlabel.nameDepartment}" ></span>
+						<ul class="menu align-right">
+							<li>
+								<button class="button">+</button>
+							</li>
+						</ul>
+					</th>
+				</tr>
+			</thead>
+		</table>
+		</div>
+	</div>
+	
+	<div class="row expanded">
+		<div data-th-class="${#fields.hasErrors('hrOrderNumber')} ? 'medium-4 small-12 columns invalid' : 'medium-4 small-12 columns' ">
+			<label data-th-text="#{inputlabel.hrOrderUploadFile}">input file</label>
+			<input type="file" id="heOrderFile" name="hrOrderFile" >
+		</div>
+		
+		<div data-th-class="${#fields.hasErrors('hrOrderNumberJurnal')} ? 'medium-6 small-12 columns invalid' : 'medium-6 small-12 columns' " >
+			<label data-th-text="#{inputlabel.hrOrderJobBuh}" >job buh</label>
+			<input type="checkbox" id="hrOrderJobBuh" name="hrOrderJobBuh" data-th-field="*{hrOrderJobBuh}" autofocus="autofocus" >
+		</div>
+	</div>
 </div>
 
 <div data-th-fragment="hr-order-callout(hrOrderModel)"
@@ -99,3 +151,5 @@
 		</div>
 	</div>
 </div>
+
+
