@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+<div data-th-fragment="input-12-text(nameTag, textTag)" data-th-remove="tag" >
+	<div data-th-class="${#fields.hasErrors('hrOrderNumber')} ? 'medium-12 small-12 columns invalid' : 'medium-12 small-12 columns' ">
+		<label data-th-text="#{${textTag}}"></label>
+		<input type="text" data-th-id="${nameTag}" name="${nameTag}"
+				data-th-field="*{__${nameTag}__}"
+				data-th-placeholder="#{${textTag}}"
+				autofocus="autofocus">
+		<span class="form-error is-visable"	data-th-error="*{__${nameTag}__}"></span>
+	</div>
+</div>
+
+<div data-th-fragment="input-4-text(nameTag, textTag)" data-th-remove="tag" >
+	<div data-th-class="${#fields.hasErrors('hrOrderNumber')} ? 'medium-4 small-12 columns invalid' : 'medium-4 small-12 columns' ">
+		<label data-th-text="#{${textTag}}"></label>
+		<input type="text" data-th-id="${nameTag}" name="${nameTag}"
+				data-th-field="*{__${nameTag}__}"
+				data-th-placeholder="#{${textTag}}"
+				autofocus="autofocus">
+		<span class="form-error is-visable"	data-th-error="*{__${nameTag}__}"></span>
+	</div>
+</div>
+
+<div data-th-fragment="input-4-date(nameTag, textTag)" data-th-remove="tag" >
+	<div data-th-class="${#fields.hasErrors('hrOrderNumber')} ? 'medium-4 small-12 columns invalid' : 'medium-4 small-12 columns' ">
+		<label data-th-text="#{${textTag}}"></label>
+		<input type="date" data-th-id="${nameTag}" name="${nameTag}"
+				data-th-field="*{__${nameTag}__}"
+				data-th-placeholder="#{${textTag}}"
+				autofocus="autofocus">
+		<span class="form-error is-visable"	data-th-error="*{__${nameTag}__}"></span>
+	</div>
+</div>
