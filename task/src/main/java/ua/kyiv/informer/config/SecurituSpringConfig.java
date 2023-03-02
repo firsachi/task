@@ -3,62 +3,22 @@ package ua.kyiv.informer.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.DefaultRedirectStrategy;
-import org.springframework.security.web.RedirectStrategy;
-
-import informer.security.SimpleUrlAuthenticationSuccessHandler;
+import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
-public class SecurituSpringConfig extends WebSecurityConfigurerAdapter {
+public class SecurituSpringConfig {
 
 	@Autowired
 	private UserDetailsService userDetailsService;
-
-	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.authenticationProvider(authenticationProvider());
-	}
-
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		http
-			.authorizeRequests()
-				.antMatchers("/", "/informer", "/api/**", "/resources/**").permitAll()
-				.antMatchers("/employee/").hasAnyAuthority("ADMINISTRATOR", "HR")
-				.anyRequest().authenticated()
-				.and()
-			.formLogin()
-				.loginPage("/login")
-					//.successHandler(simpleUrlAuthenticationSuccessHandler())
-				.usernameParameter("username")
-				.passwordParameter("password")
-				.permitAll()
-				.and()
-			.logout()
-				.logoutSuccessUrl("/")
-				.permitAll()
-				.and()
-			.csrf()
-				.disable();
-	}
-
-	@Bean
-	public RedirectStrategy redirectStrategy() {
-		return new DefaultRedirectStrategy();
-	}
-
-	@Bean
-	public SimpleUrlAuthenticationSuccessHandler simpleUrlAuthenticationSuccessHandler() {
-		return new SimpleUrlAuthenticationSuccessHandler();
-	}
 
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder() {
@@ -66,11 +26,34 @@ public class SecurituSpringConfig extends WebSecurityConfigurerAdapter {
 	}
 
 	@Bean
+	public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
+		return authConfig.getAuthenticationManager();
+	}
+
+	@Bean
 	public DaoAuthenticationProvider authenticationProvider() {
-		DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
-		auth.setUserDetailsService(userDetailsService);
-		auth.setPasswordEncoder(passwordEncoder());
-		return auth;
+		DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+
+		authProvider.setUserDetailsService(userDetailsService);
+		authProvider.setPasswordEncoder(passwordEncoder());
+
+		return authProvider;
+	}
+
+	@Bean
+	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+
+		http.authorizeRequests().antMatchers("/", "/informer", "/api/**", "/resources/**").permitAll()
+				.antMatchers("/employee/").hasAnyAuthority("ADMINISTRATOR", "HR").anyRequest().authenticated().and()
+				.formLogin().loginPage("/login").usernameParameter("username").passwordParameter("password").permitAll()
+				.and().logout().logoutSuccessUrl("/").permitAll().and().csrf().disable();
+
+		return http.build();
+	}
+
+	@Bean
+	public WebSecurityCustomizer webSecurityCustomizer() {
+		return (web) -> web.ignoring().antMatchers("/images/**", "/js/**", "/webjars/**");
 	}
 
 }
