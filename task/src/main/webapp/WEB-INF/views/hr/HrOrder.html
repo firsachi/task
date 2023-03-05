@@ -7,7 +7,7 @@
 			<div class="row expanded app-dashboard-top-nav-bar">
 				<div class="columns medium-2">
 					<button data-toggle="app-dashboard-sidebar"	class="menu-icon hide-for-medium"></button>
-					<a class="app-dashboard-logo" data-th-text="#{titleform.emploee}"></a>
+					<a class="app-dashboard-logo" data-th-text="#{titleform.hrOrder}"></a>
 				</div>
 				<div class="columns show-for-medium">
 				
@@ -23,11 +23,14 @@
 				</div>
 	
 				<div class="app-dashboard-body-content off-canvas-content" data-off-canvas-content>
-				
-					<div data-th-each="hrOrderModel : ${hrOrderModelList}" data-th-remove="tag">
-						<div data-th-replace="hr-order-fragment :: hr-order-callout(${hrOrderModel})" data-th-remove="tag"></div>
+					<div class="medium-11 small-12 columns">
+						<div data-th-each="hrOrderModel : ${hrOrderModelList}" data-th-remove="tag">
+							<div data-th-replace="hr-order-fragment :: hr-order-callout(${hrOrderModel})" data-th-remove="tag"></div>
+						</div>
 					</div>
-					
+					<div class="medium-1 small-12 columns">
+						<div data-th-replace="templates/core-tag :: button-add" data-th-remove="tag" ></div>
+					</div>
 				</div>
 			</div>
 		</div>

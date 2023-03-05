@@ -7,11 +7,9 @@
 			<div class="row expanded app-dashboard-top-nav-bar">
 				<div class="columns medium-2">
 					<button data-toggle="app-dashboard-sidebar"	class="menu-icon hide-for-medium"></button>
-					<a class="app-dashboard-logo" data-th-text="#{titleform.emploee}"></a>
+					<a class="app-dashboard-logo" data-th-text="#{titleform.hrOrder}"></a>
 				</div>
-				<div class="columns show-for-medium">
-				
-				</div>
+				<div class="columns show-for-medium"></div>
 				<div data-th-insert="templates/menu/logof-logon.html"></div>
 			</div>
 	
@@ -37,6 +35,11 @@
 					
 				</div>
 			</div>
+		</div>
+		
+		<!-- modal add table employee -->
+		<div class="reveal" id="modalAddEmployee" data-reveal data-options="closeOnClick:false; closeOnEsc:false;">
+			<div data-th-replace="hr/hr-order-fragment :: modalAddEmployee" ></div>
 		</div>
 		
 		<div data-th-insert="templates/head :: script" data-th-remove="tag"></div>

@@ -6,7 +6,7 @@
 		<input type="hidden" name="hrOrderId" data-th-field="*{hrOrderId}" />
 	</div>
 
-	<div class="roe expanded" >
+	<div class="row expanded" >
 		<div data-th-replace="templates/input-custom :: input-12-text(nameTag='hrOrderName', textTag='inputlabel.hrOrderName')" 
 		     data-sec-authorize="hasAnyAuthority('ADMINISTRATOR','HR')"></div>
 	</div>
@@ -24,21 +24,21 @@
 	
 	<div class="row expanded">
 		<div class="medium-12 small-12 columns">
-		<table>
-			<thead>
-				<tr>
-					<th data-th-text="#{inputlabel.fullNameEmployee}" ></th>
-					<th>
-						<span data-th-text="#{inputlabel.nameDepartment}" ></span>
-						<ul class="menu align-right">
-							<li>
-								<button class="button">+</button>
-							</li>
-						</ul>
-					</th>
-				</tr>
-			</thead>
-		</table>
+			<table>
+				<thead>
+					<tr>
+						<th data-th-text="#{inputlabel.fullNameEmployee}"></th>
+						<th data-th-text="#{inputlabel.nameDepartment}"></th>
+						<th>
+							<ul class="menu align-right">
+      							<li>
+      								<a class="button" data-open="modalAddEmployee" >+</a>
+      							</li>
+    						</ul>
+						</th>
+					</tr>
+				</thead>
+			</table>
 		</div>
 	</div>
 	
@@ -53,6 +53,24 @@
 			<input type="checkbox" id="hrOrderJobBuh" name="hrOrderJobBuh" data-th-field="*{hrOrderJobBuh}" autofocus="autofocus" >
 		</div>
 	</div>
+</div>
+
+<div data-th-fragment="modalAddEmployee">
+	<h1 data-th-text="#{titleform.addEmployee}" >Add emplouee</h1>
+  	<p>
+  		<form>
+  			<div>
+  				<label data-th-text="#{inputlabel.fullNameEmployee}">full name</label>
+  				<select>
+					<option>
+				</select>
+  			</div>
+  			<div data-th-replace="templates/core-tag :: submit-buttpn-reval"></div>
+  		</form>
+  	</p>
+  	<button class="close-button" data-close aria-label="Close Accessible Modal" type="button">
+    	<span aria-hidden="true">&times;</span>
+  	</button>
 </div>
 
 <div data-th-fragment="hr-order-callout(hrOrderModel)"
@@ -151,5 +169,3 @@
 		</div>
 	</div>
 </div>
-
-
