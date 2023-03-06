@@ -20,9 +20,5 @@ public class HrOrderController {
 		return "hr/HrOrder";
 	}
 	
-	@RequestMapping(path = {"/add", "add/"})
-	public String pageAddHrOrder(ModelMap modelMap) {
-		modelMap.addAttribute("hrOrderModel", new HrOrderModel());
-		return "hr/HrOrder-add";
-	}
+	
 }

@@ -43,7 +43,10 @@ import javax.persistence.Table;
 			query = "UPDATE Employee E SET E.remove = true WHERE E.id=:id"),
 	@NamedQuery (
 			name = "selectIdDepartment", 
-			query = "SELECT E FROM Employee E WHERE E.remove = false AND E.department.id = :departmentId ORDER BY E.position.heft")
+			query = "SELECT E FROM Employee E WHERE E.remove = false AND E.department.id = :departmentId ORDER BY E.position.heft"),
+	@NamedQuery (
+			name = "selectEmployee",
+			query = "SELECT E FROM Employee E WHERE E.remove = :disable ORDER BY E.surname ")
 })
 public class Employee implements Cloneable, Serializable{
     

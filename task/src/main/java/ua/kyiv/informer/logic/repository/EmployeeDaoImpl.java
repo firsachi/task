@@ -1,12 +1,15 @@
 package ua.kyiv.informer.logic.repository;
 
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.TypedQuery;
 
+import org.springframework.context.event.EventListenerMethodProcessor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import informer.model.EmployeeModel;
 import ua.kyiv.informer.logic.entity.Employee;
 
 @Repository("employeeDao")
@@ -37,5 +40,12 @@ public class EmployeeDaoImpl extends MainDao<Employee>{
 		listEmloyee.setParameter("companuId", idCompany);
 		listEmloyee.setParameter("departmentId", idDepartment);
 		return listEmloyee.getResultList();
+	}
+
+	@Transactional
+	public List<Employee> byList(String namedQery, boolean remove) {
+		TypedQuery<Employee> listEmployee = em.createNamedQuery(namedQery, Employee.class);
+		listEmployee.setParameter("disable", remove);
+		return listEmployee.getResultList();
 	}
 }
