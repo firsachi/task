@@ -84,6 +84,10 @@ public class EmployeeService extends ServiseTask<EmployeeModel> {
 	public EmployeeModel getId(int id) {
 		return employeeTransformer.entityToModel(employeeDao.byId(id));
 	}
+	
+	public EmployeelLiteModel byLiteModel(int id) {
+		return modelMapper.map(employeeDao.byId(id), EmployeelLiteModel.class);
+	}
 
 	@Override
 	public List<EmployeeModel> getList(String namedQery) {
@@ -102,7 +106,8 @@ public class EmployeeService extends ServiseTask<EmployeeModel> {
 	}
 
 	public Set<EmployeelLiteModel> getEmployeeLite() {
-		return employeeDao.byList("selectEmployee", true).stream().parallel()
+		boolean disable = false;
+		return employeeDao.byList("selectEmployee", disable).stream().parallel()
 				.map(entityEmployee -> modelMapper.map(entityEmployee, EmployeelLiteModel.class))
 				.collect(Collectors.toSet());
 	}

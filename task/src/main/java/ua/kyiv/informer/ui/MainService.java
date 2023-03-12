@@ -1,4 +1,4 @@
-package ua.kyiv.informer.logic.service;
+package ua.kyiv.informer.ui;
 
 public abstract class MainService {
 

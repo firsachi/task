@@ -24,7 +24,7 @@
 	
 	<div class="row expanded">
 		<div class="medium-12 small-12 columns">
-			<table>
+			<table id="tableEmployee">
 				<thead>
 					<tr>
 						<th data-th-text="#{inputlabel.fullNameEmployee}"></th>
@@ -32,12 +32,14 @@
 						<th>
 							<ul class="menu align-right">
       							<li>
-      								<a class="button" data-open="modalAddEmployee" >+</a>
+      								<a data-open="modalAddEmployee" class="button" >+</a>
       							</li>
     						</ul>
 						</th>
 					</tr>
 				</thead>
+				<tbody>					
+				</tbody>
 			</table>
 		</div>
 	</div>
@@ -55,18 +57,27 @@
 	</div>
 </div>
 
+<div data-th-fragment="rowtable(fullName, departmentName)" data-th-remove="tag" >
+	<table data-th-remove="tag">
+	<tr>
+		<td data-th-text="${fullName}"></td>
+		<td></td>
+	</tr>
+	</table>
+</div>
+
 <div data-th-fragment="modalAddEmployee">
 	<h1 data-th-text="#{titleform.addEmployee}" >Add emplouee</h1>
   	<p>
-  		<form>
   			<div>
   				<label data-th-text="#{inputlabel.fullNameEmployee}">full name</label>
-  				<select id="employee">
-					<option >
+  				<select id="idEmployee">
+					<option data-th-each="item: ${employeeCollections}" data-th-value="${item.id}" data-th-text="${item.getFullName()}" >
 				</select>
   			</div>
-  			<div data-th-replace="templates/core-tag :: submit-buttpn-reval"></div>
-  		</form>
+  			<div class="column align-right">
+				<button id="addRow" type="submit" class="button float-right" data-th-text="#{buttonname.submit}">1</button>
+			</div>
   	</p>
   	<button class="close-button" data-close aria-label="Close Accessible Modal" type="button">
     	<span aria-hidden="true">&times;</span>

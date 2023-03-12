@@ -1,7 +1,7 @@
 /**
  * 
  */
-package informer.old;
+package ua.kyiv.informer.ui;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

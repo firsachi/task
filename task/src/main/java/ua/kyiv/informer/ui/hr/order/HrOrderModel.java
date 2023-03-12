@@ -1,7 +1,10 @@
 package ua.kyiv.informer.ui.hr.order;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
+
+import informer.model.EmployeelLiteModel;
 
 public class HrOrderModel {
 	
@@ -18,6 +21,8 @@ public class HrOrderModel {
 	private boolean hrOrderJobBuh;
 	
 	private String hrOrderNotes;
+	
+	private List<EmployeelLiteModel> employees;
 
 	public HrOrderModel() {
 		super();
@@ -79,9 +84,17 @@ public class HrOrderModel {
 		this.hrOrderNotes = hrOrderNotes;
 	}
 
+	public List<EmployeelLiteModel> getEmployees() {
+		return employees;
+	}
+
+	public void setEmployees(List<EmployeelLiteModel> employees) {
+		this.employees = employees;
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(hrOrderDate, hrOrderId, hrOrderJobBuh, hrOrderName, hrOrderNotes, hrOrderNumber,
+		return Objects.hash(employees, hrOrderDate, hrOrderId, hrOrderJobBuh, hrOrderName, hrOrderNotes, hrOrderNumber,
 				hrOrderNumberJurnal);
 	}
 
@@ -94,9 +107,9 @@ public class HrOrderModel {
 		if (getClass() != obj.getClass())
 			return false;
 		HrOrderModel other = (HrOrderModel) obj;
-		return Objects.equals(hrOrderDate, other.hrOrderDate) && Objects.equals(hrOrderId, other.hrOrderId)
-				&& hrOrderJobBuh == other.hrOrderJobBuh && Objects.equals(hrOrderName, other.hrOrderName)
-				&& Objects.equals(hrOrderNotes, other.hrOrderNotes)
+		return Objects.equals(employees, other.employees) && Objects.equals(hrOrderDate, other.hrOrderDate)
+				&& Objects.equals(hrOrderId, other.hrOrderId) && hrOrderJobBuh == other.hrOrderJobBuh
+				&& Objects.equals(hrOrderName, other.hrOrderName) && Objects.equals(hrOrderNotes, other.hrOrderNotes)
 				&& Objects.equals(hrOrderNumber, other.hrOrderNumber)
 				&& Objects.equals(hrOrderNumberJurnal, other.hrOrderNumberJurnal);
 	}
@@ -105,7 +118,8 @@ public class HrOrderModel {
 	public String toString() {
 		return "HrOrderModel [hrOrderId=" + hrOrderId + ", hrOrderName=" + hrOrderName + ", hrOrderDate=" + hrOrderDate
 				+ ", hrOrderNumber=" + hrOrderNumber + ", hrOrderNumberJurnal=" + hrOrderNumberJurnal
-				+ ", hrOrderJobBuh=" + hrOrderJobBuh + ", hrOrderNotes=" + hrOrderNotes + "]";
+				+ ", hrOrderJobBuh=" + hrOrderJobBuh + ", hrOrderNotes=" + hrOrderNotes + ", employees=" + employees
+				+ "]";
 	}
-	
+
 }

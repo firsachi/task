@@ -1,15 +1,12 @@
 package ua.kyiv.informer.logic.repository;
 
-import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.TypedQuery;
 
-import org.springframework.context.event.EventListenerMethodProcessor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import informer.model.EmployeeModel;
 import ua.kyiv.informer.logic.entity.Employee;
 
 @Repository("employeeDao")
