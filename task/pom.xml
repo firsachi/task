@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>ua.kyiv</groupId>
@@ -23,9 +21,24 @@
 		<java.version>11</java.version>
 		<version-hibernate>5.4.2.Final</version-hibernate>
 		<modelmapper.version>2.3.8</modelmapper.version>
+		<webjars.version>6.4.3</webjars.version>
+		<webjars-locator.version>0.46</webjars-locator.version>
 	</properties>
 
 	<dependencies>
+
+		<!-- webjars fundation -->
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>foundation</artifactId>
+			<version>${webjars.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>webjars-locator</artifactId>
+			<version>${webjars-locator.version}</version>
+		</dependency>
 
 		<!-- ModelMapper -->
 		<dependency>
@@ -76,12 +89,12 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
+
 		<dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
-            <scope>test</scope>
-        </dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<scope>test</scope>
+		</dependency>
 
 	</dependencies>
 
