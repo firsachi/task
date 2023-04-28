@@ -1,4 +1,4 @@
-package informer.controller.position;
+package ua.kyiv.informer.ui.position;
 
 import javax.validation.Valid;
 
@@ -8,8 +8,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-
-import informer.model.PositionModel;
 
 @Controller
 public class PositionAddControler extends MainPosition {

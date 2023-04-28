@@ -9,9 +9,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import informer.model.PositionModel;
 import ua.kyiv.informer.logic.entity.Position;
 import ua.kyiv.informer.logic.repository.PositionDaoImpl;
+import ua.kyiv.informer.ui.position.PositionModel;
 
 @Service
 public class PositionService extends ServiseTask<PositionModel> {

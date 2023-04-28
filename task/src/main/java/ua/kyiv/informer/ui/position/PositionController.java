@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package informer.controller.position;
+package ua.kyiv.informer.ui.position;
 
 import java.util.List;
 
@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import informer.model.PositionModel;
 import ua.kyiv.informer.logic.service.PositionService;
 
 /**

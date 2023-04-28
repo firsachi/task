@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import informer.model.DepartmentModel;
 import informer.model.EmployeeModel;
 import informer.model.PhoneModel;
-import informer.model.PositionModel;
 import informer.model.RoomModel;
 import ua.kyiv.informer.logic.service.CompanyService;
 import ua.kyiv.informer.logic.service.DepartmentService;
@@ -18,6 +17,7 @@ import ua.kyiv.informer.logic.service.PhoneService;
 import ua.kyiv.informer.logic.service.PositionService;
 import ua.kyiv.informer.logic.service.RoomServiceImpl;
 import ua.kyiv.informer.ui.company.CompanyModel;
+import ua.kyiv.informer.ui.position.PositionModel;
 
 public abstract class FormaEmployee {
 	
