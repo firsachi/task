@@ -1,46 +1,18 @@
 <!DOCTYPE html>
 <html>
-	<head data-th-replace="templates/head :: head(#{titleform.position})"></head>
-
+<head data-th-replace="templates/head :: head(#{titleform.position})"></head>
 <body>
-
-		<div class="app-dashboard shrink-medium">
-			<div class="row expanded app-dashboard-top-nav-bar">
-				<div class="columns medium-2">
-					<button data-toggle="app-dashboard-sidebar"
-						class="menu-icon hide-for-medium"></button>
-					<a class="app-dashboard-logo" data-th-text="#{titleform.position}"></a>
-				</div>
-				<div class="columns show-for-medium">
-				
-				</div>
-				<div data-th-insert="templates/menu/logof-logon.html"></div>
-			</div>
-	
-			<div class="app-dashboard-body off-canvas-wrapper">
-				<div id="app-dashboard-sidebar"	class="app-dashboard-sidebar position-left off-canvas off-canvas-absolute reveal-for-medium" data-off-canvas>
-					<div class="app-dashboard-sidebar-inner">
-						<ul  data-th-replace="fragments/menu :: top-directories"></ul>
-					</div>
-				</div>
-	
-				<div class="app-dashboard-body-content off-canvas-content" data-off-canvas-content>
-					<form class="row" data-th-action="@{add}" method="POST" data-th-object="${position}">
-						<div data-th-replace="fragments/position-fargment :: core-form-position(#{titleform.new})"></div>
-					</form>
-				</div>
-			</div>
+	<nav id="header"
+		data-th-replace="fragments/nav :: core-nav(#{titleform.position})">
+	</nav>
+	<div class="row flex-container expanded">
+		<div class="columns medium-2">
+			<ul data-th-replace="templates/menu :: top-directories"></ul>
 		</div>
-		
-		<div data-th-insert="templates/head :: script" data-th-remove="tag"></div>
-		
-		<script type="application/javascript" data-th-inline="javascript">
-			$(document).foundation();
-		</script>
-
-	
-	<script type="text/javascript">
-		$(document).foundation();
-	</script>
+		<div class="columns medium-10">
+			<form class="row expanded" method="POST"  data-th-action="${urlAction}"  data-th-object="${position}"  data-th-replace="position/position-fargment :: form-position(#{titleform.new})"></form>
+		</div>
+	</div>
+	<script data-th-replace="fragments/core-script :: core-script"></script>
 </body>
 </html>

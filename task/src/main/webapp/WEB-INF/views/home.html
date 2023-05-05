@@ -1,40 +1,26 @@
 <!DOCTYPE html>
 <html>
 
-	<head data-th-replace="templates/head :: head(#{titleform.home})"></head>
+<head data-th-replace="templates/head :: head(#{titleform.home})"></head>
 
 <body>
 
-	<div class="app-dashboard shrink-medium">
-		<div class="row expanded app-dashboard-top-nav-bar">
-			<div class="columns medium-2">
-				<button data-toggle="app-dashboard-sidebar"	class="menu-icon hide-for-medium"></button>
-				<a class="app-dashboard-logo" data-th-text="#{titleform.home}" data-th-thref="@{/home}">home</a>
-			</div>
-			<div class="columns show-for-medium">
-				
-			</div>
-			<div data-th-insert="templates/menu/logof-logon.html"></div>
-		</div>
+	<nav id="header" data-th-replace="fragments/nav :: core-nav(#{titleform.home})"></nav>
 
-		<div class="app-dashboard-body off-canvas-wrapper">
-			<div id="app-dashboard-sidebar"	class="app-dashboard-sidebar position-left off-canvas off-canvas-absolute reveal-for-medium" data-off-canvas>
-				<div class="app-dashboard-sidebar-title-area">
-					<div class="app-dashboard-close-sidebar">
-						<ul data-th-replace="fragments/menu :: home-menu"></ul>
-					</div>
-				</div>
-			</div>
-
-			<div class="app-dashboard-body-content off-canvas-content" data-off-canvas-content></div>
-		</div>
+	<div class="row">
+		<h4>Module app</h4>
 	</div>
 	
-	<div data-th-insert="templates/head :: script"></div>
-	
-	<script type="text/javascript">
-		$(document).foundation();
-	</script>
+	<div class="row felx-container">
+		
+		<div data-th-replace="templates/colout :: home-colout(titleColout='titleform.admin', urlModule='/employee/', description='')"></div>
+		
+		<div data-th-replace="templates/colout :: home-colout(titleColout='titleform.home.directories', urlModule='/position/', description='')"></div>
+		
+		
+	</div>
+
+	<script data-th-replace="fragments/core-script :: core-script"></script>
 
 </body>
 </html>

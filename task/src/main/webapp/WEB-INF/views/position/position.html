@@ -1,35 +1,21 @@
 <!DOCTYPE html>
 <html>
+
 	<head data-th-replace="templates/head :: head(#{titleform.positions})"></head>
 	
 	<body>
-
-		<div class="app-dashboard shrink-medium">
-			<div class="row expanded app-dashboard-top-nav-bar">
-				<div class="columns medium-2">
-					<button data-toggle="app-dashboard-sidebar"
-						class="menu-icon hide-for-medium"></button>
-					<a class="app-dashboard-logo" data-th-text="#{titleform.positions}"></a>
-				</div>
-				<div class="columns show-for-medium">
-				
-				</div>
-				<div data-th-insert="templates/menu/logof-logon.html"></div>
+	
+		<nav id="header" data-th-replace="fragments/nav :: core-nav(#{titleform.positions})"></nav>
+		
+		<div class="row flex-container expanded">
+			<div class="columns medium-2">
+				<ul data-th-replace="templates/menu :: top-directories"></ul>
 			</div>
-	
-			<div class="app-dashboard-body off-canvas-wrapper">
-				<div id="app-dashboard-sidebar"	class="app-dashboard-sidebar position-left off-canvas off-canvas-absolute reveal-for-medium" data-off-canvas>
-					<div class="app-dashboard-sidebar-inner">
-						<ul  data-th-replace="fragments/menu :: top-directories"></ul>
-					</div>
-				</div>
-	
-				<div class="app-dashboard-body-content off-canvas-content" data-off-canvas-content>
-					<div data-th-replace="fragments/position-fargment :: table-position"></div>
-				</div>
+			<div class="columns medium-10">
+				<table data-th-replace="position/position-fargment.html :: table-position"></table>
 			</div>
 		</div>
-		
+
 		<!-- modal window delete -->
 		<div class="reveal" data-th-id="deleteRecord" data-reveal data-options="closeOnClick:false; closeOnEsc:false;">
 			<form data-th-id="deletePosition" data-th-action="@{delete}" method="POST" data-th-object="${position}">
@@ -47,11 +33,7 @@
 			</form>
 		</div>
 		
-		<div data-th-insert="templates/head :: script" data-th-remove="tag"></div>
-		
-		<script type="application/javascript" data-th-inline="javascript">
-			$(document).foundation();
-		</script>
+		<script data-th-replace="fragments/core-script :: core-script"></script>
 		
 		<script type="application/javascript" data-th-inline="javascript">
 			var openModal = $('[data-open][data-position-id]').on('click',

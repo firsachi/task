@@ -1,7 +1,7 @@
 /**
  * 
  */
-package informer.controller.position;
+package ua.kyiv.informer.ui.position;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
