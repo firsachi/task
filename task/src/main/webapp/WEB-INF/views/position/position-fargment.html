@@ -30,16 +30,14 @@
 				</tbody>
 			</table>
 	
-	<div >
-		
-		<form data-th-fragment="form-position(titleForm)" 
-			data-th-remove="tag">
-		
+	<div data-th-fragment="core-form(titleForm, urlAction, position)" data-th-remove="tag" >
+		<form method="post"  data-th-action="${urlAction}" data-th-object="${position}" >
+			
 			<div class="medium-12 columns">
 				<h3 data-th-text="${titleForm}">title form</h3>
 			</div>
 			
-			<!-- name  -->
+			<!-- name -->
 			<div data-th-replace="templates/input-custom :: input-12-text('inputlabel.namePost','namePosition')"></div>
 			
 			<!-- heftPost -->
@@ -50,9 +48,8 @@
 			
 			<!-- button submit -->
 			<div data-th-replace="templates/core-tag :: button-submit" data-th-remove="tag"></div>
-		
+			
 		</form>
-	
 	</div>
 	
 	<div data-th-fragment="deleteModalWindow" data-th-remove="tag">

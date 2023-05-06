@@ -8,9 +8,7 @@
       <ul data-th-replace="templates/menu :: top-directories"> </ul>
     </div>
     <div class="columns medium-10">
-     
-    	<form data-th-replace="position/position-fargment :: form-position(#{titleform.editPosition}}"></form>
-    
+    	<div data-th-replace="position/position-fargment :: core-form(#{titleform.editPosition}, @{{id}(id=${position.id})}, ${position})"></div>
     </div>
   </div>
   <script data-th-replace="fragments/core-script :: core-script"></script>
