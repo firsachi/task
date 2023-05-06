@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 
 <div class="medium-12 columns"
-	data-th-fragment="input-12-text(labelValue, labelInput)">
-	<label data-th-text="#{${labelValue}}"></label> <input type="text"
-		name="${labelInput}" autofocus="autofocus" data-th-id="${labelInput}"
-		data-th-field="*{__${labelInput}__}"
-		data-th-placeholder="#{${labelValue}}"> <span
-		class="form-error is-visable" data-th-error="*{__${labelInput}__}"></span>
+	data-th-fragment="input-12-text(labelValue, inputValue)">
+	<label data-th-text="#{${labelValue}}"></label> 
+	<input type="text" name="${labelInput}" autofocus="autofocus" 
+		data-th-id="${inputValue}"
+		data-th-field="*{__${inputValue}__}"
+		data-th-placeholder="#{${labelValue}}"> 
+		<span class="form-error is-visable" data-th-error="*{__${inputValue}__}"></span>
 </div>
 
 <div data-th-fragment="input-4-text(nameTag, textTag)"
