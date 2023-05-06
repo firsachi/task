@@ -10,7 +10,13 @@
 			<ul data-th-replace="templates/menu :: top-directories"></ul>
 		</div>
 		<div class="columns medium-10">
-			<form class="row expanded" method="POST"  data-th-action="${urlAction}"  data-th-object="${position}"  data-th-replace="position/position-fargment :: form-position(#{titleform.new})"></form>
+			<div data-th-replace="position/position-fargment :: core-form(#{titleform.new}, @{add}, ${position})"></div>
+			<!-- 
+			<form class="row expanded" method="POST"  
+				data-th-action="${urlAction}"  
+				data-th-object="${position}"  
+				data-th-replace="position/position-fargment :: form-position(#{titleform.new})"></form>
+			 -->
 		</div>
 	</div>
 	<script data-th-replace="fragments/core-script :: core-script"></script>
