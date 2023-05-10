@@ -1,4 +1,4 @@
-package informer.rest;
+package ua.kyiv.informer.rest.controller;
 
 import java.util.List;
 import java.util.stream.Collectors;

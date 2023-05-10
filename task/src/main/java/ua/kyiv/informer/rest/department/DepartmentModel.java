@@ -1,4 +1,4 @@
-package informer.model;
+package ua.kyiv.informer.rest.department;
 
 import java.util.List;
 import java.util.Objects;

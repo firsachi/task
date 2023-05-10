@@ -1,4 +1,4 @@
-package informer.model;
+package ua.kyiv.informer.rest.employee;
 
 import java.util.Objects;
 

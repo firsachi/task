@@ -1,4 +1,4 @@
-package informer.rest;
+package ua.kyiv.informer.rest.company;
 
 
 import java.util.Comparator;

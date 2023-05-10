@@ -1,4 +1,4 @@
-package informer.model;
+package ua.kyiv.informer.rest.department;
 import java.util.Objects;
 
 import javax.validation.constraints.NotBlank;
