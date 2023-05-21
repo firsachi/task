@@ -1,9 +1,9 @@
-<ul class="vertical menu" data-th-fragment="top-directories">
+<ul id="componentMenu" class="vertical menu" data-th-fragment="top-directories">
 	<li data-sec-authorize="hasAnyAuthority('ADMINISTRATOR','HR')">
 		<span data-th-text="#{titleform.home.directories}"></span>
-		<ul class="vertical menu">
+		<ul id="menu-directories" class="vertical menu">
 			<li><a data-th-href="@{/home/}" data-th-text="#{titleform.home}">home</a></li>
-			<li><a data-th-href="@{/position/}" data-th-text="#{titleform.position}">position</a></li>
+			<li><a data-th-href="@{/position/}" data-th-text="#{titleform.positions}">position</a></li>
 			<li><a data-th-href="@{/department/}" data-th-text="#{titleform.departments}">department</a></li>
 			<li><a data-th-href="@{/company/}" data-th-text="#{titleform.company}">company</a></li>
 			<li><a data-th-href="@{/room/}" data-th-text="#{titleform.room}" data-sec-authorize="hasAuthority('ADMINISTRATOR')">room</a></li>
