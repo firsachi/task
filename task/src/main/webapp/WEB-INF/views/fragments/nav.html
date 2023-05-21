@@ -6,7 +6,8 @@
 </head>
 <body>
 
-	<nav data-th-fragment="core-nav(titleTopbar)">
+	<div data-th-fragment="core-nav(titleTopbar)" data-th-remove="tag">
+	<nav>
 		<div class="title-bar" data-responsive-toggle="core-menu"
 			data-hide-for="medium">
 			<button class="menu-icon" type="button" data-toggle="core-menu"></button>
@@ -16,7 +17,7 @@
 		<div class="top-bar" id="core-menu">
 			<div class="top-bar-left">
 				<ul class="dropdown menu" data-dropdown-menu>
-					<li class="menu-text" data-th-text="${titleTopbar}" >Site Title</li>
+					<li id="title-nav" class="menu-text" data-th-text="${titleTopbar}" >Site Title</li>
 				</ul>
 			</div>
 			<div class="top-bar-right">
@@ -33,7 +34,10 @@
 				</ul>
 			</div>
 		</div>
-	</nav>
+		
+		</nav>
+		<br>
+	</div>
 
 </body>
 </html>
