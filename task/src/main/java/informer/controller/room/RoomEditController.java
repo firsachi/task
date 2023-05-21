@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import informer.model.RoomModel;
+import ua.kyiv.informer.rest.RoomModel;
 
 /**
  * @author firsov

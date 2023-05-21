@@ -8,8 +8,8 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
-import informer.model.RoomModel;
 import ua.kyiv.informer.logic.service.RoomServiceImpl;
+import ua.kyiv.informer.rest.RoomModel;
 
 /**
  * @author firsov

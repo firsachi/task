@@ -26,7 +26,7 @@ public class PositionEditController extends MainPosition {
         return "position/position-edit";
     }
     
-    @PostMapping(path = {"/edit/{id}", "edit/{id}"}, params = { "save" })
+    @PostMapping(path = {"/edit/{id}", "edit/{id}"})
     public String submitUpadtePosition(@Valid @ModelAttribute("position") PositionModel model, BindingResult bindingResult) {
     	if (bindingResult.hasErrors()) {
 			return "position/position-edit";

@@ -1,13 +1,26 @@
 <!DOCTYPE html>
 
-<div class="medium-12 columns"
-	data-th-fragment="input-12-text(labelValue, inputValue)">
-	<label data-th-text="#{${labelValue}}"></label> 
-	<input type="text" name="${labelInput}" autofocus="autofocus" 
-		data-th-id="${inputValue}"
+<body>
+
+<div class="medium-12 columns" data-th-fragment="input-text-12(labelValue,inputValue)">
+	<label data-th-text="${labelValue}"></label> 
+
+	<input
+		type="text" id="${inputValue}" name="${inputValue}"
 		data-th-field="*{__${inputValue}__}"
-		data-th-placeholder="#{${labelValue}}"> 
-		<span class="form-error is-visable" data-th-error="*{__${inputValue}__}"></span>
+		data-th-placeholder="${labelValue}" autofocus="autofocus" />
+	 
+	 <span class="form-error is-visible" data-th-errors="*{__${inputValue}__}"></span>
+	
+</div>
+
+<div class="medium-12 columns"
+	data-th-fragment="input-112-text(labelValue)">
+	<label data-th-text="#{${labelValue}}"></label>
+	 <input type="text"
+		name="${inputValue}" autofocus="autofocus" data-th-id="${inputValue}"
+		data-th-field="${inputValue}" data-th-placeholder="#{${labelValue}}">
+	<!-- <span class="form-error is-visable" data-th-error="${inputValue}"></span> -->
 </div>
 
 <div data-th-fragment="input-4-text(nameTag, textTag)"
@@ -35,15 +48,19 @@
 </div>
 
 <!-- select -->
-<div class="medium-12 columns" data-th-fragment="select-12(labelValue, labelInput, filedOption)">
-	<Label data-th-text="#{${labelValue}}"></Label> 
-	<select id="${labelInput}"	data-th-field="*{__${labelInput}__}">
-		<option data-th-each="value : ${filedOption}" data-th-value="${value}" data-th-text="${value}">
+<div class="medium-12 columns"
+	data-th-fragment="select-12(labelValue, labelInput, filedOption)">
+	<Label data-th-text="#{${labelValue}}"></Label> <select
+		id="${labelInput}" data-th-field="*{__${labelInput}__}">
+		<option data-th-each="value : ${filedOption}" data-th-value="${value}"
+			data-th-text="${value}">
 	</select>
 </div>
 
 <!-- checkbox -->
-<div class="medium-12 columns" data-th-fragment="input-12-checkbox(labelValue, labelInput)">
+<div class="medium-12 columns"
+	data-th-fragment="input-checkbox-12(labelValue, labelInput)">
 	<label data-th-text="#{${labelValue}}"></label> <input type="checkbox"
 		data-th-id="${labelInput}" data-th-field="*{__${labelInput}__}">
 </div>
+</body>

@@ -9,7 +9,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
 
-import informer.model.EmployeeModel;
+import ua.kyiv.informer.rest.employee.EmployeeModel;
 
 /**
  *

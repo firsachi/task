@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
-import informer.model.EmployeelLiteModel;
+import ua.kyiv.informer.rest.employee.EmployeelLiteModel;
 
 public class HrOrderModel {
 	

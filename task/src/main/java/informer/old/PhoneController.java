@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import informer.model.PhoneModel;
 import ua.kyiv.informer.logic.repository.PhoneDaoImpl;
 import ua.kyiv.informer.logic.service.PhoneService;
+import ua.kyiv.informer.rest.PhoneModel;
 
 @RequestMapping("/phone/")
 @Controller

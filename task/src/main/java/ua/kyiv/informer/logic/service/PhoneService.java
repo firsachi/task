@@ -9,9 +9,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import informer.model.PhoneModel;
 import ua.kyiv.informer.logic.entity.Phone;
 import ua.kyiv.informer.logic.repository.PhoneDaoImpl;
+import ua.kyiv.informer.rest.PhoneModel;
 
 
 @Service

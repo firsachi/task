@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import informer.model.EmployeelLiteModel;
 import ua.kyiv.informer.logic.service.EmployeeService;
 import ua.kyiv.informer.logic.service.HrOrderService;
+import ua.kyiv.informer.rest.employee.EmployeelLiteModel;
 
 @Controller
 public class HrOrderAddController extends BaseController<HrOrderService> {

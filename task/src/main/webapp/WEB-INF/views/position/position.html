@@ -7,17 +7,17 @@
 	
 		<nav id="header" data-th-replace="fragments/nav :: core-nav(#{titleform.positions})"></nav>
 		
-		<br>
 		<div class="row flex-container expanded">
 			<div class="columns medium-2">
 				<ul data-th-replace="templates/menu :: top-directories"></ul>
 			</div>
 			<div class="columns medium-10">
-				<table data-th-replace="position/position-fargment.html :: table-position"></table>
+				<div data-th-replace="position/position-fargment :: ${nameFragment}"></div>				
 			</div>
 		</div>
 		
 		<script data-th-replace="fragments/core-script :: core-script"></script>
+		<script type="text/javascript" data-th-src="@{/resources/js/menu.js}"></script>
 		
 	</body>
 </html>

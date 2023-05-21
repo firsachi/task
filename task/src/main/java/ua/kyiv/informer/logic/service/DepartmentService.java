@@ -11,11 +11,11 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import informer.model.DepartmentFormModel;
-import informer.model.DepartmentModel;
 import ua.kyiv.informer.logic.entity.Company;
 import ua.kyiv.informer.logic.entity.Department;
 import ua.kyiv.informer.logic.repository.DepartmentDaoImpl;
+import ua.kyiv.informer.rest.department.DepartmentFormModel;
+import ua.kyiv.informer.rest.department.DepartmentModel;
 
 @Service
 @Transactional

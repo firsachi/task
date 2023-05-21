@@ -12,8 +12,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import informer.model.EmployeeModel;
-import informer.model.EmployeelLiteModel;
 import informer.old.transformer.EmployeeTransformer;
 import ua.kyiv.informer.logic.repository.CompanyDaoImpl;
 import ua.kyiv.informer.logic.repository.DepartmentDaoImpl;
@@ -21,6 +19,8 @@ import ua.kyiv.informer.logic.repository.EmployeeDaoImpl;
 import ua.kyiv.informer.logic.repository.PhoneDaoImpl;
 import ua.kyiv.informer.logic.repository.PositionDaoImpl;
 import ua.kyiv.informer.logic.repository.RoomDaoImpl;
+import ua.kyiv.informer.rest.employee.EmployeeModel;
+import ua.kyiv.informer.rest.employee.EmployeelLiteModel;
 
 @Service
 public class EmployeeService extends ServiseTask<EmployeeModel> {
