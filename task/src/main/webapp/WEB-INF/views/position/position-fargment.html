@@ -29,12 +29,16 @@
 					</tr>
 				</tbody>
 			</table>
+
+		<div data-th-fragment="form-add" data-th-remove="tag">
+			<form data-th-replace="position/position-fargment :: position-form(#{titleform.new}, @{add})"></form>
+		</div>
 	
-	<div data-th-fragment="core-form" data-th-remove="tag" >
-		<form method="post"  data-th-action="${urlAction}" data-th-object="${position}" >
+	<div  data-th-remove="tag" >
+		<form method="post"  data-th-action="${urlAction}" data-th-object="${position}"  data-th-fragment="position-form(titleForm, urlForm)">
 			
 			<div class="medium-12 columns">
-				<h3 data-th-text="#{${titleForm}}">title form</h3>
+				<h3 data-th-text="${titleForm}">title form</h3>
 			</div>
 
 			<!-- name post -->			 
@@ -53,7 +57,6 @@
 	</div>
 	
 	<div data-th-fragment="deleteModalWindow" data-th-remove="tag">
-
 			<p></p>
   			<p class="lead">
   				<span data-th-text="#{titleform.deletePosition}"></span>
