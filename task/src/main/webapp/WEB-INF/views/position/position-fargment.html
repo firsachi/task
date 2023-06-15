@@ -33,6 +33,10 @@
 		<div data-th-fragment="form-add" data-th-remove="tag">
 			<form data-th-replace="position/position-fargment :: position-form(#{titleform.new}, @{add})"></form>
 		</div>
+
+		<div data-th-fragment="form-edit" data-th-remove="tag">
+			<form data-th-replace="position/position-fargment :: position-form(#{titleform.editPosition}, @{{id}(id=${position.id})})"></form>
+		</div>
 	
 	<div  data-th-remove="tag" >
 		<form method="post"  data-th-action="${urlAction}" data-th-object="${position}"  data-th-fragment="position-form(titleForm, urlForm)">
