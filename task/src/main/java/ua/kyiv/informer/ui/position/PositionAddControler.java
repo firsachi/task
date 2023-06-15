@@ -11,11 +11,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class PositionAddControler extends MainPosition {
-	
+	@ModelAttribute("nameFragment")
+	public String getNameFragment() {
+		return 	"form-add";
+	}
+
 	@GetMapping(path = {"/add", "add/"})
 	public String pageAdd(ModelMap model) {
     	model.addAttribute("position", new PositionModel());
-		return "position/position-add";
+		return "position/position";
 	}
 
 	@PostMapping(path = {"/add", "add/"}, params = { "save" })
@@ -23,7 +27,7 @@ public class PositionAddControler extends MainPosition {
 			final BindingResult bindingResult) {
 		model.setId(0);
 		if (bindingResult.hasErrors()) {
-			return "position/position-add";
+			return "position/position";
 		}
 		positionService.save(model);
 		return "redirect:/position/";
