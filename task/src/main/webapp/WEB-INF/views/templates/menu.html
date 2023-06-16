@@ -1,13 +1,39 @@
-<ul id="componentMenu" class="vertical menu" data-th-fragment="top-directories">
-	<li data-sec-authorize="hasAnyAuthority('ADMINISTRATOR','HR')">
-		<span data-th-text="#{titleform.home.directories}"></span>
-		<ul id="menu-directories" class="vertical menu">
-			<li><a data-th-href="@{/home/}" data-th-text="#{titleform.home}">home</a></li>
-			<li><a data-th-href="@{/position/}" data-th-text="#{titleform.positions}">position</a></li>
-			<li><a data-th-href="@{/department/}" data-th-text="#{titleform.departments}">department</a></li>
-			<li><a data-th-href="@{/company/}" data-th-text="#{titleform.company}">company</a></li>
-			<li><a data-th-href="@{/room/}" data-th-text="#{titleform.room}" data-sec-authorize="hasAuthority('ADMINISTRATOR')">room</a></li>
-			<li><hr></li>
-		</ul>
-	</li>
+<ul data-th-fragment="top-directories">
+    <li data-sec-authorize="hasAnyAuthority('ADMINISTRATOR','HR')" data-th-fragment="top-directories">
+        <span data-th-text="#{titleform.home.directories}"></span>
+        <ul id="menu-directories" class="vertical menu">
+            <li>
+                <a data-th-href="@{/home/}" data-th-text="#{titleform.home}">home</a>
+            </li>
+            <li>
+                <a data-th-href="@{/position/}" data-th-text="#{titleform.positions}">position</a>
+            </li>
+            <li>
+                <a data-th-href="@{/department/}" data-th-text="#{titleform.departments}">department</a>
+            </li>
+            <li>
+                <a data-th-href="@{/company/}" data-th-text="#{titleform.company}">company</a>
+            </li>
+            <li data-sec-authorize="hasAuthority('ADMINISTRATOR')">
+                <a data-th-href="@{/room/}" data-th-text="#{titleform.room}">room</a>
+            </li>
+        </ul>
+    </li>
+</ul>
+
+<ul>
+    <li data-sec-authorize="hasAnyAuthority('ADMINISTRATOR','HR')" data-th-fragment="top-admin">
+        <span data-th-text="#{titleform.admin}"></span>
+        <ul id="menu-admin" class="menu vertical">
+            <li>
+                <a data-th-href="@{/home/}" data-th-text="#{titleform.home}">home</a>
+            </li>
+            <li>
+                <a data-th-href="@{/employee/}"	data-th-text="#{titleform.emploee}"></a>
+            </li>
+            <li data-sec-authorize="hasAuthority('ADMINISTRATOR')">
+                <a data-th-href="@{/users/}" data-th-text="#{titleform.users}"></a>
+            </li>
+        </ul>
+    </li>
 </ul>

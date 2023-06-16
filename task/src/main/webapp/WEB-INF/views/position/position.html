@@ -9,7 +9,9 @@
 		
 		<div class="row flex-container expanded">
 			<div class="columns medium-2">
-				<ul data-th-replace="templates/menu :: top-directories"></ul>
+				<ul id="componentMenu" class="vertical menu">
+					<li data-th-replace="templates/menu :: top-directories"></li>
+				</ul>
 			</div>
 			<div class="columns medium-10">
 				<div data-th-replace="position/position-fargment :: ${nameFragment}"></div>				
