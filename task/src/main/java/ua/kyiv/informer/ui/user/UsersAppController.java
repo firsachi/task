@@ -1,47 +1,23 @@
 package ua.kyiv.informer.ui.user;
 
-import java.util.List;
-
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
-import ua.kyiv.informer.logic.entity.Role;
-import ua.kyiv.informer.logic.repository.RoleRepositiry;
 import ua.kyiv.informer.logic.service.UserAppService;
 
 @Controller
-@RequestMapping(path = {"/users", "/users/"})
-public class UsersAppController {
-	
-	private final String REDIRECT_URL = "redirect:/users/";
-	
-	@Autowired
-	private RoleRepositiry roleRepository;
-	
-	@Autowired
-	private UserAppService userAppService;
-	
-	@ModelAttribute("roles")
-	public List<Role> getRoleList() {
-		return roleRepository.byList("Role.All");
-	}
-	
+//@RequestMapping(path = {"/users", "users/"})
+public class UsersAppController extends UserMainController {
+
 	@GetMapping
 	public String usersPage(ModelMap model) {
-		model.addAttribute("userList", userAppService.getListUser());
-		model.addAttribute("page", "");
-		return "users/users";
+		model.addAttribute("nameFragment", "user-table");
+		model.addAttribute("userList", getUserAppService().getListUser());
+		return "user/app-user";
 	}
-	
+	/*
 	@GetMapping(path = {"/add", "/add/"})
 	public String userPage(ModelMap model) {
 		model.addAttribute("user", new UserAddFormModel());
@@ -113,4 +89,6 @@ public class UsersAppController {
 			bindingResult.rejectValue("repeatPassword","unique.password");
 		}
 	}
+
+	 */
 }
