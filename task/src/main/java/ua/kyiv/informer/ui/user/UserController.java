@@ -10,13 +10,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import ua.kyiv.informer.logic.entity.Role;
 import ua.kyiv.informer.logic.repository.RoleRepositiry;
-import ua.kyiv.informer.ui.CoreAddController;
+import ua.kyiv.informer.ui.CoreController;
+import ua.kyiv.informer.ui.user.model.UserAddFormModel;
 
 import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-public class UserAddController extends UserMainController implements CoreAddController {
+public class UserController extends UserMainController implements CoreController {
 
     @Autowired
     private RoleRepositiry roleRepository;

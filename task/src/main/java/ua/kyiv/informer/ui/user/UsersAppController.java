@@ -18,27 +18,7 @@ public class UsersAppController extends UserMainController {
 		return "user/app-user";
 	}
 	/*
-	@GetMapping(path = {"/add", "/add/"})
-	public String userPage(ModelMap model) {
-		model.addAttribute("user", new UserAddFormModel());
-		model.addAttribute("page", "add");
-		return "users/users";
-	}
-	
-	@PostMapping(path = {"/add", "/add/"})
-	public String userAddPage(@Valid @ModelAttribute("user") UserAddFormModel userModel, BindingResult bindingResult, ModelMap model) {
-		if (!userAppService.findUsername(userModel.getUsername())) {
-			bindingResult.rejectValue("username","unique.value.violation");
-		}
-		validatePass(userModel.getPassword(), userModel.getRepeatPassword(), bindingResult);
-		if (bindingResult.hasErrors()) {
-			model.addAttribute("page", "add");
-			return "users/users";
-		}
-		userAppService.save(userModel);
-		return REDIRECT_URL;
-	}
-	
+
 	@GetMapping(path = {"/pass", "/pass/"}, params = {"username"})
 	public String pass(@Param(value = "username") String username, ModelMap model) {
 		model.addAttribute("userChangePass", new UserChangePass(username));
