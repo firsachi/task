@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>user-form-fragment</title>
+</head>
+<body>
+
+<form method="post" data-th-fragment="add-user(titleForm, urlForm)" data-th-action="${urlForm}" data-th-object="${user}">
+
+    <div class="medium-12 columns">
+        <h3 data-th-text="${titleForm}">title form</h3>
+    </div>
+
+    <!-- username-->
+    <div data-th-replace="templates/input-custom :: input-text-12(#{inputlabel.username},'username')"></div>
+
+    <!-- pass -->
+    <div data-th-replace="templates/input-custom :: input-pass-12(#{inputlabel.password},'password')"></div>
+
+    <!-- change pass -->
+    <div data-th-replace="templates/input-custom :: input-pass-12(#{inputlabel.repeatPassword},'repeatPassword')"></div>
+
+    <div data-th-replace="user/user-form-fragment :: fragment-form-role-diable"></div>
+
+    <!-- button submit -->
+    <div data-th-replace="templates/core-tag :: button-submit" data-th-remove="tag"></div>
+
+</form>
+
+<form method="post" data-th-fragment="edit-user(titleForm, urlForm)" data-th-action="${urlForm}" data-th-object="${user}">
+
+    <div class="medium-12 columns">
+        <h3 data-th-text="${titleForm}">title form</h3>
+    </div>
+
+    <div data-th-replace="user/user-form-fragment :: fragment-form-role-diable"></div>
+
+    <!-- button submit -->
+    <div data-th-replace="templates/core-tag :: button-submit" data-th-remove="tag"></div>
+
+</form>
+
+<div data-th-fragment="fragment-form-role-diable" data-th-remove="tag">
+
+    <!-- role -->
+    <div class="medium-12 columns">
+        <label>
+            <span data-th-text="#{titleform.roles}"></span>:
+            <input type="checkbox" name="role" data-th-each="role : ${roles}" data-th-text="${role.roleName} + ' '"
+                   data-th-field="*{selectedRole}" data-th-value="${role.roleId}">
+        </label>
+    </div>
+
+    <!-- disable -->
+    <div data-th-replace="templates/input-custom :: input-checkbox-12(#{inputlabel.isdisable}, 'enabled')"></div>
+
+</div>
+
+</body>
+</html>

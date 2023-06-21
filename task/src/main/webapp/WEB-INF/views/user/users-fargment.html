@@ -28,7 +28,7 @@
                         <ul class="menu vertical">
                             <li><a data-th-href="@{pass(username=${user.username})}"
                                    data-th-text="#{buttonname.changePass}">change pass</a></li>
-                            <li><a data-th-href="@{edit(username=${user.username})}" data-th-text="#{buttonname.edit}">edit</a>
+                            <li><a data-th-href="@{edit/{username}(username=${user.username})}" data-th-text="#{buttonname.edit}">edit</a>
                             </li>
                             <li><a data-th-href="@{del(username=${user.username})}" data-th-text="#{buttonname.delete}">delete</a>
                             </li>
@@ -42,8 +42,13 @@
 </table>
 
 <div data-th-fragment="add-user" data-th-remove="tag">
-    <form data-th-replace="user/users-fargment :: core-form(#{titleform.new},@{add})"></form>
+    <form data-th-replace="user/user-form-fragment :: ${nameFragment}(#{titleform.new},@{add})"></form>
 </div>
+
+<div data-th-fragment="edit-user" data-th-remove="tag">
+    <form data-th-replace="user/user-form-fragment :: ${nameFragment}(#{titleform.edit},@{{username}(username=${user.username})})"></form>
+</div>
+
 
 <form method="post" data-th-fragment="core-form(titleForm, urlForm)" data-th-action="${urlForm}" data-th-object="${user}">
 
@@ -76,6 +81,8 @@
     <div data-th-replace="templates/core-tag :: button-submit" data-th-remove="tag"></div>
 
 </form>
+
+
 
 <!-- form add -->
 <div data-th-fragment="form-add" data-th-remove="tag">

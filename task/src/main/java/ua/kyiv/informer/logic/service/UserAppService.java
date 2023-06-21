@@ -13,10 +13,10 @@ import org.springframework.stereotype.Service;
 import ua.kyiv.informer.logic.entity.UserApp;
 import ua.kyiv.informer.logic.repository.RoleRepositiry;
 import ua.kyiv.informer.logic.repository.UserRepositoryImpl;
-import ua.kyiv.informer.ui.user.UserAddFormModel;
+import ua.kyiv.informer.ui.user.model.UserAddFormModel;
 import ua.kyiv.informer.ui.user.UserChangePass;
-import ua.kyiv.informer.ui.user.UserEditModel;
-import ua.kyiv.informer.ui.user.UserModel;
+import ua.kyiv.informer.ui.user.model.UserEditModel;
+import ua.kyiv.informer.ui.user.model.UserModel;
 
 @Service
 public class UserAppService {
@@ -43,16 +43,16 @@ public class UserAppService {
 	public boolean findUsername(String username) {
 		return userRepository.uniqueUsermane(username);
 	}
-	
+
 	@Transactional
 	public UserModel byUserApp(String username) {
 		return modelMapper.map(userRepository.byId(username), UserModel.class);
 	}
-	
-	public UserEditModel byUserApp(UserEditModel userEditModel) {
-		UserModel userModel = byUserApp(userEditModel.getUsername());
-		userEditModel.setSelectedRole(userModel.getRoles().stream().map(role -> role.getRoleId()).collect(Collectors.toSet()));
-		userEditModel.setEnabled(userModel.isEnabled());
+	@Transactional
+	public UserEditModel byUserEditApp(String username) {
+		UserApp userApp = userRepository.byId(username);
+		UserEditModel userEditModel =  modelMapper.map(userApp, UserEditModel.class);
+		userEditModel.setSelectedRole(userApp.getRoles().stream().map(role -> role.getRoleId()).collect(Collectors.toSet()));
 		return userEditModel;
 	}
 
