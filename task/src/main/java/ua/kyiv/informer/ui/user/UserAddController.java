@@ -17,7 +17,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-public class UserController extends UserMainController implements CoreController {
+public class UserAddController extends UserMainController implements CoreController {
 
     @Autowired
     private RoleRepositiry roleRepository;
