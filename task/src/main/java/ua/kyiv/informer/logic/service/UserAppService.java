@@ -14,7 +14,7 @@ import ua.kyiv.informer.logic.entity.UserApp;
 import ua.kyiv.informer.logic.repository.RoleRepositiry;
 import ua.kyiv.informer.logic.repository.UserRepositoryImpl;
 import ua.kyiv.informer.ui.user.model.UserAddFormModel;
-import ua.kyiv.informer.ui.user.UserChangePass;
+import ua.kyiv.informer.ui.user.model.UserChangePassModel;
 import ua.kyiv.informer.ui.user.model.UserEditModel;
 import ua.kyiv.informer.ui.user.model.UserModel;
 
@@ -70,7 +70,7 @@ public class UserAppService {
 	}
 	
 	@Transactional
-	public void changePassword(UserChangePass model) {
+	public void changePassword(UserChangePassModel model) {
 		UserApp user = userRepository.byId(model.getUsername());
 		user.setPassword(passwordEncoder.encode(model.getPassword()));
 		userRepository.update(user);

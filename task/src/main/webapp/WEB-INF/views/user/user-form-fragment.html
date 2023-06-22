@@ -41,6 +41,23 @@
 
 </form>
 
+<form method="post" data-th-fragment="change-pass-user(titleForm, urlForm)" data-th-action="${urlForm}" data-th-object="${userChangePass}">
+
+    <div class="medium-12 columns">
+        <h3 data-th-text="${titleForm}">title form</h3>
+    </div>
+
+    <div data-th-insert="user/user-form-fragment :: fragment-form-pass-change"></div>
+
+    <!-- button submit -->
+    <div data-th-replace="templates/core-tag :: button-submit" data-th-remove="tag"></div>
+
+</form>
+
+<form method="post" data-th-fragment="user-del(titleForm, urlForm)" data-th-action="${urlForm}" data-th-object="${user}">
+
+</form>
+
 <div data-th-fragment="fragment-form-role-diable" data-th-remove="tag">
 
     <!-- role -->
@@ -55,6 +72,15 @@
     <!-- disable -->
     <div data-th-replace="templates/input-custom :: input-checkbox-12(#{inputlabel.isdisable}, 'enabled')"></div>
 
+</div>
+
+
+<div data-th-fragment="fragment-form-pass-change" data-th-remove="tag">
+    <!-- pass -->
+    <div data-th-replace="templates/input-custom :: input-pass-12(#{inputlabel.password},'password')"></div>
+
+    <!-- change pass -->
+    <div data-th-replace="templates/input-custom :: input-pass-12(#{inputlabel.repeatPassword},'repeatPassword')"></div>
 </div>
 
 </body>

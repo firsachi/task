@@ -1,10 +1,10 @@
-package ua.kyiv.informer.ui.user;
+package ua.kyiv.informer.ui.user.model;
 
 import java.util.Objects;
 
 import javax.validation.constraints.Size;
 
-public class UserChangePass {
+public class UserChangePassModel {
 	
 	private String username;
 	
@@ -14,11 +14,11 @@ public class UserChangePass {
 	@Size(min = 8)
 	private String repeatPassword;
 
-	public UserChangePass() {
+	public UserChangePassModel() {
 		super();
 	}
 	
-	public UserChangePass(String username) {
+	public UserChangePassModel(String username) {
 		this.username = username;
 	}
 
@@ -59,7 +59,7 @@ public class UserChangePass {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		UserChangePass other = (UserChangePass) obj;
+		UserChangePassModel other = (UserChangePassModel) obj;
 		return Objects.equals(password, other.password) && Objects.equals(repeatPassword, other.repeatPassword)
 				&& Objects.equals(username, other.username);
 	}
