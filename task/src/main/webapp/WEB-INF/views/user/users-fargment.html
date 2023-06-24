@@ -54,7 +54,7 @@
     <form data-th-replace="user/user-form-fragment :: ${nameFragment}(#{titleform.userChangePass(${userChangePass.username})},@{{uasername}(username=${userChangePass.username})})"></form>
 </div>
 
-<div data-th-fragment="delete-user" data-th-remove="tag">
+<div data-th-fragment="del-user" data-th-remove="tag">
     <for data-th-insert="user/user-form-fragment :: ${nameFragment}(#{titleform.deleteUser},@{delete})"></for>
 </div>
 <!-- -->

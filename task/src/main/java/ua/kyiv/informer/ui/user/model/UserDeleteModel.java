@@ -1,13 +1,13 @@
-package ua.kyiv.informer.ui.user;
+package ua.kyiv.informer.ui.user.model;
 
-public class UserDelete {
+public class UserDeleteModel {
 
 	private String username;
 
-	public UserDelete() {
+	public UserDeleteModel() {
 	}
 	
-	public UserDelete(String username) {
+	public UserDeleteModel(String username) {
 		this.username = username;
 	}
 

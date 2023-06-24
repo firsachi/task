@@ -12,7 +12,7 @@
         <h3 data-th-text="${titleForm}">title form</h3>
     </div>
 
-    <!-- username-->
+    <!-- username -->
     <div data-th-replace="templates/input-custom :: input-text-12(#{inputlabel.username},'username')"></div>
 
     <!-- pass -->
@@ -54,7 +54,7 @@
 
 </form>
 
-<form method="post" data-th-fragment="user-del(titleForm, urlForm)" data-th-action="${urlForm}" data-th-object="${user}">
+<form method="post" data-th-fragment="del-user(titleForm, urlForm)" data-th-action="${urlForm}" data-th-object="${user}">
 
 </form>
 
