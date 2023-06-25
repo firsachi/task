@@ -55,7 +55,7 @@
 </div>
 
 <div data-th-fragment="del-user" data-th-remove="tag">
-    <for data-th-insert="user/user-form-fragment :: ${nameFragment}(#{titleform.deleteUser},@{delete})"></for>
+    <for data-th-insert="user/user-form-fragment :: ${nameFragment}(#{titleform.deleteUser},@{{uasername}(username=${user.username})})"></for>
 </div>
 <!-- -->
 
