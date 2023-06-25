@@ -12,8 +12,7 @@
         <h3 data-th-text="${titleForm}">title form</h3>
     </div>
 
-    <!-- username -->
-    <div data-th-replace="templates/input-custom :: input-text-12(#{inputlabel.username},'username')"></div>
+    <div data-th-replace="${#strings.equals(nameFragment, 'add-user')} ? ~{templates/input-custom :: input-text-12(#{inputlabel.username},'username')}"></div>
 
     <!-- pass -->
     <div data-th-replace="templates/input-custom :: input-pass-12(#{inputlabel.password},'password')"></div>
@@ -55,6 +54,15 @@
 </form>
 
 <form method="post" data-th-fragment="del-user(titleForm, urlForm)" data-th-action="${urlForm}" data-th-object="${user}">
+
+    <div class="medium-12 columns">
+        <h3 data-th-text="${titleForm}">title form</h3>
+    </div>
+
+
+
+    <!-- button submit -->
+    <div data-th-insert="templates/core-tag :: button-submit"></div>
 
 </form>
 
