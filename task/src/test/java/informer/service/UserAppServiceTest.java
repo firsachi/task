@@ -1,4 +1,4 @@
-package ua.kyiv.informer.logic;
+package informer.service;
 
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -16,7 +16,7 @@ import informer.old.transformer.EmployeeTransformer;
 import ua.kyiv.informer.logic.repository.EmployeeDaoImpl;
 import ua.kyiv.informer.logic.service.EmployeeService;
 
-class EmployeeServiceTest {
+class UserAppServiceTest {
 	
 	@Mock
 	private EmployeeDaoImpl employeeDao;
@@ -54,5 +54,9 @@ class EmployeeServiceTest {
 	void testDleteLogic() {
 		employeeService.delete(1);
 		verify(employeeDao, times(1)).byId(1);
+	}
+
+	void testFindUsernameLogic() {
+
 	}
 }
