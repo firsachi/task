@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="ua">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -24,10 +24,14 @@
 				<ul class="dropdown menu" data-dropdown-menu>
 					<li data-sec-authorize="isAuthenticated()"><a data-th-text="${#authentication.name}">User name</a></li>
 					<li class="has-submenu" data-sec-authorize="isAuthenticated()">
-						<a href="#0">+</a>
+						<a href="#">+</a>
 						<ul class="submenu menu vertical" data-submenu> 
-							<li data-sec-authorize="hasAnyAuthority('ADMINISTRATOR')"><a>add user</a></li>
-							<li data-sec-authorize="hasAnyAuthority('ADMINISTRATOR','HR')"><a>add employee</a></li>
+							<li data-sec-authorize="hasAnyAuthority('ADMINISTRATOR')">
+								<a data-th-href="@{/users/add/}" data-th-text="#{label.newuser}" >add user</a>
+							</li>
+							<li data-sec-authorize="hasAnyAuthority('ADMINISTRATOR','HR')">
+								<a>add employee</a>
+							</li>
 						</ul>
 					</li>
 					<li data-th-replace="templates/button-login-logoff :: login-logoff" data-th-remove="tag">button login logoff</li>
