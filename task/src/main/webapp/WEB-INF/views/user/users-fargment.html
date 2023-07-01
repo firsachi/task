@@ -21,7 +21,7 @@
             <ul class="menu align-right">
                 <li>
                     <button class="button fi-list"
-                            data-th-classappend="${user.enabled} ? 'hollow'" type="button"
+                            data-th-classappend="${user.enabled} ? _ : 'hollow'" type="button"
                             data-th-attr="data-toggle='example-' + @{{id}(id=${user.username})}"></button>
                     <div class="dropdown-pane dropdown-pane-zie" data-th-id="'example-' + @{{id}(id=${user.username})}"
                          data-dropdown data-auto-focus="true" data-close-on-click="true">
