@@ -4,16 +4,10 @@
 package ua.kyiv.informer.logic.entity;
 
 import java.io.Serializable;
+import java.util.Objects;
+import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * @author firsov
@@ -33,12 +27,16 @@ public class Role implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "role_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "role_id")
 	private Integer roleId;
 
 	@Column(nullable = false)
 	private String roleName;
+
+	@ManyToMany(fetch = FetchType.EAGER ,cascade = {CascadeType.MERGE, CascadeType.PERSIST,CascadeType.REFRESH})
+	@JoinTable(name = "role_permission", joinColumns = @JoinColumn(name = "role_id"), inverseJoinColumns = @JoinColumn(name = "permission_id"))
+	private Set<Permission> permissions;
 
 	public Role() {
 		super();
@@ -60,40 +58,13 @@ public class Role implements Serializable {
 		this.roleName = roleName;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((roleId == null) ? 0 : roleId.hashCode());
-		result = prime * result + ((roleName == null) ? 0 : roleName.hashCode());
-		return result;
+	public Set<Permission> getPermissions() {
+		return permissions;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Role other = (Role) obj;
-		if (roleId == null) {
-			if (other.roleId != null)
-				return false;
-		} else if (!roleId.equals(other.roleId))
-			return false;
-		if (roleName == null) {
-			if (other.roleName != null)
-				return false;
-		} else if (!roleName.equals(other.roleName))
-			return false;
-		return true;
+	public void setPermissions(Set<Permission> permissions) {
+		this.permissions = permissions;
 	}
 
-	@Override
-	public String toString() {
-		return "Role [roleId=" + roleId + ", roleName=" + roleName + "]";
-	}
-	
+
 }

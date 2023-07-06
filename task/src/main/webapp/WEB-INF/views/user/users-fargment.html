@@ -4,7 +4,7 @@
     <tr>
         <th data-th-text="#{inputlabel.login}"></th>
         <th data-th-text="#{inputlabel.roles}"></th>
-        <th data-sec-authorize="hasAuthority('ADMINISTRATOR')">
+        <th data-sec-authorize="hasAnyAuthority('user:write')">
             <ul data-th-replace="templates/core-tag :: button-add"></ul>
         </th>
     </tr>
@@ -17,7 +17,7 @@
                 <span data-th-text="${role.roleName}"></span>
             </span>
         </td>
-        <td>
+        <td data-sec-authorize="hasAnyAuthority('user:write')">
             <ul class="menu align-right">
                 <li>
                     <button class="button fi-list"
