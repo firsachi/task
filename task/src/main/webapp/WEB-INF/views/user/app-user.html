@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html>
-<head data-th-replace="templates/head :: head(#{titleform.users})"></head>
+<html lang="ua">
+<head data-th-replace="templates/head :: head(~{::title})">
+    <title data-th-text="#{titleform.users}"></title>
+</head>
 
 <body>
 
