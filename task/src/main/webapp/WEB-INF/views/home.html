@@ -1,15 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="ua">
 
-<head data-th-replace="templates/head :: head(#{titleform.home})"></head>
+<head data-th-replace="templates/head :: head(~{::titl})">
+	<title data-th-text="#{titleform.home}"></title>
+</head>
 
 <body>
 
 	<nav id="header" data-th-replace="fragments/nav :: core-nav(#{titleform.home})"></nav>
-
-	<div class="row">
-		<h4>Module app</h4>
-	</div>
 	
 	<div class="row flex-container">
 		
