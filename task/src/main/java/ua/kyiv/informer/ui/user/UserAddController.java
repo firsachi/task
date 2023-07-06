@@ -1,7 +1,7 @@
 package ua.kyiv.informer.ui.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -10,17 +10,20 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import ua.kyiv.informer.logic.entity.Role;
 import ua.kyiv.informer.logic.repository.RoleRepositiry;
-import ua.kyiv.informer.ui.CoreController;
 import ua.kyiv.informer.ui.user.model.UserAddFormModel;
 
 import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-public class UserAddController extends UserMainController implements CoreController {
+public class UserAddController extends UserMainController {
+
+    private final RoleRepositiry roleRepository;
 
     @Autowired
-    private RoleRepositiry roleRepository;
+    public UserAddController(RoleRepositiry roleRepository) {
+        this.roleRepository = roleRepository;
+    }
 
     @ModelAttribute("roles")
     public List<Role> getRoleList() {
@@ -31,12 +34,13 @@ public class UserAddController extends UserMainController implements CoreControl
     public String getNameFragment() {
         return "add-user";
     }
+
     @GetMapping(path = {"/add", "add/"})
     public String addPage(ModelMap modelMap) {
         modelMap.addAttribute("user", new UserAddFormModel());
-        return getPachPage();
+        return getPatchPage();
     }
-    @Secured("ADMINISTRATOR")
+    @PreAuthorize("hasAnyAuthority('user:write')")
     @PostMapping(path = {"/add", "/add/"})
     public String userAddPage(@Valid @ModelAttribute("user") UserAddFormModel userModel, BindingResult bindingResult, ModelMap model) {
         if (!getUserAppService().findUsername(userModel.getUsername())) {
@@ -45,7 +49,7 @@ public class UserAddController extends UserMainController implements CoreControl
         validatePass(userModel.getPassword(), userModel.getRepeatPassword(), bindingResult);
         if (bindingResult.hasErrors()) {
             model.addAttribute("page", "add");
-            return getPachPage();
+            return getPatchPage();
         }
         getUserAppService().save(userModel);
         return "redirect:/users/";

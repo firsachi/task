@@ -2,6 +2,7 @@ package ua.kyiv.informer.ui.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ua.kyiv.informer.logic.service.UserAppService;
 
@@ -11,14 +12,15 @@ public abstract class UserMainController {
     @Autowired
     private UserAppService userAppService;
 
-    private String pachPage = "user/app-user";
+    @ModelAttribute("nameFragment")
+    public abstract String getNameFragment();
 
     public UserAppService getUserAppService(){
         return  userAppService;
     }
 
-    public String getPachPage(){
-        return pachPage;
+    public String getPatchPage() {
+        return "user/app-user";
     }
 
     protected void validatePass(String password, String repeatPassword, BindingResult bindingResult) {

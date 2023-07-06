@@ -1,6 +1,3 @@
-/**
- * 
- */
 package ua.kyiv.informer.logic.repository;
 
 import java.util.List;
