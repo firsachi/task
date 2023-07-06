@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="ua">
 
-	<head data-th-replace="templates/head :: head(#{titleform.emploee})"></head>
+	<head data-th-replace="templates/head :: head(~{::title})">
+		<title data-th-text="#{titleform.emploee}"></title>
+	</head>
 	
 <body>
 	<nav id="header" data-th-replace="fragments/nav :: core-nav(#{titleform.emploee})"></nav>
