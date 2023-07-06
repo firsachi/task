@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="ua">
 
-<head data-th-replace="templates/head :: head(#{titleform.login})"></head>
+<head data-th-replace="templates/head :: head(~{::title})">
+	<title data-th-text="#{titleform.login}"></title>
+</head>
 
 <body>
 	
