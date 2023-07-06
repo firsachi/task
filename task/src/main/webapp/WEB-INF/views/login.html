@@ -1,18 +1,37 @@
 <!DOCTYPE html>
-<html>
+<html lang="ua">
 
-	<head data-th-replace="templates/head :: head(#{titleform.login})"></head>
+	<head data-th-replace="templates/head :: head(~{::title})">
+		<title data-th-text="#{titleform.login}"></title>
+	</head>
 	
 	<body>
-		<div style="margin-top: 10%" class="row align-center">
-			<div class="column small-6 large-6">
-				<form id="login" action="#" method="post" data-th-object="${user}">
-					<h3 style="text-align: center;">
-						<span data-th-text="#{titleform.login}"></span>
-					</h3>
-					<div data-th-replace="fragments/login-fargment" data-th-remove="tag"></div>
-				</form>
-			</div>
+		<div style="margin-top: 10%" class="flex-container row align-center">
+			<form id="login" class="column small-6 large-6" method="post" data-th-action="@{/login}" data-th-object="${user}">
+				<h3>
+					<span data-th-text="#{titleform.login}"></span>
+				</h3>
+
+				<div class="medium-12 cell" data-th-if="${param.error}">
+					<div class="callout alert" >
+						<h5 style="color: red" data-th-text="#{error.login}"></h5>
+					</div>
+				</div>
+
+
+				<div class="medium-12 cell">
+					<label  for="username" data-th-text="#{inputlabel.username}"></label>
+					<input type="text" id="username" name="username" autofocus="autofocus" />
+				</div>
+
+				<div class="medium-12 cell">
+					<label for="password" data-th-text="#{inputlabel.password}"></label>
+					<input type="password" id="password" name="password" autofocus="autofocus" />
+				</div>
+
+				<!-- button submit -->
+				<button data-th-insert="templates/button :: button-submit-expanded(#{buttonname.login})"></button>
+			</form>
 		</div>
 	</body>
 	
