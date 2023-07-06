@@ -36,6 +36,7 @@ public class UserAddController extends UserMainController {
     }
 
     @GetMapping(path = {"/add", "add/"})
+    @PreAuthorize("hasAnyAuthority('user:write')")
     public String addPage(ModelMap modelMap) {
         modelMap.addAttribute("user", new UserAddFormModel());
         return getPatchPage();
