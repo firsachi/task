@@ -26,7 +26,7 @@
 					<li class="has-submenu" data-sec-authorize="isAuthenticated()">
 						<a href="#">+</a>
 						<ul class="submenu menu vertical" data-submenu> 
-							<li data-sec-authorize="hasAnyAuthority('ADMINISTRATOR')">
+							<li data-sec-authorize="hasAnyAuthority('user:write')">
 								<a data-th-href="@{/users/add/}" data-th-text="#{label.newuser}" >add user</a>
 							</li>
 							<li data-sec-authorize="hasAnyAuthority('ADMINISTRATOR','HR')">

@@ -22,7 +22,7 @@
 </ul>
 
 <ul>
-    <li data-sec-authorize="hasAnyAuthority('ADMINISTRATOR','HR')" data-th-fragment="top-admin">
+    <li data-sec-authorize="hasAnyAuthority('user:read','HR')" data-th-fragment="top-admin">
         <span data-th-text="#{titleform.admin}"></span>
         <ul id="menu-admin" class="menu vertical">
             <li>
@@ -31,7 +31,7 @@
             <li>
                 <a data-th-href="@{/employee/}"	data-th-text="#{titleform.emploee}"></a>
             </li>
-            <li data-sec-authorize="hasAuthority('ADMINISTRATOR')">
+            <li data-sec-authorize="hasAuthority('user:read')">
                 <a data-th-href="@{/users/}" data-th-text="#{titleform.users}"></a>
             </li>
         </ul>
