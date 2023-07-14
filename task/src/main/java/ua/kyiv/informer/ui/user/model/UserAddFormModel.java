@@ -1,10 +1,8 @@
 package ua.kyiv.informer.ui.user.model;
 
-import ua.kyiv.informer.ui.user.model.UserModel;
+import jakarta.validation.constraints.Size;
 
 import java.util.Set;
-
-import javax.validation.constraints.Size;
 
 public class UserAddFormModel extends UserModel {
 

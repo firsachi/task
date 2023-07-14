@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
@@ -17,7 +17,7 @@ import org.springframework.security.web.context.AbstractSecurityWebApplicationIn
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableMethodSecurity
 public class SecuritySpringConfig extends AbstractSecurityWebApplicationInitializer {
 
 	@Autowired
@@ -36,27 +36,38 @@ public class SecuritySpringConfig extends AbstractSecurityWebApplicationInitiali
 	@Bean
 	public DaoAuthenticationProvider authenticationProvider() {
 		DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-
 		authProvider.setUserDetailsService(userDetailsService);
 		authProvider.setPasswordEncoder(passwordEncoder());
-
 		return authProvider;
 	}
 
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
+		/*
 		http.authorizeRequests().antMatchers("/", "/informer", "/api/**", "/resources/**").permitAll()
 				.anyRequest().authenticated().and()
 				.formLogin().loginPage("/login").usernameParameter("username").passwordParameter("password").permitAll()
 				.and().logout().logoutSuccessUrl("/").permitAll().and().csrf().disable();
+		*/
 
+		http
+				.authorizeHttpRequests((authz) -> authz
+						.requestMatchers("/", "/informer", "/api/**", "/resources/**").permitAll()
+						.anyRequest().authenticated()
+				)
+				.formLogin(form -> form
+						.loginPage("/login")
+						.usernameParameter("username")
+						.passwordParameter("password")
+						.permitAll()
+				);
 		return http.build();
 	}
 
 	@Bean
 	public WebSecurityCustomizer webSecurityCustomizer() {
-		return (web) -> web.ignoring().antMatchers("/images/**", "/js/**", "/webjars/**");
+		return (web) -> web.ignoring().requestMatchers("/images/**", "/js/**", "/webjars/**");
 	}
 
 }

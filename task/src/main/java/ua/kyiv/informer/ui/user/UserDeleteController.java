@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import ua.kyiv.informer.ui.user.model.UserDeleteModel;
+
 @Controller
 public class UserDeleteController extends UserMainController {
 
@@ -22,12 +23,12 @@ public class UserDeleteController extends UserMainController {
         modelMap.addAttribute("user", new UserDeleteModel(username));
         return getPatchPage();
     }
-
+/*
     @PreAuthorize("hasAnyAuthority('user:write')")
     @PostMapping(path = {"/del/{username}", "/del/{username}/}"})
     public String submitDeleteUser(@ModelAttribute("user") UserDeleteModel model) {
         getUserAppService().delete(model.getUsername());
         return "redirect:/users/";
     }
-
+*/
 }

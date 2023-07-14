@@ -4,12 +4,10 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import javax.transaction.Transactional;
-
+import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import ua.kyiv.informer.logic.entity.Company;
 import ua.kyiv.informer.logic.repository.CompanyDaoImpl;
 import ua.kyiv.informer.ui.company.CompanyModel;

@@ -2,9 +2,8 @@ package ua.kyiv.informer.ui.company;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
-import javax.validation.Valid;
-
+import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -20,7 +19,8 @@ import ua.kyiv.informer.logic.service.CompanyService;
 @Controller
 @RequestMapping(path = {"company/", "/company"})
 public class CompanyController {
-	
+
+	/*
 	@Autowired
 	private CompanyService companyService;
 
@@ -89,4 +89,6 @@ public class CompanyController {
 		companyService.delete(companyModel);
 		return "redirect:/company/";
 	}
+
+	 */
 }

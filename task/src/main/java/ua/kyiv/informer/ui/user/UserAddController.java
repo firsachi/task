@@ -1,5 +1,6 @@
 package ua.kyiv.informer.ui.user;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -12,7 +13,6 @@ import ua.kyiv.informer.logic.entity.Role;
 import ua.kyiv.informer.logic.repository.RoleRepositiry;
 import ua.kyiv.informer.ui.user.model.UserAddFormModel;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -41,6 +41,7 @@ public class UserAddController extends UserMainController {
         modelMap.addAttribute("user", new UserAddFormModel());
         return getPatchPage();
     }
+    /*
     @PreAuthorize("hasAnyAuthority('user:write')")
     @PostMapping(path = {"/add", "/add/"})
     public String userAddPage(@Valid @ModelAttribute("user") UserAddFormModel userModel, BindingResult bindingResult, ModelMap model) {
@@ -56,4 +57,6 @@ public class UserAddController extends UserMainController {
         return "redirect:/users/";
     }
 
+
+     */
 }

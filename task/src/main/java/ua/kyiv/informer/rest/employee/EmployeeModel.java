@@ -1,6 +1,6 @@
 package ua.kyiv.informer.rest.employee;
 
-import javax.validation.constraints.Size;
+import jakarta.validation.constraints.Size;
 
 public class EmployeeModel {
 

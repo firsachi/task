@@ -2,11 +2,11 @@ package ua.kyiv.informer.logic.repository;
 
 import java.util.List;
 
-import javax.persistence.TypedQuery;
-
 import org.springframework.stereotype.Repository;
 
 import ua.kyiv.informer.logic.entity.Room;
+
+import jakarta.persistence.TypedQuery;
 
 @Repository("roomDao")
 public class RoomDaoImpl extends MainDao<Room>{

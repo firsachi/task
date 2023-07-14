@@ -1,6 +1,7 @@
 package ua.kyiv.informer.logic.entity;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+
 import java.util.Objects;
 
 @Entity

@@ -1,6 +1,6 @@
 package ua.kyiv.informer.rest;
 
-import javax.validation.constraints.Pattern;
+import jakarta.validation.constraints.Pattern;
 
 public class RoomModel {
 	

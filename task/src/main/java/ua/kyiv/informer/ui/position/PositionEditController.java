@@ -1,10 +1,6 @@
-/**
- * 
- */
 package ua.kyiv.informer.ui.position;
 
-import javax.validation.Valid;
-
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;

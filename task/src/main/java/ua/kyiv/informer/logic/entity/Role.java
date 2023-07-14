@@ -1,13 +1,9 @@
-/**
- * 
- */
 package ua.kyiv.informer.logic.entity;
 
-import java.io.Serializable;
-import java.util.Objects;
-import java.util.Set;
+import jakarta.persistence.*;
 
-import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Set;
 
 /**
  * @author firsov

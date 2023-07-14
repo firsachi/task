@@ -1,8 +1,7 @@
 package ua.kyiv.informer.rest.department;
 import java.util.Objects;
 
-import javax.validation.constraints.NotBlank;
-
+import jakarta.validation.constraints.NotBlank;
 import org.springframework.stereotype.Component;
 
 @Component

@@ -1,5 +1,6 @@
 package ua.kyiv.informer.ui.user;
 
+import jakarta.validation.Valid;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -9,8 +10,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import ua.kyiv.informer.ui.user.model.UserChangePassModel;
-
-import javax.validation.Valid;
 
 @Controller
 public class UserChangePassController extends UserMainController {
@@ -26,7 +25,7 @@ public class UserChangePassController extends UserMainController {
         modelMap.addAttribute("userChangePass", new UserChangePassModel(username));
         return getPatchPage();
     }
-
+/*
     @PreAuthorize("hasAnyAuthority('user:write')")
     @PostMapping(path = {"/pass/{username}'", "/pass/{username}"})
     public String submit(@Valid @ModelAttribute("userChangePass") UserChangePassModel userModel, BindingResult bindingResult, ModelMap model){
@@ -38,4 +37,6 @@ public class UserChangePassController extends UserMainController {
         getUserAppService().changePassword(userModel);
         return "redirect:/users/";
     }
+
+ */
 }

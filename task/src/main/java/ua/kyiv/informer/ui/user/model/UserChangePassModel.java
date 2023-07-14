@@ -1,8 +1,8 @@
 package ua.kyiv.informer.ui.user.model;
 
-import java.util.Objects;
+import jakarta.validation.constraints.Size;
 
-import javax.validation.constraints.Size;
+import java.util.Objects;
 
 public class UserChangePassModel {
 	

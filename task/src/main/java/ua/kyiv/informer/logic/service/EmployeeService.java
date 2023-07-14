@@ -6,12 +6,10 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import javax.transaction.Transactional;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import jakarta.transaction.Transactional;
 import informer.old.transformer.EmployeeTransformer;
 import ua.kyiv.informer.logic.repository.CompanyDaoImpl;
 import ua.kyiv.informer.logic.repository.DepartmentDaoImpl;

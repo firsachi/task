@@ -1,8 +1,8 @@
 package ua.kyiv.informer.ui.company;
 
-import java.util.Objects;
+import jakarta.validation.constraints.NotBlank;
 
-import javax.validation.constraints.NotBlank;
+import java.util.Objects;
 
 public class CompanyModel {
 
