@@ -20,15 +20,15 @@ public class UserDeleteController extends UserMainController {
     @PreAuthorize("hasAnyAuthority('user:write')")
     @GetMapping(path = {"/del/{username}", "del/{username}/"})
     public String deleteUserPage(@PathVariable("username") String username, ModelMap modelMap){
-        modelMap.addAttribute("user", new UserDeleteModel(username));
+        modelMap.addAttribute("userDelete", new UserDeleteModel(username));
         return getPatchPage();
     }
-/*
+
     @PreAuthorize("hasAnyAuthority('user:write')")
-    @PostMapping(path = {"/del/{username}", "/del/{username}/}"})
-    public String submitDeleteUser(@ModelAttribute("user") UserDeleteModel model) {
-        getUserAppService().delete(model.getUsername());
+    @PostMapping(path = {"/del/{username}", "del/{username}"})
+    public String submitPage(@ModelAttribute("userDelete")UserDeleteModel userDeleteModel) {
+        getUserAppService().delete(userDeleteModel.getUsername());
         return "redirect:/users/";
     }
-*/
+
 }

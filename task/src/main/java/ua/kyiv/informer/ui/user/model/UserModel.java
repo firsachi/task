@@ -12,7 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import ua.kyiv.informer.logic.entity.Role;
 
-public class UserModel implements UserDetails{
+public class UserModel{
 	
 	/**
 	 * serial version 
@@ -59,27 +59,6 @@ public class UserModel implements UserDetails{
 
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
-	}
-
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		List<GrantedAuthority> userRole = new ArrayList<>();
-		return userRole;
-	}
-
-	@Override
-	public boolean isAccountNonExpired() {
-		return false;
-	}
-
-	@Override
-	public boolean isAccountNonLocked() {
-		return false;
-	}
-
-	@Override
-	public boolean isCredentialsNonExpired() {
-		return false;
 	}
 
 	@Override

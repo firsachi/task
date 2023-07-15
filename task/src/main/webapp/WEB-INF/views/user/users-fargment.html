@@ -29,9 +29,11 @@
                             <li>
                                 <a data-th-href="@{pass/{username}(username=${user.username})}" data-th-text="#{buttonname.changePass}">change pass</a>
                             </li>
-                            <li><a data-th-href="@{edit/{username}(username=${user.username})}" data-th-text="#{buttonname.edit}">edit</a>
+                            <li>
+                                <a data-th-href="@{edit/{username}(username=${user.username})}" data-th-text="#{buttonname.edit}">edit</a>
                             </li>
-                            <li><a data-th-href="@{del/{username}(username=${user.username})}" data-th-text="#{buttonname.delete}">delete</a>
+                            <li>
+                                <a data-th-href="@{del/{username}(username=${user.username})}" data-th-text="#{buttonname.delete}">delete</a>
                             </li>
                         </ul>
                     </div>
@@ -47,30 +49,13 @@
 </div>
 
 <div data-th-fragment="edit-user" data-th-remove="tag">
-    <form data-th-replace="user/user-form-fragment :: ${nameFragment}(#{titleform.edit},@{{username}(username=${user.username})})"></form>
+    <form data-th-replace="user/user-form-fragment :: ${nameFragment}(#{titleform.edit},@{{username}(username=${userEdit.username})})"></form>
 </div>
 
 <div data-th-fragment="change-pass-user" data-th-remove="tag">
-    <form data-th-replace="user/user-form-fragment :: ${nameFragment}(#{titleform.userChangePass(${userChangePass.username})},@{{uasername}(username=${userChangePass.username})})"></form>
+    <form data-th-replace="user/user-form-fragment :: ${nameFragment}(#{titleform.userChangePass(${userChangePass.username})},@{{username}(username=${userChangePass.username})})"></form>
 </div>
 
 <div data-th-fragment="del-user" data-th-remove="tag">
-    <for data-th-insert="user/user-form-fragment :: ${nameFragment}(#{titleform.deleteUser},@{{uasername}(username=${user.username})})"></for>
-</div>
-<!-- -->
-
-<!-- delete form -->
-<div data-th-fragment="form-del" data-th-remove="tag">
-    <form data-th-action="@{del}" method="POST" data-th-object="${userdel}">
-
-        <div class="medium-12 columns">
-            <h3 data-th-text="#{titleform.deleteUser}">delete</h3>
-        </div>
-        <!-- name -->
-        <div class="medium-12 columns">
-            <input type="hidden" id="username" name="username" data-th-field="*{username}"/>
-        </div>
-        <span data-th-text="#{placeholder.userdell(${userdel.username})}"></span>
-        <div data-th-replace="templates/core-tag :: button-submit" data-th-remove="tag"></div>
-    </form>
+    <form data-th-replace="user/user-form-fragment :: ${nameFragment}(#{titleform.deleteUser},@{{username}(username=${userDelete.username})})"></form>
 </div>

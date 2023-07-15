@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import ua.kyiv.informer.logic.entity.Role;
 import ua.kyiv.informer.logic.repository.RoleRepositiry;
-import ua.kyiv.informer.ui.user.model.UserEditModel;
+import ua.kyiv.informer.ui.user.model.UserChangeModel;
+
 
 import java.util.List;
 
@@ -39,18 +40,20 @@ public class UserEditController extends UserMainController {
     @PreAuthorize("hasAnyAuthority('user:write')")
     @GetMapping(path = {"/edit/{username}", "/edit/{username}/"})
     public String editPage(@PathVariable String username, ModelMap modelMap) {
-        modelMap.addAttribute("user", getUserAppService().byUserEditApp(username));
+        modelMap.addAttribute("userEdit", getUserAppService().byUserEditApp(username));
         return getPatchPage();
     }
-/*
+
     @PreAuthorize("hasAnyAuthority('user:write')")
-    @PostMapping(path = {"/edit/{username}", "/edit/{username}/}"})
-    public String submit(@Valid @ModelAttribute("user") UserEditModel userModel, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return getPatchPage();
+    @PostMapping(path = {"edit/{username}", "/edit/{username}/"})
+    public String submitPage(@Valid @ModelAttribute("userEdit")UserChangeModel userChangeModel, BindingResult bindingResult){
+        if (bindingResult.hasErrors()){
+           return getPatchPage();
         }
-        getUserAppService().update(userModel);
-        return "redirect:/users/";
+        else {
+            getUserAppService().update(userChangeModel);
+            return "redirect:/users/";
+        }
     }
-*/
+
 }

@@ -3,7 +3,7 @@ package ua.kyiv.informer.ui.user.model;
 import java.util.Objects;
 import java.util.Set;
 
-public class UserEditModel {
+public class UserChangeModel {
 	
 	private String username;
 	
@@ -11,10 +11,10 @@ public class UserEditModel {
 	
 	private boolean enabled;
 	
-	public UserEditModel() {
+	public UserChangeModel() {
 	}
 
-	public UserEditModel(String username) {
+	public UserChangeModel(String username) {
 		this.username = username;
 	}
 
@@ -55,7 +55,7 @@ public class UserEditModel {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		UserEditModel other = (UserEditModel) obj;
+		UserChangeModel other = (UserChangeModel) obj;
 		return enabled == other.enabled && Objects.equals(selectedRole, other.selectedRole)
 				&& Objects.equals(username, other.username);
 	}

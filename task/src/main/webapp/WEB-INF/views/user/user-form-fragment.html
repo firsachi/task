@@ -27,7 +27,7 @@
 
 </form>
 
-<form method="post" data-th-fragment="edit-user(titleForm, urlForm)" data-th-action="${urlForm}" data-th-object="${user}">
+<form method="post" data-th-fragment="edit-user(titleForm, urlForm)" data-th-action="${urlForm}" data-th-object="${userEdit}">
 
     <div class="medium-12 columns">
         <h3 data-th-text="${titleForm}">title form</h3>
@@ -53,14 +53,14 @@
 
 </form>
 
-<form method="post" data-th-fragment="del-user(titleForm, urlForm)" data-th-action="${urlForm}" data-th-object="${user}">
+<form method="post" data-th-fragment="del-user(titleForm, urlForm)" data-th-action="${urlForm}" data-th-object="${userDelete}">
 
     <div class="medium-12 columns">
         <h3 data-th-text="${titleForm}">title form</h3>
     </div>
 
     <div class="medium-12 columns">
-        <h4 data-th-text="#{placeholder.userdell(${user.username})}"></h4>
+        <h4 data-th-text="#{placeholder.userdell(${userDelete.username})}"></h4>
     </div>
 
     <!-- button submit -->

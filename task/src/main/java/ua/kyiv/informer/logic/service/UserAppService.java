@@ -15,7 +15,7 @@ import ua.kyiv.informer.logic.repository.RoleRepositiry;
 import ua.kyiv.informer.logic.repository.UserRepositoryImpl;
 import ua.kyiv.informer.ui.user.model.UserAddFormModel;
 import ua.kyiv.informer.ui.user.model.UserChangePassModel;
-import ua.kyiv.informer.ui.user.model.UserEditModel;
+import ua.kyiv.informer.ui.user.model.UserChangeModel;
 import ua.kyiv.informer.ui.user.model.UserModel;
 
 @Service
@@ -49,9 +49,9 @@ public class UserAppService {
 		return modelMapper.map(userRepository.byId(username), UserModel.class);
 	}
 	@Transactional
-	public UserEditModel byUserEditApp(String username) {
+	public UserChangeModel byUserEditApp(String username) {
 		UserApp userApp = userRepository.byId(username);
-		UserEditModel userEditModel =  modelMapper.map(userApp, UserEditModel.class);
+		UserChangeModel userEditModel =  modelMapper.map(userApp, UserChangeModel.class);
 		userEditModel.setSelectedRole(userApp.getRoles().stream().map(role -> role.getRoleId()).collect(Collectors.toSet()));
 		return userEditModel;
 	}
@@ -77,7 +77,7 @@ public class UserAppService {
 	}
 
 	@Transactional
-	public void update(UserEditModel userModel) {
+	public void update(UserChangeModel userModel) {
 		UserApp userApp = modelMapper.map(userModel, UserApp.class);
 		userApp.setPassword(userRepository.findByUserName(userApp.getUsername()).getPassword());
 		userApp.setRoles(userModel.getSelectedRole().stream().map(roleId -> roleRepositiry.byId(roleId)).collect(Collectors.toSet()));

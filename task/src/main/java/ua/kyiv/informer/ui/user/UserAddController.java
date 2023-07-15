@@ -41,7 +41,7 @@ public class UserAddController extends UserMainController {
         modelMap.addAttribute("user", new UserAddFormModel());
         return getPatchPage();
     }
-    /*
+
     @PreAuthorize("hasAnyAuthority('user:write')")
     @PostMapping(path = {"/add", "/add/"})
     public String userAddPage(@Valid @ModelAttribute("user") UserAddFormModel userModel, BindingResult bindingResult, ModelMap model) {
@@ -56,7 +56,4 @@ public class UserAddController extends UserMainController {
         getUserAppService().save(userModel);
         return "redirect:/users/";
     }
-
-
-     */
 }

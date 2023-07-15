@@ -25,18 +25,16 @@ public class UserChangePassController extends UserMainController {
         modelMap.addAttribute("userChangePass", new UserChangePassModel(username));
         return getPatchPage();
     }
-/*
+
     @PreAuthorize("hasAnyAuthority('user:write')")
     @PostMapping(path = {"/pass/{username}'", "/pass/{username}"})
-    public String submit(@Valid @ModelAttribute("userChangePass") UserChangePassModel userModel, BindingResult bindingResult, ModelMap model){
+    public String submit(@Valid @ModelAttribute("userChangePass") UserChangePassModel userModel, BindingResult bindingResult){
         validatePass(userModel.getPassword(), userModel.getRepeatPassword(), bindingResult);
         if (bindingResult.hasErrors()) {
-            model.addAttribute("page", "add");
             return getPatchPage();
         }
         getUserAppService().changePassword(userModel);
         return "redirect:/users/";
     }
 
- */
 }
