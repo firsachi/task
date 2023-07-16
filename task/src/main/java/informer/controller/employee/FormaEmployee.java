@@ -10,9 +10,9 @@ import ua.kyiv.informer.logic.service.CompanyService;
 import ua.kyiv.informer.logic.service.DepartmentService;
 import ua.kyiv.informer.logic.service.PhoneService;
 import ua.kyiv.informer.logic.service.PositionService;
-import ua.kyiv.informer.logic.service.RoomServiceImpl;
+import ua.kyiv.informer.logic.service.RoomService;
 import ua.kyiv.informer.rest.PhoneModel;
-import ua.kyiv.informer.rest.RoomModel;
+import ua.kyiv.informer.ui.room.RoomModel;
 import ua.kyiv.informer.rest.department.DepartmentModel;
 import ua.kyiv.informer.rest.employee.EmployeeModel;
 import ua.kyiv.informer.ui.company.CompanyModel;
@@ -32,7 +32,7 @@ public abstract class FormaEmployee {
     private PositionService postService;
     
     @Autowired
-    private RoomServiceImpl roomService;
+    private RoomService roomService;
     
     @Autowired
     private PhoneService phoneService;

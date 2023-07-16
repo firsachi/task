@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <table class="tabs" data-th-id="room-table" data-th-fragment="room-table">
+    <thead>
+        <tr>
+            <th data-th-text="#{inputlabel.numberRoom}"></th>
+            <th data-sec-authorize="hasAnyAuthority('room:write')">
+                <uL data-th-replace="templates/core-tag :: button-add"></uL>
+            </th>
+        </tr>
+    </thead>
+    <tbody data-th-each="room : ${rooms}">
+        <tr>
+            <td data-th-text="${room.numberRoom}"></td>
+            <td class="text-right" data-sec-authorize="hasAnyAuthority('room:write')">
+                <a data-th-href="@{edit/{id}(id=${room.id})}" data-th-text="#{buttonname.edit}"></a>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <div data-th-fragment="room-add" data-th-remove="tag">
+        <form data-th-replace="room/room-fragments :: core-form-foom(#{titleform.new},@{add})"></form>
+    </div>
+
+    <div data-th-fragment="room-edit" data-th-remove="tag">
+        <form data-th-replace="room/room-fragments :: core-form-foom(#{titleform.edit},@{/room/edit})"></form>
+    </div>
+
+    <form method="post" data-th-fragment="core-form-foom(title,url)" data-th-action="${url}" data-th-object="${room}">
+
+        <div class="medium-12 columns">
+            <h3 data-th-text="${title}">new room</h3>
+        </div>
+
+        <div data-th-replace="templates/input-custom :: input-text-12(#{inputlabel.numberRoom},'numberRoom')"></div>
+
+        <div data-th-replace="templates/core-tag :: button-submit" data-th-remove="tag"></div>
+
+    </form>
+
+</body>
+</html>

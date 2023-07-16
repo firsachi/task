@@ -1,4 +1,4 @@
-package ua.kyiv.informer.rest;
+package ua.kyiv.informer.ui.room;
 
 import jakarta.validation.constraints.Pattern;
 

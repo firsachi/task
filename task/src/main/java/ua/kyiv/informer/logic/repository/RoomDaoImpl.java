@@ -21,14 +21,14 @@ public class RoomDaoImpl extends MainDao<Room>{
 		TypedQuery<Room> listRoom = em.createNamedQuery("allRooms", Room.class);
 		return listRoom.getResultList();
 	}
-
-	public List<Room> existsByRoom(Integer numberRoom) {
-		return em.createNamedQuery("fingNumberRoom", Room.class).setParameter("numberRoom", numberRoom).getResultList();
-	}
 	
 	@Override
 	public void insert(Room value){
 		em.merge(value);
+	}
+
+	public  boolean findRoomNumber(String numberRoom) {
+		return em.createNamedQuery("findNumberRoom", Room.class).setParameter("numberRoom", numberRoom).getResultList().isEmpty();
 	}
 
 }

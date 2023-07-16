@@ -14,7 +14,7 @@
             <li>
                 <a data-th-href="@{/company/}" data-th-text="#{titleform.company}">company</a>
             </li>
-            <li data-sec-authorize="hasAuthority('ADMINISTRATOR')">
+            <li data-sec-authorize="hasAuthority('room:read')">
                 <a data-th-href="@{/room/}" data-th-text="#{titleform.room}">room</a>
             </li>
         </ul>

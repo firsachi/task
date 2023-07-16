@@ -12,10 +12,10 @@ import org.springframework.stereotype.Service;
 
 import ua.kyiv.informer.logic.entity.Room;
 import ua.kyiv.informer.logic.repository.RoomDaoImpl;
-import ua.kyiv.informer.rest.RoomModel;
+import ua.kyiv.informer.ui.room.RoomModel;
 
 @Service("roomService")
-public class RoomServiceImpl {
+public class RoomService {
 
 	@Autowired
 	private ModelMapper modelMapper;
@@ -32,6 +32,10 @@ public class RoomServiceImpl {
 		return modelMapper.map(roomDao.byId(id), RoomModel.class);
 	}
 
+	public boolean findRoomNumber(String numberRoom) {
+		return roomDao.findRoomNumber(numberRoom);
+	}
+
 	@Transactional
 	public void update(RoomModel room) {
 		roomDao.update(modelMapper.map(room, Room.class));
@@ -43,31 +47,7 @@ public class RoomServiceImpl {
 				.map(room -> modelMapper.map(room, RoomModel.class))
 				.collect(Collectors.toList());
 	}
-	/*
-	@Override
-	public boolean fieldValueExists(Object value, String fieldName) throws UnsupportedOperationException {
-		Assert.notNull(fieldName);
-		if (!fieldName.equals("numberRoom")) {
-            throw new UnsupportedOperationException("Field name not supported");
-        }
 
-        if (value == null) {
-            return false;
-        }
-        
-        try {
-        	Integer numberRoom = Integer.parseInt((String) value);
-        	if (this.roomDao.existsByRoom(numberRoom).isEmpty()) {
-            	return false;
-            } else {
-				return true;
-			}
-        	
-        } catch (NumberFormatException e) {
-        	return false;
-		}
-	}
-*/
 	@Transactional
 	public boolean delete(int id) {
 		if (roomDao.byId(id).getEmployees().isEmpty()) {
