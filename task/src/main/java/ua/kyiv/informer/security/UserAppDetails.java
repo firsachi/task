@@ -6,7 +6,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import ua.kyiv.informer.logic.entity.UserApp;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -17,18 +16,15 @@ public class UserAppDetails implements UserDetails {
     private Set<SimpleGrantedAuthority> permissions;
 
     public UserAppDetails(UserApp userApp) {
-        userApp.getRoles().stream().forEach(role -> {
-          permissions = role.getPermissions().stream().map(permission -> new SimpleGrantedAuthority(permission.getPermissionNmae())).collect(Collectors.toSet());
+        userApp.getRoles().forEach(role -> {
+            permissions = role.getPermissions().stream().map(permission -> new SimpleGrantedAuthority(permission.getPermissionNmae())).collect(Collectors.toSet());
+            permissions.add(new SimpleGrantedAuthority(role.getRoleName()));
         });
         this.userApp = userApp;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        /*
-        List<GrantedAuthority> authorities = userApp.getRoles().stream().map(role -> new SimpleGrantedAuthority(role.getRoleName())).collect(Collectors.toList());
-        return authorities;
-         */
         return permissions;
     }
 
