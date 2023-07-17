@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang="ua">
 
-<head data-th-replace="templates/head :: head(~{::title})">
+<head data-th-replace="~{templates/head :: head(~{::title})}">
 	<title data-th-text="#{titleform.home}"></title>
 </head>
 
 <body>
 
-	<nav id="header" data-th-replace="fragments/nav :: core-nav(#{titleform.home})"></nav>
+	<nav id="header" data-th-replace="~{templates/nav :: core-nav(#{titleform.home})}"></nav>
 	
 	<div class="row flex-container">
 		
-		<div data-th-replace="templates/colout :: home-colout(titleColout='titleform.admin', urlModule='/employee/', description='')"></div>
+		<div data-th-replace="~{templates/colout :: home-colout(titleColout='titleform.admin', urlModule='/employee/', description='')}"></div>
 		
-		<div data-th-replace="templates/colout :: home-colout(titleColout='titleform.home.directories', urlModule='/room/', description='')"></div>
+		<div data-th-replace="~{templates/colout :: home-colout(titleColout='titleform.home.directories', urlModule='/room/', description='')}"></div>
 		
 	</div>
 
-	<script data-th-replace="fragments/core-script :: core-script"></script>
+	<script data-th-replace="~{templates/core-script :: core-script}"></script>
 
 </body>
 </html>

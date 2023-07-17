@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="us">
+<head data-th-insert="templates/head :: head(~{::title})">
+    <title data-th-text="#{titleform.phone}">Title phone</title>
+</head>
+<body>
+    <nav data-th-insert="fragments/nav :: core-nav(#{titleform.phone})"></nav>
+
+    <div class="row flex-container expanded">
+        <div class="columns medium-2">
+            <ul id="componentMenu" class="vertical menu">
+                <li data-th-insert="templates/menu :: top-directories"></li>
+            </ul>
+        </div>
+        <div class="columns medium-10">
+            <div data-th-replace="phone/phone-fragment :: ${nameFragment}" data-th-remove="tag"></div>
+        </div>
+    </div>
+
+    <script data-th-replace="fragments/core-script :: core-script"></script>
+    <script type="text/javascript" data-th-src="@{/resources/js/menu.js}"></script>
+
+</body>
+</html>

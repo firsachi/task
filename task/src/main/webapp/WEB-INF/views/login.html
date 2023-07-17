@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ua">
 
-	<head data-th-replace="templates/head :: head(~{::title})">
+	<head data-th-replace="~{templates/head :: head(~{::title})}">
 		<title data-th-text="#{titleform.login}"></title>
 	</head>
 	
@@ -30,7 +30,7 @@
 				</div>
 
 				<!-- button submit -->
-				<button data-th-insert="templates/button :: button-submit-expanded(#{buttonname.login})"></button>
+				<button data-th-insert="~{templates/button :: button-submit-expanded(#{buttonname.login})}"></button>
 			</form>
 		</div>
 	</body>
