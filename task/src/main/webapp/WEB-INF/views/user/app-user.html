@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html lang="ua">
-<head data-th-replace="templates/head :: head(~{::title})">
-    <title data-th-text="#{titleform.users}"></title>
+<head data-th-replace="~{templates/head :: head(#{titleform.users})}">
+    <title data-th-text=""></title>
 </head>
 
 <body>
 
-<nav id="header" data-th-replace="fragments/nav :: core-nav(#{titleform.users})"></nav>
+    <nav id="header" data-th-replace="~{templates/nav :: core-nav(#{titleform.users})}"></nav>
 
-<div class="row flex-container expanded">
-    <div class="columns medium-2">
-        <ul id="componentMenu" class="vertical menu">
-            <li data-th-replace="templates/menu :: top-admin"></li>
-        </ul>
+    <div class="row flex-container expanded">
+        <div class="columns medium-2">
+            <ul id="componentMenu" class="vertical menu">
+                <li data-th-replace="~{templates/menu :: top-admin}"></li>
+            </ul>
+        </div>
+        <div class="columns medium-10">
+            <div data-th-replace="~{user/users-fargment :: ${nameFragment}}"></div>
+        </div>
     </div>
-    <div class="columns medium-10">
-        <div data-th-replace="user/users-fargment :: ${nameFragment}"></div>
-    </div>
-</div>
 
-<script data-th-replace="fragments/core-script :: core-script"></script>
-<script type="text/javascript" data-th-src="@{/resources/js/menu.js}"></script>
+    <script data-th-replace="~{templates/core-script :: core-script}"></script>
+    <script type="text/javascript" data-th-src="@{/resources/js/menu.js}"></script>
 
 </body>
 </html>

@@ -12,7 +12,8 @@ import java.util.Set;
 @Entity
 @Table(name = "phone")
 @NamedQueries({
-	@NamedQuery ( name = "allPhone", query = "SELECT P FROM Phone P ORDER BY P.id")
+	@NamedQuery ( name = "allPhone", query = "SELECT P FROM Phone P ORDER BY P.id"),
+		@NamedQuery( name = "phone.checkUniqueNumber", query = "SELECT P FROM Phone P WHERE P.phoneNumber = :phoneNumber")
 })
 public class Phone implements Serializable {
     

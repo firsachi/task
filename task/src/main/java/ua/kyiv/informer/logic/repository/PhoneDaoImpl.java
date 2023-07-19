@@ -14,14 +14,19 @@ public class PhoneDaoImpl extends MainDao<Phone>{
 
 	@Override
 	public Phone byId(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return em.find(Phone.class, id);
 	}
 
 	@Override
-	public List<Phone> byList(String namedQery) {
+	public List<Phone> byList(String namedQuery) {
 		TypedQuery<Phone> listPhone = em.createNamedQuery("allPhone", Phone.class);
 		return listPhone.getResultList();
 	}
 
+    public boolean checkUniqueNumberPhone(String numberPhone) {
+		em.find(Phone.class, numberPhone);
+		return  em.createNamedQuery("phone.checkUniqueNumber", Phone.class)
+				.setParameter("phoneNumber", numberPhone)
+				.getResultList().isEmpty();
+    }
 }

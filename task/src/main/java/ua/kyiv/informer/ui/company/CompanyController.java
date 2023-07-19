@@ -5,6 +5,8 @@ import java.util.List;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -20,21 +22,26 @@ import ua.kyiv.informer.logic.service.CompanyService;
 @RequestMapping(path = {"company/", "/company"})
 public class CompanyController {
 
-	/*
+	private final CompanyService companyService;
+
 	@Autowired
-	private CompanyService companyService;
+	public CompanyController(@Qualifier("companyService") CompanyService companyService) {
+		this.companyService = companyService;
+	}
 
 	@ModelAttribute("companies")
 	public List<CompanyModel> allCompany() {
 		return companyService.all("allCompany");
 	}		
-	
+
+
+	@PreAuthorize("hasAnyAuthority('company:read')")
 	@GetMapping
 	public String showCompany(ModelMap model) {
 		model.addAttribute("selectedCompany", new CompanyModel());
 		return "company/company";
 	}
-	
+	/*
 	@GetMapping(path = {"add", "/add/"})
 	public String pageCompanyAdd(ModelMap model) {
 		model.addAttribute("company", new CompanyModel());

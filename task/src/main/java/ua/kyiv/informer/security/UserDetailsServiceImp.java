@@ -26,8 +26,7 @@ public class UserDetailsServiceImp implements UserDetailsService {
 
 	private final UserRepositoryImpl userDao;
 
-	@Autowired
-	public UserDetailsServiceImp(@Qualifier("userDao") UserRepositoryImpl userDao) {
+	public UserDetailsServiceImp(UserRepositoryImpl userDao) {
 		this.userDao = userDao;
 	}
 

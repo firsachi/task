@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="ua">
 
-	<head data-th-replace="templates/head :: head(~{::title})">
+	<head data-th-replace="~{templates/head :: head(~{::title})}">
 		<title data-th-text="#{titleform.emploee}"></title>
 	</head>
 	
 <body>
-	<nav id="header" data-th-replace="fragments/nav :: core-nav(#{titleform.emploee})"></nav>
+	<nav id="header" data-th-replace="~{templates/nav :: core-nav(#{titleform.emploee})}"></nav>
 
 	<div class="row flex-container expanded">
 		<div class="columns medium-2">
 			<ul id="componentMenu" class="vertical menu">
-				<li data-th-replace="templates/menu :: top-admin"></li>
+				<li data-th-replace="~{templates/menu :: top-admin}"></li>
 			</ul>
 		</div>
 		<div class="columns medium-10">
@@ -22,7 +22,7 @@
 	<!-- modal window delete -->
 	<div class="reveal" data-th-id="deleteRecord" data-reveal data-options="closeOnClick:false; closeOnEsc:false;"></div>
 
-	<script data-th-replace="fragments/core-script :: core-script"></script>
+	<script data-th-replace="~{templates/core-script :: core-script}"></script>
 	<script type="text/javascript" data-th-src="@{/resources/js/menu.js}"></script>
 	
 </body>

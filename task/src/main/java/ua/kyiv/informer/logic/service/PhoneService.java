@@ -11,18 +11,22 @@ import org.springframework.stereotype.Service;
 
 import ua.kyiv.informer.logic.entity.Phone;
 import ua.kyiv.informer.logic.repository.PhoneDaoImpl;
-import ua.kyiv.informer.rest.PhoneModel;
+import ua.kyiv.informer.ui.phone.PhoneModel;
 
 
 @Service
 public class PhoneService {
-	
+
+	private final PhoneDaoImpl phoneDao;
+
+	private final ModelMapper modelMapper;
+
 	@Autowired
-	private PhoneDaoImpl phoneDao;
-	
-	@Autowired
-	private ModelMapper modelMapper;
-	
+	public PhoneService(PhoneDaoImpl phoneDao, ModelMapper modelMapper) {
+		this.phoneDao = phoneDao;
+		this.modelMapper = modelMapper;
+	}
+
 	@Transactional
 	public void add(PhoneModel model) {
 		phoneDao.insert(modelMapper.map(model, Phone.class));
@@ -39,10 +43,14 @@ public class PhoneService {
 	}
 	
 	@Transactional
-	public List<PhoneModel> getAll(String namedQery){
-		return phoneDao.byList(namedQery).stream().parallel()
+	public List<PhoneModel> getAll(String namedQuery){
+
+		return phoneDao.byList(namedQuery).stream().parallel()
 				.map(phone -> modelMapper.map(phone, PhoneModel.class))
 				.collect(Collectors.toList());
 	}
 
+    public boolean checkUniqueNumberPhone(String numberPhone) {
+		return  !phoneDao.checkUniqueNumberPhone(numberPhone);
+    }
 }

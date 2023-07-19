@@ -18,7 +18,7 @@ public class UserAppDetails implements UserDetails {
     public UserAppDetails(UserApp userApp) {
         userApp.getRoles().forEach(role -> {
             permissions = role.getPermissions().stream().map(permission -> new SimpleGrantedAuthority(permission.getPermissionNmae())).collect(Collectors.toSet());
-            permissions.add(new SimpleGrantedAuthority(role.getRoleName()));
+            //permissions.add(new SimpleGrantedAuthority(role.getRoleName()));
         });
         this.userApp = userApp;
     }

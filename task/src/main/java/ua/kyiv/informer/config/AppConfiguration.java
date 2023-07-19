@@ -1,6 +1,3 @@
-/**
- * 
- */
 package ua.kyiv.informer.config;
 
 import java.util.Locale;
@@ -13,6 +10,7 @@ import org.springframework.context.support.ReloadableResourceBundleMessageSource
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalEntityManagerFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
@@ -23,6 +21,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  *
  */
 @Configuration
+@EnableTransactionManagement
 public class AppConfiguration {
 
 	@Bean

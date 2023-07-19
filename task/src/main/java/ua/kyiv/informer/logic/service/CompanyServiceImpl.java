@@ -13,7 +13,7 @@ import ua.kyiv.informer.logic.repository.CompanyDaoImpl;
 import ua.kyiv.informer.ui.company.CompanyModel;
 
 
-@Service
+@Service("companyService")
 public class CompanyServiceImpl implements CompanyService {
 
 	@Autowired

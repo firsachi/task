@@ -1,6 +1,8 @@
 <ul data-th-fragment="top-directories">
-    <li data-sec-authorize="hasAnyAuthority('ADMINISTRATOR','HR')" data-th-fragment="top-directories">
+    <li  data-th-fragment="top-directories">
+        <!--
         <span data-th-text="#{titleform.home.directories}"></span>
+        -->
         <ul id="menu-directories" class="vertical menu">
             <li>
                 <a data-th-href="@{/home/}" data-th-text="#{titleform.home}">home</a>
@@ -11,7 +13,7 @@
             <li>
                 <a data-th-href="@{/department/}" data-th-text="#{titleform.departments}">department</a>
             </li>
-            <li>
+            <li data-sec-authorize="hasAuthority('company:read')">
                 <a data-th-href="@{/company/}" data-th-text="#{titleform.company}">company</a>
             </li>
             <li data-sec-authorize="hasAuthority('phone:read')">

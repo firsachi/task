@@ -7,7 +7,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -22,11 +21,9 @@ import org.thymeleaf.templatemode.TemplateMode;
 @Configuration
 @ComponentScan({"informer", "ua.kyiv"})
 @EnableWebMvc
-@EnableTransactionManagement
 public class WebMvcConfiguration implements WebMvcConfigurer {
 
-	@Autowired
-	private ApplicationContext applicationContext;
+    private final ApplicationContext applicationContext;
 
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -34,6 +31,11 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
 		registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/").resourceChain(false);
 		registry.setOrder(1);
 	}
+
+    @Autowired
+    public WebMvcConfiguration(ApplicationContext applicationContext) {
+        this.applicationContext = applicationContext;
+    }
 
 	@Bean
 	public SpringResourceTemplateResolver templateResolver() {
@@ -90,5 +92,5 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
 	    bean.setValidationMessageSource(messageSource());
 	    return bean;
 	}
-	
+
 }

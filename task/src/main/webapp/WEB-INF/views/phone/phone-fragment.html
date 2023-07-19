@@ -11,13 +11,13 @@
         <tr>
             <th data-th-text="#{inputlabel.numberPhone}">phone number</th>
             <th data-sec-authorize="hasAnyAuthority('phone:write')">
-                <ul data-th-replace="templates/core-tag :: button-add"></ul>
+                <ul data-th-replace="~{templates/core-tag :: button-add}"></ul>
             </th>
         </tr>
     </thead>
     <tbody data-th-each="phone : ${phones}">
         <tr>
-            <td data-th-text="${phone.number}">phone number</td>
+            <td data-th-text="${phone.numberPhone}">phone number</td>
             <td class="text-right" data-sec-authorize="hasAnyAuthority('phone:write')">
                 <a data-th-href="@{edit/{id}(id=${phone.id})}" data-th-text="#{buttonname.edit}"></a>
             </td>
@@ -26,20 +26,22 @@
   </table>
 
     <div data-th-fragment="phone-add" data-th-remove="tag">
-        <form data-th-replace="phone/phone-fragment :: core-form(#{titleform.edit},@{add})"></form>
+        <form data-th-replace="~{phone/phone-fragment :: core-form(#{titleform.new},@{add})}"></form>
     </div>
 
-    <form data-th-fragment="core-form(title,url)" data-th-action="${url}" data-th-object="${phone}" >
+    <div data-th-fragment="phone-edit" data-th-remove="tag">
+        <form data-th-replace="~{phone/phone-fragment :: core-form(#{titleform.edit},@{#})}"></form>
+    </div>
+
+    <form method="post" data-th-fragment="core-form(title,url)" data-th-action="${url}" data-th-object="${phone}" >
 
         <div class="medium-12 columns">
             <h3 data-th-text="${title}">new room</h3>
         </div>
 
-        <input type="hidden" data-th-field="${phone.id}" >
+        <div data-th-replace="~{templates/input-custom :: input-text-12(#{inputlabel.numberPhone},'numberPhone')}"></div>
 
-        <div data-th-replace="templates/input-custom :: input-text-12(#{inputlabel.numberRoom},'number')"></div>
-
-        <div data-th-replace="templates/core-tag :: button-submit" data-th-remove="tag"></div>
+        <div data-th-replace="~{templates/core-tag :: button-submit}" data-th-remove="tag"></div>
 
     </form>
 

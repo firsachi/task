@@ -20,13 +20,13 @@ import org.springframework.security.web.context.AbstractSecurityWebApplicationIn
 @EnableMethodSecurity
 public class SecuritySpringConfig extends AbstractSecurityWebApplicationInitializer {
 
-	@Autowired
-	private UserDetailsService userDetailsService;
+    @Autowired
+    private UserDetailsService userDetailsService;
 
-	@Bean
-	public BCryptPasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
 	@Bean
 	public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
@@ -44,12 +44,6 @@ public class SecuritySpringConfig extends AbstractSecurityWebApplicationInitiali
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-		/*
-		http.authorizeRequests().antMatchers("/", "/informer", "/api/**", "/resources/**").permitAll()
-				.anyRequest().authenticated().and()
-				.formLogin().loginPage("/login").usernameParameter("username").passwordParameter("password").permitAll()
-				.and().logout().logoutSuccessUrl("/").permitAll().and().csrf().disable();
-		*/
 
 		http
 				.authorizeHttpRequests((authz) -> authz

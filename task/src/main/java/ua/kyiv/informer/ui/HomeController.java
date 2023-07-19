@@ -1,6 +1,3 @@
-/**
- * 
- */
 package ua.kyiv.informer.ui;
 
 import org.springframework.stereotype.Controller;
@@ -11,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  *
  */
 @Controller
-@RequestMapping(value = "/home")
+@RequestMapping(value = {"/home", "/home/"})
 public class HomeController {
 
 	@RequestMapping

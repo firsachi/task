@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="ua">
 
-<head data-th-replace="~{templates/head :: head(~{::title})}">
-	<title data-th-text="#{titleform.login}"></title>
+<head data-th-insert="~{templates/head :: head(#{titleform.login})}">
+	<title>title</title>
 </head>
 
 <body>
 	
-	<nav id="header" data-th-replace="~{fragments/nav :: core-nav(#{titleform.home})}" ></nav>
+	<nav id="header" data-th-replace="~{templates/nav :: core-nav(#{titleform.home})}" ></nav>
 	
 	<div id="body"></div>
 
-	<script data-th-replace="~{fragments/core-script :: core-script}" ></script>
+	<script data-th-replace="~{templates/core-script :: core-script}" ></script>
 
 </body>
 </html>
