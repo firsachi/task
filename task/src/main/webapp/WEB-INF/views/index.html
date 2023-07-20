@@ -8,8 +8,18 @@
 <body>
 	
 	<nav id="header" data-th-replace="~{templates/nav :: core-nav(#{titleform.home})}" ></nav>
-	
-	<div id="body"></div>
+
+	<div class="row flex-container">
+
+		<div data-sec-authorize="hasAnyAuthority('ADMINISTRATOR','HR')" data-th-remove="tag" >
+			<div data-th-replace="~{templates/colout :: home-colout(titleColout='titleform.admin', urlModule='/employee/', description='')}"></div>
+		</div>
+
+		<div data-sec-authorize="hasAnyAuthority('ADMINISTRATOR','HR')" data-th-remove="tag">
+			<div data-th-replace="~{templates/colout :: home-colout(titleColout='titleform.home.directories', urlModule='/room/', description='')}"></div>
+		</div>
+
+	</div>
 
 	<script data-th-replace="~{templates/core-script :: core-script}" ></script>
 

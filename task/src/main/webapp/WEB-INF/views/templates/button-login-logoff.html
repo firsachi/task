@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="ua">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -8,11 +8,11 @@
 
 	<ul>
 		<li data-th-fragment="login-logoff">
-			<a class="button" data-th-href="home" data-sec-authorize="!isAuthenticated()" data-th-text="#{buttonname.login}">Sing in</a>
+			<a class="button" data-th-href="@{login}" data-sec-authorize="!isAuthenticated()" data-th-text="#{buttonname.login}">Sing in</a>
 			<form data-th-action="@{/logout}" method="POST" data-sec-authorize="isAuthenticated()">
 				<button class="button hollow expanded" type="submit" value="Sing out" data-th-text="#{buttonname.logoff}"></button>
 			</form>
-		</li>	
+		</li>
 	</ul>
 
 </body>

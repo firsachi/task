@@ -55,6 +55,8 @@ public class SecuritySpringConfig extends AbstractSecurityWebApplicationInitiali
 						.usernameParameter("username")
 						.passwordParameter("password")
 						.permitAll()
+				).logout(logout -> logout
+						.logoutSuccessUrl("/")
 				);
 		return http.build();
 	}
