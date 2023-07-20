@@ -8,63 +8,55 @@
 
 <form method="post" data-th-fragment="add-user(titleForm, urlForm)" data-th-action="${urlForm}" data-th-object="${user}">
 
-    <div class="medium-12 columns">
-        <h3 data-th-text="${titleForm}">title form</h3>
-    </div>
+    <div data-th-insert="~{templates/title-form :: titleform-12(${titleForm})}"></div>
 
     <div data-th-replace="${#strings.equals(nameFragment, 'add-user')} ? ~{templates/input-custom :: input-text-12(#{inputlabel.username},'username')}"></div>
 
     <!-- pass -->
-    <div data-th-replace="templates/input-custom :: input-pass-12(#{inputlabel.password},'password')"></div>
+    <div data-th-replace="~{templates/input-custom :: input-pass-12(#{inputlabel.password},'password'))"></div>
 
     <!-- change pass -->
-    <div data-th-replace="templates/input-custom :: input-pass-12(#{inputlabel.repeatPassword},'repeatPassword')"></div>
+    <div data-th-replace="~{templates/input-custom :: input-pass-12(#{inputlabel.repeatPassword},'repeatPassword'))"></div>
 
-    <div data-th-replace="user/user-form-fragment :: fragment-form-role-diable"></div>
+    <div data-th-replace="~{user/user-form-fragment :: fragment-form-role-diable}"></div>
 
     <!-- button submit -->
-    <div data-th-replace="templates/core-tag :: button-submit" data-th-remove="tag"></div>
+    <div data-th-replace="~{templates/input-custom :: input-submit-form}" data-th-remove="tag"></div>
 
 </form>
 
 <form method="post" data-th-fragment="edit-user(titleForm, urlForm)" data-th-action="${urlForm}" data-th-object="${userEdit}">
 
-    <div class="medium-12 columns">
-        <h3 data-th-text="${titleForm}">title form</h3>
-    </div>
+    <div data-th-insert="~{templates/title-form :: titleform-12(${titleForm})}"></div>
 
-    <div data-th-replace="user/user-form-fragment :: fragment-form-role-diable"></div>
+    <div data-th-replace="~{user/user-form-fragment :: fragment-form-role-diable}"></div>
 
     <!-- button submit -->
-    <div data-th-replace="templates/core-tag :: button-submit" data-th-remove="tag"></div>
+    <div data-th-replace="~{templates/input-custom :: input-submit-formt}" data-th-remove="tag"></div>
 
 </form>
 
 <form method="post" data-th-fragment="change-pass-user(titleForm, urlForm)" data-th-action="${urlForm}" data-th-object="${userChangePass}">
 
-    <div class="medium-12 columns">
-        <h3 data-th-text="${titleForm}">title form</h3>
-    </div>
+    <div data-th-insert="~{templates/title-form :: titleform-12(${titleForm})}"></div>
 
-    <div data-th-insert="user/user-form-fragment :: fragment-form-pass-change"></div>
+    <div data-th-insert="~{user/user-form-fragment :: fragment-form-pass-change}"></div>
 
     <!-- button submit -->
-    <div data-th-replace="templates/core-tag :: button-submit" data-th-remove="tag"></div>
+    <div data-th-replace="~{templates/input-custom :: input-submit-formt}" data-th-remove="tag"></div>
 
 </form>
 
 <form method="post" data-th-fragment="del-user(titleForm, urlForm)" data-th-action="${urlForm}" data-th-object="${userDelete}">
 
-    <div class="medium-12 columns">
-        <h3 data-th-text="${titleForm}">title form</h3>
-    </div>
+    <div data-th-insert="~{templates/title-form :: titleform-12(${titleForm})}"></div>
 
     <div class="medium-12 columns">
         <h4 data-th-text="#{placeholder.userdell(${userDelete.username})}"></h4>
     </div>
 
     <!-- button submit -->
-    <div data-th-insert="templates/core-tag :: button-submit"></div>
+    <div data-th-insert="~{templates/input-custom :: input-submit-form}"></div>
 
 </form>
 
@@ -80,17 +72,17 @@
     </div>
 
     <!-- is active user -->
-    <div data-th-replace="templates/input-custom :: input-checkbox-12(#{inputlabel.isActtive}, 'enabled')"></div>
+    <div data-th-replace="~{templates/input-custom :: input-checkbox-12(#{inputlabel.isActtive}, 'enabled')}"></div>
 
 </div>
 
 
 <div data-th-fragment="fragment-form-pass-change" data-th-remove="tag">
     <!-- pass -->
-    <div data-th-replace="templates/input-custom :: input-pass-12(#{inputlabel.password},'password')"></div>
+    <div data-th-replace="~{templates/input-custom :: input-pass-12(#{inputlabel.password},'password')}"></div>
 
     <!-- change pass -->
-    <div data-th-replace="templates/input-custom :: input-pass-12(#{inputlabel.repeatPassword},'repeatPassword')"></div>
+    <div data-th-replace="~{templates/input-custom :: input-pass-12(#{inputlabel.repeatPassword},'repeatPassword')}"></div>
 </div>
 
 </body>

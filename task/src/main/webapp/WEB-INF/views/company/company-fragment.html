@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title company fragment</title>
+</head>
+
+<body>
+
+    <table data-th-id="company-table" data-th-fragment="company-table" class="table">
+        <thead>
+        <tr>
+            <th data-th-text="#{inputlabel.nameCompany}"></th>
+            <th>
+                <div data-th-replace="~{templates/button :: button-add-table}" data-th-remove="tag"></div>
+            </th>
+        </tr>
+        </thead>
+        <tbody data-th-each="company : ${companies}">
+            <tr>
+                <td data-th-text="${company.id}">name company</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div data-th-fragment="company-add" data-th-remove="tag">
+        <form></form>
+    </div>
+
+    <form method="post" data-th-fragment="company-core-form(titleValue,url)" data-th-action="${url}" data-th-object="${company}">
+
+        <div data-th-insert="~{templates/title-form :: titleform-12(${titleValue})}"></div>
+
+        <div data-th-insert="~{templates/input-custom :: input-text-12(#{inputlabel.nameCompany}, 'nameCompany')}"></div>
+
+        <div data-th-insert="~{templates/input-custom :: input-checkbox-12(#{inputlabel.isdisable}, 'disable')}"></div>
+
+        <div data-th-replace="~{templates/input-custom :: input-submit-form}" data-th-remove="tag"></div>
+
+    </form>
+</body>
+</html>

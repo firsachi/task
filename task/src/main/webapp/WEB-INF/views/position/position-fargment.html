@@ -5,7 +5,7 @@
 						<th data-th-text="#{inputlabel.namePost}">name post</th>
 						<th data-th-text="#{inputlabel.heftPost}">heft post</th>
 						<th data-sec-authorize="hasAnyAuthority('ADMINISTRATOR','HR')">
-							<div data-th-replace="templates/core-tag :: button-add" data-th-remove="tag"></div>
+							<div data-th-insert="~{templates/button :: button-add-table }" data-th-remove="tag"></div>
 						</th>
 					</tr>
 				</thead>
@@ -42,21 +42,19 @@
 	<div  data-th-remove="tag" >
 		<form method="post"  data-th-action="${urlAction}" data-th-object="${position}"  data-th-fragment="position-form(titleForm, urlForm)">
 			
-			<div class="medium-12 columns">
-				<h3 data-th-text="${titleForm}">title form</h3>
-			</div>
+			<div data-th-insert="~{templates/title-form :: titleform-12(${titleForm})}"></div>
 
 			<!-- name post -->			 
-			 <div data-th-replace="templates/input-custom :: input-text-12(labelValue=#{inputlabel.namePost},inputValue=namePosition)"></div>
+			 <div data-th-replace="~{templates/input-custom :: input-text-12(#{inputlabel.namePost},'namePosition')}"></div>
 
 			<!-- heftPost -->
-			<div data-th-replace="templates/input-custom :: select-12('inputlabel.heftPost', 'heft', ${allHeft})"></div>
+			<div data-th-replace="~{templates/input-custom :: select-12('inputlabel.heftPost', 'heft', ${allHeft})}"></div>
 			
 			<!-- disable -->
-			<div data-th-replace="templates/input-custom :: input-checkbox-12('inputlabel.isdisable', 'disable')"></div>
+			<div data-th-replace="~{templates/input-custom :: input-checkbox-12('inputlabel.isdisable', 'disable')}"></div>
 			
 			<!-- button submit -->
-			<div data-th-replace="templates/core-tag :: button-submit" data-th-remove="tag"></div>
+			<div data-th-replace="~{templates/input-custom :: input-submit-form}" data-th-remove="tag"></div>
 			
 		</form>
 	</div>

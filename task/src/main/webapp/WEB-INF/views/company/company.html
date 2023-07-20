@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ua">
-	<head data-th-replace="~{templates/head :: head(#{titleform.company})}">
+
+	<head data-th-insert="~{templates/head :: head(#{titleform.company})}">
 		<title>title company</title>
 	</head>
 
@@ -15,39 +16,12 @@
 				</ul>
 			</div>
 			<div class="columns medium-10">
-				<!-- <div data-th-insert="~{room/room-fragments :: ${nameFragment}}"></div> -->
+				<div data-th-replace="~{company/company-fragment :: ${nameFragment}}"></div>
 			</div>
 		</div>
-<!--
-	<div class="app-dashboard shrink-medium">
-			<div class="row expanded app-dashboard-top-nav-bar">
-				<div class="columns medium-2">
-					<button data-toggle="app-dashboard-sidebar"
-						class="menu-icon hide-for-medium"></button>
-					<a class="app-dashboard-logo" data-th-text="#{titleform.company}"></a>
-				</div>
-				<div class="columns show-for-medium"></div>
-				<div data-th-insert="templates/menu/logof-logon.html"></div>
-			</div>
-	
-			<div class="app-dashboard-body off-canvas-wrapper">
-				<div id="app-dashboard-sidebar"	class="app-dashboard-sidebar position-left off-canvas off-canvas-absolute reveal-for-medium" data-off-canvas>
-					<div class="app-dashboard-sidebar-inner">
-						<ul data-th-replace="fragments/menu :: top-directories"></ul>
-					</div>
-				</div>
-	
-				<div class="app-dashboard-body-content off-canvas-content" data-off-canvas-content>
-					<div data-th-replace="fragments/company-fargment :: table" data-th-remove="tag"></div>
-				</div>
-			</div>
-		</div>
-		
-		<!-- modal window delete -->
-		<!--
-		<div class="reveal" data-th-id="deleteRecord" data-reveal data-options="closeOnClick:false; closeOnEsc:false;"></div>
-		-->
+
 		<script data-th-replace="~{templates/core-script :: core-script}"></script>
 		<script type="text/javascript" data-th-src="@{/resources/js/menu.js}"></script>
+
 	</body>
 </html>

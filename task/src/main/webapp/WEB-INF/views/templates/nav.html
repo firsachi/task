@@ -1,47 +1,49 @@
 <!DOCTYPE html>
 <html lang="ua">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
 </head>
 <body>
 
-	<div data-th-fragment="core-nav(titleTopbar)" data-th-remove="tag">
-	<nav>
-		<div class="title-bar" data-responsive-toggle="core-menu"
-			data-hide-for="medium">
-			<button class="menu-icon" type="button" data-toggle="core-menu"></button>
-			<div class="title-bar-title">Menu</div>
-		</div>
+<div data-th-fragment="core-nav(titleTopbar)" data-th-remove="tag">
+    <nav>
+        <div class="title-bar" data-responsive-toggle="core-menu" data-hide-for="medium">
+            <button class="menu-icon" type="button" data-toggle="core-menu"></button>
+            <div class="title-bar-title">Menu</div>
+        </div>
 
-		<div class="top-bar" id="core-menu">
-			<div class="top-bar-left">
-				<ul class="dropdown menu" data-dropdown-menu>
-					<li id="title-nav" class="menu-text" data-th-text="${titleTopbar}" >Site Title</li>
-				</ul>
-			</div>
-			<div class="top-bar-right">
-				<ul class="dropdown menu" data-dropdown-menu>
-					<li data-sec-authorize="isAuthenticated()"><a data-th-text="${#authentication.name}">User name</a></li>
-					<li class="has-submenu" data-sec-authorize="isAuthenticated()">
-						<a href="#">+</a>
-						<ul class="submenu menu vertical" data-submenu> 
-							<li data-sec-authorize="hasAnyAuthority('user:write')">
-								<a data-th-href="@{/users/add}" data-th-text="#{label.newuser}" >add user</a>
-							</li>
-							<li data-sec-authorize="hasAnyAuthority('ADMINISTRATOR','HR')">
-								<a>add employee</a>
-							</li>
-						</ul>
-					</li>
-					<li data-th-replace="~{templates/button-login-logoff :: login-logoff}" data-th-remove="tag">button login logoff</li>
-				</ul>
-			</div>
-		</div>
-		
-		</nav>
-		<br>
-	</div>
+        <div class="top-bar" id="core-menu">
+            <div class="top-bar-left">
+                <ul class="dropdown menu" data-dropdown-menu>
+                    <li id="title-nav" class="menu-text" data-th-text="${titleTopbar}">Site Title</li>
+                </ul>
+            </div>
+            <div class="top-bar-right">
+                <ul class="dropdown menu" data-dropdown-menu>
+                    <li data-sec-authorize="isAuthenticated()"><a data-th-text="${#authentication.name}">User name</a>
+                    </li>
+                    <li class="has-submenu" data-sec-authorize="isAuthenticated()">
+                        <a href="#">+</a>
+                        <ul class="submenu menu vertical" data-submenu>
+                            <li data-sec-authorize="hasAnyAuthority('user:write')">
+                                <a data-th-href="@{/users/add}" data-th-text="#{label.newuser}">add user</a>
+                            </li>
+                            <li data-sec-authorize="hasAnyAuthority('ADMINISTRATOR','HR')">
+                                <a>add employee</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li data-th-replace="~{templates/button-login-logoff :: login-logoff}" data-th-remove="tag">button
+                        login logoff
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </nav>
+    <br>
+</div>
 
 </body>
 </html>

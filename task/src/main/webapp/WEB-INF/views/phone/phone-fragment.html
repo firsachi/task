@@ -11,7 +11,7 @@
         <tr>
             <th data-th-text="#{inputlabel.numberPhone}">phone number</th>
             <th data-sec-authorize="hasAnyAuthority('phone:write')">
-                <ul data-th-replace="~{templates/core-tag :: button-add}"></ul>
+                <ul data-th-replace="~{templates/button :: button-add-table}"></ul>
             </th>
         </tr>
     </thead>
@@ -41,7 +41,7 @@
 
         <div data-th-replace="~{templates/input-custom :: input-text-12(#{inputlabel.numberPhone},'numberPhone')}"></div>
 
-        <div data-th-replace="~{templates/core-tag :: button-submit}" data-th-remove="tag"></div>
+        <div data-th-replace="~{templates/input-custom :: input-submit-form}" data-th-remove="tag"></div>
 
     </form>
 

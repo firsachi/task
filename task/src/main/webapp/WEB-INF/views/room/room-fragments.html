@@ -10,7 +10,7 @@
         <tr>
             <th data-th-text="#{inputlabel.numberRoom}"></th>
             <th data-sec-authorize="hasAnyAuthority('room:write')">
-                <uL data-th-replace="~{templates/core-tag :: button-add}"></uL>
+                <uL data-th-replace="~{templates/button :: button-add-table}"></uL>
             </th>
         </tr>
     </thead>
@@ -34,13 +34,11 @@
 
     <form method="post" data-th-fragment="core-form-foom(title,url)" data-th-action="${url}" data-th-object="${room}">
 
-        <div class="medium-12 columns">
-            <h3 data-th-text="${title}">new room</h3>
-        </div>
+        <div data-th-insert="~{templates/title-form :: titleform-12(${title})}"></div>
 
         <div data-th-replace="~{templates/input-custom :: input-text-12(#{inputlabel.numberRoom},'numberRoom')}"></div>
 
-        <div data-th-replace="~{templates/core-tag :: button-submit}" data-th-remove="tag"></div>
+        <div data-th-replace="~{templates/input-custom :: input-submit-form}" data-th-remove="tag"></div>
 
     </form>
 

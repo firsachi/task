@@ -2,6 +2,12 @@
 
 <body>
 
+<div data-th-fragment="input-submit-form" data-th-remove="tag">
+    <div class="column align-right">
+        <input type="submit" class="button float-right" data-th-name="save" data-th-value="#{buttonname.submit}">
+    </div>
+</div>
+
 <div class="medium-12 columns" data-th-fragment="input-text-12(labelValue,inputValue)">
     <label data-th-text="${labelValue}"></label>
 

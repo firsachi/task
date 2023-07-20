@@ -5,7 +5,7 @@
         <th data-th-text="#{inputlabel.login}"></th>
         <th data-th-text="#{inputlabel.roles}"></th>
         <th data-sec-authorize="hasAnyAuthority('user:write')">
-            <ul data-th-replace="templates/core-tag :: button-add"></ul>
+            <ul data-th-replace="~{templates/button :: button-add-table}"></ul>
         </th>
     </tr>
     </thead>
