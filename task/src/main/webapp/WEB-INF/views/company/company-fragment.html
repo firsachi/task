@@ -11,20 +11,27 @@
         <thead>
         <tr>
             <th data-th-text="#{inputlabel.nameCompany}"></th>
-            <th>
+            <th data-sec-authorize="hasAnyAuthority('company:write')">
                 <div data-th-replace="~{templates/button :: button-add-table}" data-th-remove="tag"></div>
             </th>
         </tr>
         </thead>
         <tbody data-th-each="company : ${companies}">
             <tr>
-                <td data-th-text="${company.id}">name company</td>
+                <td data-th-text="${company.nameCompany}">name company</td>
+                <td class="text-right" data-sec-authorize="hasAnyAuthority('company:write')">
+                    <a data-th-href="@{edit/{id}(id=${company.id})}" data-th-text="#{buttonname.edit}"></a>
+                </td>
             </tr>
         </tbody>
     </table>
 
     <div data-th-fragment="company-add" data-th-remove="tag">
-        <form></form>
+        <form data-th-replace="~{company/company-fragment :: company-core-form(#{titleform.new},@{add})}"></form>
+    </div>
+
+    <div data-th-fragment="company-edit" data-th-remove="tag">
+        <form data-th-replace="~{company/company-fragment :: company-core-form(#{titleform.edit},@{#})}"></form>
     </div>
 
     <form method="post" data-th-fragment="company-core-form(titleValue,url)" data-th-action="${url}" data-th-object="${company}">

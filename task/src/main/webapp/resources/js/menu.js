@@ -3,6 +3,6 @@
 })();
  
  function steActiveComponentMenuLi() {
-	const titletext = $('title').text();
+	const titletext = $('head title').text();
 	$("ul#componentMenu li:contains("+ titletext +")" ).addClass('is-active');
 }

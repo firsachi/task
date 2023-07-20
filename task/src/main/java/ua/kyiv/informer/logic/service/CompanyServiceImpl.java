@@ -22,10 +22,12 @@ public class CompanyServiceImpl implements CompanyService {
 	@Autowired
 	private ModelMapper modelMapper;
 
+	@Transactional
 	public void save(CompanyModel value) {
 		companyDao.add(modelMapper.map(value, Company.class));
 	}
 
+	@Transactional
 	public void update(CompanyModel value) {
 		companyDao.update(modelMapper.map(value, Company.class));
 	}
@@ -52,7 +54,7 @@ public class CompanyServiceImpl implements CompanyService {
 
 	@Override
 	public boolean findQnique(CompanyModel model) {
-		return companyDao.existsByCompanyName(model.getId(), model.getNameCompany());
+		return !companyDao.existsByCompanyName(model.getId(), model.getNameCompany());
 	}
 	
 	@Transactional

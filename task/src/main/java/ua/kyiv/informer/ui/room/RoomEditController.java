@@ -47,8 +47,8 @@ public class RoomEditController extends CoreRoomController {
             return getURL_PATCH();
         }
         else if (getRoomService().findRoomNumber(roomModel.getNumberRoom())) {
-            sessionStatus.setComplete();
             getRoomService().update(roomModel);
+            sessionStatus.setComplete();
             return getREDIRECT();
         }
         else {
