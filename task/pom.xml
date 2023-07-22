@@ -112,7 +112,7 @@
 			<version>3.0.2</version>
 		</dependency>
 
-	</dependencies>
+    </dependencies>
 
 	<build>
 		<finalName>informer</finalName>

@@ -33,9 +33,17 @@ public class DepartmentDaoImpl extends MainDao<Department>{
 		TypedQuery<Department> typedQuery = em.createNamedQuery(namedQery, Department.class);
 		return typedQuery.getResultList();
 	}
+
+	public boolean searchDepartmentExists(String departmentName){
+		return em.createNamedQuery("searchDepartmentExists", Department.class)
+				.setParameter("departmentName", departmentName)
+				.getResultList().isEmpty();
+	}
 	
 	public boolean existsName(int id, String parametr) {
-		return em.createNamedQuery("existsName", Department.class).setParameter("id", id).setParameter("param", parametr).getResultList().isEmpty();
+		return em.createNamedQuery("existsName", Department.class)
+				.setParameter("id", id).setParameter("param", parametr)
+				.getResultList().isEmpty();
 	}
 	
 	public boolean existsAtsGroup(int id, int atsGroup) {

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>fragment department</title>
+</head>
+<body>
+
+    <table data-th-fragment="department-table">
+        <thead>
+            <tr>
+                <th data-th-text="#{inputlabel.nameDepartment}"></th>
+                <th data-sec-authorize="hasAnyAuthority('department:write')">
+                    <ul data-th-replace="~{templates/button :: button-add-table}"></ul>
+                </th>
+            </tr>
+        </thead>
+
+        <tbody data-th-each="department : ${departments}">
+            <tr>
+                <td data-th-text="${department.name}" >name department</td>
+                <td class="text-right" data-sec-authorize="hasAnyAuthority('department:write')">
+                    <a data-th-href="@{edit/{id}(id=${department.id})}" data-th-text="#{buttonname.edit}">edit</a>
+                </td>
+            </tr>
+        </tbody>
+
+    </table>
+
+    <div data-th-fragment="department-add" data-th-remove="tag">
+        <form data-th-replace="~{department/department-fragment :: core-form(#{titleform.new},@{add})}"></form>
+    </div>
+
+    <div data-th-fragment="department-edit" data-th-remove="tag">
+        <form data-th-replace="~{department/department-fragment :: core-form(#{titleform.edit},@{#})}"></form>
+    </div>
+
+    <form method="post" data-th-fragment="core-form(valuelabel,url)" data-th-action="${url}" data-th-object="${department}">
+
+        <div data-th-insert="~{templates/title-form :: titleform-12(${valuelabel})}"></div>
+
+        <div data-th-replace="~{templates/input-custom :: input-text-12(#{inputlabel.nameDepartment}, 'name')}"></div>
+
+        <div class="medium-12 columns">
+            <fieldset class="medium-12 cell">
+                <legend  data-th-text="#{titleform.company}">companies</legend>
+
+                <div data-th-each="company : ${companies}" data-th-remove="tag">
+                    <input type="checkbox"
+                           data-th-type="checkbox"
+                           data-th-id="${company.id}"
+                           data-th-name="${company.id}"
+                           data-th-value="${company.id}"
+                            data-th-field="*{multiCompany}">
+                    <label data-th-for="${company.id}" data-th-text="${company.nameCompany}"></label>
+                </div>
+            </fieldset>
+        </div>
+
+        <div data-th-replace="~{templates/input-custom :: input-checkbox-12(#{inputlabel.isdisable}, 'disable')}"></div>
+
+        <div data-th-insert="~{templates/input-custom :: input-submit-form}"></div>
+    </form>
+
+</body>
+</html>

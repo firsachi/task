@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Objects;
 
 import ua.kyiv.informer.ui.company.CompanyModel;
+import ua.kyiv.informer.ui.department.DepartmentCoreModel;
 
 public class DepartmentModel extends DepartmentCoreModel {
 	

@@ -13,28 +13,32 @@ import org.springframework.stereotype.Service;
 import ua.kyiv.informer.logic.entity.Company;
 import ua.kyiv.informer.logic.entity.Department;
 import ua.kyiv.informer.logic.repository.DepartmentDaoImpl;
-import ua.kyiv.informer.rest.department.DepartmentFormModel;
+import ua.kyiv.informer.ui.department.DepartmentFormModel;
 import ua.kyiv.informer.rest.department.DepartmentModel;
 
-@Service
 @Transactional
+@Service("departmentService")
 public class DepartmentService {
-	
+
+	private final DepartmentDaoImpl departmentDao;
+
+	private final ModelMapper modelMapper;
+
 	@Autowired
-	private DepartmentDaoImpl departmentDao;
-	
-	@Autowired 
-	private ModelMapper modelMapper;
+	public DepartmentService(DepartmentDaoImpl departmentDao, ModelMapper modelMapper) {
+		this.departmentDao = departmentDao;
+		this.modelMapper = modelMapper;
+	}
 
 	public void save(DepartmentFormModel value) {
 		Department department = modelMapper.map(value, Department.class);
-		department.setCompanies(value.getCompanies().stream().map(id -> new Company(id)).collect(Collectors.toList()));
+		department.setCompanies(value.getMultiCompany().stream().map(id -> new Company(id)).collect(Collectors.toList()));
 		departmentDao.insert(department);
 	}
 
 	public void update(DepartmentFormModel value) {
 		Department department = modelMapper.map(value, Department.class);
-		department.setCompanies(value.getCompanies().stream().map(id -> new Company(id)).collect(Collectors.toList()));
+		department.setCompanies(value.getMultiCompany().stream().map(id -> new Company(id)).collect(Collectors.toList()));
 		departmentDao.update(department);
 	}
 
@@ -61,6 +65,10 @@ public class DepartmentService {
 		return departmentDao.byList(namedQery).stream()
 				.map(department -> modelMapper.map(department, DepartmentModel.class))
 				.collect(Collectors.toList());
+	}
+
+	public boolean findNameDepartmentUnique(String departmetName){
+		return !departmentDao.searchDepartmentExists(departmetName);
 	}
 
 	public Map<String, Boolean> findQnique(DepartmentFormModel model) {

@@ -21,7 +21,7 @@ import org.thymeleaf.templatemode.TemplateMode;
 @Configuration
 @ComponentScan({"informer", "ua.kyiv"})
 @EnableWebMvc
-public class WebMvcConfiguration implements WebMvcConfigurer {
+public class ThymeleafConfig implements WebMvcConfigurer {
 
     private final ApplicationContext applicationContext;
 
@@ -33,7 +33,7 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
 	}
 
     @Autowired
-    public WebMvcConfiguration(ApplicationContext applicationContext) {
+    public ThymeleafConfig(ApplicationContext applicationContext) {
         this.applicationContext = applicationContext;
     }
 

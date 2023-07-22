@@ -1,34 +1,34 @@
 package ua.kyiv.informer.ui.department;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import ua.kyiv.informer.logic.service.CompanyService;
 import ua.kyiv.informer.logic.service.DepartmentService;
-import ua.kyiv.informer.rest.department.DepartmentFormModel;
-import ua.kyiv.informer.rest.department.DepartmentModel;
-import ua.kyiv.informer.ui.company.CompanyModel;
 
 /**
  *
  * @author firsov
  */
 @Controller
-@RequestMapping(path = {"department/", "/department"})
-public class DepartmentController {
-    
+public class DepartmentController extends CoreDepartmentController {
+
+	@Autowired
+	public DepartmentController(@Qualifier("departmentService") DepartmentService departmentService) {
+		super(departmentService, "department-table");
+	}
+
+	@PreAuthorize("hasAnyAuthority('department:read')")
+	@RequestMapping
+	public String departmentsPage(Model model) {
+		model.addAttribute("departments", getDepartmentService().getList("allDepartments"));
+		return getUrl();
+	}
+
+	/*
 	@Autowired
 	private CompanyService companyService;
 	
@@ -102,5 +102,7 @@ public class DepartmentController {
 		departmentService.delete(model);
 		return "redirect:/department/";
 	}
-    
+
+
+	 */
 }

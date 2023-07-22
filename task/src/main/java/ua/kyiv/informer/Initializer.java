@@ -1,17 +1,14 @@
 package ua.kyiv.informer;
 
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-import ua.kyiv.informer.config.WebMvcConfiguration;
+import ua.kyiv.informer.config.ThymeleafConfig;
 
 public class Initializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return new Class[] { WebMvcConfiguration.class };
+		return new Class[] { ThymeleafConfig.class };
 	}
 
 	@Override
