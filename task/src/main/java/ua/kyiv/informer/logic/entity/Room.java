@@ -12,7 +12,7 @@ import java.util.List;
 @Entity
 @Table(name = "room")
 @NamedQueries({
-	@NamedQuery ( name = "allRooms", query = "SELECT R FROM Room R WHERE r.id <> 0 ORDER BY R.numberRoom" ),
+	@NamedQuery ( name = "allRooms", query = "SELECT R FROM Room R WHERE R.id <> 0 ORDER BY R.numberRoom" ),
 	@NamedQuery ( name = "findNumberRoom", query = "SELECT R FROM Room R WHERE R.numberRoom = :numberRoom")
 })
 public class Room implements Serializable {
