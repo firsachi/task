@@ -16,11 +16,15 @@ import ua.kyiv.informer.ui.position.PositionModel;
 @Service
 public class PositionService extends ServiseTask<PositionModel> {
 
-	@Autowired
-	private PositionDaoImpl postDao;
+	private final PositionDaoImpl postDao;
+
+	private final ModelMapper modelMapper;
 
 	@Autowired
-	private ModelMapper modelMapper;
+	public PositionService(PositionDaoImpl postDao, ModelMapper modelMapper) {
+		this.postDao = postDao;
+		this.modelMapper = modelMapper;
+	}
 
 	@Override
 	@Transactional
@@ -54,4 +58,7 @@ public class PositionService extends ServiseTask<PositionModel> {
 				.collect(Collectors.toList());
 	}
 
+    public boolean isUnique(PositionModel model) {
+		return postDao.isUnique(modelMapper.map(model, Position.class));
+    }
 }

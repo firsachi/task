@@ -1,11 +1,11 @@
 
-		<table class="table" data-th-fragment="table-position">
+		<table class="table" data-th-fragment="position-table">
 				<thead>
 					<tr>
 						<th data-th-text="#{inputlabel.namePost}">name post</th>
 						<th data-th-text="#{inputlabel.heftPost}">heft post</th>
-						<th data-sec-authorize="hasAnyAuthority('ADMINISTRATOR','HR')">
-							<div data-th-insert="~{templates/button :: button-add-table }" data-th-remove="tag"></div>
+						<th data-sec-authorize="hasAnyAuthority('position:write')">
+							<ul data-th-insert="~{templates/button :: button-add-table }"></ul>
 						</th>
 					</tr>
 				</thead>
@@ -19,22 +19,21 @@
 									<button class="button fi-list" data-th-classappend="${position.disable} ? 'hollow'" type="button" data-th-attr="data-toggle='example-' + @{{id}(id=${position.id})}" ></button>
 									<div class="dropdown-pane dropdown-pane-zie" data-th-id="'example-' + @{{id}(id=${position.id})}" data-dropdown data-auto-focus="true" data-close-on-click="true">
 										<ul class="menu vertical" data-sec-authorize="hasAnyAuthority('ADMINISTRATOR','HR')">
-	    									<li><a data-th-href="@{edit/{id}(id=${position.id})}" data-th-text="#{buttonname.edit}"></a></li>
-	      									<li><a data-open="deleteRecord" data-th-attr="data-position-id=${position.id}" data-th-text="#{buttonname.delete}"></a></li>
-	      								</ul>
-	      				 			</div>
-	      				 		</li>
-   					 		</ul>
+											<li><a data-th-href="@{edit/{id}(id=${position.id})}" data-th-text="#{buttonname.edit}"></a></li>
+										</ul>
+									</div>
+								</li>
+							</ul>
 						</td>
 					</tr>
 				</tbody>
 			</table>
 
-		<div data-th-fragment="form-add" data-th-remove="tag">
+		<div data-th-fragment="position-add" data-th-remove="tag">
 			<form data-th-replace="position/position-fargment :: position-form(#{titleform.new}, @{add})"></form>
 		</div>
 
-		<div data-th-fragment="form-edit" data-th-remove="tag">
+		<div data-th-fragment="position-edit" data-th-remove="tag">
 			<form data-th-replace="position/position-fargment :: position-form(#{titleform.editPosition}, @{{id}(id=${position.id})})"></form>
 		</div>
 
@@ -48,24 +47,13 @@
 			 <div data-th-replace="~{templates/input-custom :: input-text-12(#{inputlabel.namePost},'namePosition')}"></div>
 
 			<!-- heftPost -->
-			<div data-th-replace="~{templates/input-custom :: select-12('inputlabel.heftPost', 'heft', ${allHeft})}"></div>
+			<div data-th-replace="~{templates/input-custom :: select-12(#{inputlabel.heftPost}, 'heft', ${allHeft})}"></div>
 			
 			<!-- disable -->
-			<div data-th-replace="~{templates/input-custom :: input-checkbox-12('inputlabel.isdisable', 'disable')}"></div>
+			<div data-th-replace="~{templates/input-custom :: input-checkbox-12(#{inputlabel.isdisable}, 'disable')}"></div>
 			
 			<!-- button submit -->
 			<div data-th-replace="~{templates/input-custom :: input-submit-form}" data-th-remove="tag"></div>
 			
 		</form>
-	</div>
-	
-	<div data-th-fragment="deleteModalWindow" data-th-remove="tag">
-			<p></p>
-  			<p class="lead">
-  				<span data-th-text="#{titleform.deletePosition}"></span>
-  				<span data-th-text="${position.name}"></span>
-  			</p>
-  			
-  			<input type="hidden" name="id" data-th-field="${position.id}" />
-
 	</div>

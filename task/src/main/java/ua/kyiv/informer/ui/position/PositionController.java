@@ -6,6 +6,7 @@
 package ua.kyiv.informer.ui.position;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -22,29 +23,18 @@ import ua.kyiv.informer.logic.service.PositionService;
  * @author firsov
  */
 @Controller
-@RequestMapping(path = {"/position", "position/"})
-public class PositionController {
-	
-    @Autowired
-    private PositionService positionService;
-    
+public class PositionController extends CorePositionController {
+
+    public PositionController() {
+        super("position-table");
+    }
+
+    @PreAuthorize("hasAnyAuthority('position:read')")
     @RequestMapping
     public String getPostPage(Model model){
-    	model.addAttribute("nameFragment", "table-position");
     	model.addAttribute("allPositions", positionService.getList("allPositions"));
-        return "position/position";
+        return getUrl();
     }
-    
-    @GetMapping(value = "/selectedPosition/{id}")
-    public String selectedPosition( @PathVariable Integer id, final ModelMap model ){
-    	model.addAttribute("position", positionService.getId(id));
-    	return "fragments/position-fargment :: deleteModalWindow";
-    }
-    
-    @PostMapping(path = {"/delete", "delete/", "/delete/"})
-    public String deletePosition(@ModelAttribute("position") PositionModel model) {
-    	positionService.delete(model.getId());
-    	return "redirect:/position/";
-    }
+
     
 }

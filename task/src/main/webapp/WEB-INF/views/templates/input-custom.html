@@ -56,7 +56,7 @@
 <!-- select -->
 <div class="medium-12 columns"
      data-th-fragment="select-12(labelValue, labelInput, filedOption)">
-    <Label data-th-text="#{${labelValue}}"></Label> <select
+    <Label data-th-text="${labelValue}"></Label> <select
         id="${labelInput}" data-th-field="*{__${labelInput}__}">
     <option data-th-each="value : ${filedOption}" data-th-value="${value}"
             data-th-text="${value}">

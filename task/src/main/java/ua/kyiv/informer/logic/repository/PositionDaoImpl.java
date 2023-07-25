@@ -18,9 +18,16 @@ public class PositionDaoImpl extends MainDao<Position>{
 	}
 
 	@Override
-	public List<Position> byList(String namedQery) {;
-		TypedQuery<Position> postList = em.createNamedQuery(namedQery, Position.class);
+	public List<Position> byList(String namedQuery) {;
+		TypedQuery<Position> postList = em.createNamedQuery(namedQuery, Position.class);
 		return postList.getResultList();
+	}
+
+	public boolean isUnique(Position position){
+		return !em.createNamedQuery("position.isUnique", Position.class)
+				.setParameter("id", position.getId())
+				.setParameter("namePosition", position.getNamePosition())
+				.getResultList().isEmpty();
 	}
 
 }
