@@ -4,5 +4,5 @@
  
  function steActiveComponentMenuLi() {
 	const titletext = $('head title').text();
-	$("ul#componentMenu li:contains("+ titletext +")" ).addClass('is-active');
+	$("ul#componentMenu ul li:contains("+ titletext +")" ).addClass('is-active');
 }

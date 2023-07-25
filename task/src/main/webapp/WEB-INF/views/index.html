@@ -9,16 +9,22 @@
 	
 	<nav id="header" data-th-replace="~{templates/nav :: core-nav(#{titleform.home})}" ></nav>
 
-	<div class="row flex-container">
-
-		<div data-sec-authorize="hasAnyAuthority('ADMINISTRATOR','HR')" data-th-remove="tag" >
-			<div data-th-replace="~{templates/colout :: home-colout(titleColout='titleform.admin', urlModule='/employee/', description='')}"></div>
+	<div class="row flex-container expanded">
+		<div class="columns medium-2">
+			<ul class="vertical menu accordion-menu" data-sec-authorize="isAuthenticated()" data-accordion-menu>
+				<li data-sec-authorize="hasAnyAuthority('ADMINISTRATOR','HR')">
+					<a href="#" data-th-text="#{titleform.admin}">menu admin</a>
+					<ul class="menu vertical nested" data-th-insert="~{templates/menu :: core-menu-admin}"></ul>
+				</li>
+				<li data-sec-authorize="hasAnyAuthority('ADMINISTRATOR','HR')">
+					<a href="#" data-th-text="#{titleform.home.directories}" >menu directories</a>
+					<ul class="menu vertical nested" data-th-insert="~{templates/menu :: core-menu-directories}"></ul>
+				</li>
+			</ul>
 		</div>
-
-		<div data-sec-authorize="hasAnyAuthority('ADMINISTRATOR','HR')" data-th-remove="tag">
-			<div data-th-replace="~{templates/colout :: home-colout(titleColout='titleform.home.directories', urlModule='/room/', description='')}"></div>
+		<div class="columns medium-10">
+			<h5 data-sec-authorize="isAuthenticated()">Тут повинно щось бути. Що саме я не придумав.</h5>
 		</div>
-
 	</div>
 
 	<script data-th-replace="~{templates/core-script :: core-script}" ></script>
