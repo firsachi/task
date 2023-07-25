@@ -67,15 +67,8 @@ public class DepartmentService {
 				.collect(Collectors.toList());
 	}
 
-	public boolean findNameDepartmentUnique(String departmetName){
-		return !departmentDao.searchDepartmentExists(departmetName);
-	}
-
-	public Map<String, Boolean> findQnique(DepartmentFormModel model) {
-		Department department = modelMapper.map(model, Department.class);
-		Map<String, Boolean> result = new HashMap<String, Boolean>();
-		result.put(model.getName(), departmentDao.existsName(department.getId(), department.getName()));
-		return result;
+	public boolean isUnique(DepartmentFormModel model) {
+		return departmentDao.isUnique(modelMapper.map(model, Department.class));
 	}
 
 }

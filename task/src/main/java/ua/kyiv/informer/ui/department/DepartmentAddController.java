@@ -15,9 +15,8 @@ import ua.kyiv.informer.logic.service.DepartmentService;
 import ua.kyiv.informer.ui.company.CompanyModel;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
+
 
 @Controller
 public class DepartmentAddController extends CoreDepartmentController {
@@ -44,12 +43,9 @@ public class DepartmentAddController extends CoreDepartmentController {
 
     @PreAuthorize("hasAnyAuthority('company:write')")
     @PostMapping(path = {"add/", "/add"})
-    public String submitDepartmentAdd(@Valid @ModelAttribute("department") DepartmentFormModel departmentFormModel, BindingResult bindingResult) {
+    public String submitDepartmentAdd(@Valid @ModelAttribute("department") DepartmentFormModel departmentFormModel, final BindingResult bindingResult) {
         departmentFormModel.setId(0);
-        if (getDepartmentService().findNameDepartmentUnique(departmentFormModel.getName())) {
-            bindingResult.rejectValue("name", "unique.value.violation");
-        }
-        if (bindingResult.hasErrors()) {
+        if (valideFormDepartment(departmentFormModel, bindingResult)) {
             return getUrl();
         }
         else {

@@ -34,24 +34,15 @@ public class DepartmentDaoImpl extends MainDao<Department>{
 		return typedQuery.getResultList();
 	}
 
-	public boolean searchDepartmentExists(String departmentName){
-		return em.createNamedQuery("searchDepartmentExists", Department.class)
-				.setParameter("departmentName", departmentName)
-				.getResultList().isEmpty();
-	}
-	
-	public boolean existsName(int id, String parametr) {
-		return em.createNamedQuery("existsName", Department.class)
-				.setParameter("id", id).setParameter("param", parametr)
-				.getResultList().isEmpty();
-	}
-	
-	public boolean existsAtsGroup(int id, int atsGroup) {
-		return em.createNamedQuery("existsAtsGroup", Department.class).setParameter("id", id).setParameter("atsGroup", atsGroup).getResultList().isEmpty();
-	}
 
 	public List<Department> byList(String string, int idCompany) {
 		return em.createNamedQuery(string, Department.class).setParameter("idCompany", idCompany).getResultList();
 	}
-    
+
+	public boolean isUnique(Department department) {
+		return !em.createNamedQuery("isUniqueName" , Department.class)
+				.setParameter("id", department.getId())
+				.setParameter("name", department.getName())
+				.getResultList().isEmpty();
+	}
 }

@@ -42,8 +42,8 @@ public class DepartmentEditController extends CoreDepartmentController {
 
     @PreAuthorize("hasAnyAuthority('department:write')")
     @PostMapping(path = {"/edit/{id}", "edit/{id}/"})
-    public String submitFormEdit(@Valid @ModelAttribute("department") DepartmentFormModel departmentFormModel, BindingResult bindingResult, SessionStatus sessionStatus) {
-        if (bindingResult.hasErrors()) {
+    public String submitFormEdit(@Valid @ModelAttribute("department") DepartmentFormModel departmentFormModel, final BindingResult bindingResult, SessionStatus sessionStatus) {
+        if (valideFormDepartment(departmentFormModel, bindingResult)) {
              return  getUrl();
         } else {
              getDepartmentService().update(departmentFormModel);

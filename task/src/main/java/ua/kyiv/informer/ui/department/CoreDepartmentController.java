@@ -35,8 +35,8 @@ public class CoreDepartmentController {
         return  "redirect:/department/";
     }
 
-    protected boolean validCoreFormDepartment (DepartmentFormModel departmentFormModel, BindingResult bindingResult){
-        if (getDepartmentService().findNameDepartmentUnique(departmentFormModel.getName())) {
+    protected boolean valideFormDepartment (DepartmentFormModel departmentFormModel, BindingResult bindingResult){
+        if (getDepartmentService().isUnique(departmentFormModel)) {
             bindingResult.rejectValue("name", "unique.value.violation");
         }
         return bindingResult.hasErrors();
