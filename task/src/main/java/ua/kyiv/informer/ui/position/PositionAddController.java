@@ -1,6 +1,7 @@
 package ua.kyiv.informer.ui.position;
 
 import jakarta.validation.Valid;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -15,12 +16,14 @@ public class PositionAddController extends CorePositionController {
 		super("position-add");
 	}
 
+	@PreAuthorize("hasAnyAuthority('position:write')")
 	@GetMapping(path = {"/add", "add/"})
 	public String pageAdd(ModelMap model) {
     	model.addAttribute("position", new PositionModel());
 		return getUrl();
 	}
 
+	@PreAuthorize("hasAnyAuthority('position:write')")
 	@PostMapping(path = {"/add", "add/"}, params = { "save" })
 	public String submitAddPosition(@Valid @ModelAttribute("position") PositionModel model,
 			final BindingResult bindingResult) {
