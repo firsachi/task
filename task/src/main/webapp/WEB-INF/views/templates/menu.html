@@ -1,36 +1,48 @@
-<ul data-sec-authorize="hasAnyAuthority('ADMINISTRATOR','HR')" data-th-fragment="top-directories" data-th-remove="tag">
-    <li data-th-fragment="top-directories" data-th-remove="tag">
-        <a data-th-href="@{/}" data-th-text="#{titleform.home}">home</a>
-        <ul id="menu-directories" class="vertical menu" data-th-insert="~{templates/menu :: core-menu-directories}"></ul>
-    </li>
-</ul>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>menu</title>
+</head>
+<body>
 
-<ul data-th-fragment="core-menu-directories">
-    <li data-sec-authorize="hasAuthority('position:read')">
-        <a data-th-href="@{/position/}" data-th-text="#{titleform.positions}">position</a>
-    </li>
-    <li data-sec-authorize="hasAuthority('department:read')">
-        <a data-th-href="@{/department/}" data-th-text="#{titleform.departments}">department</a>
-    </li>
-    <li data-sec-authorize="hasAuthority('company:read')">
-        <a data-th-href="@{/company/}" data-th-text="#{titleform.company}">company</a>
-    </li>
-    <li data-sec-authorize="hasAuthority('phone:read')">
-        <a data-th-href="@{/phone/}" data-th-text="#{titleform.phone}">phone</a>
-    </li>
-    <li data-sec-authorize="hasAuthority('room:read')">
-        <a data-th-href="@{/room/}" data-th-text="#{titleform.room}">room</a>
-    </li>
-</ul>
+    <!-- top directories -->
+    <ul>
+        <li data-th-fragment="top-directories">
+            <a data-th-href="@{/}" data-th-text="#{titleform.home}">home</a>
+            <ul class="vertical menu" data-th-insert="~{templates/menu :: core-menu-directories}"></ul>
+        </li>
+    </ul>
 
-<ul data-sec-authorize="hasAnyAuthority('ADMINISTRATOR','HR')" data-th-fragment="top-admin" data-th-remove="tag">
-    <li data-th-fragment="top-directories" data-th-remove="tag">
-        <a data-th-href="@{/}" data-th-text="#{titleform.home}">home</a>
-        <ul class="vertical menu" data-th-insert="~{templates/menu :: core-menu-admin}"></ul>
-    </li>
-</ul>
+    <!-- core menu directories-->
+    <ul data-th-fragment="core-menu-directories">
+        <li data-sec-authorize="hasAuthority('position:read')">
+            <a data-th-href="@{/position/}" data-th-text="#{titleform.positions}">position</a>
+        </li>
+        <li data-sec-authorize="hasAuthority('department:read')">
+            <a data-th-href="@{/department/}" data-th-text="#{titleform.departments}">department</a>
+        </li>
+        <li data-sec-authorize="hasAuthority('company:read')">
+            <a data-th-href="@{/company/}" data-th-text="#{titleform.company}">company</a>
+        </li>
+        <li data-sec-authorize="hasAuthority('phone:read')">
+            <a data-th-href="@{/phone/}" data-th-text="#{titleform.phone}">phone</a>
+        </li>
+        <li data-sec-authorize="hasAuthority('room:read')">
+            <a data-th-href="@{/room/}" data-th-text="#{titleform.room}">room</a>
+        </li>
+    </ul>
 
-    <ul id="menu-admin" class="menu vertical" data-th-fragment="core-menu-admin">
+    <!-- top admin menu -->
+    <ul>
+        <li data-th-fragment="top-admin">
+            <a data-th-href="@{/}" data-th-text="#{titleform.home}">home</a>
+            <ul class="vertical menu" data-th-insert="~{templates/menu :: core-menu-admin}"></ul>
+        </li>
+    </ul>
+
+    <!-- -->
+    <ul data-th-fragment="core-menu-admin">
         <li>
             <a data-th-href="@{/employee/}"	data-th-text="#{titleform.emploee}"></a>
         </li>
@@ -39,3 +51,5 @@
         </li>
     </ul>
 
+</body>
+</html>
