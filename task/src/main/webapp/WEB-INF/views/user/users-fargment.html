@@ -45,15 +45,15 @@
 </table>
 
 <div data-th-fragment="add-user" data-th-remove="tag">
-    <form data-th-replace="user/user-form-fragment :: ${nameFragment}(#{titleform.new},@{add})"></form>
+    <form data-th-replace="~{user/user-form-fragment :: ${nameFragment}(#{titleform.new},@{add})}"></form>
 </div>
 
 <div data-th-fragment="edit-user" data-th-remove="tag">
-    <form data-th-replace="user/user-form-fragment :: ${nameFragment}(#{titleform.edit},@{{username}(username=${userEdit.username})})"></form>
+    <form data-th-replace="~{user/user-form-fragment :: ${nameFragment}(#{titleform.edit},@{{username}(username=${userEdit.username})})}"></form>
 </div>
 
 <div data-th-fragment="change-pass-user" data-th-remove="tag">
-    <form data-th-replace="user/user-form-fragment :: ${nameFragment}(#{titleform.userChangePass(${userChangePass.username})},@{{username}(username=${userChangePass.username})})"></form>
+    <form data-th-replace="~{user/user-form-fragment :: ${nameFragment}(#{titleform.userChangePass(${userChangePass.username})},@{{username}(username=${userChangePass.username})})}"></form>
 </div>
 
 <div data-th-fragment="del-user" data-th-remove="tag">

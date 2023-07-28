@@ -16,7 +16,7 @@ public class UserChangePassController extends UserMainController {
 
     @Override
     public String getNameFragment() {
-        return null;
+        return "change-pass-user";
     }
 
     @PreAuthorize("hasAnyAuthority('user:write')")
