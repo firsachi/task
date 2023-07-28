@@ -9,7 +9,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import informer.rest.model.CompanyModel;
 import informer.rest.model.DepartmentModel;
 import ua.kyiv.informer.logic.entity.Company;
 import ua.kyiv.informer.logic.repository.CompanyDaoImpl;
@@ -17,12 +16,16 @@ import ua.kyiv.informer.logic.repository.CompanyDaoImpl;
 @Service
 public class CompanyServiceREST {
 	
-	@Autowired
 	private CompanyDaoImpl companyDao;
-	
-	@Autowired
+
 	private ModelMapper mapper;
-	
+
+	@Autowired
+	public CompanyServiceREST(CompanyDaoImpl companyDao, ModelMapper mapper) {
+		this.companyDao = companyDao;
+		this.mapper = mapper;
+	}
+
 	public List<CompanyModel> getListModel(){
 		return companyDao.byList("company").stream().map(company -> mapper(company)).collect(Collectors.toList());
 	}

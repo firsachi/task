@@ -1,4 +1,7 @@
-package informer.rest.model;
+package ua.kyiv.informer.rest.company;
+
+import informer.rest.model.CompanyModelSmall;
+import informer.rest.model.DepartmentModel;
 
 import java.util.List;
 

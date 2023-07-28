@@ -14,13 +14,17 @@ import ua.kyiv.informer.logic.repository.DepartmentDaoImpl;
 @Service
 @Transactional
 public class DepartmentServiceREST {
-	
+
+	private final DepartmentDaoImpl departmentDao;
+
+	private final ModelMapper mapper;
+
 	@Autowired
-	private DepartmentDaoImpl departmentDao;
-	
-	@Autowired
-	private ModelMapper mapper;
-	
+	public DepartmentServiceREST(DepartmentDaoImpl departmentDao, ModelMapper mapper) {
+		this.departmentDao = departmentDao;
+		this.mapper = mapper;
+	}
+
 	@Transactional
 	public DepartmentModel byDepartment(int id) {
 		return mapper.map( departmentDao.byId(id), DepartmentModel.class);

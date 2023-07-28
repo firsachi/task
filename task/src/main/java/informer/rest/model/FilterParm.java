@@ -8,7 +8,12 @@ public class FilterParm {
 	
 	private int deparmentId;
 
-	public int getCompanyId() {
+    public FilterParm(int companyId, int departmentId) {
+		this.companyId = companyId;
+		this.deparmentId = departmentId;
+    }
+
+    public int getCompanyId() {
 		return companyId;
 	}
 

@@ -1,11 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ua.kyiv.informer.rest.company;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,15 +18,19 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @RestController
 @RequestMapping(value = "/api/", produces = "text/plain;charset=UTF-8")
 public class CompanyControllerREST {
-	
+
+	private final ObjectMapper mapper;
+
+	private final CompanyServiceREST service;
+
 	@Autowired
-	private ObjectMapper mapper;
-	
-	@Autowired
-	private CompanyServiceREST service;
+	public CompanyControllerREST(ObjectMapper mapper, CompanyServiceREST service) {
+		this.mapper = mapper;
+		this.service = service;
+	}
 
 	@CrossOrigin
-	@RequestMapping(value = "crunchifyService")
+	@RequestMapping(path = {"/loadCompanies", "loadCompanies/"})
 	public String listCompany() {
 		try {
 			return mapper.writeValueAsString(service.getListModel());
@@ -41,7 +41,7 @@ public class CompanyControllerREST {
 	}
 	
 	@CrossOrigin
-	@GetMapping(value = "crunchifyService/{id}")
+	@GetMapping(value = "findCompany/{id}")
 	public String byCompany(@PathVariable int id) {
 		try {
 			return mapper.writeValueAsString(service.byCompany(id));
