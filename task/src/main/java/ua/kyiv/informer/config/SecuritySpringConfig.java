@@ -1,6 +1,5 @@
 package ua.kyiv.informer.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -21,10 +20,13 @@ import org.springframework.security.web.context.AbstractSecurityWebApplicationIn
 @EnableMethodSecurity
 public class SecuritySpringConfig extends AbstractSecurityWebApplicationInitializer {
 
-    @Autowired
-    private UserDetailsService userDetailsService;
+    private final UserDetailsService userDetailsService;
 
-    @Bean
+	public SecuritySpringConfig(UserDetailsService userDetailsService) {
+		this.userDetailsService = userDetailsService;
+	}
+
+	@Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
