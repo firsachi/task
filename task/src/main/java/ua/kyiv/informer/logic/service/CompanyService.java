@@ -2,23 +2,79 @@ package ua.kyiv.informer.logic.service;
 
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
+import informer.rest.model.DepartmentModel;
+import jakarta.transaction.Transactional;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import ua.kyiv.informer.logic.entity.Company;
+import ua.kyiv.informer.logic.repository.CompanyDaoImpl;
 import ua.kyiv.informer.ui.company.CompanyModel;
 
-public interface CompanyService {
+@Service("companyService")
+public class CompanyService {
 
-	List<CompanyModel> all(String string);
+	private final CompanyDaoImpl companyDao;
 
-	void save(CompanyModel model);
+	private final ModelMapper modelMapper;
 
-	CompanyModel byId(int id);
+	@Autowired
+	public CompanyService(CompanyDaoImpl companyDao, ModelMapper modelMapper) {
+		this.companyDao = companyDao;
+		this.modelMapper = modelMapper;
+	}
 
-	 void update(CompanyModel model);
+	@Transactional
+	public void save(CompanyModel value) {
+		companyDao.add(modelMapper.map(value, Company.class));
+	}
 
-	boolean findQnique(CompanyModel model);
+	@Transactional
+	public void update(CompanyModel value) {
+		companyDao.update(modelMapper.map(value, Company.class));
+	}
 
-	void delete(CompanyModel companyModel);
+	public List<CompanyModel> all(String namedQuery) {
+		return companyDao.byList(namedQuery).stream().parallel()
+				.map(entity -> modelMapper.map(entity, CompanyModel.class))
+				.collect(Collectors.toList());
+	}
 
-	Set<CompanyModel> all(boolean b);
+	public CompanyModel byId(int id) {
+		return modelMapper.map(companyDao.byId(id), CompanyModel.class);
+	}
+
+	@Transactional
+	public boolean delete(int id) {
+		if (companyDao.byId(id).getEmployees().isEmpty()) {
+			companyDao.delete(companyDao.byId(id));
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public boolean findQnique(CompanyModel model) {
+		return !companyDao.existsByCompanyName(model.getId(), model.getNameCompany());
+	}
+	
+	@Transactional
+	public void delete(CompanyModel companyModel) {
+		companyDao.delete(companyDao.byId(companyModel.getId()));
+	}
+
+	public Set<CompanyModel> all(boolean disable) {
+		return companyDao.byList(disable)
+				.stream().map(company -> modelMapper.map(company, CompanyModel.class))
+				.collect(Collectors.toSet());
+	}
+
+	@Transactional
+	public Set<DepartmentModel> getCompanyDepartments(int companyId) {
+		return companyDao.byId(companyId).getDepartments()
+                .stream().map(department -> modelMapper.map(department, DepartmentModel.class)).collect(Collectors.toSet());
+	}
 
 }

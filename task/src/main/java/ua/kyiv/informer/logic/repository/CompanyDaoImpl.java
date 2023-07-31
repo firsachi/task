@@ -17,8 +17,8 @@ public class CompanyDaoImpl extends MainDao<Company> implements CompanyDao{
 	}
 
 	@Override
-	public List<Company> byList(String namedQery) {
-		TypedQuery<Company> typedQuery = em.createNamedQuery(namedQery, Company.class);
+	public List<Company> byList(String namedQuery) {
+		TypedQuery<Company> typedQuery = em.createNamedQuery(namedQuery, Company.class);
 		return typedQuery.getResultList();
 	}
 

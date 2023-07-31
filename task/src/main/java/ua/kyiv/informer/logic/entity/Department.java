@@ -13,11 +13,12 @@ import java.util.Objects;
 @Entity
 @Table(name = "department", uniqueConstraints = { @UniqueConstraint(columnNames = "name")})
 @NamedQueries({
-	@NamedQuery(name = "allDepartments", query = "SELECT D FROM Department D ORDER BY D.name"),
-	@NamedQuery(name = "department", query = "SELECT D FROM Department D WHERE D.disable = false ORDER BY D.name" ),
-	@NamedQuery(name = "deleteDepartment", query = "UPDATE Department D SET D.disable = true WHERE D.id = :id"),
-	@NamedQuery(name = "isUniqueName", query = "SELECT D FROM Department D WHERE D.id <> :id AND D.name = :name"),
-	@NamedQuery(name = "searchDepartmentExists", query = "SELECT D FROM Department D WHERE D.name = :departmentName")
+		@NamedQuery(name = "allDepartments", query = "SELECT D FROM Department D ORDER BY D.name"),
+		@NamedQuery(name = "department", query = "SELECT D FROM Department D WHERE D.disable = false ORDER BY D.name" ),
+		@NamedQuery(name = "deleteDepartment", query = "UPDATE Department D SET D.disable = true WHERE D.id = :id"),
+		@NamedQuery(name = "isUniqueName", query = "SELECT D FROM Department D WHERE D.id <> :id AND D.name = :name"),
+		@NamedQuery(name = "searchDepartmentExists", query = "SELECT D FROM Department D WHERE D.name = :departmentName"),
+		@NamedQuery(name = "department.disableFalse", query = "SELECT D FROM Department D WHERE D.disable = false ORDER BY D.name")
 })
 public class Department implements Serializable {
     

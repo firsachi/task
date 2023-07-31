@@ -10,12 +10,9 @@
 
 <div class="medium-12 columns" data-th-fragment="input-text-12(labelValue,inputValue)">
     <label data-th-text="${labelValue}"></label>
-
-    <input
-            type="text" id="${inputValue}" name="${inputValue}"
+    <input type="text" id="${inputValue}" name="${inputValue}"
             data-th-field="*{__${inputValue}__}"
             data-th-placeholder="${labelValue}" autofocus="autofocus"/>
-
     <span class="form-error is-visible" data-th-errors="*{__${inputValue}__}"></span>
 
 </div>
@@ -27,40 +24,53 @@
     <span class="form-error is-visible" data-th-errors="*{__${inputValue}__}"></span>
 </div>
 
-<div data-th-fragment="input-4-text(nameTag, textTag)"
-     data-th-remove="tag">
-    <div
-            data-th-class="${#fields.hasErrors('hrOrderNumber')} ? 'medium-4 small-12 columns invalid' : 'medium-4 small-12 columns' ">
-        <label data-th-text="#{${textTag}}"></label> <input type="text"
-                                                            data-th-id="${nameTag}" name="${nameTag}"
-                                                            data-th-field="*{__${nameTag}__}"
-                                                            data-th-placeholder="#{${textTag}}"
-                                                            autofocus="autofocus"> <span class="form-error is-visable"
-                                                                                         data-th-error="*{__${nameTag}__}"></span>
+<div class="medium-4 small-12 columns" data-th-fragment="input-text-medium-4(vlueTitle, nameParametrModel)">
+    <label data-th-for="${nameParametrModel}">
+        <span data-th-text="${vlueTitle}" data-th-remove="tag"></span>
+        <input data-th-id="${nameParametrModel}" type="text" data-th-name="${nameParametrModel}" data-th-field="*{__${nameParametrModel}__}" data-th-placeholder="${vlueTitle}">
+        <span data-th-for="${nameParametrModel}" class="form-error is-visible" data-th-errors="*{__${nameParametrModel}__}"></span>
+    </label>
+</div>
+
+<div data-th-fragment="input-4-text(nameTag, textTag)" data-th-remove="tag">
+    <div data-th-class="${#fields.hasErrors('hrOrderNumber')} ? 'medium-4 small-12 columns invalid' : 'medium-4 small-12 columns' ">
+        <label data-th-text="#{${textTag}}"></label>
+        <input type="text"
+               data-th-id="${nameTag}" name="${nameTag}"
+               data-th-field="*{__${nameTag}__}"
+               data-th-placeholder="#{${textTag}}"
+               autofocus="autofocus">
+        <span class="form-error is-visable" data-th-error="*{__${nameTag}__}"></span>
     </div>
 </div>
 
-<div data-th-fragment="input-4-date(nameTag, textTag)"
-     data-th-remove="tag">
-    <div
-            data-th-class="${#fields.hasErrors('hrOrderNumber')} ? 'medium-4 small-12 columns invalid' : 'medium-4 small-12 columns' ">
-        <label data-th-text="#{${textTag}}"></label> <input type="date"
-                                                            data-th-id="${nameTag}" name="${nameTag}"
-                                                            data-th-field="*{__${nameTag}__}"
-                                                            data-th-placeholder="#{${textTag}}"
-                                                            autofocus="autofocus"> <span class="form-error is-visable"
-                                                                                         data-th-error="*{__${nameTag}__}"></span>
+<div data-th-fragment="input-4-date(nameTag, textTag)" data-th-remove="tag">
+    <div data-th-class="${#fields.hasErrors('hrOrderNumber')} ? 'medium-4 small-12 columns invalid' : 'medium-4 small-12 columns' ">
+        <label data-th-text="#{${textTag}}"></label>
+        <input type="date"
+               data-th-id="${nameTag}" name="${nameTag}"
+               data-th-field="*{__${nameTag}__}"
+               data-th-placeholder="#{${textTag}}"
+               autofocus="autofocus">
+        <span class="form-error is-visable" data-th-error="*{__${nameTag}__}"></span>
     </div>
 </div>
 
 <!-- select -->
-<div class="medium-12 columns"
-     data-th-fragment="select-12(labelValue, labelInput, filedOption)">
-    <Label data-th-text="${labelValue}"></Label> <select
-        id="${labelInput}" data-th-field="*{__${labelInput}__}">
-    <option data-th-each="value : ${filedOption}" data-th-value="${value}"
-            data-th-text="${value}">
-</select>
+<div class="medium-12 columns" data-th-fragment="select-12(labelValue, labelInput, filedOption)">
+    <Label data-th-text="${labelValue}"></Label>
+    <select id="${labelInput}" data-th-field="*{__${labelInput}__}">
+        <option data-th-each="value : ${filedOption}" data-th-value="${value}" data-th-text="${value}">
+    </select>
+</div>
+
+<div class="medium-4 small-12" data-th-fragment="select-medium-4(valueTitle, nameParametrModel, options)">
+    <label data-th-for="${nameParametrModel}">
+        <span data-th-text="${valueTitle}" data-th-remove="tag"></span>
+        <select data-th-id="${nameParametrModel}" data-th-field="*{__${nameParametrModel}__}">
+            <option data-th-each="option : ${options}" data-th-value="${option}" data-th-text="${option}"></option>
+        </select>
+    </label>
 </div>
 
 <!-- checkbox -->
@@ -69,10 +79,4 @@
     <input type="checkbox" data-th-id="${labelInput}" data-th-field="*{__${labelInput}__}">
 </div>
 
-<!-- checkbox multi -->
-<div class="columns medium-12" data-th-fragment="input-checkbox-milti-12(labelValue,inputValue,items,itemId,textItem)">
-    <label data-th-text="${labelValue}"></label>
-    <input type="checkbox" name="role" data-th-each="item : ${items}" data-th-text="${textItem} + ' '"
-           data-th-field="*{__${inputValue}__}}" data-th-value="${itemId}">
-</div>
 </body>

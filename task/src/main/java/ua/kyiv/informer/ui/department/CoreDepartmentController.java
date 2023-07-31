@@ -1,5 +1,6 @@
 package ua.kyiv.informer.ui.department;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,12 +10,12 @@ import ua.kyiv.informer.logic.service.DepartmentService;
 @RequestMapping(path = {"/department", "department/"})
 public class CoreDepartmentController {
 
-    private final DepartmentService departmentService;
+    @Autowired
+    protected DepartmentService departmentService;
 
     private  final String NAME_FRAGMENT;
 
-    public CoreDepartmentController(DepartmentService departmentService, String NAME_FRAGMENT) {
-        this.departmentService = departmentService;
+    public CoreDepartmentController(String NAME_FRAGMENT) {
         this.NAME_FRAGMENT = NAME_FRAGMENT;
     }
 

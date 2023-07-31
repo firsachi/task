@@ -9,7 +9,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import ua.kyiv.informer.logic.service.CompanyService;
-import ua.kyiv.informer.logic.service.DepartmentService;
 import ua.kyiv.informer.ui.company.CompanyModel;
 
 import java.util.HashSet;
@@ -22,8 +21,8 @@ public class DepartmentEditController extends CoreDepartmentController {
     private final CompanyService companyService;
 
     @Autowired
-    public DepartmentEditController(DepartmentService departmentService, CompanyService companyService) {
-        super(departmentService, "department-edit");
+    public DepartmentEditController(CompanyService companyService) {
+        super("department-edit");
         this.companyService = companyService;
     }
 

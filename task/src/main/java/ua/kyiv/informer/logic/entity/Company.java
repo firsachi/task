@@ -11,26 +11,12 @@ import java.util.Set;
  * @author firsachi
  */
 @Entity
-@NamedQueries(
-		{
-			@NamedQuery(
-					name = "allCompany", 
-					query = "select C from Company C ORDER BY C.id"
-					),
-			@NamedQuery(
-					name = "company", 
-					query = "select C from Company C where C.disable = false ORDER BY C.name"
-					),
-			@NamedQuery(
-					name = "uniqieNameCompany",
-					query = "select C from Company C WHERE C.id <> :id AND  C.name = :nameCompany"
-					),
-			@NamedQuery(
-					name = "isDisabelList", 
-					query = "SELECT C FROM Company C WHERE C.disable = :disable"
-					)
-		}
-	)
+@NamedQueries({
+		@NamedQuery(name = "allCompany", query = "select C from Company C ORDER BY C.id"),
+		@NamedQuery(name = "company", query = "select C from Company C where C.disable = false ORDER BY C.name"),
+		@NamedQuery(name = "uniqieNameCompany",	query = "select C from Company C WHERE C.id <> :id AND  C.name = :nameCompany"),
+		@NamedQuery(name = "isDisabelList",	query = "SELECT C FROM Company C WHERE C.disable = :disable")
+})
 @Table(name = "company", uniqueConstraints = { @UniqueConstraint(columnNames = "name")})
 public class Company implements Serializable {
     

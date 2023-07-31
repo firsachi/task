@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import ua.kyiv.informer.logic.service.CompanyService;
-import ua.kyiv.informer.logic.service.DepartmentService;
 import ua.kyiv.informer.ui.company.CompanyModel;
 
 import java.util.HashSet;
@@ -24,8 +23,8 @@ public class DepartmentAddController extends CoreDepartmentController {
     private final CompanyService companyService;
 
     @Autowired
-    public DepartmentAddController(@Qualifier("departmentService") DepartmentService departmentService, @Qualifier("companyService") CompanyService companyService) {
-        super(departmentService, "department-add");
+    public DepartmentAddController(@Qualifier("companyService") CompanyService companyService) {
+        super("department-add");
         this.companyService = companyService;
     }
 

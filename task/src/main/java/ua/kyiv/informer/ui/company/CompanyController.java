@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import ua.kyiv.informer.logic.service.CompanyService;
 
 @Controller
@@ -24,4 +26,10 @@ public class CompanyController extends CoreCompanuController {
 		return getUrl();
 	}
 
+	@PreAuthorize("hasAnyAuthority('employee:write')")
+	@PostMapping(path = {"datalist/", "/datalist"})
+	public String datalistDepartmentsCompany(@ModelAttribute("companyId")int companyId, Model model){
+		model.addAttribute("departments", getCompanyService().getCompanyDepartments(companyId));
+		return "company/company-fragment :: datalist-department";
+	}
 }

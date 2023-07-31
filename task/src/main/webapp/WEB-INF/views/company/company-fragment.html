@@ -45,5 +45,9 @@
         <div data-th-replace="~{templates/input-custom :: input-submit-form}" data-th-remove="tag"></div>
 
     </form>
+
+    <datalist id="departmentsList"  data-th-fragment="datalist-department">
+        <option data-th-each="department : ${departments}" data-th-value="${department.name}"></option>
+    </datalist>
 </body>
 </html>
