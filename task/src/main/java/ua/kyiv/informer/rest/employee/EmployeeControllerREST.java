@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import informer.rest.model.FilterParm;
+import ua.kyiv.informer.old.model.FilterParm;
 
 @RestController
 @RequestMapping(value = "/api", produces = "text/plain;charset=UTF-8")

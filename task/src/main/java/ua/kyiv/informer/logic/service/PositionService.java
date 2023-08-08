@@ -14,7 +14,7 @@ import ua.kyiv.informer.logic.repository.PositionDaoImpl;
 import ua.kyiv.informer.ui.position.PositionModel;
 
 @Service
-public class PositionService extends ServiseTask<PositionModel> {
+public class PositionService {
 
 	private final PositionDaoImpl postDao;
 
@@ -26,14 +26,12 @@ public class PositionService extends ServiseTask<PositionModel> {
 		this.modelMapper = modelMapper;
 	}
 
-	@Override
 	@Transactional
 	public void save(PositionModel value) {
 		postDao.update(modelMapper.map(value, Position.class));
 	}
 
 	@Transactional
-	@Override
 	public void update(PositionModel value) {
 		postDao.update(modelMapper.map(value, Position.class));
 	}
@@ -47,12 +45,10 @@ public class PositionService extends ServiseTask<PositionModel> {
 		return true;
 	}
 
-	@Override
 	public PositionModel getId(int id) {
 		return modelMapper.map(postDao.byId(id), PositionModel.class);
 	}
 
-	@Override
 	public List<PositionModel> getList(String namedQery) {
 		return postDao.byList(namedQery).stream().map(entity -> modelMapper.map(entity, PositionModel.class))
 				.collect(Collectors.toList());

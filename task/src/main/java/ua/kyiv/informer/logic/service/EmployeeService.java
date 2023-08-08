@@ -10,18 +10,18 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import jakarta.transaction.Transactional;
-import informer.old.transformer.EmployeeTransformer;
 import ua.kyiv.informer.logic.repository.CompanyDaoImpl;
 import ua.kyiv.informer.logic.repository.DepartmentDaoImpl;
 import ua.kyiv.informer.logic.repository.EmployeeDaoImpl;
 import ua.kyiv.informer.logic.repository.PhoneDaoImpl;
 import ua.kyiv.informer.logic.repository.PositionDaoImpl;
 import ua.kyiv.informer.logic.repository.RoomDaoImpl;
+import ua.kyiv.informer.old.EmployeeTransformer;
 import ua.kyiv.informer.rest.employee.EmployeeModel;
 import ua.kyiv.informer.rest.employee.EmployeelLiteModel;
 
 @Service
-public class EmployeeService extends ServiseTask<EmployeeModel> {
+public class EmployeeService {
 
 	@Autowired
 	private EmployeeDaoImpl employeeDao;
@@ -47,14 +47,12 @@ public class EmployeeService extends ServiseTask<EmployeeModel> {
 	@Autowired
 	private ModelMapper modelMapper;
 
-	@Override
 	@Transactional
-	public void save(EmployeeModel value) {
-		value = setDefaultPhoneRomm(value);
-		employeeDao.insert(employeeTransformer.modelToEntity(value));
+	public void save(EmployeeModel employeeModel) {
+		 employeeModel = setDefaultPhoneRomm(employeeModel);
+		employeeDao.insert(employeeTransformer.modelToEntity(employeeModel));
 	}
 
-	@Override
 	@Transactional
 	public void update(EmployeeModel value) {
 		value = setDefaultPhoneRomm(value);
@@ -78,7 +76,6 @@ public class EmployeeService extends ServiseTask<EmployeeModel> {
 		employeeDao.delete(employeeDao.byId(id));
 	}
 
-	@Override
 	public EmployeeModel getId(int id) {
 		return employeeTransformer.entityToModel(employeeDao.byId(id));
 	}
@@ -87,7 +84,6 @@ public class EmployeeService extends ServiseTask<EmployeeModel> {
 		return modelMapper.map(employeeDao.byId(id), EmployeelLiteModel.class);
 	}
 
-	@Override
 	public List<EmployeeModel> getList(String namedQery) {
 		return employeeDao.byList(namedQery).stream().map(entity -> employeeTransformer.entityToModel(entity))
 				.collect(Collectors.toList());

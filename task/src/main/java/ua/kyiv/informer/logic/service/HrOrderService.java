@@ -11,7 +11,7 @@ import ua.kyiv.informer.logic.repository.HrOrderRepository;
 import ua.kyiv.informer.ui.hr.order.HrOrderModel;
 
 @Service
-public class HrOrderService extends MainService {
+public class HrOrderService {
 
 	@Autowired
 	private HrOrderRepository hrOrderRepository;

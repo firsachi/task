@@ -1,0 +1,156 @@
+	
+	<div data-th-fragment="table-employee"  data-th-remove="tag">
+
+		<table class="table">
+				<thead>
+					<tr>
+						<td data-th-text="#{inputlabel.fullname}"></td>
+						<td data-th-text="#{inputlabel.company}"></td>
+						<td data-th-text="#{inputlabel.department}"></td>
+						<th data-sec-authorize="hasAnyAuthority('ADMINISTRATOR','HR')">
+							<div data-th-replace="templates/core-tag :: button-add" data-th-remove="tag"></div>
+						</th>
+					</tr>
+				</thead>
+				<tbody data-th-each="employee : ${allEmployee}">
+					<tr>
+						<td	data-th-text="${employee.getFullName()}"></td>
+						<td data-th-text="${employee.enterprise}"></td>
+						<td data-th-text="${employee.department}"></td>
+						<td>
+							<ul class="menu align-right" >
+								<li>
+									<button class="button fi-list" type="button" data-th-classappend="${employee.disable} ? 'hollow'" data-th-attr="data-toggle='example-' + @{{id}(id=${employee.id})}" ></button>
+									<div class="dropdown-pane dropdown-pane-zie" data-th-id="'example-' + @{{id}(id=${employee.id})}" data-dropdown data-auto-focus="true" data-close-on-click="true">
+										<ul class="menu vertical">
+	    									<li><a data-th-href="@{edit/{id}(id=${employee.id})}" data-th-text="#{buttonname.edit}" data-th-attr="data-ajax-url='edit/?id='+${employee.id}"></a></li>
+	      									<li><a data-open="deleteRecord" data-th-attr="data-employee-id=${employee.id}" data-th-text="#{buttonname.delete}"></a></li>
+	      								</ul>
+	      				 			</div>
+	      				 		</li>
+   					 		</ul>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+	</div>
+	
+	
+	<div data-th-fragment="core-form-position(nameForm)" data-th-remove="tag">
+			
+			<div class="medium-12 columns">
+				<h3 data-th-text="${nameForm}">new</h3>
+			</div>
+	
+			<!--  -->
+			<div class="medium-12 columns">
+				<input type="hidden" name="id" data-th-field="*{id}" /> 
+			</div>
+
+			<!-- surname -->
+			<div data-th-class="${#fields.hasErrors('name')} ? 'medium-4 small-12 columns invalid' : 'medium-4  small-12 columns' ">
+				<label data-th-text="#{inputlabel.surname}">surname</label>
+				<input type="text" id="surname" name="surname" data-th-field="*{surname}" autofocus="autofocus"/>
+				<span class="form-error is-visible" data-th-errors="*{surname}"></span>
+			</div>
+	
+			<!-- nameEmployee -->
+			<div data-th-class="${#fields.hasErrors('name')} ? 'medium-4 small-12 columns invalid' : 'medium-4  small-12 columns' ">
+				<label data-th-text="#{inputlabel.nameEmployee}">nameEmployee</label> 
+				<input type="text" id="name" name="name" data-th-value="*{name}" autofocus="autofocus" />
+				<span class="form-error is-visible" data-th-errors="*{name}"></span>
+			</div>
+			
+			<!-- patronymic -->
+			<div data-th-class="${#fields.hasErrors('name')} ? 'medium-4 small-12 columns invalid' : 'medium-4  small-12 columns' ">
+				<label data-th-text="#{inputlabel.patronymic}">patronymic</label>
+				<input type="text" id="patronymic" name="patronymic" data-th-value="*{patronymic}" autofocus="autofocus" />
+				<span class="form-error is-visible" data-th-errors="*{patronymic}"></span>
+			</div>
+			
+			<!-- login -->
+			<div data-sec-authorize="hasAuthority('ADMINISTRATOR')" data-th-class="${#fields.hasErrors('name')} ? 'medium-4 small-12 columns invalid' : 'medium-4  small-12 columns' ">
+				<label data-th-text="#{inputlabel.login}">login</label> 
+				<input type="text" id="login" name="login" data-th-value="*{login}" autofocus="autofocus" />
+				<span class="form-error is-visible" data-th-errors="*{login}"></span>
+			</div>
+			
+			<!-- email -->
+			<div data-sec-authorize="hasAuthority('ADMINISTRATOR')" data-th-class="${#fields.hasErrors('name')} ? 'medium-4 small-12 columns invalid' : 'medium-4  small-12 columns' ">
+				<label data-th-text="#{inputlabel.email}">email</label> 
+				<input type="text" id="email" name="email" data-th-value="*{email}" autofocus="autofocus" />
+				<span class="form-error is-visible" data-th-errors="*{email}"></span>
+			</div>
+			
+			<!-- password -->
+			<div data-sec-authorize="hasAuthority('ADMINISTRATOR')" data-th-class="${#fields.hasErrors('name')} ? 'medium-4 small-12 columns invalid' : 'medium-4  small-12 columns' ">
+				<label data-th-text="#{inputlabel.password}">password</label> 
+				<input type="text" id="password" name="password" data-th-value="*{password}" autofocus="autofocus" />
+				<span class="form-error is-visible" data-th-errors="*{password}"></span>
+			</div>
+			
+			<!-- Enterprise -->
+			<div class="medium-4 small-12 columns">
+				<label data-th-text="#{inputlabel.nameEnterprise}">Enterprise</label>
+				<select id="idEnterprise" data-th-field="*{idEnterprise}">
+					<option data-th-each="enterprise : ${allCompany}" data-th-value="${enterprise.id}" data-th-text="${enterprise.nameCompany}">
+				</select>
+			</div>
+			
+			<!-- department -->
+			<div class="medium-4 small-12 columns">
+				<label data-th-text="#{inputlabel.nameDepartment}">department</label>
+				<select id="idDepartment" data-th-field="*{idDepartment}">
+					<option data-th-each="department : ${allDepartment}" data-th-value="${department.id}" data-th-text="${department.name}">
+				</select>
+			</div>
+			
+			<!-- post -->
+			<div class="medium-4 small-12  columns">
+				<label data-th-text="#{inputlabel.namePost}">post</label>
+				<select id="idPost" data-th-field="*{idPost}">
+					<option data-th-each="post : ${allPost}" data-th-value="${post.id}" data-th-text="${post.name}">
+				</select>
+			</div>
+			
+			<!-- room -->
+			<div data-sec-authorize="hasAuthority('ADMINISTRATOR')" class="medium-6 small-12 columns">
+				<label data-th-text="#{inputlabel.numberRoom}"></label>
+				<select id="numberRoom" data-th-field="*{idRoom}">
+					<option data-th-each="room : ${allRoom}" data-th-value="${room.id}" data-th-text="${room.numberRoom}">
+				</select>
+			</div>
+			
+			<!-- phone -->
+			<div data-sec-authorize="hasAuthority('ADMINISTRATOR')" class="medium-6 small-12  columns">
+				<label data-th-text="#{inputlabel.numberPhone}"></label>
+				<select id="numberPhone" data-th-field="*{idPhone}">
+					<option data-th-each="phone : ${allPhone}" data-th-value="${phone.id}" data-th-text="${phone.number}">
+				</select>
+			</div>
+			
+			<!-- disable -->
+			<div class="medium-12 small-12 columns">
+				<label data-th-text="#{inputlabel.isdisable}"></label>
+				<input type="checkbox" id="disable" data-th-field="*{disable}">
+			</div>
+			
+			<!-- button submit -->
+			<div data-th-replace="templates/core-tag :: button-submit" data-th-remove="tag"></div>
+	</div>
+	
+	<div data-th-fragment="deleteModalWindow" data-th-remove="tag">
+			<button class="close-button" data-close aria-label="Close modal" type="button">
+    			<span aria-hidden="true">&times;</span>
+  			</button>
+			<form data-th-id="deletePosition" data-th-action="@{delete}" method="POST" data-th-object="${employee}">
+				<p class="lead">
+  					<span data-th-text="#{titleform.deleteEmployee}"></span>
+  					<span data-th-text="${employee.getFullName()}"></span>
+  				</p>
+  			
+  				<input type="hidden" name="id" data-th-field="*{id}" /> 
+  			
+  				<div data-th-replace="templates/core-tag :: submit-buttpn-reval"></div>
+			</form>
+	</div>

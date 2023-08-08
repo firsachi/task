@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ua">
+
+	<head data-th-insert="~{templates/head :: head(#{titleform.company})}">
+		<title>title company</title>
+	</head>
+
+	<body>
+
+		<nav data-th-insert="~{templates/nav :: core-nav(#{titleform.company})}" ></nav>
+
+		<div class="row flex-container expanded">
+			<div class="columns medium-2">
+				<ul id="componentMenu" class="vertical menu">
+					<li data-th-insert="~{templates/menu :: top-directories}"></li>
+				</ul>
+			</div>
+			<div class="columns medium-10">
+				<div data-th-replace="~{company/company-fragment :: ${nameFragment}}"></div>
+			</div>
+		</div>
+
+		<script data-th-replace="~{templates/core-script :: core-script}"></script>
+		<script type="text/javascript" data-th-src="@{/resources/js/menu.js}"></script>
+
+	</body>
+</html>

@@ -1,0 +1,26 @@
+
+	<!-- main menu -->
+	<ul class="vertical menu expanded" data-th-fragment="home-menu" >
+		<li><a data-th-href="@{/employee/}"	data-th-text="#{titleform.admin}" class="expanded"></a></li>
+		<li><a data-th-href="@{/position/}"	data-th-text="#{titleform.home.directories}" class="expanded"></a></li>
+		<li><a data-th-href="@{/hr/}"	data-th-text="#{titleform.hrOrder}" class="expanded"></a></li>
+	</ul>
+	
+	<ul class="vertical menu expanded" data-th-fragment="home-admin" >
+		<li><a data-th-href="@{/home/}" data-th-text="#{titleform.home}">home</a></li>
+		<li><a data-th-href="@{/employee/}"	data-th-text="#{titleform.emploee}" class="expanded"></a></li>
+		<li><a data-th-href="@{/users/}" data-th-text="#{titleform.users}" class="expanded" data-sec-authorize="hasAuthority('ADMINISTRATOR')"></a></li>
+	</ul>
+
+	<ul class="vertical menu expanded" data-th-fragment="top-directories">
+		<li><a data-th-href="@{/home/}" data-th-text="#{titleform.home}">home</a></li>
+		<li><a data-th-href="@{/company/}" data-th-text="#{titleform.company}">room</a></li>
+		<li><a data-th-href="@{/department/}" data-th-text="#{titleform.departments}">department</a></li>
+		<li><a data-th-href="@{/position/}" data-th-text="#{titleform.position}">position</a></li>
+		<li><a data-th-href="@{/room/}" data-th-text="#{titleform.room}" data-sec-authorize="hasAuthority('ADMINISTRATOR')">room</a></li>
+	</ul>
+		
+	<ul class="vertical menu expanded" data-th-fragment="hr-order">
+		<li><a data-th-href="@{/home/}" data-th-text="#{titleform.home}">home</a></li>
+		<li><a data-th-href="@{/hr/}"	data-th-text="#{titleform.hrOrder}" class="expanded"></a></li>
+	</ul>

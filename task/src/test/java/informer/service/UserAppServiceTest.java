@@ -12,9 +12,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import informer.old.transformer.EmployeeTransformer;
 import ua.kyiv.informer.logic.repository.EmployeeDaoImpl;
 import ua.kyiv.informer.logic.service.EmployeeService;
+import ua.kyiv.informer.old.EmployeeTransformer;
 
 class UserAppServiceTest {
 	

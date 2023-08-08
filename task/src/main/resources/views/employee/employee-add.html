@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head data-th-replace="templates/head :: head(#{titleform.positions})"></head>
+<body>
+
+	<div class="app-dashboard shrink-medium">
+			<div class="row expanded app-dashboard-top-nav-bar">
+				<div class="columns medium-2">
+					<button data-toggle="app-dashboard-sidebar"
+						class="menu-icon hide-for-medium"></button>
+					<a class="app-dashboard-logo" data-th-text="#{titleform.emploee}"></a>
+				</div>
+				<div class="columns show-for-medium">
+				
+				</div>
+				<div data-th-insert="templates/menu-old/logof-logon.html"></div>
+			</div>
+	
+			<div class="app-dashboard-body off-canvas-wrapper">
+				<div id="app-dashboard-sidebar"	class="app-dashboard-sidebar position-left off-canvas off-canvas-absolute reveal-for-medium" data-off-canvas>
+					<div class="app-dashboard-sidebar-inner">
+						<ul  data-th-replace="fragments/menu :: home-admin"></ul>
+					</div>
+				</div>
+	
+				<div class="app-dashboard-body-content off-canvas-content" data-off-canvas-content>
+					<form class="row" data-th-action="@{add}" method="POST" data-th-object="${employee}">
+						<div data-th-replace="fragments/employee-fargment :: core-form-position(#{titleform.new})"></div>
+					</form>
+				</div>
+			</div>
+		</div>
+		
+		<div data-th-insert="templates/head :: script" data-th-remove="tag"></div>
+		
+		<script type="application/javascript" data-th-inline="javascript">
+			$(document).foundation();
+		</script>
+
+	<div class="row">
+		<div class="column small-12 large-12">
+			<h1 data-th-text="#{titleform.new}">New employee</h1>
+			<form class="row" data-th-action="@{add}" method="post" data-th-object="${employee}">
+				<span class="column small-12 large-12" data-th-insert="templates/employee.html"></span>
+			</form>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$(document).foundation();
+	</script>
+</body>
+</html>

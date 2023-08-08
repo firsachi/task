@@ -9,7 +9,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import informer.rest.model.DepartmentModel;
+import ua.kyiv.informer.old.model.DepartmentModel;
 import ua.kyiv.informer.logic.entity.Company;
 import ua.kyiv.informer.logic.repository.CompanyDaoImpl;
 
