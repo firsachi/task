@@ -8,8 +8,6 @@
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<jta-data-source>java:comp/env/jdbc/InformerDB</jta-data-source>
 		
-		<!-- list entity class -->
-		
 		<!-- property persistense -->
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>

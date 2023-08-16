@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE xml>
 <Context path="/ApplicationContext">
-	<ResourceLink name="jdbc/InformerDB"
-		global="jdbc/InformerDB" type="javax.sql.DataSource" />
+	<ResourceLink name="jdbc/InformerDB" global="jdbc/InformerDB" type="javax.sql.DataSource" />
 </Context>
