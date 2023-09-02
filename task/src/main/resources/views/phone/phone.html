@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="us">
-<head data-th-insert="~{templates/head :: head(#{titleform.phone})}">
-    <title >Title phone</title>
+<head data-th-insert="~{templates/head :: head(~{::title})}">
+    <title data-th-text="#{titleform.phone}" >Title phone</title>
 </head>
 <body>
     <nav data-th-insert="~{templates/nav :: core-nav(#{titleform.phone})}"></nav>

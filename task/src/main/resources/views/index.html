@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="ua">
 
-<head data-th-insert="~{templates/head :: head(#{titleform.login})}">
-	<title>title</title>
+<head data-th-insert="~{templates/head :: head(~{::title})}">
+	<title data-th-text="#{titleform.login}" >title</title>
 </head>
 
 <body>
@@ -14,7 +14,7 @@
 			<ul class="vertical menu accordion-menu" data-sec-authorize="isAuthenticated()" data-accordion-menu>
 				<li data-sec-authorize="hasAnyAuthority('ADMINISTRATOR','HR')">
 					<a href="#" data-th-text="#{titleform.admin}">menu admin</a>
-					<ul class="menu vertical nested" data-th-insert="~{templates/menu :: core-menu-admin}"></ul>
+					<ul class="menu vertical nested" data-th-insert="~{templates/menu-admin :: core-menu-admin}"></ul>
 				</li>
 				<li data-sec-authorize="hasAnyAuthority('ADMINISTRATOR','HR')">
 					<a href="#" data-th-text="#{titleform.home.directories}" >menu directories</a>

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="ua">
 
-	<head data-th-insert="~{templates/head :: head(#{titleform.company})}">
-		<title>title company</title>
+	<head data-th-insert="~{templates/head :: head(~{::title})}">
+		<title data-th-text="#{titleform.company}">title company</title>
 	</head>
 
 	<body>

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="us">
 
-<head data-th-replace="~{templates/head :: head(#{titleform.positions})}">
-		<title>position</title>
+	<head data-th-insert="~{templates/head :: head(~{::title})}">
+		<title data-th-text="#{titleform.positions}"></title>
 	</head>
 	
 	<body>
