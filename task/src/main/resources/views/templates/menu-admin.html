@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ua">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+  <ul data-th-fragment="menu-admin">
+      <li>
+          <a data-th-href="@{/}" data-th-text="#{titleform.home}">home</a>
+      </li>
+      <li>
+          <ul class="vertical menu" data-th-insert="templates/menu-admin :: core-menu-admin"></ul>
+      </li>
+      <script type="text/javascript" data-th-src="@{/js/menu.js}"></script>
+  </ul>
+
+  <ul data-th-fragment="core-menu-admin">
+      <li>
+          <a data-th-href="@{/employee/}"	data-th-text="#{titleform.employee}"></a>
+      </li>
+      <li data-sec-authorize="hasAuthority('user:read')">
+          <a data-th-href="@{/users/}" data-th-text="#{titleform.users}"></a>
+      </li>
+  </ul>
+
+</body>
+</html>

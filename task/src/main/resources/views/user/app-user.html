@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="ua">
 <head data-th-replace="~{templates/head :: head(~{::title})}">
     <title data-th-text="#{titleform.users}"></title>
@@ -11,7 +10,7 @@
     <div class="row flex-container expanded">
         <div class="columns medium-2">
             <ul id="componentMenu" class="vertical menu">
-                <li data-th-replace="~{templates/menu :: top-admin}"></li>
+                <li data-th-replace="~{templates/menu-admin :: menu-admin}"></li>
             </ul>
         </div>
         <div class="columns medium-10">
@@ -20,7 +19,6 @@
     </div>
 
     <script data-th-replace="~{templates/core-script :: core-script}"></script>
-    <script type="text/javascript" data-th-src="@{/resources/js/menu.js}"></script>
 
 </body>
 </html>

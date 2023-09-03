@@ -15,7 +15,7 @@
     </ul>
 
     <!-- core menu directories-->
-    <ul data-th-fragment="core-menu-directories">
+    <ul data-th-fragment="core-menu-directories" >
         <li data-sec-authorize="hasAuthority('position:read')">
             <a data-th-href="@{/position/}" data-th-text="#{titleform.positions}">position</a>
         </li>
@@ -37,17 +37,7 @@
     <ul>
         <li data-th-fragment="top-admin">
             <a data-th-href="@{/}" data-th-text="#{titleform.home}">home</a>
-            <ul class="vertical menu" data-th-insert="~{templates/menu :: core-menu-admin}"></ul>
-        </li>
-    </ul>
-
-    <!-- -->
-    <ul data-th-fragment="core-menu-admin">
-        <li>
-            <a data-th-href="@{/employee/}"	data-th-text="#{titleform.employee}"></a>
-        </li>
-        <li data-sec-authorize="hasAuthority('user:read')">
-            <a data-th-href="@{/users/}" data-th-text="#{titleform.users}"></a>
+            <ul class="vertical menu" data-th-insert="~{templates/menu-admin :: core-menu-admin}"></ul>
         </li>
     </ul>
 
