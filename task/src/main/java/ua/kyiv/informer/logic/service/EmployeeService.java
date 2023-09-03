@@ -1,8 +1,6 @@
 package ua.kyiv.informer.logic.service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -10,12 +8,10 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import jakarta.transaction.Transactional;
-import ua.kyiv.informer.logic.repository.CompanyDaoImpl;
+import ua.kyiv.informer.logic.entity.Employee;
 import ua.kyiv.informer.logic.repository.DepartmentDaoImpl;
 import ua.kyiv.informer.logic.repository.EmployeeDaoImpl;
-import ua.kyiv.informer.logic.repository.PhoneDaoImpl;
 import ua.kyiv.informer.logic.repository.PositionDaoImpl;
-import ua.kyiv.informer.logic.repository.RoomDaoImpl;
 import ua.kyiv.informer.old.EmployeeTransformer;
 import ua.kyiv.informer.rest.employee.EmployeeModel;
 import ua.kyiv.informer.rest.employee.EmployeelLiteModel;
@@ -30,27 +26,26 @@ public class EmployeeService {
 	private EmployeeTransformer employeeTransformer;
 
 	@Autowired
-	private RoomDaoImpl roomDao;
-
-	@Autowired
-	private PhoneDaoImpl phoneDao;
-
-	@Autowired
 	private PositionDaoImpl postDao;
 
 	@Autowired
 	private DepartmentDaoImpl departmentDao;
 
 	@Autowired
-	private CompanyDaoImpl comapnyDao;
-
-	@Autowired
 	private ModelMapper modelMapper;
 
 	@Transactional
 	public void save(EmployeeModel employeeModel) {
-		 employeeModel = setDefaultPhoneRomm(employeeModel);
-		employeeDao.insert(employeeTransformer.modelToEntity(employeeModel));
+		Employee employee = modelMapper.map(employeeModel, Employee.class);
+		employee.setDepartment(departmentDao.findNameDepartment(employeeModel.getDepartment()));
+		employee.setPosition(postDao.findNamePosition(employeeModel.getPost()));
+		if (0 == employee.getPhone().getId()) {
+			employee.getPhone().setId(1);
+		}
+		if (0 == employee.getRoom().getId()) {
+			employee.getRoom().setId(1);
+		}
+		employeeDao.insert(employee);
 	}
 
 	@Transactional
@@ -87,16 +82,6 @@ public class EmployeeService {
 	public List<EmployeeModel> getList(String namedQery) {
 		return employeeDao.byList(namedQery).stream().map(entity -> employeeTransformer.entityToModel(entity))
 				.collect(Collectors.toList());
-	}
-
-	public Map<String, List<?>> allCompnents() {
-		Map<String, List<?>> mapResult = new HashMap<>();
-		mapResult.put("listCompany", comapnyDao.byList("company"));
-		mapResult.put("listDepartment", departmentDao.byList("department"));
-		mapResult.put("listPost", postDao.byList("posts"));
-		mapResult.put("listRoom", roomDao.byList("allRooms"));
-		mapResult.put("listPhone", phoneDao.byList("allPhone"));
-		return mapResult;
 	}
 
 	public Set<EmployeelLiteModel> getEmployeeLite() {

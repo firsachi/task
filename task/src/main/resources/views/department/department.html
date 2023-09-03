@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ua">
-	<head data-th-replace="~{templates/head :: head(#{titleform.departments})}">
-		<title>departments</title>
+	<head data-th-replace="~{templates/head :: head(~{::title})}">
+		<title data-th-text="#{titleform.departments}">departments</title>
 	</head>
 	
 	<body>

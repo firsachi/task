@@ -45,4 +45,9 @@ public class DepartmentDaoImpl extends MainDao<Department>{
 				.setParameter("name", department.getName())
 				.getResultList().isEmpty();
 	}
+
+    public Department findNameDepartment(String departmentName) {
+		return em.createNamedQuery("searchDepartmentExists", Department.class)
+				.setParameter("departmentName", departmentName).getSingleResult();
+    }
 }

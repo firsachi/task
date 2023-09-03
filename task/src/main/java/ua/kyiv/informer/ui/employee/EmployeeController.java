@@ -5,8 +5,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import ua.kyiv.informer.logic.service.EmployeeService;
 
 @Controller
@@ -14,7 +12,7 @@ public class EmployeeController extends CoreEmployeeController {
 
     @Autowired
     public EmployeeController(EmployeeService employeeService) {
-        super(employeeService, "employee-table");
+        super(employeeService, "employee/employee-fragment :: employee-table");
     }
 
     @PreAuthorize("hasAnyAuthority('employee:write')")

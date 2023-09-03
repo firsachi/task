@@ -1,43 +1,31 @@
 package ua.kyiv.informer.ui.employee;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import ua.kyiv.informer.logic.service.CompanyService;
-import ua.kyiv.informer.logic.service.DepartmentService;
+import org.springframework.web.bind.annotation.PostMapping;
 import ua.kyiv.informer.logic.service.EmployeeService;
-import ua.kyiv.informer.rest.department.DepartmentModel;
 import ua.kyiv.informer.rest.employee.EmployeeModel;
-import ua.kyiv.informer.ui.company.CompanyModel;
-
-import java.util.HashSet;
-import java.util.Set;
 
 @Controller
 public class EmployeeAddController extends CoreEmployeeController {
 
-    private final CompanyService companyService;
-
-    private final DepartmentService departmentService;
+    private  final EmployeeModelAttribute employeeModelAttribute;
 
     @Autowired
-    public EmployeeAddController(EmployeeService employeeService, CompanyService companyService, DepartmentService departmentService) {
-        super(employeeService, "employee-add");
-        this.companyService = companyService;
-        this.departmentService = departmentService;
+    public EmployeeAddController(EmployeeService employeeService, EmployeeModelAttribute employeeModelAttribute) {
+        super(employeeService, "employee/employee-fragment :: employee-add");
+        this.employeeModelAttribute = employeeModelAttribute;
     }
 
-    @ModelAttribute("companies")
-    public Set<CompanyModel> allCompany() {
-        return new HashSet<>(companyService.all(false));
-    }
-
-    @ModelAttribute("departments")
-    public Set<DepartmentModel> departments() {
-        return new HashSet<>(departmentService.getList("department.disableFalse"));
+    @ModelAttribute
+    public void setModelAttributeDefault(final Model model){
+        employeeModelAttribute.getAttributes(model);
     }
 
     @PreAuthorize("hasAnyAuthority('employee:write')")
@@ -45,6 +33,18 @@ public class EmployeeAddController extends CoreEmployeeController {
     public String pageAddEmployee(Model model) {
         model.addAttribute("employee", new EmployeeModel());
         return getUrl();
+    }
+
+    @PreAuthorize("hasAnyAuthority('employee:write')")
+    @PostMapping(path = {"add/", "/add"})
+    public String submitPage(@Valid @ModelAttribute("employee") EmployeeModel employeeModel, final BindingResult bindingResult) {
+        employeeModel.setId(0);
+        if (bindingResult.hasErrors()){
+            return getUrl();
+        }else {
+            employeeService.save(employeeModel);
+            return getRedirect();
+        }
     }
 
 }

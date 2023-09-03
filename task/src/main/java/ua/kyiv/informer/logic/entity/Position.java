@@ -3,6 +3,7 @@ package ua.kyiv.informer.logic.entity;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -11,9 +12,10 @@ import java.util.Set;
 @Entity
 @NamedQueries({
         @NamedQuery(name = "allPositions", query = "SELECT P FROM Position P ORDER BY P.disable"),
-        @NamedQuery(name = "posts", query = "SELECT P FROM Position P WHERE P.disable = false ORDER BY P.namePosition"),
+        @NamedQuery(name = "position.datalist", query = "SELECT P FROM Position P WHERE P.disable = false ORDER BY P.namePosition"),
         @NamedQuery(name = "deletePost", query = "UPDATE Position P SET P.disable = true WHERE P.id = :id"),
-		@NamedQuery(name = "position.isUnique", query = "SELECT p FROM Position p WHERE p.id <> :id AND p.namePosition = :namePosition")
+		@NamedQuery(name = "position.isUnique", query = "SELECT p FROM Position p WHERE p.id <> :id AND p.namePosition = :namePosition"),
+        @NamedQuery(name = "position.findNamePosition", query = "SELECT p FROM Position p WHERE p.namePosition = :namePosition")
 })
 public class Position implements Serializable {
 
@@ -80,55 +82,26 @@ public class Position implements Serializable {
     }
 
     @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + (disable ? 1231 : 1237);
-        result = prime * result + ((employees == null) ? 0 : employees.hashCode());
-        result = prime * result + ((heft == null) ? 0 : heft.hashCode());
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
-        result = prime * result + ((namePosition == null) ? 0 : namePosition.hashCode());
-        return result;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Position position = (Position) o;
+        return disable == position.disable && Objects.equals(id, position.id) && Objects.equals(namePosition, position.namePosition) && Objects.equals(heft, position.heft) && Objects.equals(employees, position.employees);
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Position other = (Position) obj;
-        if (disable != other.disable)
-            return false;
-        if (employees == null) {
-            if (other.employees != null)
-                return false;
-        } else if (!employees.equals(other.employees))
-            return false;
-        if (heft == null) {
-            if (other.heft != null)
-                return false;
-        } else if (!heft.equals(other.heft))
-            return false;
-        if (id == null) {
-            if (other.id != null)
-                return false;
-        } else if (!id.equals(other.id))
-            return false;
-        if (namePosition == null) {
-            if (other.namePosition != null)
-                return false;
-        } else if (!namePosition.equals(other.namePosition))
-            return false;
-        return true;
+    public int hashCode() {
+        return Objects.hash(id, namePosition, heft, employees, disable);
     }
 
     @Override
     public String toString() {
-        return "Position [id=" + id + ", namePosition=" + namePosition + ", heft=" + heft + ", employees=" + employees
-                + ", disable=" + disable + "]";
+        return "Position{" +
+                "id=" + id +
+                ", namePosition='" + namePosition + '\'' +
+                ", heft='" + heft + '\'' +
+                ", employees=" + employees +
+                ", disable=" + disable +
+                '}';
     }
-
 }

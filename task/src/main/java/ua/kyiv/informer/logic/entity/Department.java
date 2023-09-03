@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  *
@@ -42,7 +43,7 @@ public class Department implements Serializable {
 			inverseJoinColumns = {@JoinColumn(name = "department_id")}
 	)
     private List<Company> companies;
-    
+
     @OneToMany(mappedBy = "department")
     private List<Employee> employees;
     
@@ -90,27 +91,26 @@ public class Department implements Serializable {
 	}
 
 	@Override
-	public int hashCode() {
-		return Objects.hash(companies, disable, employees, id, name);
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Department that = (Department) o;
+		return id == that.id && disable == that.disable && Objects.equals(name, that.name) && Objects.equals(companies, that.companies) && Objects.equals(employees, that.employees);
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Department other = (Department) obj;
-		return Objects.equals(companies, other.companies) && disable == other.disable
-				&& Objects.equals(employees, other.employees) && id == other.id && Objects.equals(name, other.name);
+	public int hashCode() {
+		return Objects.hash(id, name, companies, employees, disable);
 	}
 
 	@Override
 	public String toString() {
-		return "Department [id=" + id + ", name=" + name + ", companies=" + companies + ", employees=" + employees
-				+ ", disable=" + disable + "]";
+		return "Department{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", companies=" + companies +
+				", employees=" + employees +
+				", disable=" + disable +
+				'}';
 	}
-
 }

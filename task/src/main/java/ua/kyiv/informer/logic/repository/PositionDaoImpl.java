@@ -2,15 +2,12 @@ package ua.kyiv.informer.logic.repository;
 
 import java.util.List;
 
-import jakarta.persistence.TypedQuery;
-
 import org.springframework.stereotype.Repository;
 
 import ua.kyiv.informer.logic.entity.Position;
 
 @Repository("postDao")
 public class PositionDaoImpl extends MainDao<Position>{
-	
 
 	@Override
 	public Position byId(int id) {
@@ -18,9 +15,8 @@ public class PositionDaoImpl extends MainDao<Position>{
 	}
 
 	@Override
-	public List<Position> byList(String namedQuery) {;
-		TypedQuery<Position> postList = em.createNamedQuery(namedQuery, Position.class);
-		return postList.getResultList();
+	public List<Position> byList(String nameQuery) {
+		return em.createNamedQuery(nameQuery, Position.class).getResultList();
 	}
 
 	public boolean isUnique(Position position){
@@ -30,4 +26,8 @@ public class PositionDaoImpl extends MainDao<Position>{
 				.getResultList().isEmpty();
 	}
 
+    public Position findNamePosition(String namePosition) {
+		return em.createNamedQuery("position.findNamePosition", Position.class)
+				.setParameter("namePosition", namePosition).getSingleResult();
+    }
 }

@@ -9,20 +9,30 @@ public abstract class CoreEmployeeController {
 
     protected EmployeeService employeeService;
 
-    private final String NAME_FRAGMENT;
+    private final String BODY_FRAGMENT_NAME;
 
-    public CoreEmployeeController(EmployeeService employeeService, String NAME_FRAGMENT) {
+    public CoreEmployeeController(EmployeeService employeeService, String BODY_FRAGMENT_NAME) {
         this.employeeService = employeeService;
-        this.NAME_FRAGMENT = NAME_FRAGMENT;
+        this.BODY_FRAGMENT_NAME = BODY_FRAGMENT_NAME;
     }
 
-    @ModelAttribute("nameFragment")
-    public String getNAME_FRAGMENT(){
-        return  this.NAME_FRAGMENT;
+    @ModelAttribute("titlepage")
+    public String titlePage(){
+        return "titleform.employee";
+    }
+
+    @ModelAttribute("componentManu")
+    public String menu(){
+        return  "templates/menu-admin :: menu-admin";
+    }
+
+    @ModelAttribute("bodyFragment")
+    public String getBodyFragment(){
+        return  this.BODY_FRAGMENT_NAME;
     }
 
     public String getUrl(){
-        return "employee/employee";
+        return "core-page";
     }
 
     public String getRedirect() {

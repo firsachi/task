@@ -1,6 +1,7 @@
 package ua.kyiv.informer.logic.service;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import jakarta.transaction.Transactional;
@@ -13,8 +14,8 @@ import ua.kyiv.informer.logic.entity.Position;
 import ua.kyiv.informer.logic.repository.PositionDaoImpl;
 import ua.kyiv.informer.ui.position.PositionModel;
 
-@Service
-public class PositionService {
+@Service("positionService")
+public class PositionService{
 
 	private final PositionDaoImpl postDao;
 
@@ -57,4 +58,10 @@ public class PositionService {
     public boolean isUnique(PositionModel model) {
 		return postDao.isUnique(modelMapper.map(model, Position.class));
     }
+
+	public Set<PositionModel> getPositions() {
+		return postDao.byList("position.datalist")
+				.stream().parallel().map(entityPosition -> modelMapper.map(entityPosition, PositionModel.class))
+				.collect(Collectors.toSet());
+	}
 }

@@ -49,7 +49,16 @@
                     <span data-th-text="#{inputlabel.department}" data-th-remove="tag"></span>
                     <input id="department" type="text" list="departmentsList" data-th-field="*{department}" data-th-placeholder="#{inputlabel.department}">
                     <datalist id="departmentsList">
+                    </datalist>
+                </label>
+            </div>
 
+            <div class="medium-4 small-12 columns">
+                <label>
+                    <span data-th-text="#{inputlabel.namePost}" data-th-remove="tag"></span>
+                    <input id="position" type="text" list="positionList" data-th-field="*{post}" data-th-placeholder="#{inputlabel.namePost}">
+                    <datalist id="positionList" >
+                        <option data-th-each="position : ${positions}" data-th-value="${position.namePosition}"></option>
                     </datalist>
                 </label>
             </div>
@@ -60,15 +69,36 @@
 
             <div data-th-replace="~{templates/input-custom :: input-text-medium-4(#{inputlabel.patronymic}, 'patronymic')}"></div>
 
-            <div data-th-replace="~{templates/input-custom :: input-text-medium-4(#{inputlabel.login}, 'login')}"></div>
+            <div data-sec-authorize="hasAuthority('ADMINISTRATOR')" data-th-replace="~{templates/input-custom :: input-text-medium-4(#{inputlabel.login}, 'login')}"></div>
 
-            <div data-th-replace="~{templates/input-custom :: input-text-medium-4(#{inputlabel.email}, 'email')}"></div>
+            <div data-sec-authorize="hasAuthority('ADMINISTRATOR')" data-th-replace="~{templates/input-custom :: input-text-medium-4(#{inputlabel.email}, 'email')}"></div>
 
-            <div data-th-replace="~{templates/input-custom :: input-text-medium-4(#{inputlabel.password}, 'password')}" ></div>
+            <div data-sec-authorize="hasAuthority('ADMINISTRATOR')" data-th-replace="~{templates/input-custom :: input-text-medium-4(#{inputlabel.password}, 'password')}" ></div>
+
+            <div data-sec-authorize="hasAuthority('ADMINISTRATOR')" class="medium-6 small-12 columns">
+                <label>
+                    <span data-th-text="#{inputlabel.numberRoom}" data-th-remove="tag"></span>
+                    <select id="numberRoom" data-th-field="*{idRoom}">
+                        <option value="0">0</option>
+                        <option data-th-each="room : ${allRoom}" data-th-value="${room.id}" data-th-text="${room.numberRoom}"></option>
+                    </select>
+                </label>
+            </div>
+
+            <!-- phone -->
+            <div data-sec-authorize="hasAuthority('ADMINISTRATOR')" class="medium-6 small-12  columns">
+                <label>
+                    <span data-th-text="#{inputlabel.numberPhone}" data-th-remove="tag"></span>
+                    <select id="numberPhone" data-th-field="*{idPhone}">
+                        <option value="0">0</option>
+                        <option data-th-each="phone : ${allPhone}" data-th-value="${phone.id}" data-th-text="${phone.numberPhone}">
+                    </select>
+                </label>
+            </div>
 
             <div data-th-replace="~{templates/input-custom :: input-submit-form}"></div>
 
-            <script type="text/javascript" data-th-src="@{/js/employee-fragment.js}" ></script>
+            <script type="module" data-th-src="@{/js/employee-fragment.js}" ></script>
 
         </fieldset>
     </form>
