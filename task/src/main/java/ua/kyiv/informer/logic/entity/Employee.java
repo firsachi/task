@@ -11,7 +11,7 @@ import java.util.Objects;
  * @author firsov
  */
 @Entity
-@Table(name = "emplouers")
+@Table(name = "employee")
 @NamedQueries({
 	@NamedQuery (
 			name = "allEmployee", 
@@ -32,16 +32,13 @@ import java.util.Objects;
 			name = "selectEmployee",
 			query = "SELECT E FROM Employee E WHERE E.remove = :disable ORDER BY E.surname ")
 })
-public class Employee implements Cloneable, Serializable{
-    
-    /**
-	 * 
-	 */
+public class Employee implements Serializable{
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     
     @Column(name = "surname")
@@ -235,4 +232,5 @@ public class Employee implements Cloneable, Serializable{
 				+ enterprise + ", email=" + email + ", room=" + room + ", login=" + login + ", pass=" + pass
 				+ ", hrOrderList=" + hrOrderList + ", remove=" + remove + "]";
 	}
+
 }
