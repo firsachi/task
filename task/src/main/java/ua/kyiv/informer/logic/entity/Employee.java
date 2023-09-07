@@ -77,7 +77,7 @@ public class Employee implements Serializable{
     private String login;
     
     @Column(name = "pass", nullable = true)
-    private String pass;
+    private String password;
     
     @ManyToMany(mappedBy = "employee")
     private List<HrOrder> hrOrderList;
@@ -177,12 +177,12 @@ public class Employee implements Serializable{
 		this.login = login;
 	}
 
-	public String getPass() {
-		return pass;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setPass(String pass) {
-		this.pass = pass;
+	public void setPassword(String pass) {
+		this.password = pass;
 	}
 
 	public List<HrOrder> getHrOrderList() {
@@ -203,7 +203,7 @@ public class Employee implements Serializable{
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(department, email, enterprise, hrOrderList, id, login, name, pass, patronymic, phone,
+		return Objects.hash(department, email, enterprise, hrOrderList, id, login, name, password, patronymic, phone,
 				position, remove, room, surname);
 	}
 
@@ -219,7 +219,7 @@ public class Employee implements Serializable{
 		return Objects.equals(department, other.department) && Objects.equals(email, other.email)
 				&& Objects.equals(enterprise, other.enterprise) && Objects.equals(hrOrderList, other.hrOrderList)
 				&& id == other.id && Objects.equals(login, other.login) && Objects.equals(name, other.name)
-				&& Objects.equals(pass, other.pass) && Objects.equals(patronymic, other.patronymic)
+				&& Objects.equals(password, other.password) && Objects.equals(patronymic, other.patronymic)
 				&& Objects.equals(phone, other.phone) && Objects.equals(position, other.position)
 				&& Objects.equals(remove, other.remove) && Objects.equals(room, other.room)
 				&& Objects.equals(surname, other.surname);
@@ -229,7 +229,7 @@ public class Employee implements Serializable{
 	public String toString() {
 		return "Employee [id=" + id + ", surname=" + surname + ", name=" + name + ", patronymic=" + patronymic
 				+ ", phone=" + phone + ", position=" + position + ", department=" + department + ", enterprise="
-				+ enterprise + ", email=" + email + ", room=" + room + ", login=" + login + ", pass=" + pass
+				+ enterprise + ", email=" + email + ", room=" + room + ", login=" + login + ", pass=" + password
 				+ ", hrOrderList=" + hrOrderList + ", remove=" + remove + "]";
 	}
 

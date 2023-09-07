@@ -9,9 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import jakarta.transaction.Transactional;
 import ua.kyiv.informer.logic.entity.Employee;
-import ua.kyiv.informer.logic.repository.DepartmentDaoImpl;
-import ua.kyiv.informer.logic.repository.EmployeeDaoImpl;
-import ua.kyiv.informer.logic.repository.PositionDaoImpl;
+import ua.kyiv.informer.logic.entity.Phone;
+import ua.kyiv.informer.logic.entity.Room;
+import ua.kyiv.informer.logic.repository.*;
 import ua.kyiv.informer.old.EmployeeTransformer;
 import ua.kyiv.informer.rest.employee.EmployeeModel;
 import ua.kyiv.informer.rest.employee.EmployeelLiteModel;
@@ -32,38 +32,45 @@ public class EmployeeService {
 	private DepartmentDaoImpl departmentDao;
 
 	@Autowired
+	private PhoneRepository phoneRepository;
+
+	@Autowired
+	private RoomRepository roomRepository;
+
+	@Autowired
 	private ModelMapper modelMapper;
 
 	@Transactional
 	public void save(EmployeeModel employeeModel) {
-		Employee employee = modelMapper.map(employeeModel, Employee.class);
-		employee.setDepartment(departmentDao.findNameDepartment(employeeModel.getDepartment()));
-		employee.setPosition(postDao.findNamePosition(employeeModel.getPost()));
-		if (0 == employee.getPhone().getId()) {
-			employee.getPhone().setId(1);
-		}
-		if (0 == employee.getRoom().getId()) {
-			employee.getRoom().setId(1);
-		}
-		employeeDao.insert(employee);
+		employeeDao.insert(mapModelEntity(employeeModel));
 	}
 
 	@Transactional
-	public void update(EmployeeModel value) {
-		value = setDefaultPhoneRomm(value);
-		employeeDao.update(employeeTransformer.modelToEntity(value));
+	public void update(EmployeeModel employeeModel) {
+		employeeDao.update(mapModelEntity(employeeModel));
 	}
 
-	private EmployeeModel setDefaultPhoneRomm(EmployeeModel value) {
-		if (0 == value.getIdPhone()) {
-			value.setIdPhone(1);
-			value.setPhone("0");
+	private Employee mapModelEntity(EmployeeModel employeeModel){
+		Employee employee = modelMapper.map(employeeModel, Employee.class);
+		employee.setDepartment(departmentDao.findNameDepartment(employeeModel.getDepartment()));
+		employee.setPosition(postDao.findNamePosition(employeeModel.getPost()));
+		employee.setPhone(isFindPhone(employee.getPhone().getId()));
+		employee.setRoom(isfFindRoom(employeeModel.getIdRoom()));
+		return employee;
+	}
+
+	private Phone isFindPhone(int id) {
+		if (0 == id){
+			id = 1;
 		}
-		if (0 == value.getIdRoom()) {
-			value.setIdRoom(1);
-			value.setRoom(0);
+		return phoneRepository.byId(id);
+	}
+
+	private Room isfFindRoom(int id) {
+		if (0 == id) {
+			id = 1;
 		}
-		return value;
+		return roomRepository.byId(id);
 	}
 
 	@Transactional

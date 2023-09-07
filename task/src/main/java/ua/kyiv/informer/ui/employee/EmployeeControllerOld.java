@@ -63,18 +63,19 @@ public class EmployeeControllerOld extends FormaEmployee {
 		model.addAttribute("employee", employeeService.getId(id));
 		return "employee/employee-edit";
 	}
-	
+	/*
 	@PostMapping(value = "/edit/{id}", params = { "save" })
 	public String getPageFormUpdate(@Valid @ModelAttribute("employee") EmployeeModel employeeModel,
 			final BindingResult bindingResult, ModelMap model) {
 		if (bindingResult.hasErrors()) {
 			return "employee-edit";
 		}
-		employeeService.update(employeeModel);
+		employeeService.update(employeeModel, userAppDetails);
 		this.employee = new EmployeeModel();
 		return "redirect:/employee/";
 	}
-	
+	*/
+
 	@GetMapping(value = "/selectedEmployee/{id}")
 	public String getPadeDelete(@PathVariable int id, ModelMap model) {
 		model.addAttribute("employee", employeeService.getId(id));

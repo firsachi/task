@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ua.kyiv.informer.logic.entity.Room;
-import ua.kyiv.informer.logic.repository.RoomDaoImpl;
+import ua.kyiv.informer.logic.repository.RoomRepository;
 import ua.kyiv.informer.ui.room.RoomModel;
 
 @Service("roomService")
@@ -21,7 +21,7 @@ public class RoomService {
 	private ModelMapper modelMapper;
 	
 	@Autowired
-	private RoomDaoImpl roomDao;
+	private RoomRepository roomDao;
 	
 	@Transactional
 	public void save(RoomModel room) {

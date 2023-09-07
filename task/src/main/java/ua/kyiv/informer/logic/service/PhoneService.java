@@ -10,19 +10,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ua.kyiv.informer.logic.entity.Phone;
-import ua.kyiv.informer.logic.repository.PhoneDaoImpl;
+import ua.kyiv.informer.logic.repository.PhoneRepository;
 import ua.kyiv.informer.ui.phone.PhoneModel;
 
 
 @Service
 public class PhoneService {
 
-	private final PhoneDaoImpl phoneDao;
+	private final PhoneRepository phoneDao;
 
 	private final ModelMapper modelMapper;
 
 	@Autowired
-	public PhoneService(PhoneDaoImpl phoneDao, ModelMapper modelMapper) {
+	public PhoneService(PhoneRepository phoneDao, ModelMapper modelMapper) {
 		this.phoneDao = phoneDao;
 		this.modelMapper = modelMapper;
 	}

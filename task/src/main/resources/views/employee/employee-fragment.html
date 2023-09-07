@@ -20,13 +20,19 @@
             <tr>
                 <td data-th-text="${employee.getFullName()}" >full name</td>
                 <td data-th-text="${employee.post}" >post name</td>
-                <td></td>
+                <td class="text-right" data-sec-authorize="hasAnyAuthority('employee:write')">
+                    <a data-th-href="@{edit/{id}(id=${employee.id})}" data-th-text="#{buttonname.edit}"></a>
+                </td>
             </tr>
         </tbody>
     </table>
 
     <div data-th-fragment="employee-add" data-th-remove="tag">
         <form data-th-replace="~{employee/employee-fragment :: employee-form(#{titleform.new}, @{add})}"></form>
+    </div>
+
+    <div data-th-fragment="employee-edit" data-th-remove="tag">
+        <form data-th-replace="~{employee/employee-fragment :: employee-form(#{titleform.edit}, @{#})}"></form>
     </div>
 
 
