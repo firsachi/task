@@ -30,7 +30,7 @@
                                 <a data-th-href="@{/users/add}" data-th-text="#{label.newuser}">add user</a>
                             </li>
                             <li data-sec-authorize="hasAnyAuthority('ADMINISTRATOR','HR')">
-                                <a>add employee</a>
+                                <a data-th-href="@{/employee/add}" data-th-text="#{label.new.employe}" >add employee</a>
                             </li>
                         </ul>
                     </li>

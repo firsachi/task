@@ -73,7 +73,7 @@ public class ThymeleafConfig implements WebMvcConfigurer, ApplicationContextAwar
 	@Bean
 	public MessageSource messageSource() {
 		ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-		messageSource.setBasename("classpath:messages");
+		messageSource.setBasename("classpath:/message/messages");
 		messageSource.setDefaultEncoding(CHARACTER_ENCODING);
 		return messageSource;
 	}
