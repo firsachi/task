@@ -32,7 +32,7 @@ public class UserRepositoryImpl extends MainDao<UserApp>{
 		return user;
 	}
 	
-	public boolean uniqueUsermane(String username) {
+	public boolean uniqueUsername(String username) {
 		return em.createNamedQuery("User.findUsername", UserApp.class).setParameter("username", username).getResultList().isEmpty();
 	}
 

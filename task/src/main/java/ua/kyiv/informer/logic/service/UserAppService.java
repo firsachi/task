@@ -41,7 +41,7 @@ public class UserAppService {
 	}
 
 	public boolean findUsername(String username) {
-		return userRepository.uniqueUsermane(username);
+		return userRepository.uniqueUsername(username);
 	}
 
 	@Transactional

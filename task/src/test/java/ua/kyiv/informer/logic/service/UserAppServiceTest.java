@@ -12,8 +12,6 @@ import org.mockito.MockitoAnnotations;
 import org.modelmapper.ModelMapper;
 import ua.kyiv.informer.logic.repository.UserRepositoryImpl;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class UserAppServiceTest {
     @Mock
     UserRepositoryImpl userRepository;
@@ -42,7 +40,7 @@ class UserAppServiceTest {
     void findUsernameLogic() {
         String username = "roma";
         userAppService.findUsername(username);
-        verify(userRepository, times(1)).uniqueUsermane(username);
+        verify(userRepository, times(1)).uniqueUsername(username);
     }
 
     @Test
