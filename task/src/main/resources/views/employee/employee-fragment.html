@@ -53,19 +53,21 @@
             <div class="medium-4 small-12 columns">
                 <label>
                     <span data-th-text="#{inputlabel.department}" data-th-remove="tag"></span>
-                    <input id="department" type="text" list="departmentsList" data-th-field="*{department}" data-th-placeholder="#{inputlabel.department}">
-                    <datalist id="departmentsList">
-                    </datalist>
+                    <select id="department" data-th-field="*{department}">
+                        <option id="departmentItem" value=" "></option>
+                        <option data-th-each="department : ${departments}" data-th-value="${department.name}" data-th-text="${department.name}"></option>
+                    </select>
+
                 </label>
             </div>
 
             <div class="medium-4 small-12 columns">
                 <label>
                     <span data-th-text="#{inputlabel.namePost}" data-th-remove="tag"></span>
-                    <input id="position" type="text" list="positionList" data-th-field="*{post}" data-th-placeholder="#{inputlabel.namePost}">
-                    <datalist id="positionList" >
-                        <option data-th-each="position : ${positions}" data-th-value="${position.namePosition}"></option>
-                    </datalist>
+                    <select id="position" data-th-field="*{post}" >
+                        <option value="0"></option>
+                        <option data-th-each="position : ${positions}" data-th-value="${position.namePosition }"  data-th-text="${position.namePosition}"></option>
+                    </select>
                 </label>
             </div>
 

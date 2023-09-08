@@ -7,6 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
+import ua.kyiv.informer.logic.service.CompanyService;
+import ua.kyiv.informer.logic.service.DepartmentService;
 import ua.kyiv.informer.logic.service.EmployeeService;
 import ua.kyiv.informer.rest.employee.EmployeeModel;
 
@@ -16,9 +18,12 @@ public class EmployeeEditController extends CoreEmployeeController{
 
     private final EmployeeModelAttribute employeeModelAttribute;
 
-    public EmployeeEditController(EmployeeService employeeService, EmployeeModelAttribute employeeModelAttribute) {
+    private  final CompanyService companyService;
+
+    public EmployeeEditController(EmployeeService employeeService, EmployeeModelAttribute employeeModelAttribute, CompanyService companyService) {
         super(employeeService, "employee/employee-fragment :: employee-edit");
         this.employeeModelAttribute = employeeModelAttribute;
+        this.companyService = companyService;
     }
 
     @ModelAttribute
@@ -29,14 +34,17 @@ public class EmployeeEditController extends CoreEmployeeController{
     @PreAuthorize("hasAnyAuthority('employee:write')")
     @GetMapping(path = {"/edit/{id}", "edit/{id}/"})
     public String editEmployeePage(@PathVariable("id") int id, Model model){
-        model.addAttribute("employee", employeeService.getId(id));
+        EmployeeModel employeeModel = employeeService.getId(id);
+        model.addAttribute("employee", employeeModel);
+        model.addAttribute("departments", companyService.getCompanyDepartments(employeeModel.getIdEnterprise()));
         return getUrl();
     }
 
     @PreAuthorize("hasAnyAuthority('employee:write')")
     @PostMapping(path = {"edit/{id}/", "/edit/{id}"})
-    public String submitEdit(@Valid @ModelAttribute("employee")EmployeeModel employeeModel, BindingResult bindingResult, SessionStatus sessionStatus) {
+    public String submitEdit(@Valid @ModelAttribute("employee")EmployeeModel employeeModel, BindingResult bindingResult, Model model, SessionStatus sessionStatus) {
         if (bindingResult.hasErrors()) {
+            model.addAttribute("departments", companyService.getCompanyDepartments(employeeModel.getIdEnterprise()));
             return getUrl();
         } else {
             employeeService.update(employeeModel);

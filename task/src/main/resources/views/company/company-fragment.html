@@ -46,7 +46,14 @@
 
     </form>
 
-    <datalist id="departmentsList"  data-th-fragment="datalist-department">
+    <label>
+        <select data-th-fragment="datalist-department" data-th-remove="tag">
+            <option id="departmentItem" value=" "></option>
+            <option data-th-each="department : ${departments}" data-th-value="${department.name}" data-th-text="${department.name}"></option>
+        </select>
+    </label>
+
+    <datalist >
         <option data-th-each="department : ${departments}" data-th-value="${department.name}"></option>
     </datalist>
 </body>
