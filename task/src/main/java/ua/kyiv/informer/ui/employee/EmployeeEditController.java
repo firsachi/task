@@ -1,5 +1,6 @@
 package ua.kyiv.informer.ui.employee;
 
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -40,9 +41,11 @@ public class EmployeeEditController extends CoreEmployeeController{
         return getUrl();
     }
 
+    @Transactional
     @PreAuthorize("hasAnyAuthority('employee:write')")
     @PostMapping(path = {"edit/{id}/", "/edit/{id}"})
-    public String submitEdit(@Valid @ModelAttribute("employee")EmployeeModel employeeModel, BindingResult bindingResult, Model model, SessionStatus sessionStatus) {
+    public String submitEdit(@Valid @ModelAttribute("employee")EmployeeModel employeeModel, final BindingResult bindingResult, Model model, SessionStatus sessionStatus) {
+        employeeService.uniqueLoginEmail(employeeModel, bindingResult);
         if (bindingResult.hasErrors()) {
             model.addAttribute("departments", companyService.getCompanyDepartments(employeeModel.getIdEnterprise()));
             return getUrl();

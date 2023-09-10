@@ -8,6 +8,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import jakarta.transaction.Transactional;
+import org.springframework.validation.BindingResult;
 import ua.kyiv.informer.logic.entity.Employee;
 import ua.kyiv.informer.logic.entity.Phone;
 import ua.kyiv.informer.logic.entity.Room;
@@ -20,7 +21,7 @@ import ua.kyiv.informer.rest.employee.EmployeelLiteModel;
 public class EmployeeService {
 
 	@Autowired
-	private EmployeeDaoImpl employeeDao;
+	private EmployeeRepository employeeDao;
 
 	@Autowired
 	private EmployeeTransformer employeeTransformer;
@@ -40,12 +41,10 @@ public class EmployeeService {
 	@Autowired
 	private ModelMapper modelMapper;
 
-	@Transactional
 	public void save(EmployeeModel employeeModel) {
 		employeeDao.insert(mapModelEntity(employeeModel));
 	}
 
-	@Transactional
 	public void update(EmployeeModel employeeModel) {
 		employeeDao.update(mapModelEntity(employeeModel));
 	}
@@ -97,4 +96,13 @@ public class EmployeeService {
 				.map(entityEmployee -> modelMapper.map(entityEmployee, EmployeelLiteModel.class))
 				.collect(Collectors.toSet());
 	}
+
+    public void uniqueLoginEmail(EmployeeModel employeeModel, BindingResult bindingResult) {
+			if (employeeDao.uniqueLoginEmail("employee.uniqueLogin", employeeModel.getId(), employeeModel.getLogin())) {
+				bindingResult.rejectValue("login", "unique.value.violation");
+			}
+			if (employeeDao.uniqueLoginEmail("employee.uniqueEmail", employeeModel.getId(), employeeModel.getEmail())) {
+				bindingResult.rejectValue("email", "unique.value.violation");
+			}
+    }
 }

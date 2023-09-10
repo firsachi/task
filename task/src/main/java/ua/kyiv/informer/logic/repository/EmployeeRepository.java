@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ua.kyiv.informer.logic.entity.Employee;
 
 @Repository("employeeDao")
-public class EmployeeDaoImpl extends MainDao<Employee>{
+public class EmployeeRepository extends MainDao<Employee>{
 
 	@Override
 	public Employee byId(int id) {
@@ -22,7 +22,6 @@ public class EmployeeDaoImpl extends MainDao<Employee>{
 		TypedQuery<Employee> listEmloyee = em.createNamedQuery(namedQery, Employee.class);
 		return listEmloyee.getResultList();
 	}
-
 
 	@Transactional
 	public List<Employee> byList(String namedQery, int idDepartment) {
@@ -44,5 +43,11 @@ public class EmployeeDaoImpl extends MainDao<Employee>{
 		TypedQuery<Employee> listEmployee = em.createNamedQuery(namedQery, Employee.class);
 		listEmployee.setParameter("disable", remove);
 		return listEmployee.getResultList();
+	}
+
+	public boolean uniqueLoginEmail(String namedQuery, int id, String value) {
+		return !em.createNamedQuery( namedQuery, Employee.class)
+				.setParameter("id", id).setParameter("value", value)
+				.getResultList().isEmpty();
 	}
 }

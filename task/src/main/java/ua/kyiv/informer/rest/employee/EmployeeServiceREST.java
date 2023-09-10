@@ -10,14 +10,14 @@ import org.springframework.stereotype.Service;
 
 import ua.kyiv.informer.old.model.EmployeeModel;
 import ua.kyiv.informer.old.model.FilterParm;
-import ua.kyiv.informer.logic.repository.EmployeeDaoImpl;
+import ua.kyiv.informer.logic.repository.EmployeeRepository;
 
 @Service
 @Transactional
 public class EmployeeServiceREST {
 	
 	@Autowired
-	private  EmployeeDaoImpl repositoryEmployee;
+	private EmployeeRepository repositoryEmployee;
 	
 	@Autowired
 	private ModelMapper mapper;

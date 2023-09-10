@@ -6,46 +6,48 @@
 </head>
 <body>
 
-    <table data-th-fragment="employee-table">
-        <thead>
-            <tr>
-                <th data-th-text="#{inputlabel.fullNameEmployee}">full name employee</th>
-                <th data-th-text="#{inputlabel.namePost}">post name</th>
-                <th data-sec-authorize="hasAnyAuthority('employee:write')">
-                    <ul class="menu align-right" data-th-insert="~{templates/button.html :: button-add-table}"></ul>
-                </th>
-            </tr>
-        </thead>
-        <tbody data-th-each="employee : ${employees}">
-            <tr>
-                <td data-th-text="${employee.getFullName()}" >full name</td>
-                <td data-th-text="${employee.post}" >post name</td>
-                <td class="text-right" data-sec-authorize="hasAnyAuthority('employee:write')">
-                    <a data-th-href="@{edit/{id}(id=${employee.id})}" data-th-text="#{buttonname.edit}"></a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+<table data-th-fragment="employee-table">
+    <thead>
+    <tr>
+        <th data-th-text="#{inputlabel.fullNameEmployee}">full name employee</th>
+        <th data-th-text="#{inputlabel.namePost}">post name</th>
+        <th data-sec-authorize="hasAnyAuthority('employee:write')">
+            <ul class="menu align-right" data-th-insert="~{templates/button.html :: button-add-table}"></ul>
+        </th>
+    </tr>
+    </thead>
+    <tbody data-th-each="employee : ${employees}">
+    <tr>
+        <td data-th-text="${employee.getFullName()}">full name</td>
+        <td data-th-text="${employee.post}">post name</td>
+        <td class="text-right" data-sec-authorize="hasAnyAuthority('employee:write')">
+            <a data-th-href="@{edit/{id}(id=${employee.id})}" data-th-text="#{buttonname.edit}"></a>
+        </td>
+    </tr>
+    </tbody>
+</table>
 
-    <div data-th-fragment="employee-add" data-th-remove="tag">
-        <form data-th-replace="~{employee/employee-fragment :: employee-form(#{titleform.new}, @{add})}"></form>
-    </div>
+<div data-th-fragment="employee-add" data-th-remove="tag">
+    <form data-th-replace="~{employee/employee-fragment :: employee-form(#{titleform.new}, @{add})}"></form>
+</div>
 
-    <div data-th-fragment="employee-edit" data-th-remove="tag">
-        <form data-th-replace="~{employee/employee-fragment :: employee-form(#{titleform.edit}, @{#})}"></form>
-    </div>
+<div data-th-fragment="employee-edit" data-th-remove="tag">
+    <form data-th-replace="~{employee/employee-fragment :: employee-form(#{titleform.edit}, @{#})}"></form>
+</div>
 
 
-    <form data-th-object="${employee}" method="post" data-th-fragment="employee-form(labelTitle, url)" data-th-action="${url}">
-        <fieldset>
-            <legend data-th-text="${labelTitle}"></legend>
-
+<form data-th-object="${employee}" method="post" data-th-fragment="employee-form(labelTitle, url)"
+      data-th-action="${url}">
+    <fieldset>
+        <legend data-th-text="${labelTitle}"></legend>
+        <div class="row expanded">
             <div class="medium-4 small-12 columns">
                 <label>
-                    <span data-th-text="#{inputlabel.company}" data-th-remove="tag" ></span>
-                    <select id="idEnterprise" data-th-field="*{idEnterprise}" >
+                    <span data-th-text="#{inputlabel.company}" data-th-remove="tag"></span>
+                    <select id="idEnterprise" data-th-field="*{idEnterprise}">
                         <option value="0"></option>
-                        <option data-th-each="company : ${companies}" data-th-value="${company.id}" data-th-text="${company.nameCompany}" ></option>
+                        <option data-th-each="company : ${companies}" data-th-value="${company.id}"
+                                data-th-text="${company.nameCompany}"></option>
                     </select>
                 </label>
             </div>
@@ -55,7 +57,8 @@
                     <span data-th-text="#{inputlabel.department}" data-th-remove="tag"></span>
                     <select id="department" data-th-field="*{department}">
                         <option id="departmentItem" value=" "></option>
-                        <option data-th-each="department : ${departments}" data-th-value="${department.name}" data-th-text="${department.name}"></option>
+                        <option data-th-each="department : ${departments}" data-th-value="${department.name}"
+                                data-th-text="${department.name}"></option>
                     </select>
 
                 </label>
@@ -64,31 +67,43 @@
             <div class="medium-4 small-12 columns">
                 <label>
                     <span data-th-text="#{inputlabel.namePost}" data-th-remove="tag"></span>
-                    <select id="position" data-th-field="*{post}" >
+                    <select id="position" data-th-field="*{post}">
                         <option value="0"></option>
-                        <option data-th-each="position : ${positions}" data-th-value="${position.namePosition }"  data-th-text="${position.namePosition}"></option>
+                        <option data-th-each="position : ${positions}" data-th-value="${position.namePosition }"
+                                data-th-text="${position.namePosition}"></option>
                     </select>
                 </label>
             </div>
 
-            <div data-th-replace="~{templates/input-custom :: input-text-medium-4(#{inputlabel.surname}, 'surname')}" ></div>
+        </div>
 
-            <div data-th-replace="~{templates/input-custom :: input-text-medium-4(#{inputlabel.nameEmployee}, 'name')}" ></div>
+        <div class="row expanded">
+            <div data-th-replace="~{templates/input-custom :: input-text-medium-4(#{inputlabel.surname}, 'surname')}"></div>
+
+            <div data-th-replace="~{templates/input-custom :: input-text-medium-4(#{inputlabel.nameEmployee}, 'name')}"></div>
 
             <div data-th-replace="~{templates/input-custom :: input-text-medium-4(#{inputlabel.patronymic}, 'patronymic')}"></div>
+        </div>
 
-            <div data-sec-authorize="hasAuthority('ADMINISTRATOR')" data-th-replace="~{templates/input-custom :: input-text-medium-4(#{inputlabel.login}, 'login')}"></div>
+        <div class="row expanded">
+            <div data-sec-authorize="hasAuthority('ADMINISTRATOR')"
+                 data-th-replace="~{templates/input-custom :: input-text-medium-4(#{inputlabel.login}, 'login')}"></div>
 
-            <div data-sec-authorize="hasAuthority('ADMINISTRATOR')" data-th-replace="~{templates/input-custom :: input-text-medium-4(#{inputlabel.email}, 'email')}"></div>
+            <div data-sec-authorize="hasAuthority('ADMINISTRATOR')"
+                 data-th-replace="~{templates/input-custom :: input-text-medium-4(#{inputlabel.email}, 'email')}"></div>
 
-            <div data-sec-authorize="hasAuthority('ADMINISTRATOR')" data-th-replace="~{templates/input-custom :: input-text-medium-4(#{inputlabel.password}, 'password')}" ></div>
+            <div data-sec-authorize="hasAuthority('ADMINISTRATOR')"
+                 data-th-replace="~{templates/input-custom :: input-text-medium-4(#{inputlabel.password}, 'password')}"></div>
+        </div>
 
+        <div>
             <div data-sec-authorize="hasAuthority('ADMINISTRATOR')" class="medium-6 small-12 columns">
                 <label>
                     <span data-th-text="#{inputlabel.numberRoom}" data-th-remove="tag"></span>
                     <select id="numberRoom" data-th-field="*{idRoom}">
                         <option value="0">0</option>
-                        <option data-th-each="room : ${allRoom}" data-th-value="${room.id}" data-th-text="${room.numberRoom}"></option>
+                        <option data-th-each="room : ${allRoom}" data-th-value="${room.id}"
+                                data-th-text="${room.numberRoom}"></option>
                     </select>
                 </label>
             </div>
@@ -99,17 +114,20 @@
                     <span data-th-text="#{inputlabel.numberPhone}" data-th-remove="tag"></span>
                     <select id="numberPhone" data-th-field="*{idPhone}">
                         <option value="0">0</option>
-                        <option data-th-each="phone : ${allPhone}" data-th-value="${phone.id}" data-th-text="${phone.numberPhone}">
+                        <option data-th-each="phone : ${allPhone}" data-th-value="${phone.id}"
+                                data-th-text="${phone.numberPhone}">
                     </select>
                 </label>
             </div>
+        </div>
 
-            <div data-th-replace="~{templates/input-custom :: input-submit-form}"></div>
 
-            <script type="module" data-th-src="@{/js/employee-fragment.js}" ></script>
+        <div data-th-replace="~{templates/input-custom :: input-submit-form}"></div>
 
-        </fieldset>
-    </form>
+        <script type="module" data-th-src="@{/js/employee-fragment.js}"></script>
+
+    </fieldset>
+</form>
 
 </body>
 </html>

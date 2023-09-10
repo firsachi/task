@@ -12,14 +12,14 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import ua.kyiv.informer.logic.repository.EmployeeDaoImpl;
+import ua.kyiv.informer.logic.repository.EmployeeRepository;
 import ua.kyiv.informer.logic.service.EmployeeService;
 import ua.kyiv.informer.old.EmployeeTransformer;
 
 class UserAppServiceTest {
 	
 	@Mock
-	private EmployeeDaoImpl employeeDao;
+	private EmployeeRepository employeeDao;
 	
 	@Mock
 	private EmployeeTransformer employeeTransformer;
