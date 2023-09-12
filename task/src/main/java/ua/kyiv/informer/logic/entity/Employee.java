@@ -14,22 +14,22 @@ import java.util.Objects;
 @NamedQueries({
         @NamedQuery(
                 name = "allEmployee",
-                query = "SELECT E FROM Employee E ORDER BY E.remove"),
+                query = "SELECT E FROM Employee E ORDER BY E.disable"),
         @NamedQuery(
                 name = "employeeDepartment",
-                query = "SELECT E FROM Employee E WHERE E.enterprise.id = :companuId AND E.department.id = :departmentId AND E.remove = true ORDER BY E.position.heft"),
+                query = "SELECT E FROM Employee E WHERE E.enterprise.id = :companuId AND E.department.id = :departmentId AND E.disable = false ORDER BY E.position.heft"),
         @NamedQuery(
                 name = "employees",
                 query = "SELECT E FROM Employee E ORDER BY E.id"),
         @NamedQuery(
                 name = "deleteEmployee",
-                query = "UPDATE Employee E SET E.remove = true WHERE E.id=:id"),
+                query = "UPDATE Employee E SET E.disable = true WHERE E.id=:id"),
         @NamedQuery(
                 name = "selectIdDepartment",
-                query = "SELECT E FROM Employee E WHERE E.remove = false AND E.department.id = :departmentId ORDER BY E.position.heft"),
+                query = "SELECT E FROM Employee E WHERE E.disable = false AND E.department.id = :departmentId ORDER BY E.position.heft"),
         @NamedQuery(
 				name = "selectEmployee",
-				query = "SELECT E FROM Employee E WHERE E.remove = :disable ORDER BY E.surname "),
+				query = "SELECT E FROM Employee E WHERE E.disable = :disable ORDER BY E.surname "),
         @NamedQuery(
 				name = "employee.uniqueLogin",
 				query = "SELECT E FROM Employee E WHERE E.id <> :id AND E.login = :value"),
@@ -88,8 +88,8 @@ public class Employee implements Serializable {
     @ManyToMany(mappedBy = "employee")
     private List<HrOrder> hrOrderList;
 
-    @Column(name = "remove", columnDefinition = "boolean default false", nullable = false)
-    private Boolean remove = false;
+    @Column(name = "disable", columnDefinition = "boolean default false", nullable = false)
+    private Boolean disable = false;
 
     public Employee() {
         super();
@@ -199,18 +199,18 @@ public class Employee implements Serializable {
         this.hrOrderList = hrOrderList;
     }
 
-    public Boolean getRemove() {
-        return remove;
+    public Boolean getDisable() {
+        return disable;
     }
 
-    public void setRemove(Boolean remove) {
-        this.remove = remove;
+    public void setDisable(Boolean remove) {
+        this.disable = remove;
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(department, email, enterprise, hrOrderList, id, login, name, password, patronymic, phone,
-                position, remove, room, surname);
+                position, disable, room, surname);
     }
 
     @Override
@@ -227,7 +227,7 @@ public class Employee implements Serializable {
                 && id == other.id && Objects.equals(login, other.login) && Objects.equals(name, other.name)
                 && Objects.equals(password, other.password) && Objects.equals(patronymic, other.patronymic)
                 && Objects.equals(phone, other.phone) && Objects.equals(position, other.position)
-                && Objects.equals(remove, other.remove) && Objects.equals(room, other.room)
+                && Objects.equals(disable, other.disable) && Objects.equals(room, other.room)
                 && Objects.equals(surname, other.surname);
     }
 
@@ -236,7 +236,7 @@ public class Employee implements Serializable {
         return "Employee [id=" + id + ", surname=" + surname + ", name=" + name + ", patronymic=" + patronymic
                 + ", phone=" + phone + ", position=" + position + ", department=" + department + ", enterprise="
                 + enterprise + ", email=" + email + ", room=" + room + ", login=" + login + ", pass=" + password
-                + ", hrOrderList=" + hrOrderList + ", remove=" + remove + "]";
+                + ", hrOrderList=" + hrOrderList + ", remove=" + disable + "]";
     }
 
 }
