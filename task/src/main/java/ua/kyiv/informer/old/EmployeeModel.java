@@ -189,6 +189,10 @@ public class EmployeeModel {
 		this.password = password;
 	}
 
+	public String fullname() {
+		return surname + " " + name + " " + patronymic;
+	}
+
 	@Override
 	public String toString() {
 		return "EmployeeModel [id=" + id + ", surname=" + surname + ", name=" + name + ", patronymic=" + patronymic

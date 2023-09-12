@@ -15,12 +15,16 @@ import ua.kyiv.informer.logic.repository.EmployeeRepository;
 @Service
 @Transactional
 public class EmployeeServiceREST {
-	
+
+	private final EmployeeRepository repositoryEmployee;
+
+	private final ModelMapper mapper;
+
 	@Autowired
-	private EmployeeRepository repositoryEmployee;
-	
-	@Autowired
-	private ModelMapper mapper;
+	public EmployeeServiceREST(EmployeeRepository employeeRepository, ModelMapper mapper){
+		this.repositoryEmployee = employeeRepository;
+		this.mapper = mapper;
+	}
 	
 	@Transactional
 	public List<EmployeeModel> getListEmployeeDepartment(FilterParm filterParm){

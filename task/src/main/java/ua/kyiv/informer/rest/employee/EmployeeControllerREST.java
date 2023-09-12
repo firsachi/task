@@ -1,12 +1,9 @@
 package ua.kyiv.informer.rest.employee;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.*;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 import ua.kyiv.informer.old.model.FilterParm;
 
 @RestController
@@ -24,7 +21,6 @@ public class EmployeeControllerREST {
 	}
 
 	@CrossOrigin
-	@PreAuthorize("!isAuthenticated()")
 	@GetMapping(path = {"/loadEmployes/{companyId}/{departmentId}", "loadEmployes/{companyId}/{departmentId}/"})
 	public String listEmployees(@PathVariable("companyId") int companyId, @PathVariable("departmentId") int departmentId) {
 		try {

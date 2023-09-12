@@ -17,7 +17,7 @@ import java.util.Objects;
                 query = "SELECT E FROM Employee E ORDER BY E.remove"),
         @NamedQuery(
                 name = "employeeDepartment",
-                query = "SELECT E FROM Employee E WHERE E.enterprise.id = :companuId AND E.department.id = :departmentId ORDER BY E.position.heft"),
+                query = "SELECT E FROM Employee E WHERE E.enterprise.id = :companuId AND E.department.id = :departmentId AND E.remove = true ORDER BY E.position.heft"),
         @NamedQuery(
                 name = "employees",
                 query = "SELECT E FROM Employee E ORDER BY E.id"),
