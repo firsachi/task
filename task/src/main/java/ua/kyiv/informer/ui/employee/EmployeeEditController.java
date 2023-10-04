@@ -9,7 +9,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import ua.kyiv.informer.logic.service.CompanyService;
-import ua.kyiv.informer.logic.service.DepartmentService;
 import ua.kyiv.informer.logic.service.EmployeeService;
 import ua.kyiv.informer.rest.employee.EmployeeModel;
 

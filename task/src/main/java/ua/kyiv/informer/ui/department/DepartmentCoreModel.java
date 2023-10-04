@@ -2,7 +2,6 @@ package ua.kyiv.informer.ui.department;
 import java.util.Objects;
 
 import jakarta.validation.constraints.NotBlank;
-import org.springframework.stereotype.Component;
 
 public class DepartmentCoreModel {
 	

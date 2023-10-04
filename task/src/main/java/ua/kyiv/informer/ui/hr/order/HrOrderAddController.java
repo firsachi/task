@@ -8,17 +8,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import ua.kyiv.informer.logic.service.EmployeeService;
 import ua.kyiv.informer.logic.service.HrOrderService;
 import ua.kyiv.informer.rest.employee.EmployeelLiteModel;
 
 @Controller
 public class HrOrderAddController extends BaseController<HrOrderService> {
-	
-	@Autowired
-	private ObjectMapper mapper;
 	
 	@Autowired
 	private EmployeeService employeeService;

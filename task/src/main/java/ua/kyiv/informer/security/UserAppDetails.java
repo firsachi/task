@@ -11,7 +11,9 @@ import java.util.stream.Collectors;
 
 public class UserAppDetails implements UserDetails {
 
-    private final UserApp userApp;
+    private static final long serialVersionUID = 7877933092190052109L;
+
+	private final UserApp userApp;
 
     private Set<SimpleGrantedAuthority> permissions;
 

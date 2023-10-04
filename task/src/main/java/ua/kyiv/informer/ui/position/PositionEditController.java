@@ -2,7 +2,6 @@ package ua.kyiv.informer.ui.position;
 
 import jakarta.validation.Valid;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;

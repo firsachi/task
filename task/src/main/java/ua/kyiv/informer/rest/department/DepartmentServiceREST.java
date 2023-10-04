@@ -30,7 +30,7 @@ public class DepartmentServiceREST {
 
 	@Transactional
 	public List<DepartmentModel> getListDepartments() {
-		return departmentDao.byList("allDepartments")
+		return departmentDao.byList("department")
 				.stream().map(department -> mapper.map(department, DepartmentModel.class))
 				.collect(Collectors.toList());
 	}
