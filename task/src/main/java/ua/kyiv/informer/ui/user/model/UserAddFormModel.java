@@ -6,8 +6,6 @@ import java.util.Set;
 
 public class UserAddFormModel extends UserModel {
 
-	private static final long serialVersionUID = 2196966617106815840L;
-
 	@Size(min = 8)
 	private String repeatPassword;
 	

@@ -1,6 +1,5 @@
 package ua.kyiv.informer.ui.phone;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -11,8 +10,6 @@ import ua.kyiv.informer.logic.service.PhoneService;
 @Controller("phoneController")
 public class PhoneController  extends CorePhoneController {
 
-
-    @Autowired
     public PhoneController(@Qualifier("phoneService") PhoneService phoneService) {
         super(phoneService, "phone-table");
     }

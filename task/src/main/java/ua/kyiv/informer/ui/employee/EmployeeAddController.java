@@ -2,7 +2,6 @@ package ua.kyiv.informer.ui.employee;
 
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,7 +20,6 @@ public class EmployeeAddController extends CoreEmployeeController {
 
     private  final CompanyService companyService;
 
-    @Autowired
     public EmployeeAddController(EmployeeService employeeService, EmployeeModelAttribute employeeModelAttribute, CompanyService companyService) {
         super(employeeService, "employee/employee-fragment :: employee-add");
         this.employeeModelAttribute = employeeModelAttribute;

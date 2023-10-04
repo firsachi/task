@@ -1,6 +1,5 @@
 package ua.kyiv.informer.ui.room;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -12,7 +11,6 @@ import ua.kyiv.informer.logic.service.RoomService;
 @Controller
 public class RoomController extends CoreRoomController {
 
-	@Autowired
 	public RoomController(@Qualifier("roomService") RoomService roomService) {
 		super(roomService);
 	}

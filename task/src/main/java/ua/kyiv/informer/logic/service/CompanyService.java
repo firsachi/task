@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 import ua.kyiv.informer.old.model.DepartmentModel;
 import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ua.kyiv.informer.logic.entity.Company;
 import ua.kyiv.informer.logic.repository.CompanyDaoImpl;
@@ -20,7 +19,6 @@ public class CompanyService {
 
 	private final ModelMapper modelMapper;
 
-	@Autowired
 	public CompanyService(CompanyDaoImpl companyDao, ModelMapper modelMapper) {
 		this.companyDao = companyDao;
 		this.modelMapper = modelMapper;

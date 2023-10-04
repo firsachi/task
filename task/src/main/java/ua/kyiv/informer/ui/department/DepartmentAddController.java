@@ -1,7 +1,6 @@
 package ua.kyiv.informer.ui.department;
 
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -22,7 +21,6 @@ public class DepartmentAddController extends CoreDepartmentController {
 
     private final CompanyService companyService;
 
-    @Autowired
     public DepartmentAddController(@Qualifier("companyService") CompanyService companyService) {
         super("department-add");
         this.companyService = companyService;

@@ -5,7 +5,6 @@ import java.util.stream.Collectors;
 
 import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ua.kyiv.informer.logic.entity.Company;
@@ -22,7 +21,6 @@ public class DepartmentService {
 
 	private final ModelMapper modelMapper;
 
-	@Autowired
 	public DepartmentService(DepartmentDaoImpl departmentDao, ModelMapper modelMapper) {
 		this.departmentDao = departmentDao;
 		this.modelMapper = modelMapper;

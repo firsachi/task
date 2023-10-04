@@ -1,7 +1,6 @@
 package ua.kyiv.informer.ui.company;
 
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -15,7 +14,7 @@ import ua.kyiv.informer.logic.service.CompanyService;
 @Controller("companyAddController")
 public class CompanyAddController extends CoreCompanuController {
 
-    @Autowired
+    
     public CompanyAddController(@Qualifier("companyService") CompanyService companyService) {
         super(companyService, "company-add");
     }

@@ -1,7 +1,5 @@
 package ua.kyiv.informer.rest.company;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,7 +21,6 @@ public class CompanyControllerREST {
 
 	private final CompanyServiceREST service;
 
-	@Autowired
 	public CompanyControllerREST(ObjectMapper mapper, CompanyServiceREST service) {
 		this.mapper = mapper;
 		this.service = service;

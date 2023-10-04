@@ -1,24 +1,14 @@
 package ua.kyiv.informer.ui.user.model;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 import java.util.Set;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import ua.kyiv.informer.logic.entity.Role;
 
 public class UserModel{
 	
-	/**
-	 * serial version 
-	 */
-	private static final long serialVersionUID = 1L;
-
 	@NotBlank
 	protected String username;
 	

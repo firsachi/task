@@ -1,7 +1,6 @@
 package ua.kyiv.informer.ui.user;
 
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -22,7 +21,6 @@ public class UserEditController extends UserMainController {
 
     private final RoleRepositiry roleRepositiry;
 
-    @Autowired
     public UserEditController(RoleRepositiry roleRepositiry) {
         this.roleRepositiry = roleRepositiry;
     }

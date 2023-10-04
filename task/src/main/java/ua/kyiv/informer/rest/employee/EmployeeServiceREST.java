@@ -5,7 +5,6 @@ import java.util.stream.Collectors;
 
 import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ua.kyiv.informer.old.model.EmployeeModel;
@@ -20,7 +19,6 @@ public class EmployeeServiceREST {
 
 	private final ModelMapper mapper;
 
-	@Autowired
 	public EmployeeServiceREST(EmployeeRepository employeeRepository, ModelMapper mapper){
 		this.repositoryEmployee = employeeRepository;
 		this.mapper = mapper;

@@ -1,9 +1,5 @@
-/**
- * 
- */
 package ua.kyiv.informer.ui.room;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +18,6 @@ public abstract class CoreRoomController {
 
 	private final  String REDIRECT = "redirect:/room/";
 
-	@Autowired
 	public CoreRoomController(@Qualifier("roomService")RoomService roomService) {
 		this.roomService = roomService;
 	}

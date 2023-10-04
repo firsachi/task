@@ -4,7 +4,6 @@
 package ua.kyiv.informer.ui.room;
 
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -23,7 +22,6 @@ import ua.kyiv.informer.logic.service.RoomService;
 @SessionAttributes(value = "room")
 public class RoomEditController extends CoreRoomController {
 
-    @Autowired
     public RoomEditController(@Qualifier("roomService") RoomService roomService) {
         super(roomService);
     }

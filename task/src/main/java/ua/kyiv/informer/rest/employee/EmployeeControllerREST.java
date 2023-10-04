@@ -2,7 +2,6 @@ package ua.kyiv.informer.rest.employee;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ua.kyiv.informer.old.model.FilterParm;
 
@@ -14,7 +13,6 @@ public class EmployeeControllerREST {
 
 	private final ObjectMapper mapper;
 
-	@Autowired
 	public EmployeeControllerREST(EmployeeServiceREST service, ObjectMapper mapper) {
 		this.service = service;
 		this.mapper = mapper;

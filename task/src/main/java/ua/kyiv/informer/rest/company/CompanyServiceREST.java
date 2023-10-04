@@ -1,12 +1,10 @@
 package ua.kyiv.informer.rest.company;
 
-
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ua.kyiv.informer.old.model.DepartmentModel;
@@ -16,11 +14,10 @@ import ua.kyiv.informer.logic.repository.CompanyDaoImpl;
 @Service
 public class CompanyServiceREST {
 	
-	private CompanyDaoImpl companyDao;
+	private final CompanyDaoImpl companyDao;
 
-	private ModelMapper mapper;
+	private final ModelMapper mapper;
 
-	@Autowired
 	public CompanyServiceREST(CompanyDaoImpl companyDao, ModelMapper mapper) {
 		this.companyDao = companyDao;
 		this.mapper = mapper;

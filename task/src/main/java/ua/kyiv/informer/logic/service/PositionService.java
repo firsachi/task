@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 import jakarta.transaction.Transactional;
 
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ua.kyiv.informer.logic.entity.Position;
@@ -21,7 +20,6 @@ public class PositionService{
 
 	private final ModelMapper modelMapper;
 
-	@Autowired
 	public PositionService(PositionDaoImpl postDao, ModelMapper modelMapper) {
 		this.postDao = postDao;
 		this.modelMapper = modelMapper;

@@ -5,7 +5,6 @@ import java.util.stream.Collectors;
 
 import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ua.kyiv.informer.old.model.DepartmentModel;
@@ -19,7 +18,6 @@ public class DepartmentServiceREST {
 
 	private final ModelMapper mapper;
 
-	@Autowired
 	public DepartmentServiceREST(DepartmentDaoImpl departmentDao, ModelMapper mapper) {
 		this.departmentDao = departmentDao;
 		this.mapper = mapper;

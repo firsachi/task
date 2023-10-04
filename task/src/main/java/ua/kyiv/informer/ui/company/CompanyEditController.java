@@ -1,7 +1,6 @@
 package ua.kyiv.informer.ui.company;
 
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -15,7 +14,6 @@ import ua.kyiv.informer.logic.service.CompanyService;
 @SessionAttributes(value = "company")
 public class CompanyEditController extends CoreCompanuController {
 
-    @Autowired
     public CompanyEditController(@Qualifier("companyService") CompanyService companyService) {
         super(companyService, "company-edit");
     }
